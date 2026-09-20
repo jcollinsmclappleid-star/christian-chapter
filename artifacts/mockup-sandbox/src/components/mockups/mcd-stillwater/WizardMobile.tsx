@@ -1,0 +1,17 @@
+import React, { useState } from "react";
+
+const attendance = ["Weekly", "Most weeks", "Monthly", "Occasionally", "Rarely"];
+const centrality = ["Mostly private", "Present", "Woven through", "Central", "Everything"];
+
+export function WizardMobile() {
+  const [attend, setAttend] = useState("Weekly"); const [central, setCentral] = useState("Central"); const [saved, setSaved] = useState(true);
+  return <main className="min-h-screen bg-[#0E1621] pb-28 text-[#F4F0E8] font-['Space_Grotesk']"><div className="h-1 bg-[#182633]"><div className="h-full w-1/3 bg-[#C8A46B]" /></div><header className="flex items-center justify-between px-6 py-7"><div className="text-[10px] uppercase leading-4 tracking-[.23em]">Mature<br/><span className="text-[#C8A46B]">Christian Dating</span></div><span className="text-[10px] uppercase tracking-[.2em] text-[#b9c2cb]">Step 3 of 9 · Your faith</span></header>
+    <section className="px-6"><p className="mt-10 text-[10px] uppercase tracking-[.3em] text-[#C8A46B]">Step 3 of 9</p><h1 className="mt-4 font-['Playfair_Display'] text-[38px] leading-none">Your faith</h1><p className="mt-5 text-[16px] leading-7 text-[#b9c2cb]">Help us understand what matters to you, so we can find genuine compatibility.</p>
+      <div className="mt-10 space-y-8"><label className="block"><span className="mb-3 block text-[16px]">Christian tradition</span><select className="h-14 w-full rounded-none border border-[#a5b0bb]/25 bg-[#121e2a] px-4 text-[16px] text-[#F4F0E8]"><option>Anglican</option><option>Baptist</option><option>Catholic</option><option>Evangelical</option><option>Other</option></select></label>
+      <fieldset><legend className="mb-3 text-[16px]">Church attendance</legend><div className="space-y-2">{attendance.map(x=><button type="button" key={x} onClick={()=>{setAttend(x);setSaved(false);}} className={`flex min-h-[52px] w-full items-center justify-between border px-4 text-left text-[15px] ${attend===x?"border-[#C8A46B] bg-[#C8A46B]/10 text-[#E5C98F]":"border-[#a5b0bb]/25 bg-[#121e2a] text-[#b9c2cb]"}`}>{x}<span>{attend===x?"✓":" "}</span></button>)}</div></fieldset>
+      <fieldset><legend className="mb-3 text-[16px]">How central is faith to your daily life?</legend><div className="flex gap-2 overflow-x-auto pb-2">{centrality.map(x=><button type="button" key={x} onClick={()=>{setCentral(x);setSaved(false);}} className={`h-[76px] min-w-[70px] border px-2 text-[12px] leading-4 ${central===x?"border-[#C8A46B] bg-[#C8A46B]/10 text-[#E5C98F]":"border-[#a5b0bb]/25 bg-[#121e2a] text-[#b9c2cb]"}`}>{x}</button>)}</div></fieldset>
+      <label className="block"><span className="mb-3 block text-[16px]">What does faith look like for you day to day?</span><textarea rows={5} placeholder="Feel free to be as specific or as general as you like." className="w-full resize-none border border-[#a5b0bb]/25 bg-[#121e2a] p-4 text-[16px] leading-7 text-[#F4F0E8] outline-none placeholder:text-[#687786] focus:border-[#C8A46B]" onBlur={()=>setSaved(true)} /></label></div><p className="mt-5 text-[11px] text-[#7f8c99]">Used for matching only</p></section>
+    <nav className="fixed bottom-0 left-0 right-0 flex min-h-[84px] items-center justify-between border-t border-[#a5b0bb]/20 bg-[#101a26] px-6"><button type="button" className="min-h-[48px] text-[15px] text-[#b9c2cb]">←&nbsp; Back</button><button type="button" onClick={()=>setSaved(true)} className="min-h-[52px] flex-1 bg-[#D4B16F] text-[12px] font-semibold uppercase tracking-[.16em] text-[#101923]">Continue&nbsp; →</button></nav>
+  </main>;
+}
+export default WizardMobile;
