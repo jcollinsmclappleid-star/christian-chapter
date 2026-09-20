@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Christian Chapter"
+description = "A thoughtful UK Christian dating platform for people aged 40–70, with founding-member registration and secure application administration."
+version = "1.0.0"
+id = "artifacts/christian-chapter"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22012
+
+[services.development]
+run = "pnpm --filter @workspace/christian-chapter run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/christian-chapter", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/christian-chapter/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22012"
+BASE_PATH = "/"
