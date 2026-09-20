@@ -1,1 +1,2 @@
 - [Christian Chapter brand decisions](christian-chapter-brand.md) — founding-phase copy rules, design tokens, and durable architectural choices
+- [Christian Chapter preview routing](christian-chapter-preview-routing.md) — public review requires the app to remain registered as the root web artifact
