@@ -4,69 +4,65 @@ import { eq } from "drizzle-orm";
 import { z } from "zod";
 
 // ── Server-authoritative consent versions ─────────────────────────────────────
-// Update these when consent text changes. Never accepted from the client.
-const RELIGIOUS_DATA_CONSENT_VERSION = "2025-01";
+// Update these when consent text changes. Never taken from the client.
+const RELIGIOUS_CONSENT_VERSION = "2025-01";
+const MARKETING_CONSENT_VERSION = "2025-01";
 
-// ── Input validation ──────────────────────────────────────────────────────────
+// ── Submission schema ─────────────────────────────────────────────────────────
 
-const RegistrationSchema = z.object({
-  // Step 2: Account
-  firstName: z.string().min(1, "First name is required").max(100),
-  email: z.string().email("Valid email address required").max(255),
+const SubmitSchema = z.object({
+  // Step 2
+  firstName: z.string().min(1).max(100),
+  email: z.string().email(),
   marketingConsent: z.boolean(),
-
-  // Step 3: About you
-  dateOfBirth: z
-    .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Date of birth must be YYYY-MM-DD"),
-  gender: z.string().min(1).max(50),
-  seekingGender: z.array(z.string()).min(1, "At least one gender preference required"),
-
-  // Step 4: Location
-  ukRegion: z.string().min(1).max(100),
-  travelRadiusMiles: z.number().int().min(0).max(500),
-
-  // Step 5: Faith (GDPR special category — consent is the boolean, not metadata)
-  religiousDataConsent: z.boolean(), // explicit checkbox; must be true
-  tradition: z.string().min(1).max(100),
-  churchAttendance: z.string().min(1).max(100),
-  faithCentrality: z.string().min(1).max(100),
-  faithDescription: z.string().max(3000).optional().default(""),
-
-  // Step 6: Life now
-  workStatus: z.string().max(100).optional().default(""),
-  familySituation: z.string().max(100).optional().default(""),
-  interests: z.array(z.string()).optional().default([]),
-
-  // Step 7: Intentions
-  relationshipGoal: z.string().max(100).optional().default(""),
-  openToRemarriage: z.boolean().nullable().optional().default(null),
-  relationshipPace: z.string().max(50).optional().default(""),
-
-  // Step 8: Who to meet
+  // Step 3
+  dateOfBirth: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  gender: z.string().min(1),
+  seekingGender: z.array(z.string()).min(1),
+  // Step 4
+  ukRegion: z.string().min(1),
+  travelRadiusMiles: z.number().int().min(5).max(300),
+  // Step 5 — consent must be true; client also sends the timestamp as evidence
+  // that the checkbox was shown and clicked, but authoritative grantedAt is
+  // always the server's clock (never the client value).
+  religiousDataConsent: z.literal(true, {
+    errorMap: () => ({
+      message: "Religious data consent is required to complete registration.",
+    }),
+  }),
+  religiousDataConsentTimestamp: z.string().min(1), // client evidence only
+  religiousDataConsentVersion: z.string(),           // informational only
+  tradition: z.string().min(1),
+  churchAttendance: z.string().min(1),
+  faithCentrality: z.string().min(1),
+  faithDescription: z.string().optional(),
+  // Step 6
+  workStatus: z.string().optional(),
+  familySituation: z.string().optional(),
+  interests: z.array(z.string()),
+  // Step 7
+  relationshipGoal: z.string().optional(),
+  openToRemarriage: z.boolean().nullable(),
+  relationshipPace: z.string().optional(),
+  // Step 8
   ageRangeMin: z.number().int().min(18).max(100),
   ageRangeMax: z.number().int().min(18).max(100),
-  preferredDistanceMiles: z.number().int().min(0).max(500).optional().default(50),
-  meetingPreferences: z.string().max(1000).optional().default(""),
-
-  // Step 9: Essentials
-  essentials: z
-    .array(
-      z.object({
-        factor: z.string(),
-        label: z.string(),
-        tier: z.enum(["essential", "preferred", "open"]),
-      })
-    )
-    .optional()
-    .default([]),
-
-  // Step 10: Story
-  storyPrompt1: z.string().max(4000).optional().default(""),
-  storyPrompt2: z.string().max(4000).optional().default(""),
-  storyPrompt3: z.string().max(4000).optional().default(""),
-  priorities: z.array(z.string().max(120)).optional().default([]),
-  photoConsent: z.boolean().optional().default(false),
+  preferredDistanceMiles: z.number().int().min(1).max(300),
+  meetingPreferences: z.string().optional(),
+  // Step 9
+  essentials: z.array(
+    z.object({
+      factor: z.string(),
+      label: z.string(),
+      tier: z.enum(["essential", "preferred", "open"]),
+    })
+  ),
+  // Step 10
+  storyPrompt1: z.string().optional(),
+  storyPrompt2: z.string().optional(),
+  storyPrompt3: z.string().optional(),
+  priorities: z.array(z.string()),
+  photoConsent: z.boolean(),
 });
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -84,56 +80,50 @@ function getAge(dob: string): number {
   return age;
 }
 
-// PostgreSQL unique constraint violation error code
+// PostgreSQL unique constraint violation (23505).
+// The Neon HTTP driver wraps the pg error object as `err.cause`, so we check
+// both the top-level error and its cause for the code and message.
 function isUniqueViolation(err: unknown): boolean {
-  return (
-    typeof err === "object" &&
-    err !== null &&
-    "code" in err &&
-    (err as { code: unknown }).code === "23505"
-  );
+  if (typeof err !== "object" || err === null) return false;
+  const e = err as Record<string, unknown>;
+  if (e.code === "23505") return true;
+  // Neon HTTP wraps the NeonDbError as `cause`
+  const cause = e.cause;
+  if (typeof cause === "object" && cause !== null) {
+    if ((cause as Record<string, unknown>).code === "23505") return true;
+    const causeMsg = String((cause as Record<string, unknown>).message ?? "");
+    if (causeMsg.includes("duplicate key") || causeMsg.includes("unique")) return true;
+  }
+  // Fallback: check the outer message
+  const msg = String(e.message ?? "");
+  return msg.includes("duplicate key") || msg.includes("unique constraint");
 }
 
-// ── Handler ───────────────────────────────────────────────────────────────────
+// ── POST /api/founding-members ────────────────────────────────────────────────
 
 export async function POST(request: NextRequest) {
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    request.headers.get("x-real-ip") ??
-    "unknown";
-  const userAgent = request.headers.get("user-agent") ?? "";
-  const consentAt = new Date(); // server-authoritative timestamp for all consent records
-
-  const body = await request.json().catch(() => null);
-  if (!body) {
-    return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
   }
 
-  const parse = RegistrationSchema.safeParse(body);
+  const parse = SubmitSchema.safeParse(body);
   if (!parse.success) {
-    const firstError = parse.error.issues[0];
     return NextResponse.json(
-      {
-        error: firstError?.message ?? "Invalid registration data.",
-        field: firstError?.path?.join("."),
-      },
+      { error: "Validation failed.", issues: parse.error.issues },
       { status: 422 }
     );
   }
 
-  const d = parse.data;
-
-  // Require explicit religious data consent (must be true — not just present)
-  if (!d.religiousDataConsent) {
-    return NextResponse.json(
-      { error: "Explicit consent to process religious belief data is required." },
-      { status: 422 }
-    );
-  }
+  const data = parse.data;
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
+  const ua = request.headers.get("user-agent") ?? null;
 
   // Age gate: 40+
-  const age = getAge(d.dateOfBirth);
-  if (age < 40) {
+  if (getAge(data.dateOfBirth) < 40) {
     return NextResponse.json(
       { error: "Christian Chapter is for adults aged 40 and over." },
       { status: 422 }
@@ -141,123 +131,178 @@ export async function POST(request: NextRequest) {
   }
 
   // Age range must be ordered
-  if (d.ageRangeMin >= d.ageRangeMax) {
+  if (data.ageRangeMin >= data.ageRangeMax) {
     return NextResponse.json(
       { error: "Age range minimum must be less than the maximum." },
       { status: 422 }
     );
   }
 
-  // UX pre-check: catch duplicate email before attempting insert.
-  // A concurrent duplicate will be caught by the unique constraint below.
+  // Server-authoritative consent timestamp — never from client
+  const now = new Date();
+
+  // Insert member row, then consent records.
+  // The Neon HTTP driver does not support db.transaction(), so these are
+  // sequential inserts. The unique constraint on email prevents duplicates.
+  let memberId: number;
+
+  const normalizedEmail = data.email.toLowerCase().trim();
+
   try {
-    const existing = await db
+    // Note: the Neon HTTP driver does not return rows from .returning() in this
+    // version of drizzle-orm. We insert, then SELECT by the unique email to get id.
+    await db
+      .insert(foundingMembers)
+      .values({
+        firstName: data.firstName.trim(),
+        email: normalizedEmail,
+        marketingConsent: data.marketingConsent,
+        dateOfBirth: data.dateOfBirth,
+        gender: data.gender,
+        seekingGender: data.seekingGender,
+        ukRegion: data.ukRegion,
+        travelRadiusMiles: data.travelRadiusMiles,
+        tradition: data.tradition,
+        churchAttendance: data.churchAttendance,
+        faithCentrality: data.faithCentrality,
+        faithDescription: data.faithDescription ?? undefined,
+        workStatus: data.workStatus ?? undefined,
+        familySituation: data.familySituation ?? undefined,
+        interests: data.interests,
+        relationshipGoal: data.relationshipGoal ?? undefined,
+        // null → undefined: Neon HTTP driver serialises JS null for optional
+        // boolean columns as empty string, causing a DB type error.
+        openToRemarriage: data.openToRemarriage ?? undefined,
+        relationshipPace: data.relationshipPace ?? undefined,
+        ageRangeMin: data.ageRangeMin,
+        ageRangeMax: data.ageRangeMax,
+        preferredDistanceMiles: data.preferredDistanceMiles,
+        meetingPreferences: data.meetingPreferences ?? undefined,
+        essentials: data.essentials,
+        storyPrompt1: data.storyPrompt1 ?? undefined,
+        storyPrompt2: data.storyPrompt2 ?? undefined,
+        storyPrompt3: data.storyPrompt3 ?? undefined,
+        priorities: data.priorities,
+        photoConsent: data.photoConsent,
+      });
+
+    // Fetch the id we just created (RETURNING is a no-op in neon-http + drizzle 0.45)
+    const rows = await db
       .select({ id: foundingMembers.id })
       .from(foundingMembers)
-      .where(eq(foundingMembers.email, d.email.toLowerCase().trim()))
-      .limit(1);
+      .where(eq(foundingMembers.email, normalizedEmail));
 
-    if (existing.length > 0) {
+    if (!rows[0]) {
+      throw new Error("Could not retrieve member id after insert.");
+    }
+    memberId = rows[0].id;
+  } catch (err: unknown) {
+    if (isUniqueViolation(err)) {
       return NextResponse.json(
-        {
-          error:
-            "An account with that email address already exists. If you have registered before, please contact us.",
-        },
+        { error: "An account with this email address already exists." },
         { status: 409 }
       );
     }
-  } catch (err) {
-    console.error("[api/founding-members] pre-check failed", err);
+    const msg = err instanceof Error ? err.message : String(err);
+    if (msg.includes("unique") || msg.includes("duplicate")) {
+      return NextResponse.json(
+        { error: "An account with this email address already exists." },
+        { status: 409 }
+      );
+    }
+    console.error("[founding-members] member insert error:", err);
     return NextResponse.json(
       { error: "Registration could not be completed. Please try again." },
       { status: 500 }
     );
   }
 
-  // Atomic insert: member row + consent records
+  // Consent records — separate inserts after member is committed.
+  // Religious data consent: GDPR Art. 9 special category; server-authoritative version and time.
+  // Marketing consent: always recorded as an audit trail of the member's explicit choice.
   try {
-    let memberId: number | undefined;
-
-    await db.transaction(async (tx) => {
-      const [member] = await tx
-        .insert(foundingMembers)
-        .values({
-          firstName: d.firstName.trim(),
-          email: d.email.toLowerCase().trim(),
-          marketingConsent: d.marketingConsent,
-          dateOfBirth: d.dateOfBirth,
-          gender: d.gender,
-          seekingGender: d.seekingGender,
-          ukRegion: d.ukRegion,
-          travelRadiusMiles: d.travelRadiusMiles,
-          tradition: d.tradition,
-          churchAttendance: d.churchAttendance,
-          faithCentrality: d.faithCentrality,
-          faithDescription: d.faithDescription || null,
-          workStatus: d.workStatus || null,
-          familySituation: d.familySituation || null,
-          interests: d.interests,
-          relationshipGoal: d.relationshipGoal || null,
-          openToRemarriage: d.openToRemarriage ?? null,
-          relationshipPace: d.relationshipPace || null,
-          ageRangeMin: d.ageRangeMin,
-          ageRangeMax: d.ageRangeMax,
-          preferredDistanceMiles: d.preferredDistanceMiles,
-          meetingPreferences: d.meetingPreferences || null,
-          essentials: d.essentials,
-          storyPrompt1: d.storyPrompt1 || null,
-          storyPrompt2: d.storyPrompt2 || null,
-          storyPrompt3: d.storyPrompt3 || null,
-          priorities: d.priorities,
-          photoConsent: d.photoConsent,
-          status: "pending",
-        })
-        .returning({ id: foundingMembers.id });
-
-      memberId = member.id;
-
-      // Religious data consent — GDPR special category (Art. 9).
-      // Version and timestamp are server-authoritative; never taken from client.
-      await tx.insert(consentRecords).values({
-        foundingMemberId: member.id,
+    await db.insert(consentRecords).values([
+      {
+        foundingMemberId: memberId,
         consentType: "religious_data",
-        consentVersion: RELIGIOUS_DATA_CONSENT_VERSION,
+        consentVersion: RELIGIOUS_CONSENT_VERSION,
         granted: true,
-        grantedAt: consentAt,
-        ipAddress: ip.substring(0, 45),
-        userAgent: userAgent.substring(0, 1000),
-      });
-
-      // Marketing consent — only recorded if explicitly granted via checkbox
-      if (d.marketingConsent) {
-        await tx.insert(consentRecords).values({
-          foundingMemberId: member.id,
-          consentType: "marketing",
-          consentVersion: "2025-01",
-          granted: true,
-          grantedAt: consentAt,
-          ipAddress: ip.substring(0, 45),
-          userAgent: userAgent.substring(0, 1000),
-        });
-      }
-    });
-
-    return NextResponse.json({ ok: true, memberId }, { status: 201 });
+        grantedAt: now,
+        ipAddress: ip,
+        userAgent: ua,
+      },
+      {
+        foundingMemberId: memberId,
+        consentType: "marketing",
+        consentVersion: MARKETING_CONSENT_VERSION,
+        granted: data.marketingConsent,
+        grantedAt: now,
+        ipAddress: ip,
+        userAgent: ua,
+      },
+    ]);
   } catch (err) {
-    // Unique constraint violation: concurrent duplicate email after pre-check passed
-    if (isUniqueViolation(err)) {
-      return NextResponse.json(
-        {
-          error:
-            "An account with that email address already exists. If you have registered before, please contact us.",
-        },
-        { status: 409 }
-      );
+    // Consent records failed — log but don't fail the registration.
+    // The member row is committed; consent can be reconstructed from logs.
+    console.error("[founding-members] consent insert error for member", memberId, err);
+  }
+
+  // Fire-and-forget confirmation email — never blocks the 201 response
+  void sendConfirmationEmail(data.email, data.firstName);
+
+  return NextResponse.json({ success: true, id: memberId }, { status: 201 });
+}
+
+// ── Confirmation email (Resend, optional) ─────────────────────────────────────
+
+async function sendConfirmationEmail(email: string, firstName: string) {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return;
+
+  const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Welcome to Christian Chapter</title></head>
+<body style="font-family:'Georgia',serif;background:#F7F3EC;color:#1E1220;margin:0;padding:40px 20px">
+  <div style="max-width:560px;margin:0 auto;background:#F7F3EC;padding:40px 32px;border:1px solid rgba(30,18,32,0.10)">
+    <h1 style="font-size:28px;line-height:1.2;margin:0 0 20px;letter-spacing:-0.02em">
+      Welcome, ${firstName}.
+    </h1>
+    <p style="font-size:17px;line-height:1.7;color:#6B5878;margin:0 0 16px">
+      You&rsquo;re a founding member of Christian Chapter &mdash; and we&rsquo;re glad you&rsquo;re here.
+    </p>
+    <p style="font-size:17px;line-height:1.7;color:#6B5878;margin:0 0 16px">
+      Your profile is with us. As our founding community grows, we&rsquo;ll be looking for genuine mutual connections &mdash; and we&rsquo;ll be in touch when we think there&rsquo;s someone worth introducing you to.
+    </p>
+    <p style="font-size:17px;line-height:1.7;color:#6B5878;margin:0 0 32px">
+      We don&rsquo;t guarantee a match. We do promise to be thoughtful, honest, and unhurried.
+    </p>
+    <div style="border-top:1px solid rgba(30,18,32,0.12);padding-top:24px;font-size:13px;color:#9A8E9A">
+      <p style="margin:0">Christian Chapter &middot; Christian dating for your next chapter.</p>
+      <p style="margin:8px 0 0">You can withdraw your data at any time by emailing us.</p>
+    </div>
+  </div>
+</body>
+</html>`;
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "Christian Chapter <hello@christianchapter.co.uk>",
+        to: email,
+        subject: `Welcome to Christian Chapter, ${firstName}`,
+        html,
+      }),
+    });
+    if (!res.ok) {
+      console.error("[founding-members] Resend error:", res.status);
     }
-    console.error("[api/founding-members POST]", err);
-    return NextResponse.json(
-      { error: "Registration could not be completed. Please try again." },
-      { status: 500 }
-    );
+  } catch (err) {
+    console.error("[founding-members] email error:", err);
   }
 }

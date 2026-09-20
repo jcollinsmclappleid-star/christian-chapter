@@ -47,13 +47,17 @@ type MemberRow = {
 
 // Maps seekingGender values ("Men", "Women", "Open to both") against
 // stored gender values ("Man", "Woman", "Non-binary", "Prefer not to say").
-// seekingGender and gender use different pluralisation conventions by design.
+// "Open to both" means open to both Men and Women specifically — the seeking UI
+// only offers those two options plus "Open to both", so it cannot express a
+// preference for Non-binary / Prefer not to say profiles. Those profiles only
+// match when the other member's seekingGender contains an exact string match
+// (which the current UI does not produce, giving them depth 0 — honest for now).
 function seeksGender(seekingList: string[], targetGender: string): boolean {
   return seekingList.some((s) => {
-    if (s === "Open to both") return true;
     if (s === "Men" && targetGender === "Man") return true;
     if (s === "Women" && targetGender === "Woman") return true;
-    return s === targetGender; // exact fallback for any future values
+    if (s === "Open to both" && (targetGender === "Man" || targetGender === "Woman")) return true;
+    return s === targetGender; // exact fallback for any future seeking values
   });
 }
 

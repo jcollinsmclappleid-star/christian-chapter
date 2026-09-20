@@ -33,3 +33,11 @@ description: Durable copy rules, design tokens, and architectural choices for th
 - Dev: `next dev --port ${PORT:-3000}`
 - `.gitignore` excludes `.env.local`, `.next/`, `*.tsbuildinfo`
 - OG image not yet generated — metadata omits image reference until Task #11
+
+## Neon HTTP driver limitations (drizzle-orm 0.45 + @neondatabase/serverless)
+- `db.transaction()` throws "No transactions support in neon-http driver" — use sequential inserts
+- `INSERT ... RETURNING` via drizzle or raw neon SQL returns `[]` — use SELECT-after-insert to retrieve id
+- JS `null` for optional boolean columns serialises as `""` (empty string), causing `invalid input syntax for type boolean` — pass `undefined` instead so Drizzle omits the column from the INSERT
+- Unique constraint violations (pg code 23505) are wrapped as `err.cause` on the outer Error; check both `err.code` and `err.cause.code`
+
+**Why:** Discovered when the founding-member registration API silently failed in production with the HTTP adapter. The WebSocket-based adapter (`drizzle(Pool)`) supports transactions properly but requires a different DB setup.

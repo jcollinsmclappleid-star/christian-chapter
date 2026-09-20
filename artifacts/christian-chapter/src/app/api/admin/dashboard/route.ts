@@ -36,11 +36,13 @@ type MemberRow = {
 
 // Maps seekingGender values ("Men", "Women", "Open to both") against
 // stored gender values ("Man", "Woman", "Non-binary", "Prefer not to say").
+// "Open to both" means open to Men and Women only — the seeking UI does not
+// offer a way to express preference for Non-binary / Prefer not to say.
 function seeksGender(seekingList: string[], targetGender: string): boolean {
   return seekingList.some((s) => {
-    if (s === "Open to both") return true;
     if (s === "Men" && targetGender === "Man") return true;
     if (s === "Women" && targetGender === "Woman") return true;
+    if (s === "Open to both" && (targetGender === "Man" || targetGender === "Woman")) return true;
     return s === targetGender;
   });
 }
