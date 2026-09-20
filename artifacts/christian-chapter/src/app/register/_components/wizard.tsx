@@ -18,6 +18,7 @@ import { Step7Intentions } from "./steps/step-7-intentions";
 import { Step8WhoToMeet } from "./steps/step-8-who-to-meet";
 import { Step9Essentials } from "./steps/step-9-essentials";
 import { Step10Story } from "./steps/step-10-story";
+import { ReviewScreen } from "./review-screen";
 
 // ── Validation: can the user continue from this step? ────────────────────────
 
@@ -92,6 +93,7 @@ export function Wizard() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [direction, setDirection] = useState<1 | -1>(1);
+  const [reviewing, setReviewing] = useState(false);
 
   // ── Hydrate from localStorage ─────────────────────────────────────────────
   useEffect(() => {
@@ -144,31 +146,34 @@ export function Wizard() {
       });
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      // Final submission
-      setSubmitting(true);
-      setSubmitError(null);
-      try {
-        const res = await fetch("/api/founding-members", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        });
-        if (res.ok) {
-          localStorage.removeItem(WIZARD_STORAGE_KEY);
-          window.location.href = "/register/confirm";
-        } else {
-          const json = (await res.json()) as { error?: string };
-          setSubmitError(
-            json.error ?? "Something went wrong. Please try again."
-          );
-        }
-      } catch {
-        setSubmitError("Network error. Please check your connection and try again.");
-      } finally {
-        setSubmitting(false);
-      }
+      // Advance to review screen before final submission
+      setReviewing(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [step, data, persist]);
+
+  const handleSubmit = useCallback(async () => {
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/founding-members", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        localStorage.removeItem(WIZARD_STORAGE_KEY);
+        window.location.href = "/register/confirm";
+      } else {
+        const json = (await res.json()) as { error?: string };
+        setSubmitError(json.error ?? "Something went wrong. Please try again.");
+      }
+    } catch {
+      setSubmitError("Network error. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  }, [data]);
 
   const goBack = useCallback(() => {
     if (step > 1) {
@@ -214,36 +219,54 @@ export function Wizard() {
         </a>
         <div className="flex items-center gap-3 text-[12px] text-stone font-sans">
           <span className="uppercase tracking-[0.18em]">
-            Step {step} of {TOTAL_STEPS}
+            {reviewing ? "Review your profile" : `Step ${step} of ${TOTAL_STEPS}`}
           </span>
-          <span className="hidden sm:inline text-border">·</span>
-          <span className="hidden sm:inline text-plum-muted">
-            {stepTitles[step - 1]}
-          </span>
+          {!reviewing && (
+            <>
+              <span className="hidden sm:inline text-border">·</span>
+              <span className="hidden sm:inline text-plum-muted">
+                {stepTitles[step - 1]}
+              </span>
+            </>
+          )}
         </div>
       </header>
 
       {/* ── Step content ───────────────────────────────────────────────── */}
       <main className="flex-1 mx-auto w-full max-w-2xl px-6 py-10 md:py-14">
         <div
-          key={step}
+          key={reviewing ? "review" : step}
           className="animate-[fadeSlideUp_0.35s_ease-out_both]"
           style={{
             // simple CSS animation fallback if framer-motion not used
           }}
         >
-          <StepComponent
-            data={data}
-            update={update}
-            onNext={goNext}
-            onBack={goBack}
-            step={step}
-          />
+          {reviewing ? (
+            <ReviewScreen
+              data={data}
+              onBack={() => {
+                setReviewing(false);
+                setSubmitError(null);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              onSubmit={handleSubmit}
+              submitting={submitting}
+              submitError={submitError}
+            />
+          ) : (
+            <StepComponent
+              data={data}
+              update={update}
+              onNext={goNext}
+              onBack={goBack}
+              step={step}
+            />
+          )}
         </div>
       </main>
 
       {/* ── Sticky navigation bar ──────────────────────────────────────── */}
-      <nav className="sticky bottom-0 z-10 bg-ivory/95 backdrop-blur border-t border-border px-6 md:px-10 py-4 flex items-center justify-between gap-4 flex-shrink-0">
+      {!reviewing && <nav className="sticky bottom-0 z-10 bg-ivory/95 backdrop-blur border-t border-border px-6 md:px-10 py-4 flex items-center justify-between gap-4 flex-shrink-0">
         <button
           onClick={goBack}
           disabled={step === 1}
@@ -253,24 +276,15 @@ export function Wizard() {
         </button>
 
         <div className="flex-1 flex justify-end">
-          {submitError && (
-            <p className="text-[13px] text-oxblood mr-4 self-center max-w-[260px] text-right">
-              {submitError}
-            </p>
-          )}
           <button
             onClick={goNext}
             disabled={!canContinue || submitting}
             className="inline-flex items-center gap-2 min-h-[52px] px-7 text-[15px] font-sans font-medium bg-oxblood text-ivory rounded-md hover:bg-oxblood-hover transition-colors active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {submitting
-              ? "Submitting…"
-              : isLastStep
-              ? "Complete my profile"
-              : "Continue →"}
+            {isLastStep ? "Review →" : "Continue →"}
           </button>
         </div>
-      </nav>
+      </nav>}
 
       <style>{`
         @keyframes fadeSlideUp {

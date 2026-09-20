@@ -34,6 +34,17 @@ type MemberRow = {
   ukRegion: string;
 };
 
+// Maps seekingGender values ("Men", "Women", "Open to both") against
+// stored gender values ("Man", "Woman", "Non-binary", "Prefer not to say").
+function seeksGender(seekingList: string[], targetGender: string): boolean {
+  return seekingList.some((s) => {
+    if (s === "Open to both") return true;
+    if (s === "Men" && targetGender === "Man") return true;
+    if (s === "Women" && targetGender === "Woman") return true;
+    return s === targetGender;
+  });
+}
+
 function calcCandidateDepth(active: MemberRow[]): number {
   if (active.length < 2) return 0;
   let totalDepth = 0;
@@ -46,12 +57,8 @@ function calcCandidateDepth(active: MemberRow[]): number {
       if (o.id === m.id) continue;
       const oAge = getAge(o.dateOfBirth);
 
-      const mSeeksO =
-        m.seekingGender.includes(o.gender) ||
-        m.seekingGender.includes("Open to both");
-      const oSeeksM =
-        o.seekingGender.includes(m.gender) ||
-        o.seekingGender.includes("Open to both");
+      const mSeeksO = seeksGender(m.seekingGender, o.gender);
+      const oSeeksM = seeksGender(o.seekingGender, m.gender);
       const oAgeOK =
         oAge >= (m.ageRangeMin ?? 30) && oAge <= (m.ageRangeMax ?? 80);
       const mAgeOK =
