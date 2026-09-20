@@ -53,7 +53,7 @@ export function WhyYouMightGetAlong() {
       <header className="mx-auto flex max-w-[1240px] items-center justify-between px-6 py-7 sm:px-10 lg:px-16">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#8b9890] text-[13px] tracking-[.16em] text-[#56635d]">M</div>
-          <span className="text-[11px] font-medium uppercase tracking-[.22em] text-[#52605a]">Mature Christian Dating</span>
+          <span className="text-[11px] font-medium uppercase tracking-[.22em] text-[#52605a]">Christian Chapter</span>
         </div>
         <span className="hidden text-[11px] uppercase tracking-[.2em] text-[#7e8882] sm:block">A quieter way to meet</span>
       </header>

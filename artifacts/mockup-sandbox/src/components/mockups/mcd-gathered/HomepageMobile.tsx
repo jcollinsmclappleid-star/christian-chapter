@@ -50,7 +50,7 @@ export function HomepageMobile() {
         <button onClick={() => window.alert("Thank you — founding member registration is coming soon.")} className="mt-8 w-full bg-[#874d4b] px-4 py-4 text-[12px] text-[#f8f2e8]">Become a Founding Member — Free</button>
         <p className="mt-5 text-[11px] leading-[1.6] text-[#8a7c6e]">We do not guarantee a match — we'll contact you when we identify a promising mutual connection.</p>
       </section>
-      <footer className="border-t border-[#d8cdbf] px-6 py-7 text-[9px] uppercase tracking-[.14em] text-[#8a7c6e]">Mature Christian Dating.co.uk</footer>
+      <footer className="border-t border-[#d8cdbf] px-6 py-7 text-[9px] uppercase tracking-[.14em] text-[#8a7c6e]">Christian Chapter</footer>
     </main>
   );
 }

@@ -21,8 +21,8 @@ export function Homepage() {
 
       <nav className="mx-auto flex max-w-[1180px] items-center justify-between px-8 py-7 lg:px-12" aria-label="Main navigation">
         <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-left">
-          <div className="font-['Cormorant_Garamond'] text-[26px] font-medium leading-none tracking-[-.03em]">Mature Christian<br />Dating</div>
-          <div className="mt-1 text-[9px] uppercase tracking-[.25em] text-[#874d4b]">A considered beginning</div>
+          <div className="font-['Cormorant_Garamond'] text-[26px] font-medium leading-none tracking-[-.03em]">Christian<br />Chapter</div>
+          <div className="mt-1 text-[9px] uppercase tracking-[.25em] text-[#874d4b]">Christian dating for your next chapter.</div>
         </button>
         <div className="hidden items-center gap-10 text-[12px] tracking-[.04em] md:flex">
           <button onClick={scrollToHow} className="transition-colors hover:text-[#874d4b]">How introductions work</button>
@@ -122,7 +122,7 @@ export function Homepage() {
 
       <footer className="border-t border-[#d8cdbf] px-8 py-8 lg:px-12">
         <div className="mx-auto flex max-w-[1180px] flex-col justify-between gap-5 text-[10px] uppercase tracking-[.16em] text-[#8a7c6e] md:flex-row">
-          <span>Mature Christian Dating.co.uk</span><span>For people with rich lives</span><span>Privacy · Terms</span>
+          <span>Christian Chapter</span><span>Christian dating for your next chapter.</span><span>Privacy · Terms</span>
         </div>
       </footer>
     </main>

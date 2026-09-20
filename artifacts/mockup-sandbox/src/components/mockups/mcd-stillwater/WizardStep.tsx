@@ -18,7 +18,7 @@ export function WizardStep() {
       <style>{`@keyframes sw-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}.sw-in{animation:sw-in .65s ease-out both}@media(prefers-reduced-motion:reduce){.sw-in{animation:none}}`}</style>
       <div className="h-1 w-full bg-[#182633]"><div className="h-full w-1/3 bg-[#C8A46B]" /></div>
       <header className="flex h-20 items-center justify-between border-b border-[#a5b0bb]/15 px-10">
-        <div className="text-[11px] font-medium uppercase leading-4 tracking-[.23em]">Mature<br /><span className="text-[#C8A46B]">Christian Dating</span></div>
+        <div className="text-[11px] font-medium uppercase leading-4 tracking-[.23em]">Christian<br /><span className="text-[#C8A46B]">Chapter</span></div>
         <div className="flex items-center gap-5 text-[11px] uppercase tracking-[.22em] text-[#b9c2cb]"><span>3 of 9</span><span className="h-1 w-1 rounded-full bg-[#C8A46B]" /><span className="text-[#8794a1]">{saved ? "Your progress is saved" : "Saving…"}</span></div>
       </header>
       <div className="mx-auto grid max-w-[1220px] grid-cols-[285px_1fr] gap-24 px-10 py-14">

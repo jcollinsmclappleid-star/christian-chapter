@@ -18,6 +18,15 @@ description: Durable copy rules, design tokens, and architectural choices for th
 - Serif: EB Garamond (`--font-garamond`), Sans: Space Grotesk (`--font-grotesk`)
 - Tailwind v4 CSS-first — tokens live in `@theme` block in globals.css; no tailwind.config.js
 
+## Canvas and mockup sandbox conventions
+- Mockup sandbox routing: `/__mockup/preview/{folder}/{ComponentName}` — auto-discovered from the file system, no route registration needed
+- In mockup sandbox, use Google Fonts `@import` in `<style>` tags (not `next/font`)
+- Canvas iframe lifecycle: place `state: "building"` FIRST via `create-auto`, then update to `state: "live"` with URL once component is ready
+- Canvas shape schema: use `text` not `label` for geo/text shapes; `fontSize` is invalid in `CanvasShapeInput`; `borderRight` duplicate keys in inline style objects are a TS1117 error — keep only one
+- GDPR religious-data consent: explicit in-context checkbox required before faith questions; consent enables Continue button (`gdprConsent` state)
+
+**Why:** Canvas skill requires building → live lifecycle; mockup routing is auto-discovered; TS strict mode catches duplicate object keys.
+
 ## Architecture
 - Next.js 15 App Router, TypeScript strict, self-contained at `artifacts/christian-chapter/`
 - No Replit-specific infra (no artifact routing, no Replit object storage, no Replit auth) — portable to Cursor

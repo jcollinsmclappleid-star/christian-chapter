@@ -22,7 +22,7 @@ export function Homepage() {
         <img className="sw-photo absolute right-0 top-0 h-full w-[53%] object-cover object-[58%_center] opacity-[.83] [mask-image:linear-gradient(90deg,transparent_0%,black_31%,black_100%)] animate-[sw-drift_1.8s_ease-out_both]" src="/__mockup/images/mcd-sw-hero1.jpg" alt="Thoughtful man in his late fifties outdoors" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#0E1621_0%,rgba(14,22,33,.88)_33%,transparent_70%),linear-gradient(0deg,rgba(14,22,33,.74),transparent_34%)]" />
         <header className="relative z-10 mx-auto flex max-w-[1160px] items-center justify-between px-8 py-8">
-          <a href="#top" className="text-[11px] font-semibold uppercase tracking-[.27em] text-[#F4F0E8]">Mature<br/><span className="text-[#C8A46B]">Christian Dating</span></a>
+          <a href="#top" className="text-[11px] font-semibold uppercase tracking-[.27em] text-[#F4F0E8]">Christian<br/><span className="text-[#C8A46B]">Chapter</span></a>
           <nav className="hidden items-center gap-10 text-[11px] uppercase tracking-[.18em] text-[#b6bec8] md:flex">
             <a href="#approach" className="transition-colors hover:text-[#F4F0E8]">Our approach</a>
             <a href="#examples" className="transition-colors hover:text-[#F4F0E8]">How it works</a>
@@ -35,7 +35,7 @@ export function Homepage() {
           <div className="max-w-[650px]">
             <p className="sw-rise mb-8 text-[10px] uppercase tracking-[.38em] text-[#C8A46B]">For Christian single adults · 40–70</p>
             <h1 className="sw-rise sw-delay-1 font-['Playfair_Display'] text-[clamp(3.6rem,7vw,6.8rem)] leading-[.94] tracking-[-.045em] text-[#F4F0E8]">Meet someone<br/><em className="font-normal text-[#E4C894]">who shares</em><br/>what matters.</h1>
-            <div className="sw-rise sw-delay-2 mt-9 flex items-center gap-5"><span className="h-px w-20 bg-[#C8A46B]" /><p className="max-w-[330px] text-[15px] leading-7 text-[#c0c6cc]">Christian dating for your next chapter — with more intention, and less noise.</p></div>
+            <div className="sw-rise sw-delay-2 mt-9 flex items-center gap-5"><span className="h-px w-20 bg-[#C8A46B]" /><p className="max-w-[330px] text-[15px] leading-7 text-[#c0c6cc]">Christian dating for your next chapter — considered introductions, less noise.</p></div>
             <div className="sw-rise sw-delay-3 mt-11 flex items-center gap-7"><a href="#join" className="bg-[#D4B16F] px-7 py-4 text-[11px] font-semibold uppercase tracking-[.18em] text-[#101923] transition-transform hover:-translate-y-1">Become a Founding Member — Free</a><a href="#approach" className="hidden border-b border-[#8f9aa7] pb-2 text-[11px] uppercase tracking-[.17em] text-[#d8dde1] md:block">See how introductions work →</a></div>
           </div>
         </div>
@@ -56,7 +56,7 @@ export function Homepage() {
 
       <section id="join" className="mx-auto max-w-[900px] px-8 py-28 text-center md:py-36"><p className="mb-7 text-[10px] uppercase tracking-[.3em] text-[#C8A46B]">The founding community</p><h2 className="font-['Playfair_Display'] text-5xl leading-tight text-[#F4F0E8] md:text-7xl">A thoughtful start<br/><em className="font-normal text-[#D5B777]">begins with you.</em></h2><p className="mx-auto mt-9 max-w-[600px] text-[16px] leading-8 text-[#b9c2cb]">Join free. Tell us about yourself and who you're hoping to meet. As our founding community grows, we'll look for promising mutual connections. If we identify one, we'll invite both people to consider an introduction.</p><button onClick={() => setJoined(true)} className="mt-11 bg-[#D4B16F] px-8 py-5 text-[11px] font-semibold uppercase tracking-[.18em] text-[#101923] transition-transform hover:-translate-y-1">{joined ? "Thank you — you're on the list" : "Become a Founding Member — Free"}</button><p className="mx-auto mt-7 max-w-[480px] text-[11px] leading-5 text-[#7f8b98]">We do not guarantee a match — we'll contact you when we identify a promising mutual connection.</p></section>
 
-      <footer className="border-t border-[#a5b0bb]/15 px-8 py-8"><div className="mx-auto flex max-w-[1160px] flex-col justify-between gap-5 text-[10px] uppercase tracking-[.2em] text-[#8f9aa7] md:flex-row"><span>Mature Christian Dating.co.uk</span><span>More intention. Less swiping.</span><span>© 2024 · Built for meaningful beginnings</span></div></footer>
+      <footer className="border-t border-[#a5b0bb]/15 px-8 py-8"><div className="mx-auto flex max-w-[1160px] flex-col justify-between gap-5 text-[10px] uppercase tracking-[.2em] text-[#8f9aa7] md:flex-row"><span>Christian Chapter</span><span>Christian dating for your next chapter.</span><span>© 2025 · Christian Chapter Ltd</span></div></footer>
     </main>
   );
 }
