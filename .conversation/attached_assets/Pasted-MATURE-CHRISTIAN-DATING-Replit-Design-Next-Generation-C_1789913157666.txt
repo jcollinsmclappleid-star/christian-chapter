@@ -1,0 +1,2184 @@
+MATURE CHRISTIAN DATING
+
+Replit Design — Next-Generation Creative Experience Build Brief
+
+1. YOUR ROLE
+
+Act as a senior:
+
+* digital product designer;
+* dating-product UX designer;
+* editorial art director;
+* interaction designer;
+* motion designer;
+* conversion designer.
+
+You are designing a new UK Christian dating product called:
+
+Mature Christian Dating
+
+Primary domain:
+
+MatureChristianDating.co.uk
+
+This is not a request for a generic dating-app landing page.
+
+It is not a request to copy Hinge, Bumble, Christian Connection, SALT or OurTime.
+
+The objective is to create a distinctive, contemporary digital dating experience for Christian adults approximately 40–70 years old who are looking for meaningful relationships, companionship and marriage/remarriage where desired.
+
+The site should immediately feel:
+
+human
+
+intentional
+
+warm
+
+premium
+
+safe
+
+mature
+
+contemporary
+
+faith-aware
+
+without feeling:
+
+old-fashioned
+
+religiously clichéd
+
+corporate
+
+clinical
+
+youth-dating oriented
+
+or
+
+AI-generated.
+
+⸻
+
+2. IMPORTANT — USE REPLIT DESIGN CANVAS FIRST
+
+Do not immediately build a full-stack application.
+
+Start in the Design Canvas.
+
+Create multiple visual directions and responsive design frames first.
+
+The purpose of this stage is to establish:
+
+* art direction;
+* typography;
+* photography;
+* composition;
+* motion;
+* profile presentation;
+* compatibility visualisation;
+* founding-member onboarding;
+* logged-in product concepts.
+
+Do not build databases, authentication, payments or production matchmaking logic yet.
+
+Those will later be implemented after the design has been reviewed.
+
+⸻
+
+3. FIRST OUTPUT — THREE GENUINELY DIFFERENT DIRECTIONS
+
+Produce three substantially different visual concepts.
+
+Do not simply change colours.
+
+Each concept should have a different:
+
+* hero composition;
+* photographic treatment;
+* typography;
+* page rhythm;
+* profile presentation;
+* compatibility visual language;
+* motion philosophy.
+
+All three should still satisfy the core brand principles.
+
+Create desktop and mobile frames for each.
+
+After creating the three concepts, provide one recommended hybrid direction combining the strongest ideas.
+
+Do not automatically convert anything to an application until the preferred direction has been reviewed.
+
+⸻
+
+4. BUSINESS PROPOSITION
+
+Mature Christian Dating is a UK-wide dating platform primarily for Christian singles approximately 40–70.
+
+It is for people seeking:
+
+* meaningful relationships;
+* long-term relationships;
+* companionship;
+* remarriage or marriage where desired;
+* genuine connections with people whose Christian faith and values are compatible.
+
+The audience may include people who are:
+
+* divorced;
+* widowed;
+* never married;
+* returning to dating after many years;
+* uncomfortable with swipe culture;
+* tired of casual dating apps;
+* looking for people in a similar stage of life.
+
+The product should not imply that every member wants marriage.
+
+Life stage and relationship intentions should be explicitly represented.
+
+⸻
+
+5. CORE POSITIONING
+
+The strongest underlying idea is:
+
+More intention. Less swiping.
+
+Alternative language to explore includes:
+
+Christian dating for your next chapter.
+
+Faith. Connection. Something meaningful.
+
+Meet someone who shares what matters.
+
+Meaningful Christian dating for over 40s.
+
+Do not use all of these simultaneously.
+
+Develop the strongest messaging hierarchy.
+
+The product should not feel desperate, sentimental or saccharine.
+
+⸻
+
+6. FOUNDING MEMBER LAUNCH
+
+The initial commercial launch is not a normal empty dating marketplace.
+
+The first product is a:
+
+FOUNDING MEMBER COMMUNITY
+
+Primary CTA:
+
+Become a Founding Member — Free
+
+The proposition:
+
+Join free. Tell us about yourself and who you’re hoping to meet. As our founding community grows, we’ll look for promising mutual connections. If we identify one, we’ll invite both people to consider an introduction.
+
+Important:
+
+Do not promise everyone a match.
+
+Do not claim guaranteed compatibility.
+
+Do not fabricate member counts.
+
+Do not fabricate success stories.
+
+Do not fabricate active users.
+
+Do not show fake live activity.
+
+⸻
+
+7. THE DESIGN SHOULD MAKE THE FOUNDING MODEL FEEL PREMIUM
+
+The Founding Member proposition should not look like:
+
+Join our waitlist.
+
+It should feel like joining the first cohort of a carefully built dating community.
+
+Potential language:
+
+Help shape a better kind of Christian dating.
+
+Founding members join free.
+
+Build your profile now.
+
+We’ll begin identifying thoughtful introductions as the community grows.
+
+Use a restrained premium badge:
+
+FOUNDING MEMBER
+
+not:
+
+EARLY ACCESS!!!
+
+⸻
+
+8. CENTRAL PRODUCT DIFFERENCE
+
+Most dating apps visually communicate:
+
+photo → swipe → match
+
+Our product should communicate:
+
+PERSON
+
+↓
+
+FAITH
+
+↓
+
+LIFE
+
+↓
+
+VALUES
+
+↓
+
+INTENTION
+
+↓
+
+COMPATIBILITY
+
+↓
+
+INTRODUCTION
+
+The product experience should make the visitor understand:
+
+We are trying to determine whether two real people have meaningful reasons to meet.
+
+Not merely whether one person liked another photograph.
+
+⸻
+
+9. SIGNATURE FRONTIER EXPERIENCE:
+
+“WHY YOU MIGHT GET ALONG”
+
+Develop this as the primary interaction concept.
+
+Two mature adult profiles appear separately.
+
+Do not immediately merge them.
+
+Gradually reveal areas of alignment.
+
+For example:
+
+Faith
+
+Church life is important to both.
+
+Relationship
+
+Both are looking for a committed long-term relationship.
+
+Life stage
+
+Both have adult children.
+
+Lifestyle
+
+Both enjoy travel, countryside walks and live music.
+
+Geography
+
+Oxford ↔ London
+
+Open to travelling.
+
+Future
+
+Both want an active next chapter rather than settling into retirement.
+
+Then:
+
+Promising alignment
+
+Not:
+
+98% Match
+
+Do not create false mathematical precision.
+
+The final interface may say:
+
+Why we think you may be worth introducing
+
+followed by 3–5 clear reasons.
+
+This should become one of the memorable visual experiences of the site.
+
+⸻
+
+10. DO NOT USE FAKE COMPATIBILITY SCIENCE
+
+Avoid:
+
+* 94% soulmate;
+* personality-score gimmicks;
+* romantic algorithms portrayed as scientific certainty;
+* “perfect match” language;
+* glowing AI brain graphics.
+
+Use:
+
+Strong alignment
+
+Several things in common
+
+Worth an introduction
+
+Compatible on what matters to you
+
+You agree on 4 of your 5 essentials
+
+Compatibility should be explainable.
+
+⸻
+
+11. PROFILE PREFERENCE MODEL
+
+Visually develop a sophisticated preference system based on:
+
+ESSENTIAL
+
+Important enough that a mismatch probably prevents an introduction.
+
+PREFERRED
+
+Strong preference, but not absolute.
+
+OPEN-MINDED
+
+Flexible.
+
+This should feel more humane than dozens of rigid filters.
+
+Example:
+
+Church attendance
+
+Essential
+
+Maximum distance
+
+Preferred
+
+Shared hobbies
+
+Open-minded
+
+Explore beautiful interaction for changing preference priority.
+
+Do not turn it into a spreadsheet.
+
+⸻
+
+12. HERO — DO NOT BUILD A STANDARD SaaS HERO
+
+Avoid:
+
+headline
+subheading
+button
+generic couple image
+three badges.
+
+Develop a more editorial and spatial composition.
+
+Potential hero direction:
+
+One large, high-quality portrait occupies approximately one side.
+
+A second portrait is partially revealed elsewhere.
+
+Between the profiles:
+
+Faith
+
+Life stage
+
+Relationship intention
+
+Distance
+
+appear gradually.
+
+A subtle visual thread connects common ground.
+
+Then:
+
+Meet someone who shares what matters.
+
+Meaningful Christian dating for people over 40.
+
+CTA:
+
+Become a Founding Member — Free
+
+Secondary:
+
+See how introductions work
+
+The profiles should feel like real people, not database cards.
+
+⸻
+
+13. PHOTOGRAPHY IS CRITICAL
+
+Photography should dominate more than 3D.
+
+Use an editorial photographic style featuring believable adults approximately 40–70.
+
+Photography should feel:
+
+* natural;
+* contemporary;
+* British/European;
+* warm;
+* confident;
+* sophisticated;
+* individual rather than staged couples.
+
+Avoid:
+
+* clichéd older couples walking on beaches;
+* people laughing unnaturally over coffee;
+* stock-photo handholding;
+* exaggerated wedding imagery;
+* teenagers/20-somethings;
+* people who all look like fashion models;
+* church-stock-photo clichés.
+
+The site should visually communicate:
+
+My life is already full. I am looking for someone meaningful to share the next part with.
+
+Any generated imagery used during design is illustrative only and must not be presented as genuine members.
+
+⸻
+
+14. CHRISTIAN IDENTITY
+
+Christianity should be unmistakable but sophisticated.
+
+Do not cover the interface with:
+
+* crosses;
+* Bibles;
+* church silhouettes;
+* praying hands;
+* dove icons;
+* religious clip art.
+
+Faith should primarily appear through:
+
+* language;
+* profile content;
+* compatibility;
+* prompts;
+* community expectations;
+* values;
+* subtle symbolism where justified.
+
+A cross may appear within the brand identity if exceptionally restrained.
+
+Do not make the product look denominational unless explicitly required.
+
+⸻
+
+15. TYPOGRAPHY
+
+Typography should become a major part of the brand.
+
+Explore a pairing such as:
+
+editorial serif/display face
+
+clean contemporary sans serif
+
+The serif should provide:
+
+* maturity;
+* humanity;
+* editorial quality;
+* warmth.
+
+The sans serif should provide:
+
+* product clarity;
+* forms;
+* profile information;
+* accessibility.
+
+Avoid default AI-site combinations.
+
+Do not automatically use Inter for everything.
+
+Do not use overly decorative wedding typography.
+
+Large editorial statements should create visual identity without relying on effects.
+
+⸻
+
+16. COLOUR DIRECTION
+
+Avoid the obvious dating palettes:
+
+* bright red;
+* hot pink;
+* Tinder gradients;
+* Valentine’s palettes.
+
+Avoid stereotypical Christian:
+
+* church purple;
+* royal blue + gold;
+* cream-and-cross branding.
+
+Explore sophisticated palettes such as:
+
+* warm mineral neutrals;
+* soft stone;
+* deep burgundy/plum accents;
+* muted botanical green;
+* ink/navy;
+* warm ivory;
+* restrained metallic warmth.
+
+The palette should feel contemporary in 2026 and appropriate for both men and women.
+
+Do not make it feminine-only.
+
+⸻
+
+17. THE SITE SHOULD HAVE DEPTH WITHOUT LOOKING “3D”
+
+This is one project where heavy WebGL is probably inappropriate.
+
+Use sophisticated depth through:
+
+* layered photography;
+* subtle parallax;
+* overlapping editorial layouts;
+* depth-of-field treatment;
+* image masks;
+* slow perspective transforms;
+* profile panels moving between foreground and background;
+* subtle CSS 3D;
+* spatial transitions.
+
+Explore a small amount of real 3D only if it materially improves the experience.
+
+Do not use:
+
+* floating spheres;
+* chrome objects;
+* abstract 3D blobs;
+* particle clouds;
+* glowing portals;
+* rotating hearts.
+
+⸻
+
+18. MOTION LANGUAGE
+
+Motion should feel:
+
+slow
+
+confident
+
+considered
+
+human
+
+rather than energetic.
+
+Potential motion:
+
+PROFILE REVEAL
+
+Portrait emerges while profile detail follows.
+
+COMMON GROUND
+
+Alignment indicators appear gradually.
+
+INTRODUCTION
+
+Two profiles move closer only after mutual interest.
+
+TYPOGRAPHY
+
+Editorial text reveals smoothly.
+
+PHOTOGRAPHY
+
+Large images move subtly as sections change.
+
+PAGE TRANSITIONS
+
+Soft continuity rather than abrupt route changes.
+
+FORM INTERACTIONS
+
+Questions flow naturally from one to the next.
+
+Avoid:
+
+* bouncing;
+* confetti;
+* rapid micro-animation;
+* dating-app heart explosions;
+* gamification;
+* excessive scroll hijacking.
+
+⸻
+
+19. FRONTIER MOTION APPROACH
+
+Prototype using contemporary web motion approaches where appropriate.
+
+Candidate techniques include:
+
+* Motion / Motion for React;
+* GSAP;
+* ScrollTrigger;
+* native CSS scroll-driven animation;
+* View Transitions;
+* SVG paths;
+* clipping/masking;
+* CSS perspective;
+* lightweight WebGL only if justified.
+
+The goal is not to install every library.
+
+Choose the simplest implementation capable of producing the intended experience.
+
+⸻
+
+20. SIGNATURE SCROLL SEQUENCE:
+
+FROM PROFILE TO INTRODUCTION
+
+Develop a homepage sequence where one person becomes progressively understandable.
+
+Start with:
+
+Sarah, 53
+
+Buckinghamshire
+
+Portrait only.
+
+Scroll.
+
+Her faith
+
+Church community is an important part of her week.
+
+Scroll.
+
+Her life
+
+Adult children. Works part-time. Loves live music and weekends away.
+
+Scroll.
+
+What she is looking for
+
+A committed relationship with someone whose faith genuinely matters.
+
+Scroll.
+
+Another profile enters:
+
+David, 57
+
+Oxfordshire
+
+Then shared dimensions appear.
+
+Finally:
+
+Why they might be worth introducing
+
+Faith
+✓
+
+Relationship intention
+✓
+
+Life stage
+✓
+
+Travel distance
+✓
+
+Lifestyle
+Several overlaps
+
+Then:
+
+An introduction should have a reason.
+
+CTA:
+
+Become a Founding Member
+
+The names and profiles must be clearly labelled as fictional examples.
+
+⸻
+
+21. SHOW “NO ENDLESS SWIPING”
+
+Do not just state this.
+
+Demonstrate it.
+
+Create a comparison sequence.
+
+Conventional dating
+
+Photo.
+
+Swipe.
+
+Photo.
+
+Swipe.
+
+Photo.
+
+Swipe.
+
+Then the interface slows.
+
+Mature Christian Dating
+
+One profile.
+
+Take time.
+
+Learn who they are.
+
+Understand faith.
+
+Understand intentions.
+
+Understand shared ground.
+
+Decide whether you would genuinely like an introduction.
+
+The visual transition should communicate:
+
+less volume → more meaning
+
+without directly attacking named competitors.
+
+⸻
+
+22. PROFILE DESIGN
+
+Profiles should feel like modern editorial features about a person rather than a CV or database entry.
+
+A profile could include:
+
+Hero portrait
+
+“A little about me”
+
+Faith
+
+* Christian tradition;
+* church involvement;
+* importance of faith;
+* what faith looks like in daily life.
+
+Life now
+
+* work / retirement;
+* family;
+* children;
+* location;
+* lifestyle.
+
+Looking for
+
+* relationship intention;
+* age range;
+* travel willingness;
+* relocation openness.
+
+Things I enjoy
+
+Three things that matter most to me
+
+Prompts
+
+Examples:
+
+A Sunday well spent looks like…
+
+Something faith has taught me about relationships…
+
+The next chapter of my life ideally includes…
+
+You’ll probably find me…
+
+Do not make every answer a badge.
+
+Allow writing and personality to breathe.
+
+⸻
+
+23. “THREE THINGS THAT MATTER MOST”
+
+This is a signature input.
+
+During onboarding ask:
+
+What are the three things that matter most to you in the person you meet?
+
+The interface should make these visually prominent.
+
+Later, when showing an introduction, reflect them back.
+
+Example:
+
+You said these mattered most:
+
+Faith that shapes everyday life
+
+Warm family relationships
+
+An active lifestyle
+
+Then explain alignment.
+
+This creates continuity between:
+
+what I asked for
+
+and
+
+why I am seeing this person.
+
+⸻
+
+24. FOUNDING MEMBER APPLICATION EXPERIENCE
+
+Design the complete application visually.
+
+Do not create one enormous form.
+
+Make it feel like a thoughtful conversation.
+
+Possible stages:
+
+Welcome
+
+About you
+
+Your faith
+
+Your life now
+
+Relationship intentions
+
+Who you hope to meet
+
+Essentials / Preferred / Open-minded
+
+Your personality and interests
+
+Your three priorities
+
+Photos
+
+Safety / verification
+
+Review profile
+
+Founding Member confirmation
+
+Use progress, but not an anxiety-inducing 17-step counter.
+
+Potential presentation:
+
+About you → Faith → Life → What matters → Profile
+
+⸻
+
+25. AGE / LIFE-STAGE SENSITIVITY
+
+The product targets approximately 40–70.
+
+Do not design as though:
+
+40 = elderly.
+
+Do not design as though:
+
+70 = digitally incapable.
+
+Avoid language such as:
+
+senior dating
+
+unless explicitly used on an SEO page where commercially justified.
+
+“Over 40”, “over 50”, “over 60” can appear on dedicated SEO acquisition pages.
+
+The central brand is:
+
+Mature Christian Dating
+
+but its visual identity should feel contemporary enough for a 43-year-old and comfortable enough for a 68-year-old.
+
+⸻
+
+26. FAITH PROFILE
+
+Develop the faith section carefully.
+
+Potential fields:
+
+* Christian tradition / denomination;
+* church attendance;
+* importance of faith;
+* church involvement;
+* how faith influences daily life;
+* openness to different Christian traditions.
+
+Do not create an interface that appears to grade how “Christian” somebody is.
+
+Do not assign faith scores.
+
+Do not visually rank denominations.
+
+⸻
+
+27. RELATIONSHIP INTENTION
+
+Make this prominent.
+
+Potential choices include:
+
+* committed long-term relationship;
+* marriage/remarriage;
+* companionship with potential for more;
+* open to seeing where a meaningful relationship develops.
+
+Avoid ambiguous hookup-style terminology.
+
+A visitor should quickly understand that this product is designed around meaningful dating.
+
+⸻
+
+28. LIFE STAGE
+
+This should become a first-class compatibility dimension.
+
+Potential data:
+
+* children at home;
+* adult children;
+* no children;
+* caring responsibilities;
+* working full-time;
+* working part-time;
+* retired;
+* travel aspirations;
+* relocation willingness;
+* desired pace of relationship.
+
+Present sensitively.
+
+⸻
+
+29. DISTANCE
+
+This is a UK-wide service.
+
+Do not build it as London dating.
+
+Profiles should clearly communicate:
+
+* approximate area;
+* distance;
+* willingness to travel;
+* willingness to relocate.
+
+Potential concept:
+
+46 miles apart
+
+Both open to travelling up to 60 miles
+
+This can become a compatibility reason rather than simply a distance figure.
+
+⸻
+
+30. SAFETY SHOULD FEEL BUILT IN
+
+Safety is particularly important for the audience.
+
+Design a visible but elegant trust layer.
+
+Potential elements:
+
+Email verified
+
+Mobile verified
+
+Photo verified
+
+ID verified
+
+if introduced later.
+
+Report
+
+Block
+
+Safety centre
+
+Keep conversations on-platform
+
+Avoid enormous security shields everywhere.
+
+Trust should emerge from:
+
+* clear verification states;
+* profile moderation;
+* communication design;
+* safety education;
+* easy reporting.
+
+⸻
+
+31. ROMANCE FRAUD DESIGN
+
+The product should eventually help protect users from:
+
+* money requests;
+* urgency to move off-platform;
+* catfishing;
+* impersonation;
+* suspicious links;
+* coercive behaviour.
+
+The design system should reserve space for contextual warnings.
+
+For example:
+
+For your safety, never send money to someone you meet through the service.
+
+Warnings should be calm and authoritative, not frightening.
+
+⸻
+
+32. FOUNDING MEMBER CONFIRMATION
+
+After completing the profile, create a high-quality confirmation experience.
+
+Not:
+
+Thanks! You’re on the list.
+
+Instead:
+
+You’re a Founding Member.
+
+Your profile is now part of the first Mature Christian Dating community.
+
+We’ll begin looking for promising mutual connections as the community grows.
+
+Then show:
+
+Your profile completeness
+
+Verification status
+
+What happens next
+
+Invite another Christian single
+
+Give the member a tasteful:
+
+Founding Member
+
+badge.
+
+⸻
+
+33. REFERRAL EXPERIENCE
+
+After sign-up:
+
+Know someone else who might appreciate a different kind of Christian dating?
+
+Provide a shareable invitation.
+
+Do not pressure users into referrals.
+
+Do not create MLM-style gamification.
+
+⸻
+
+34. SAMPLE LOGGED-IN PRODUCT
+
+Even though the initial launch focuses on Founding Members, design representative frames for the future full platform.
+
+Include:
+
+Home / introductions
+
+Discover
+
+Profile
+
+Introduction detail
+
+Messages
+
+My profile
+
+Preferences
+
+Safety centre
+
+Settings
+
+This prevents the marketing visual language from becoming impossible to extend into the real product later.
+
+⸻
+
+35. HOME / INTRODUCTIONS
+
+The logged-in homepage should not resemble Tinder.
+
+Potential structure:
+
+Good evening, Sarah
+
+One new introduction
+
+Large profile presentation.
+
+Then:
+
+Why we thought you may get along
+
+Faith
+Shared importance
+
+Relationship
+Same intention
+
+Life stage
+Strong alignment
+
+Distance
+Comfortable for both
+
+Then actions:
+
+I’d like to know more
+
+Not for me
+
+No swipe gesture should be required.
+
+⸻
+
+36. “NOT FOR ME” SHOULD FEEL RESPECTFUL
+
+Allow people to decline without guilt.
+
+Do not:
+
+* ask them to score the person’s attractiveness;
+* disclose rejection reasons to the other person;
+* encourage endless reconsideration.
+
+Potential confirmation:
+
+We’ll keep looking for introductions that better reflect what matters to you.
+
+No dramatic animation.
+
+⸻
+
+37. MUTUAL INTRODUCTION MOMENT
+
+This is one area where subtle cinematic motion could be memorable.
+
+Profile A says:
+
+I’d like to meet
+
+Profile B independently says:
+
+I’d like to meet
+
+Only then do the two profile compositions move together.
+
+Reveal:
+
+The feeling is mutual.
+
+Then:
+
+Start a conversation
+
+This is a much more appropriate signature moment than a heart explosion.
+
+⸻
+
+38. MESSAGING
+
+Messaging should feel calm and safe.
+
+Design:
+
+* generous typography;
+* accessible message sizes;
+* clear sender;
+* timestamps;
+* easy reporting;
+* block;
+* contextual safety information;
+* potential suggested conversation starters.
+
+Avoid teen-messaging aesthetics.
+
+⸻
+
+39. CONVERSATION STARTERS
+
+Because profiles contain meaningful information, the platform could surface:
+
+Sarah mentioned she loves Cornwall and coastal walking.
+
+Potential conversation prompt:
+
+“I noticed you enjoy coastal walking — do you have a favourite part of the UK?”
+
+Do not over-AI this.
+
+Prompts should feel optional, not generated scripts replacing human conversation.
+
+⸻
+
+40. HUMAN INTRODUCTION LAYER
+
+At founding stage, introductions may be manually or system-assisted curated.
+
+The design should support language such as:
+
+We’ve identified someone we think may be worth an introduction.
+
+This should feel intentionally selected rather than algorithmically sprayed.
+
+Later the system can automate more of the process without changing the outward design philosophy.
+
+⸻
+
+41. PRICING — FUTURE DESIGN
+
+Design a future pricing page but do not make it the launch focus.
+
+Potential future structure:
+
+Free
+
+Create profile.
+
+Browse limited introductions / participate in community.
+
+Member
+
+Approximately £19.99–£24.99/month hypothesis.
+
+Plus
+
+Approximately £29.99–£39.99/month hypothesis.
+
+Premium human-assisted introductions may later exist separately.
+
+These are working hypotheses, not final commercial prices.
+
+Do not fabricate discounts or fake “most popular” labels unless genuinely chosen later.
+
+⸻
+
+42. FOUNDING PERIOD PRICING
+
+For launch:
+
+Founding Membership — Free
+
+Be transparent that pricing may change when the full platform launches.
+
+Do not promise lifetime free membership.
+
+Potential future benefit:
+
+Founding Member status
+
+and possibly an introductory period of premium access.
+
+Do not hard-code an unapproved benefit.
+
+⸻
+
+43. SEO ARCHITECTURE
+
+Design the visual framework so it can support substantive SEO pages.
+
+Expected routes include:
+
+* /christian-dating-over-40
+* /christian-dating-over-50
+* /christian-dating-over-60
+* /mature-christian-dating
+* /christian-singles-over-40
+* /christian-singles-over-50
+* /christian-singles-over-60
+* /christian-dating-after-divorce
+* /christian-dating-after-bereavement
+* /christian-dating-uk
+
+Later:
+
+* London;
+* Birmingham;
+* Manchester;
+* Leeds;
+* Bristol;
+* Cardiff;
+* Edinburgh;
+* Glasgow;
+* Belfast;
+* and other genuine regional pages.
+
+Do not make every SEO page visually identical.
+
+Do not create thin doorway pages.
+
+The design system should allow:
+
+* editorial content;
+* relevant profiles later;
+* member/community statistics later where genuine;
+* dating advice;
+* contextual CTAs.
+
+⸻
+
+44. HOMEPAGE NARRATIVE
+
+Do not use the standard:
+
+Hero
+→ three feature cards
+→ how it works
+→ testimonials
+→ pricing
+→ FAQ.
+
+Explore this sequence instead:
+
+SCENE 1 — A PERSON
+
+A real-feeling individual, not an app screenshot.
+
+SCENE 2 — WHAT MATTERS
+
+Faith, life, intention.
+
+SCENE 3 — ANOTHER PERSON
+
+A second profile.
+
+SCENE 4 — COMMON GROUND
+
+Explainable alignment.
+
+SCENE 5 — WHY THIS IS DIFFERENT
+
+Less swiping. Better context.
+
+SCENE 6 — SAFETY
+
+Verified, moderated, controlled.
+
+SCENE 7 — FOUNDING MEMBERS
+
+Join the first UK community.
+
+SCENE 8 — PROFILE CREATION PREVIEW
+
+Show how thoughtful the process is.
+
+SCENE 9 — CTA
+
+Become a Founding Member — Free
+
+FAQ and supporting SEO content can sit below without disrupting the primary narrative.
+
+⸻
+
+45. HOMEPAGE INTERACTION INVENTORY
+
+Prototype at least these interactions:
+
+1. Profile reveal
+
+Portrait and written personality appear independently.
+
+2. Compatibility reveal
+
+Shared factors emerge between two profiles.
+
+3. Essentials / Preferred / Open-minded
+
+Interactive preference priority.
+
+4. Distance compatibility
+
+Distance is combined with willingness to travel.
+
+5. Faith compatibility
+
+Faith importance appears without a numerical score.
+
+6. Life-stage compatibility
+
+Visually compare relevant life circumstances.
+
+7. Mutual introduction
+
+Two cards only connect after both indicate interest.
+
+8. Founding Member badge
+
+Tasteful confirmation animation.
+
+9. Application progress
+
+Smooth progression through profile setup.
+
+10. Photo/profile transitions
+
+Editorial rather than carousel-like.
+
+⸻
+
+46. FRONTIER VISUAL IDEAS TO EXPLORE
+
+Explore carefully:
+
+MASKED PHOTOGRAPHIC TRANSITIONS
+
+Portraits reveal through typography or shapes.
+
+PROFILE DEPTH
+
+Profile information exists on subtle layered planes.
+
+CONNECTION PATHS
+
+Fine SVG lines subtly connect genuine areas of shared alignment.
+
+EDITORIAL SCROLL
+
+Large photography and typography transition as a story.
+
+SPATIAL PROFILES
+
+Profiles move in and out of focus as compatibility is revealed.
+
+VIEW TRANSITIONS
+
+Smooth continuity between Discover → Profile → Introduction.
+
+DYNAMIC TYPOGRAPHY
+
+Words such as:
+
+Faith
+
+Family
+
+Future
+
+can become part of the visual composition.
+
+SOFT DEPTH
+
+Subtle perspective rather than heavy WebGL.
+
+⸻
+
+47. WHAT NOT TO USE
+
+Do not use:
+
+* floating 3D hearts;
+* cartoon cupids;
+* glowing crosses;
+* particle hearts;
+* neon;
+* excessive gradients;
+* giant glass cards;
+* crypto aesthetics;
+* endless pill badges;
+* Tinder-like card stacks;
+* exaggerated swipe gestures;
+* confetti;
+* fake profile notifications;
+* fake “47 people nearby” messages;
+* fake scarcity;
+* countdown timers;
+* pulsing red CTAs.
+
+Do not solve “looks AI generated” by adding more AI-design clichés.
+
+⸻
+
+48. AI-GENERATED WEBSITE AUDIT RULES
+
+After generating each concept, critique it yourself.
+
+Look specifically for:
+
+* excessive rounded cards;
+* too many pills;
+* repeated three-column layouts;
+* centred everything;
+* generic SaaS spacing;
+* repetitive icon circles;
+* meaningless gradients;
+* fake social proof;
+* generic headings;
+* large empty gradient hero;
+* overly symmetrical layouts;
+* excessive shadows;
+* overly polished but personality-free components.
+
+Revise anything that falls into these patterns.
+
+⸻
+
+49. ACCESSIBILITY
+
+The site serves users from approximately 40–70.
+
+Accessibility is a product requirement.
+
+Use:
+
+* readable base typography;
+* strong contrast;
+* comfortable line lengths;
+* obvious focus states;
+* large touch targets;
+* clear form labels;
+* keyboard accessibility;
+* reduced-motion support;
+* sufficient spacing;
+* visible validation;
+* no tiny grey text.
+
+Sophistication must not mean low contrast or tiny editorial typography.
+
+⸻
+
+50. MOBILE
+
+Mobile must be designed intentionally.
+
+Create separate mobile frames for:
+
+* homepage;
+* profile;
+* Founding Member application;
+* introduction detail;
+* messaging.
+
+Do not simply compress desktop.
+
+On mobile:
+
+* photography may become full bleed;
+* compatibility reasons should stack;
+* profile details should be progressively disclosed;
+* CTAs can become sticky where useful;
+* motion should simplify;
+* reading should remain comfortable.
+
+⸻
+
+51. TRUST / PRIVACY
+
+This product processes sensitive personal information, including information about Christian faith.
+
+The visual experience should make consent and privacy clear.
+
+Design space for:
+
+* explicit consent;
+* privacy choices;
+* profile visibility;
+* who can see what;
+* account deletion;
+* verification;
+* safety reporting.
+
+Do not bury all trust information in legal pages.
+
+Do not display sensitive fields publicly by default merely because they were collected for matching.
+
+⸻
+
+52. PROFILE VISIBILITY
+
+Design distinction between:
+
+Used for matching
+
+and
+
+Visible to other members
+
+Not every answer should necessarily be publicly displayed.
+
+The interface should be able to explain:
+
+Used to help identify suitable introductions.
+
+versus:
+
+Appears on your profile.
+
+This will later matter significantly for privacy architecture.
+
+⸻
+
+53. NO DARK PATTERNS
+
+Do not use:
+
+* forced likes;
+* hidden cancellation;
+* manipulative notifications;
+* fake scarcity;
+* fear-of-missing-out copy;
+* endless swiping;
+* ambiguous paid unlocks;
+* intentionally addictive mechanics.
+
+The product is intentionally positioned against high-volume dating-app behaviour.
+
+⸻
+
+54. VISUAL REFERENCES
+
+Research current:
+
+* premium dating products;
+* Christian dating services;
+* mature dating products;
+* editorial magazines;
+* luxury hospitality;
+* relationship/lifestyle brands;
+* contemporary membership communities;
+* premium fintech onboarding;
+* high-end photography-led websites;
+* sophisticated interactive editorial sites.
+
+Do not copy any one reference.
+
+For every influence explain:
+
+what principle is being borrowed.
+
+⸻
+
+55. COMPETITOR REVIEW
+
+Review at minimum:
+
+Christian Connection
+
+Understand detailed Christian profiles, filters and established trust.
+
+SALT
+
+Understand contemporary Christian product design, faith badges, community and modern app interaction.
+
+OurTime
+
+Understand mature-user accessibility, detailed profiles, local discovery and safety positioning.
+
+Hinge
+
+Understand prompt-based personality presentation and profile storytelling.
+
+Also identify other relevant current examples.
+
+Do not copy their layouts.
+
+The objective is to identify where Mature Christian Dating can feel more:
+
+intentional
+
+mature
+
+editorial
+
+transparent
+
+and
+
+human.
+
+⸻
+
+56. DESIGN THE BRAND MARK
+
+Explore restrained identity options for:
+
+Mature Christian Dating
+
+Do not make the logo depend on:
+
+* a heart;
+* two hearts;
+* a cross inside a heart;
+* wedding rings;
+* doves.
+
+Explore:
+
+* typography-led identity;
+* subtle monogram;
+* abstract connection motif;
+* carefully restrained faith reference;
+* editorial wordmark.
+
+The name itself has strong category clarity, so the mark does not need to explain dating literally.
+
+⸻
+
+57. BRAND LOCKUP
+
+Explore:
+
+Mature Christian Dating
+
+with a secondary line such as:
+
+Faith. Connection. Something meaningful.
+
+or
+
+Christian dating for your next chapter.
+
+Develop the strongest pairing.
+
+Keep the brand name highly legible because it also supports search/category recognition.
+
+⸻
+
+58. FULL DESIGN FRAME SET
+
+Create polished frames for:
+
+PUBLIC
+
+1. Homepage
+2. How It Works
+3. Founding Members
+4. Safety
+5. About
+6. Future Pricing
+7. Christian Dating Over 40 SEO page
+8. Christian Dating Over 50 SEO page
+9. Christian Dating Over 60 SEO page
+10. Dating After Divorce editorial page
+11. Dating After Bereavement editorial page
+
+ONBOARDING
+
+12. Founding Member welcome
+13. About you
+14. Faith
+15. Life stage
+16. Relationship intention
+17. Preferences
+18. Essentials / Preferred / Open-minded
+19. Three things that matter most
+20. Photos
+21. Verification
+22. Profile review
+23. Founding Member confirmation
+
+FUTURE MEMBER EXPERIENCE
+
+24. Member home
+25. Discover
+26. Profile
+27. Introduction explanation
+28. Mutual introduction
+29. Messages
+30. Preferences
+31. Safety centre
+32. My profile
+33. Settings
+
+Do not fill 33 frames with generic repetition.
+
+Establish a coherent system and focus design effort particularly on the signature experiences.
+
+⸻
+
+59. DESIGN TOKENS
+
+Define an initial visual system covering:
+
+* typography;
+* type scale;
+* colour;
+* spacing;
+* layout;
+* image ratios;
+* border radius;
+* borders;
+* shadows;
+* buttons;
+* inputs;
+* cards;
+* profile modules;
+* verification;
+* badges;
+* icons;
+* motion;
+* responsive breakpoints.
+
+Avoid applying the same radius to every object.
+
+⸻
+
+60. MOTION SPECIFICATION
+
+Define:
+
+Entry motion
+
+Scroll motion
+
+Profile transitions
+
+Compatibility reveal
+
+Mutual-introduction transition
+
+Form transitions
+
+Mobile behaviour
+
+Reduced-motion alternative
+
+Motion should usually be slower and more restrained than mainstream youth-focused dating products.
+
+⸻
+
+61. PERFORMANCE PRINCIPLE
+
+The site should feel visually ambitious but remain fast.
+
+Prefer:
+
+* HTML;
+* CSS;
+* optimised images;
+* SVG;
+* lightweight JavaScript;
+* efficient motion;
+
+over heavy WebGL unless there is a demonstrated reason.
+
+Photography should:
+
+* be responsive;
+* use modern formats;
+* load progressively;
+* not delay meaningful content.
+
+⸻
+
+62. FIRST DESIGN MILESTONE
+
+Do not build all pages immediately.
+
+First produce:
+
+A. Three homepage directions
+
+Desktop + mobile.
+
+B. One profile design for each direction
+
+C. One Founding Member onboarding screen for each direction
+
+D. The “Why You Might Get Along” signature interaction
+
+E. The Mutual Introduction moment
+
+F. Proposed typography and colour system
+
+G. Motion concept
+
+H. Recommendation
+
+Stop and allow review before expanding the full design system.
+
+⸻
+
+63. SECOND DESIGN MILESTONE
+
+Once the preferred direction has been selected:
+
+Develop:
+
+* complete homepage;
+* Founding Member application;
+* profile;
+* introduction experience;
+* logged-in home;
+* safety;
+* SEO template;
+* mobile system.
+
+Then perform a visual consistency review.
+
+⸻
+
+64. THIRD MILESTONE — FRONT-END PROTOTYPE
+
+Only after the design direction is approved:
+
+Convert the selected design into a functional front-end prototype.
+
+The prototype should support:
+
+* real page navigation;
+* responsive layouts;
+* representative motion;
+* interactive Founding Member application UI;
+* representative profile interactions;
+* sample compatibility demonstration;
+* sample introduction journey.
+
+Use fictional sample data.
+
+Do not build production matchmaking or authentication merely to make the prototype look complete.
+
+⸻
+
+65. CONTENT TONE
+
+Copy should be:
+
+* mature;
+* confident;
+* concise;
+* warm;
+* straightforward.
+
+Avoid:
+
+* “Find your soulmate today!”
+* “Love is just one click away!”
+* “God has someone waiting for you!”
+* “Your perfect match”
+* “Don’t give up on love”
+* patronising language about age;
+* assumptions that divorce/widowhood makes someone damaged;
+* overly religious marketing clichés.
+
+Faith should feel genuine rather than commercialised.
+
+⸻
+
+66. SAMPLE HERO DIRECTION
+
+Use this only as a starting point, not mandatory final copy:
+
+Meet someone who shares what matters.
+
+Meaningful Christian dating for people over 40 who are looking for a genuine relationship.
+
+No endless swiping. Build a thoughtful profile, tell us what matters to you, and discover introductions based on faith, life stage and relationship intentions.
+
+Become a Founding Member — Free
+
+See how introductions work
+
+Supporting microcopy:
+
+Founding membership is free. We do not guarantee a match; we’ll contact you when we identify a promising mutual connection.
+
+⸻
+
+67. SAMPLE FOUNDING MEMBER SECTION
+
+Potential direction:
+
+A better dating community has to start somewhere.
+
+We’re bringing together the first members of Mature Christian Dating across the UK.
+
+Create your profile free.
+
+Tell us about your faith, your life and the person you hope to meet.
+
+As the community grows, we’ll begin identifying promising introductions.
+
+Then:
+
+Become a Founding Member
+
+Do not display an invented member total.
+
+Once real numbers exist, the design can support genuine counts.
+
+⸻
+
+68. SAMPLE DIFFERENTIATION SECTION
+
+Potential narrative:
+
+Less browsing. More understanding.
+
+Faith that means something
+
+Go beyond a religion badge.
+
+Life stages that fit
+
+Children, work, retirement, geography and plans for the future all matter.
+
+Intentions that align
+
+Know whether someone is seeking companionship, a committed relationship or marriage.
+
+Preferences with perspective
+
+Separate genuine essentials from things you’re simply open to.
+
+The design should demonstrate these rather than place them inside four identical feature cards.
+
+⸻
+
+69. SUCCESS TESTS
+
+The selected design must pass these tests.
+
+TEST 1 — AGE
+
+Could a sophisticated 42-year-old use this without feeling they joined a pensioners’ dating site?
+
+TEST 2 — MATURITY
+
+Could a 67-year-old use this comfortably without feeling the product was designed for 25-year-olds?
+
+TEST 3 — FAITH
+
+Is Christianity clearly meaningful without turning the site into religious clip art?
+
+TEST 4 — HUMANITY
+
+Do people feel more important than technology?
+
+TEST 5 — DIFFERENTIATION
+
+Does it look materially different from ordinary swipe dating?
+
+TEST 6 — TRUST
+
+Would somebody feel comfortable giving this service personal dating information?
+
+TEST 7 — FOUNDING MEMBER
+
+Does joining now feel worthwhile even before a full dating marketplace exists?
+
+TEST 8 — PRODUCT EXTENSION
+
+Can the design evolve naturally into the full dating platform later?
+
+TEST 9 — SEO
+
+Can substantive search content exist within the visual system?
+
+TEST 10 — DISTINCTIVENESS
+
+Does the finished experience look intentionally art-directed rather than AI-generated?
+
+⸻
+
+70. OVERARCHING RULE
+
+The objective is not:
+
+Make Christian dating look technologically advanced.
+
+The objective is:
+
+Make intentional Christian dating feel like a fundamentally better digital experience.
+
+Technology should disappear behind:
+
+people
+
+faith
+
+context
+
+shared values
+
+life stage
+
+and
+
+meaningful introductions.
+
+The strongest visual moment should not be an impressive 3D animation.
+
+It should be the moment a visitor understands:
+
+“This service isn’t showing me another face. It’s showing me why this person might actually be worth meeting.”
