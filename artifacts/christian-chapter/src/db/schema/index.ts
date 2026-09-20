@@ -60,8 +60,10 @@ export const foundingMembers = pgTable("founding_members", {
   priorities: text("priorities").array(),
   photoConsent: boolean("photo_consent").default(false),
 
-  // Status
-  status: varchar("status", { length: 50 }).default("active").notNull(),
+  // Admin
+  status: varchar("status", { length: 50 }).default("pending").notNull(),
+  internalNotes: text("internal_notes"),
+  reviewedAt: timestamp("reviewed_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -73,7 +75,7 @@ export const consentRecords = pgTable("consent_records", {
   foundingMemberId: integer("founding_member_id")
     .references(() => foundingMembers.id, { onDelete: "cascade" })
     .notNull(),
-  consentType: varchar("consent_type", { length: 100 }).notNull(), // 'religious_data' | 'marketing' | 'terms'
+  consentType: varchar("consent_type", { length: 100 }).notNull(),
   consentVersion: varchar("consent_version", { length: 50 }).notNull(),
   granted: boolean("granted").notNull(),
   grantedAt: timestamp("granted_at").defaultNow().notNull(),

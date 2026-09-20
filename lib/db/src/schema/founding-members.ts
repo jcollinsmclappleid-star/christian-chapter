@@ -39,7 +39,9 @@ export const foundingMembers = pgTable("founding_members", {
   storyPrompt3: text("story_prompt_3"),
   priorities: text("priorities").array(),
   photoConsent: boolean("photo_consent").default(false),
-  status: varchar("status", { length: 50 }).default("active").notNull(),
+  status: varchar("status", { length: 50 }).default("pending").notNull(),
+  internalNotes: text("internal_notes"),
+  reviewedAt: timestamp("reviewed_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
