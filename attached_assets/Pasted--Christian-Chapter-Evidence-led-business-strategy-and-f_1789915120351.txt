@@ -1,0 +1,1031 @@
+# Christian Chapter
+
+## Evidence\-led business strategy and full product scope
+
+**Prepared:** 20 September 2026
+**Market:** United Kingdom
+**Core audience:** Christian singles primarily aged 40–70
+**Product form:** Complete responsive web platform, designed for implementation through Cursor
+**Recommended proposition:** *Christian dating for your next chapter\.*
+
+---
+
+## Decision summary
+
+The opportunity is attractive enough to build, but only as a focused UK marketplace with disciplined liquidity management\. The evidence supports a substantial older Christian population and a meaningful audience for online dating\. It does not support launching another broad Christian directory or a visually polished empty marketplace\.
+
+The recommended business is **Christian Chapter**, a premium, contemporary UK dating service for Christians in the next stage of life\. It should compete on four things that incumbents handle inconsistently:
+
+1. **People who are genuinely available\.** Recommendations prioritise recently active, reachable members\. Dormant profiles leave circulation automatically\.
+2. **Life\-stage compatibility\.** Faith matters, but so do children, caring responsibilities, work and retirement, distance, future plans and openness to remarriage\.
+3. **Essentials that are actually respected\.** Members classify preferences as Essential, Preferred or Open\-minded\. The platform does not repeatedly show a smoker to someone who has made non\-smoking essential, or a marriage seeker to someone seeking companionship only\.
+4. **Trust that is visible in the product\.** Phone and selfie verification, image moderation, behavioural fraud detection, human case review, clear reporting, financial\-scam interventions and private calling sit inside the core journey\.
+
+The market case is positive but not overwhelming\. Census 2021 recorded 27\.5 million people identifying as Christian in England and Wales, and their median age was 51\. Ofcom found that 11% of UK online adults used a dating service in May 2025, with OurTime reaching about 300,000 UK adults\. These figures show an addressable intersection, while also exposing the main threat: dating audiences are fragmented and the overall category was 68% male in Ofcom’s measurement\. Supply balance and local candidate depth will determine whether this succeeds\.
+
+The platform should be complete at launch as a responsive web product\. The service layers should activate when their prerequisites exist\. Human introductions require enough suitable members; public regional statistics require privacy\-safe sample sizes; physical events require viable local cohorts\. That is an operating dependency, not a reduced product scope\.
+
+### Investment recommendation
+
+Proceed if the founding\-member programme can produce all of the following before broad paid acquisition:
+
+- at least 500 completed and recently active profiles;
+- no primary age\-region\-gender cohort worse than 60:40;
+- a median of at least 20 mutually eligible candidates per active member when preferred and distance\-flexible pools are combined;
+- at least 45% of first messages receiving a reply within 14 days;
+- at least 60% of interviewed members saying the introductions feel more relevant than their current alternative;
+- an initial blended cost per completed, verified profile below £35 through partnerships, referrals and focused paid tests\.
+
+Pause or reposition if the platform cannot achieve candidate depth after 1,000 completed profiles, if women experience materially higher harassment or fraud rates, if a representative paid test suggests sustainable CAC above contribution LTV, or if the audience wants a broad all\-age Christian app rather than a life\-stage\-specific service\.
+
+---
+
+# Part 1 — Executive assessment
+
+## What the evidence supports
+
+The audience exists\. Christianity remains the largest stated religion in England and Wales, although affiliation has fallen\. Christians are older than the population overall: the median age was 51, and 29% were 65 or over\. The proposed 40–70 audience therefore aligns with the demographic centre of Christian affiliation rather than an edge case\.
+
+There is also evidence that older adults use dating services\. Ofcom measured OurTime at roughly 300,000 UK adult users in May 2025, up from about 100,000 a year earlier\. Christian Connection has operated for more than 25 years, while SALT reports global scale and offers free matching and chat\. friends1st sustains high\-touch UK Christian membership packages from £624 to several thousand pounds\. Together, these validate both subscription and assisted\-introduction demand\.
+
+The competitive experience remains weak in areas that matter to this audience\. Public reviews repeatedly mention inactive members, low response rates, shallow profiles, paywalls that prevent members assessing fit, and crowded interfaces where likes and actual conversations are difficult to distinguish\. Competitors often segment by faith or age\. Few combine both with detailed future\-life compatibility, explicit dealbreakers, activity freshness and measured closure\.
+
+## What weakens the thesis
+
+- **The addressable audience is smaller than census affiliation implies\.** Census answers describe identity or affiliation, not active practice or the importance of a partner’s faith\.
+- **Dating is a network business\.** National registration does not create usable local or preference\-compatible supply\.
+- **Gender balance is structurally difficult\.** Ofcom measured the overall UK online\-dating audience as 68% male\. A platform that acquires men faster than women becomes unusable for both\.
+- **Free competition is strong\.** SALT permits free matching and chat\. A paid wall around basic connection would make Christian Chapter hard to sample\.
+- **Successful customers leave\.** Churn is partly a positive outcome, so economics cannot depend on keeping people indefinitely\.
+- **Religious and relationship data are highly sensitive\.** The product requires explicit consent, clear profiling explanations, careful analytics design and credible moderation operations\.
+
+## The largest opportunity
+
+The strongest opportunity is not “Christian Tinder for older people\.” It is a trusted introduction service that combines software scale with the judgment and reassurance associated with matchmaking\. The digital subscription builds the marketplace\. Optional human profile reviews, curated introductions and regional gatherings increase revenue and trust once supply supports them\.
+
+## What could kill the business
+
+1. Too few reciprocal candidates after faith, age, family, intention and distance requirements are applied\.
+2. A persistent gender imbalance that increases spam for women and silence for men\.
+3. Romance fraud or a serious safeguarding failure before the brand has earned trust\.
+4. Paid acquisition costs above LTV, especially if the average paid relationship lasts fewer than eight months\.
+5. Treating “Christian” as a single homogeneous preference or implying the platform can measure faith\.
+6. Overbuilding visual spectacle while the core matching and response experience remains empty\.
+
+---
+
+# Part 2 — Market
+
+## Market sizing
+
+No authoritative dataset directly counts UK residents aged 40–70 who identify as Christian, are single, want a Christian partner, are open to online dating and will pay\. A range is more credible than a point estimate\.
+
+|Layer                                                            |Working range                          |Basis and interpretation                                                                                            |
+|-----------------------------------------------------------------|--------------------------------------:|--------------------------------------------------------------------------------------------------------------------|
+|UK residents aged 40–70 who identify as Christian                |13.5m–15.5m                            |Derived from UK census populations and the older age profile of Christian affiliation. Includes nominal affiliation.|
+|Single, divorced, separated or widowed                           |3.8m–5.4m                              |28%–35% planning range; must be recalibrated from detailed census marital-status tables by age and nation.          |
+|Faith active enough for Christian-partner compatibility to matter|0.8m–1.9m                              |20%–35% planning range. This is the greatest demographic uncertainty.                                               |
+|Open to online dating in a three-year period                     |160k–570k                              |20%–30% of the preceding group; higher than current-month use because dating is episodic.                           |
+|Serviceable UK audience                                          |120k–400k                              |Adults reachable online with enough geographic and preference flexibility for the proposition.                      |
+|Plausible 3–5 year monthly active membership                     |5k–25k                                 |Requires a trusted national brand, balanced acquisition and multiple regional clusters.                             |
+|Plausible paying membership                                      |500–5,000 initially; 10,000 strong case|Depends on 10%–20% active-to-paid conversion and useful free participation.                                         |
+
+**TAM:** 0\.8m–1\.9m UK Christians aged roughly 40–70 whose faith is relevant to partner choice and whose relationship status makes the proposition applicable\.
+**SAM:** 120k–400k people sufficiently online, open to dating and reachable with a UK service\.
+**SOM:** 5k–25k monthly active members and 500–5,000 paying members in the first mature operating stage\. A 10,000\-payer outcome is possible but should be treated as a strong national category\-leader case\.
+
+These ranges should be replaced by a reproducible census table build and a nationally balanced concept survey before a major funding decision\. Affiliation must not be presented as active Christian practice\.
+
+## Segment strategy
+
+### Christians in their 40s
+
+Their distinguishing questions concern dependent children, work, future children, divorce, custody schedules and limited travel flexibility\. Acquisition should emphasise serious relationships without describing the audience as mature or older\. Product copy should use “life has changed” and “clear about what matters\.”
+
+### Christians in their 50s
+
+This is the likely commercial centre\. Members may have teenage or adult children, greater clarity about remarriage, and the ability to pay for quality\. They need nuance around blended families, housing, work, retirement horizons and church compatibility\.
+
+### Christians in their 60s and 70s
+
+Security, bereavement sensitivity, companionship, mobility, retirement and travel flexibility become more important\. The interface must remain contemporary\. Larger type and clear controls should be platform standards rather than an “older mode\.”
+
+### Cross\-cutting acquisition segments
+
+- Divorced and open to remarriage\.
+- Widowed and dating again, addressed with editorial care rather than retargeting that feels exploitative\.
+- Never married and tired of youth\-focused apps\.
+- Rural or lower\-density members open to distance\.
+- Busy professionals who want limited, relevant introductions\.
+- Retired members with wider travel and relocation flexibility\.
+
+## Demand research required before scale
+
+Run 40–60 qualitative interviews, balanced across gender, age decade, country, marital history and church tradition\. Follow with a 600\-person UK concept survey\. The critical questions are willingness to travel, willingness to pay, acceptable verification, free\-versus\-paid expectations, denomination constraints, desired relationship language and comfort with community referral\. Recruitment should not come only from churches that already endorse dating services\.
+
+---
+
+# Part 3 — Competition
+
+## Competitor matrix
+
+|Service             |Position and audience                                     |Commercial model                                                                                                                                      |Product and trust                                               |Strength                                                            |Gap Christian Chapter can exploit                                                                                    |
+|--------------------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+|Christian Connection|Established UK Christian dating; broad adult age range    |Free likes and preset replies; paid messaging and controls. UK App Store purchases shown at £27.99, £53.99 and £63.99 with period not clear in listing|Search, filters, events, video, support; claims profiles checked|UK recognition, longevity, community events                         |Review themes include inactive users, confusing inbox states and interaction limits; weak life-stage differentiation |
+|SALT                |Mobile-first global Christian app, younger visual language|Match and chat free; Premium examples from £15.99 weekly and £31.99 monthly; add-on introductions                                                     |Swipe-led discovery, 24/7 moderation claims, age/ID checks      |Low-friction free use, large claimed global base, contemporary brand|Shallow profile assessment, daily limits, ghosting and dormant-profile complaints; not designed for 40–70 life stages|
+|ChristianCafe       |International Christian dating since 1999                 |Ten-day full-communication trial, then subscription                                                                                                   |Detailed faith search, forums, over-50 and UK pages             |Depth of Christian profile fields; long history                     |Dated experience, international dilution and less visible UK liquidity                                               |
+|ChristianCupid      |International Cupid Media niche                           |Free browse; paid communication tiers                                                                                                                 |Traditional search and browse across countries                  |Large network infrastructure                                        |Broad international supply can increase irrelevance and scam/visa anxiety; weak UK mature positioning                |
+|OurTime             |UK dating for over 50s                                    |Freemium subscription                                                                                                                                 |Moderated profiles, messaging, video, recommendations and events|Clear age segment; Ofcom measured about 300k UK users in May 2025   |Faith compatibility is secondary; profiles may appear across network brands with consent                             |
+|SilverSingles       |Over-50 dating with premium framing                       |Subscription                                                                                                                                          |Personality matching, verified-profile claims, fraud filters    |Familiar “next chapter” category language                           |Low public review score is a trust concern; service disclaims background checks; no Christian depth                  |
+|friends1st          |UK Christian introductions and coaching                   |£624 Silver, £1,524 Gold, £3,564 Platinum; Diamond from £5,000                                                                                        |Human-supported profiles, coaching and events                   |Proves willingness to pay for high touch                            |Manual, dated and expensive; opportunity to combine modern product with human service                                |
+|Fusion101           |Free Christian dating, global                             |Free                                                                                                                                                  |Manual approval and basic search                                |Low barrier, long history                                           |Cluttered, dated, SEO-heavy experience; limited premium trust or life-stage intelligence                             |
+
+Competitor membership and success claims should be treated as marketing statements unless independently audited\. App\-store and review evidence is directional because reviewers self\-select\.
+
+## Genuine whitespace
+
+The whitespace is the combination of:
+
+- UK\-only relevance without London\-only positioning;
+- age\-appropriate tone that does not label a 42\-year\-old as elderly;
+- controlled introductions plus optional search;
+- recent activity as a ranking and visibility requirement;
+- preferences split into Essential, Preferred and Open\-minded;
+- life\-stage fields that affect introductions rather than decorate profiles;
+- transparent reasons and discussion points, without pseudoscientific percentages;
+- graceful decline and closure states;
+- a modern web product linked to optional human introductions;
+- privacy\-respecting public location pages backed by real aggregate availability\.
+
+---
+
+# Part 4 — SEO and demand capture
+
+## Evidence boundary
+
+Exact current UK monthly volumes, CPC and difficulty are not reliably public\. They require dated exports from Google Ads Keyword Planner and a specialist index such as Ahrefs or Semrush\. Publishing invented numbers would create false precision\. The following plan uses observable search intent and current result pages; the exact\-volume column remains a required pre\-build input\.
+
+## Keyword opportunity map
+
+|Cluster               |Representative queries                                                                |Intent                                         |Current result pattern                                                     |Priority and page                                                                             |
+|----------------------|--------------------------------------------------------------------------------------|-----------------------------------------------|---------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+|Core category         |christian dating uk; christian dating site uk; christian singles uk                   |High commercial                                |Christian Connection, ChristianCafe, ChristianCupid and broad dating brands|Highest. `/christian-dating/` commercial hub                                                  |
+|Age 40                |christian dating over 40; christian singles over 40                                   |High commercial                                |Specialist pages plus broad app brands                                     |High. `/christian-dating/over-40`                                                             |
+|Age 50                |christian dating over 50; christian singles over 50                                   |High commercial                                |ChristianCafe, broad senior brands, app pages                              |Highest. `/christian-dating/over-50`                                                          |
+|Age 60                |christian dating over 60; christian singles over 60                                   |High commercial                                |Older dating sites and generic listicles                                   |High. `/christian-dating/over-60`                                                             |
+|Mature                |mature christian dating; mature christian singles                                     |High commercial but potentially ageing language|SALT has a dedicated page; numerous thin affiliates                        |Use for SEO copy and metadata, not the master brand                                           |
+|Divorce and remarriage|christian dating after divorce; christian remarriage                                  |Mixed commercial/informational                 |Advice content and denominational discussion                               |High-authority guide linked to matching proposition                                           |
+|Bereavement           |christian dating after bereavement; christian widow dating                            |Sensitive mixed intent                         |Generic dating and grief content                                           |Publish only expert-reviewed, support-first guidance; avoid sales-first copy                  |
+|Practical             |dating again after 50; first date after divorce; long-distance dating uk              |Informational with assisted conversion         |Publishers and dating brands                                               |Editorial cluster feeding relevant service pages                                              |
+|Safety                |romance fraud; dating scam warning signs; safe first dates                            |High trust, broad audience                     |Police, banks, charities and dating brands                                 |Build a citation-led safety centre; do not outrank public-service advice with sensational copy|
+|Geography             |christian dating London, Manchester, Birmingham, Glasgow, Cardiff, Belfast and similar|Local commercial                               |Competitor location templates and directories                              |Publish only where unique content and privacy-safe supply information exist                   |
+
+## Site architecture
+
+```text
+/
+/how-it-works
+/safety
+/pricing
+/success-stories
+/christian-dating/
+/christian-dating/over-40
+/christian-dating/over-50
+/christian-dating/over-60
+/christian-dating/after-divorce
+/christian-dating/after-bereavement
+/christian-dating/remarriage
+/christian-dating/locations/{place}
+/guides/dating-again/
+/guides/christian-relationships/
+/guides/safety/
+/guides/practical-dating/
+```
+
+Do not create city\-by\-age combinations\. A location page becomes indexable only when it includes original local guidance, relevant events or organisations, and aggregate supply above a privacy threshold\. Under\-threshold pages remain useful in\-product availability views but use `noindex`\.
+
+No member profile should be indexable\. Search engines should never receive names, photographs, faith details or relationship history from private profiles\. Public member counts should be rounded, delayed and suppressed below 20 people in any reported cell\.
+
+## Page standard
+
+Every commercial landing page should contain:
+
+- a clear audience and benefit statement;
+- how the introduction model works for that audience;
+- relevant safety and activity policy;
+- distinctive life\-stage guidance;
+- real, consented success evidence when available;
+- useful FAQs based on actual support and search questions;
+- structured data appropriate to the visible content;
+- one primary registration action;
+- no fabricated member totals or location claims\.
+
+## 12–24 month organic programme
+
+### Months 0–3
+
+Publish the core category, age, how\-it\-works, safety and pricing pages\. Commission expert\-reviewed cornerstone guides on dating after divorce, after bereavement, scams and dating across denominations\. Establish Search Console, analytics consent, schema validation and editorial governance\.
+
+### Months 4–9
+
+Publish 20–30 high\-quality articles around the four content clusters\. Build digital PR from anonymised research on mature Christian dating, travel radius and safety\. Earn links from Christian publications, relationship counsellors, churches, fraud\-prevention organisations and relevant podcasts\.
+
+### Months 10–15
+
+Open the first city pages where supply thresholds are met\. Add rounded active\-member trends, age bands, travel openness and events\. Publish original survey findings and quarterly trust reports\.
+
+### Months 16–24
+
+Expand location coverage only when member depth supports it\. Consolidate weak pages, refresh winning guides, build success\-story collections with granular consent and develop partner content with recognised experts\.
+
+## SEO operating metrics
+
+Track non\-brand impressions, top\-three and top\-ten rankings, qualified registrations by landing page, verified\-profile rate, first\-conversation rate and paid conversion\. Traffic that creates no viable members is not success\.
+
+---
+
+# Part 5 — Brand
+
+## Recommended name: Christian Chapter
+
+**Consumer name:** Christian Chapter
+**Descriptor:** UK Christian dating for your next chapter
+**Primary line:** Christian dating for your next chapter\.
+**Support line:** Meet genuine Christian singles who share your faith, values and hopes for what comes next\.
+
+The name is warm, memorable and age\-inclusive\. It supports the working proposition without making a healthy 42\-year\-old feel old\. It can stretch from online dating to events and personal introductions\. Search clarity should come from the descriptor, metadata and landing\-page architecture\.
+
+As checked on 20 September 2026, `christianchapter.co.uk`, `christianchapter.uk` and `christianchapter.com` were shown as available by a UK registrar\. A Companies House search returned no exact company result for Christian Chapter\. The UKIPO search encountered an automated security block, so trademark clearance is incomplete\. Before public commitment, commission an exact and similar\-mark search covering at least Classes 45, 41, 42 and any relevant software Class 9 goods\.
+
+## Naming assessment
+
+|Candidate                 |Search clarity     |Warmth and trust|Age inclusion|Brand stretch|Decision                                                |
+|--------------------------|------------------:|---------------:|------------:|------------:|--------------------------------------------------------|
+|Christian Chapter         |4/5 with descriptor|5/5             |5/5          |5/5          |Recommend, subject to legal clearance                   |
+|Mature Christian Dating UK|5/5                |2/5             |2/5          |2/5          |Retain as SEO phrase, not consumer brand                |
+|Faithful Introductions    |3/5                |5/5             |5/5          |4/5          |Strong service-line name but less direct category signal|
+|Together in Faith         |2/5                |4/5             |5/5          |4/5          |Warm but generic and vulnerable to confusion            |
+|Faith & Future            |2/5                |4/5             |5/5          |5/5          |Broad and brandable; weak dating clarity                |
+|Christian Companions      |4/5                |3/5             |2/5          |3/5          |Sounds older and companionship-only                     |
+
+## Messaging hierarchy
+
+1. **Outcome:** A meaningful relationship with someone who understands why faith matters\.
+2. **Method:** Fewer, better introductions based on faith, intention and real life\.
+3. **Trust:** Verified, active people and safety support throughout\.
+4. **Control:** Members decide their essentials and remain in charge\.
+5. **Proof:** Response, date and relationship outcomes rather than inflated registration counts\.
+
+Avoid “perfect match,” “God chose this person,” “Christian score,” “elite,” “senior singles” and any implication that verification confirms character or faith\.
+
+## Visual direction
+
+The design should continue the strongest lessons from the user’s recent site work: original assets, generous space, precise alignment, strong typography, responsive storytelling, visible proof, controlled motion, accessible fallbacks and a product\-specific visual idea\. It should not reuse the dark technical language of Car Buyer Check or the educational analytics language of 11 Plus Test Hub\.
+
+### Design system
+
+- **Canvas:** warm ivory rather than pure white\.
+- **Primary ink:** near\-black plum or deep forest, softer than navy\.
+- **Action colour:** mature berry or oxblood\.
+- **Trust colour:** restrained evergreen\.
+- **Highlight:** muted brass used sparingly for verified or selected states, never as a luxury cliché\.
+- **Typography:** expressive editorial serif for major statements; highly legible humanist sans for product UI\. Body text minimum 17px desktop and 16px mobile\.
+- **Shape:** restrained 12–18px radii, thin keylines, almost no drop shadows\. Depth comes from layering and motion\.
+- **Photography:** original or fully licensed portraits of attractive, believable people aged 40–70 in real environments\. Avoid beaches, Bible\-holding, staged church pews and age caricature\.
+
+### Signature visual language
+
+The product metaphor is **chapters and connections**\. Section transitions can feel like turning between considered moments, but should not imitate a literal book\. Fine connecting lines and softly shifting fields can show how faith, intention, life stage, family and distance combine\. Motion must explain changing compatibility or status, not merely decorate\.
+
+Use lightweight CSS, SVG, Motion and native View Transitions for core interactions\. Reserve WebGL or 3D for a small optional marketing scene and provide static and reduced\-motion fallbacks\. No primary content or call to action may wait for a large asset\.
+
+---
+
+# Part 6 — Business model
+
+## Subscription design
+
+|Plan  |Recommended price including VAT                         |Product value                                                                                                                                                                                                                       |
+|------|-------------------------------------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|Free  |£0                                                      |Create and verify a profile; receive a useful finite set of introductions; search a limited but representative active pool; send up to three thoughtful interests weekly; reply to received messages; use reporting and safety tools|
+|Member|£24.99 monthly; £54.99 for 3 months; £89.99 for 6 months|Up to ten new introductions weekly; full controlled discovery; advanced filters; unlimited mutual conversations; voice messages; private calls; visibility controls; richer compatibility explanations                              |
+|Plus  |£39.99 monthly; £89.99 for 3 months                     |Member benefits plus monthly human profile feedback, one human-reviewed introduction when supply allows, priority support, enhanced privacy and conversation coaching                                                               |
+
+Free users must be able to experience a real connection\. SALT has reset the market expectation by making matching and chat free\. Christian Chapter should monetise greater access, control and service rather than the ability to answer a genuine message\.
+
+Do not sell boosts that let a payer jump ahead of a more compatible person\. Do not use coins, expiring likes or artificial scarcity\. Show the renewal date and total price before payment\. Make cancellation available in the account in two clear steps\.
+
+## Founding membership
+
+Offer the first balanced cohort six months of Member access free\. Founders who remain active can retain 50% off their next 12 months\. This creates a reason to complete profiles and respond without promising an unsustainable lifetime entitlement\.
+
+## Personal Introductions
+
+|Service             |Indicative price   |Scope                                                                                              |
+|--------------------|------------------:|---------------------------------------------------------------------------------------------------|
+|Profile Consultation|£149 one-off       |60-minute interview, profile rewrite, photo and preference review                                  |
+|Guided Introductions|£495 for 3 months  |Consultation, profile support and up to two human-reviewed introductions from the active membership|
+|Personal Matchmaking|£1,495 for 6 months|Deeper interview, proactive search, up to four introductions and structured feedback               |
+|Bespoke Search      |£3,500–£5,000      |Offered only after the service has supply and trained matchmakers; no guaranteed partner or date   |
+
+friends1st currently demonstrates UK Christian willingness to pay from £624 to £5,000\+\. Christian Chapter should enter below its highest\-touch tiers while the brand and supply mature\.
+
+## Events
+
+Events support trust and liquidity but should operate as curated experiences rather than a separate social network\.
+
+- walks, daytime gatherings and museum or garden visits: £25–£45;
+- regional drinks or supper gatherings: £35–£65;
+- hosted premium dinners: £75–£125;
+- retreats only after safeguarding, insurance, staffing and demand are proven\.
+
+Every event requires identity checks, a named host, attendee conduct rules, incident handling, accessible venue information and private attendee lists\.
+
+---
+
+# Part 7 — Complete product architecture
+
+## Product surfaces
+
+```mermaid
+flowchart TD
+  A["Public site and SEO"] --> B["Registration and consent"]
+  B --> C["Profile and verification"]
+  C --> D["Introductions and discovery"]
+  D --> E["Interest and conversation"]
+  E --> F["Voice, video and dates"]
+  F --> G["Pause, success or return"]
+  H["Trust and moderation"] --> C
+  H --> D
+  H --> E
+  I["Admin and liquidity operations"] --> D
+  I --> H
+```
+
+### Public site
+
+Homepage, how it works, safety centre, pricing, success stories, events, personal introductions, support, editorial guides and evidence\-rich SEO landing pages\.
+
+### Member platform
+
+Registration, consent, eligibility, onboarding, verification, profile, preferences, introductions, discovery, matches, messaging, calling, subscriptions, events, referrals, privacy, safety, pause and closure\.
+
+### Operations platform
+
+Member support, identity and photo review, content moderation, risk alerts, reports, appeals, liquidity analysis, content management, billing support, events, human introductions, data rights and audit logs\.
+
+## Registration and eligibility
+
+- 18\+ legally; marketing and recommendation system primarily designed for 40–70\.
+- UK residence or a declared plan to relocate to the UK\. Overseas profiles do not enter standard UK recommendations\.
+- Email verification before profile creation\.
+- Mobile verification before the profile appears to others\.
+- Selfie\-liveness and photo\-match verification before messaging or calls\.
+- Separate explicit consent for processing religious\-belief data\. Registration cannot bury this in general terms\.
+- Separate marketing consent, optional and unbundled\.
+- Clear declaration that separated members may join only if living separately and transparent about status\. Research interviews should test whether the community expects legal finality before membership\.
+
+## Onboarding
+
+The first useful profile should take 8–12 minutes\. Progressive completion follows after the first candidate preview\.
+
+1. Welcome, age eligibility and what the service is for\.
+2. Account, email, mobile and security\.
+3. Name, date of birth, broad location and gender/people the member hopes to meet\.
+4. Relationship intention and status\.
+5. Faith tradition, importance, practice and cross\-denomination openness\.
+6. Family and life stage\.
+7. Distance, travel and relocation\.
+8. Essentials, preferences and open\-minded areas\.
+9. About Me, My Faith and My Next Chapter prompts\.
+10. Photos, selfie verification and review\.
+
+Save after every step\. Show time remaining and why each sensitive answer is asked\. Every field has a visibility control with sensible defaults\. Exact church, exact address, employer, children’s names and precise attendance patterns are never public defaults\.
+
+## Profile model
+
+The profile opens as a human story, with structured facts supporting it\.
+
+**Header:** first name, age, broad location, verified status, recent activity band, relationship intention and one\-line introduction\.
+**About Me:** 80–300 words plus three prompt responses\.
+**My Faith:** tradition, faith importance, church attendance band, community involvement, what sharing faith with a partner means\.
+**My Life:** work/retirement state, family summary, interests, pets, social rhythm and wellbeing activities\.
+**My Next Chapter:** desired relationship, home and travel hopes, possible relocation and future family plans\.
+**Photos and introductions:** four to eight photos, optional 30\-second voice introduction and optional short video visible only to verified members\.
+
+Structured details sit in scannable groups\. Sensitive narrative answers can be visible to matches only\. Members preview their profile exactly as others see it\.
+
+## My Essentials
+
+For each supported preference, a member chooses:
+
+- **Essential:** a reciprocal hard gate;
+- **Preferred:** affects ranking and explanation;
+- **Open\-minded:** visible for discussion but does not reduce ranking\.
+
+Supported areas include age, distance, Christian identity, denomination, relationship intention, smoking, children, future children, relocation and selected lifestyle factors\. The interface warns when essentials would leave too few candidates and previews which requirement causes the reduction\. It never changes an Essential automatically\.
+
+## Matching and introductions
+
+### Eligibility gates
+
+A candidate must pass account status, age, reciprocal gender preference, reciprocal age range, block/report exclusions, minimum verification, profile completeness, activity freshness and both members’ Essential rules\.
+
+### Candidate pools
+
+1. **Nearby:** within the member’s preferred radius\.
+2. **Worth the journey:** outside the preferred radius where both members declared travel openness\.
+3. **Open to a move:** national candidates where relocation preferences align\.
+
+Exact distance and precise location remain private\. The platform uses travel bands and estimated journey ranges\.
+
+### Alignment dimensions
+
+- faith practice and partner expectations;
+- relationship intention;
+- family circumstances and future children;
+- life stage, work and retirement;
+- lifestyle and social rhythm;
+- geographic practicality\.
+
+The internal rank can use a documented numeric score\. The member sees **Strong alignment**, **Good potential** or **Some common ground**, followed by evidence\. A “Worth discussing” section identifies differences such as denomination or travel expectations\. No percentage implies scientific certainty\.
+
+### Recommendation policy
+
+- Three to seven fresh introductions at a time, refreshed on a known cadence\.
+- Optional controlled discovery for members who want more agency\.
+- At least 10% of recommendation positions reserved for qualified exploration beyond obvious similarities\.
+- Declined profiles are not recycled for 90 days unless both parties materially change preferences\.
+- Ranking does not use protected traits outside explicit lawful user choices necessary to provide the service\.
+- Every reason is generated from approved reason codes, not free\-form AI invention\.
+- Operations can audit why a person was included, excluded and ranked\.
+
+## Activity policy
+
+|State            |Rule                     |Product behaviour                                                               |
+|-----------------|-------------------------|--------------------------------------------------------------------------------|
+|Active now       |Activity in last 24 hours|Can appear prominently; exact timestamp hidden                                  |
+|Active recently  |2–7 days                 |Normal recommendations                                                          |
+|Active this month|8–30 days                |Eligible with lower freshness weighting                                         |
+|Reactivation     |31–45 days               |Member receives reminders; profile is removed from prime positions              |
+|Inactive         |46+ days                 |Hidden from discovery and new introductions until return                        |
+|Taking a break   |Member selected          |Hidden immediately; existing conversations preserved according to chosen setting|
+
+Members receive notices before automatic hiding\. Logging in alone does not necessarily prove availability: dismissals, replies and profile interactions are better activity signals\. Public copy should say “we remove long\-inactive profiles from introductions,” not guarantee that every visible member will reply\.
+
+## Interest and respectful closure
+
+An introduction offers three explicit actions:
+
+- **I’d like to talk** with an optional prompt\-led message;
+- **Save for later** for up to seven days;
+- **Not for me** with no reason required\.
+
+When interest is not mutual, the sender sees “This introduction wasn’t the right fit\.” Reasons remain private\. A member can close an active conversation with a respectful template, mute it, or block/report immediately\. Closure is encouraged but never enforced where safety is involved\.
+
+## Messaging and calling
+
+- Mutual interest opens a conversation\.
+- Free members can reply to received messages and maintain up to three active conversations\.
+- Paid members have unlimited mutual conversations and can send more introductions\.
+- Conversation prompts draw from profile content and never impersonate the member\.
+- Voice messages require a mutual conversation and can be disabled\.
+- Image attachments are off by default\. When enabled after mutual consent, every image is scanned before delivery and initially blurred\.
+- Private audio/video calls use relay infrastructure and do not reveal phone numbers or email addresses\.
+- Read receipts and online presence are member\-controlled\.
+- Links and contact details trigger contextual safety warnings early in a conversation\.
+
+## AI use
+
+AI can draft profile text from the member’s own answers, classify possible scam or harassment patterns, assist moderators, find duplicate images and turn approved matching factors into explanations\. Every generated profile sentence requires member approval\. Permanent sanctions and safety\-critical judgments require human review except emergency temporary holds\. The consumer proposition does not mention AI\.
+
+## Subscription and entitlements
+
+The entitlement service is the single source for website comparison tables, checkout, in\-product gates and customer support\. Plan changes are prorated clearly\. Renewal reminders and cancellation comply with the subscription regime in force at launch\. A cancellation flow asks for optional feedback after cancellation is confirmed, never before\.
+
+## Events and personal introductions
+
+Events use member identity, booking, waitlist, payment, conduct acceptance, host roster, incident reporting and post\-event feedback\. Personal Introductions adds private interview notes, candidate longlists, conflict checks, introduction approvals, feedback and outcome tracking\. Private matchmaking notes are access\-restricted and excluded from ordinary product analytics\.
+
+---
+
+# Part 8 — UX journeys and page descriptions
+
+## Homepage
+
+The opening viewport contains the line “Christian dating for your next chapter,” one concise explanation, **Join free** and **See how introductions work**\. A short trust row states Christian\-focused, verified members, meaningful introductions and UK\-wide\.
+
+The next section is an interactive fictional introduction\. As the viewer moves through it, six alignment strands resolve into plain\-language reasons\. This demonstrates the product without exposing a member\. The remainder covers active profiles, My Essentials, safety, one real success story when available, simple pricing and a final join action\. Keep the page to seven or eight purposeful sections\.
+
+## Registration
+
+One column, large labels and immediate validation\. Explain the religious\-data consent beside the checkbox\. A persistent progress indicator shows Account, Profile, Preferences and Verification\. Returning users resume at the exact saved step\.
+
+## Onboarding
+
+Each screen asks one decision or a short related group\. Optional sensitive questions can be skipped with a clear effect on recommendations\. An “Why we ask” disclosure opens inline\. After the essential steps, show a first fictional compatibility preview and invite completion of richer prompts\.
+
+## Member home
+
+The home screen begins with availability: “5 introductions ready,” “2 replies,” and any required verification or safety action\. The centre presents Today’s Introductions as large editorial panels, never a horizontal card stack designed for swiping\. Secondary modules show saved profiles, upcoming calls/events and profile completeness\.
+
+## Introduction detail
+
+A full\-height portrait and name lead into the person’s own writing\. A pinned side panel on desktop, bottom action bar on mobile, contains relationship intention, broad location, travel openness, activity band and actions\. “Why we introduced you” shows aligned factors and “Worth discussing” shows differences\. No compatibility number appears\.
+
+## Discovery
+
+Controlled search supports a list or two\-column editorial grid\. Filters open in a clear sheet with result counts\. Essential filters are locked to the member’s rules unless they deliberately edit My Essentials\. Empty results offer distance\-flexible candidates and show which filter narrows the pool\.
+
+## Messages
+
+The inbox separates New interests, Active conversations and Closed\. Likes never mix with real conversations\. Each conversation shows verification, report/block access and a discreet safety reminder\. Prompt suggestions reference shared profile details\. Moving off\-platform is never encouraged\.
+
+## Subscription
+
+Pricing compares actual useful limits and service\. The selected term, full price, VAT inclusion, renewal date and cancellation route appear before payment\. Upgrade prompts occur only when the member reaches a genuine entitlement boundary\.
+
+## Reporting
+
+Report is reachable from every profile, message, call and event\. It asks the member to choose the conduct, optionally describe it and attach relevant evidence already on platform\. Blocking is offered independently\. The confirmation states what happens next, expected response time and how to add information safely\.
+
+## Pause, closure and success
+
+Settings offers Hide for a week, Take a break, Close because I met someone, and Close for another reason\. Success closure asks optional outcome questions after confirming the profile is hidden\. Testimonial and referral consent are separate, granular requests\. Deleted accounts enter a visible deletion schedule and can download their data\.
+
+## Responsive and accessibility standard
+
+- WCAG 2\.2 AA target across public, member and admin surfaces\.
+- Keyboard access and visible focus for every action\.
+- Minimum 44px touch targets\.
+- Text resizing to 200% without loss of function\.
+- Reduced\-motion, low\-data and static visual fallbacks\.
+- Captions and transcripts for platform\-produced video\.
+- Plain error recovery that preserves form input\.
+- No colour\-only state, auto\-advancing carousels or ambiguous icon\-only buttons\.
+
+---
+
+# Part 9 — Marketplace strategy
+
+## Liquidity definition
+
+Registrations are not the health metric\. The central measure is **qualified active candidates per active member** after reciprocal essentials, activity and safety gates\.
+
+Targets:
+
+- median qualified candidates: at least 20 using nearby plus distance\-flexible pools;
+- lower quartile: at least 10;
+- 14\-day first\-message response rate: at least 45%;
+- reciprocal interest rate: 15%–30%, monitored by cohort rather than optimised blindly;
+- no primary gender\-age\-region cohort outside 40:60 without a corrective plan;
+- 70% of new verified members receive at least five eligible candidates within 24 hours\.
+
+## First 100 active members
+
+Recruit through founder interviews, trusted Christian networks, counsellors and direct invitations\. Balance supply before admitting another large group from the same cohort\. Verify every member, review every profile and manually monitor first introductions\. Capture language and concerns, not testimonials in exchange for access\.
+
+## 500 active members
+
+Operate focused acquisition corridors while remaining open UK\-wide: London and South East, Midlands, and North West/Yorkshire\. Form explicit 40s, 50s and 60s cohorts\. Run small online welcome sessions and referral circles\. Founders receive free access\. Do not buy national volume if a cohort is already imbalanced\.
+
+## 1,000 active members
+
+Begin regular introduction refreshes and limited paid plans only after candidate\-depth targets hold\. Expand partnerships into Scotland, Wales and Northern Ireland\. Use distance\-flexible introductions to connect smaller areas\. Publish the first anonymised marketplace availability report\.
+
+## 5,000 active members
+
+Open regional events in markets with adequate depth\. Scale SEO pages based on genuine supply, and add human profile consultations\. Use paid social and search with cohort\-specific landing pages and activation\-based bidding\.
+
+## 10,000 active members
+
+Introduce regular regional calendars, broader church/community partnerships and Personal Matchmaking\. Assess native apps from usage evidence, notification needs and retention, not status\. Protect responsiveness as acquisition scales\.
+
+## Low\-density behaviour
+
+Never show a dead end\. The platform explains nearby availability, then offers people farther away who are mutually open to distance\. It can suggest widening a Preferred setting but never overrides an Essential\. Members in very low\-density cohorts can join a transparent availability list, receive monthly introductions or attend national online gatherings without appearing active when they are not\.
+
+## Acquisition channels
+
+|Channel                                 |Role                                                 |Early test measure                                            |
+|----------------------------------------|-----------------------------------------------------|--------------------------------------------------------------|
+|Founding referrals                      |Trust and balanced seed supply                       |Cost per verified complete profile; response rate             |
+|Church and community partners           |Credibility and local cohorts                        |Completed profiles per partner; cohort balance                |
+|SEO                                     |Compounding category demand                          |Qualified registration and conversation per landing page      |
+|Paid search                             |Capture high-intent age/category queries             |Cost per verified active profile, not lead                    |
+|Facebook and Instagram                  |Reach 40–70 audiences and retarget consented visitors|Verified profile CAC and gender balance                       |
+|Christian radio/publications/newsletters|Trusted awareness                                    |Incremental verified profiles via holdout or codes            |
+|Events                                  |Trust, reactivation and revenue                      |Attendee-to-active-profile and date rates                     |
+|PR and research                         |Links and authority                                  |Earned coverage, referring domains and qualified registrations|
+
+The opening blended CAC target is below £35 per completed verified profile and below £55 per new payer in the base case\. Channel reporting must include fraud, completeness, candidate depth and responses; a cheap registration that worsens the marketplace has negative value\.
+
+## Church partnerships
+
+Churches may share a neutral invitation link and optional educational safety material\. A member can privately record a referral source\. Their church is never public by default\. Partners cannot see who joined, profile activity or outcomes\. The service should not imply church endorsement, and community attestations should confirm only that a person is known to the attester\.
+
+## Referral engine
+
+The member\-facing invitation is “Know someone who would value a more thoughtful way to meet?” Invitations are private, rate\-limited and never reveal whether the recipient is already a member\. Rewards should be service credit or event access after the invited person completes verification, with clear anti\-spam controls\.
+
+---
+
+# Part 10 — Trust and safety operating model
+
+## Safety controls by stage
+
+|Stage          |Controls                                                                                                                                           |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+|Registration   |Email and mobile verification, device and IP risk, rate limits, age declaration, breached-password checks                                          |
+|Profile        |Selfie liveness and photo comparison, duplicate-image detection, image moderation, prohibited-content review, optional document identity check     |
+|Discovery      |Activity limits, visibility controls, block exclusions, location privacy, anomaly monitoring                                                       |
+|Messaging      |Mutual interest, link/contact warnings, spam and copy-paste detection, money/crypto/gift-card/visa pattern alerts, attachment scanning, rate limits|
+|Calls and dates|Relay calling, easy in-call block/report, safety plan, optional date check-in and trusted-contact sharing initiated by the member                  |
+|Operations     |Triage queues, case history, dual control for severe actions, appeals, law-enforcement process and audit logging                                   |
+
+## High\-risk patterns
+
+Flag rapid declarations of love, requests for money or investment, gift cards, crypto, emergency travel, visa sponsorship, repeated attempts to move off\-platform, inconsistent age or location, high\-volume identical messages, multiple devices or accounts, stolen images, sexual coercion and threats\.
+
+Detection should apply contextual friction: show the recipient a warning, slow or hold the message, require further verification, or send the case to a moderator\. Do not silently read messages beyond the disclosed safety purpose, and do not make permanent adverse decisions solely from an opaque model\.
+
+## Moderation service levels
+
+- credible imminent harm or active extortion: immediate queue, target review within 15 minutes during staffed coverage;
+- suspected romance fraud, unsolicited sexual content or credible harassment: target one hour;
+- ordinary profile, photo and conduct reports: target 24 hours;
+- appeals: acknowledgement within 24 hours and decision target within five working days\.
+
+Staffing and published hours must match the promise\. An automated acknowledgement cannot be reported as resolution\.
+
+## Enforcement ladder
+
+Education, warning, feature restriction, verification requirement, temporary hold, suspension and permanent removal\. Severe fraud, threats, child sexual content or repeat predation can skip lower stages\. Members receive a reason category and appeal route unless disclosure would create risk or compromise an investigation\.
+
+## Unsolicited sexual imagery
+
+Private image sending should remain disabled until a mutual conversation and explicit media consent\. Images are scanned before delivery, initially blurred and never auto\-opened\. This design also prepares for stronger UK duties concerning unsolicited intimate imagery\.
+
+## Community Verified
+
+Do not launch this as a visible faith badge\. A future private attestation can state only that the attester knows the member as a real person\. It requires consent from both parties, expiry, revocation and clear language that it does not verify faith, character or safety\. A church must not see a member’s activity or relationship data\.
+
+## Trust reporting
+
+Publish a quarterly transparency summary once volumes permit: verification completion, reports per 1,000 active members, median response time, enforcement categories, successful appeals and proactive fraud interventions\. Protect victims and small cohorts\.
+
+---
+
+# Part 11 — UK legal, privacy and compliance requirements
+
+This section identifies product implications, not a substitute for retained UK counsel and a Data Protection Officer or qualified adviser\.
+
+## Data protection architecture
+
+Religious belief is special\-category data\. The platform needs an Article 6 lawful basis and an Article 9 condition\. The most defensible initial design is contract or legitimate interests for ordinary service data and **explicit consent** for religious\-belief processing\. Consent must be a separate, specific affirmative statement, recorded with version, timestamp and purpose\. Withdrawal must be as easy as giving consent; withdrawal removes the member from faith\-based matching and may make the service unusable, which must be explained without coercion\.
+
+Complete a Data Protection Impact Assessment before live member processing\. The DPIA should cover sensitive profiling, fraud detection, facial comparison, precise location, messaging analysis, moderators, vendors, human matchmaking and events\.
+
+## Data minimisation
+
+- Store a broad home area and geospatial point at reduced precision for matching; never expose the point\.
+- Avoid exact church, employer and children’s details\.
+- Keep raw identity documents with the verification provider where possible; store provider reference, result, date and audit evidence\.
+- Separate profile data, private preference data, safety evidence and matchmaking notes with role\-based access\.
+- Keep special\-category values out of general analytics events, customer\-support tools and advertising platforms\.
+
+## Profiling and explanation
+
+Matching and fraud systems are profiling\. Privacy notices must explain the factors, sources and consequences in plain language\. Because recommendations do not make legal or similarly significant decisions, Article 22 may not normally prohibit the process, but suspension or identity decisions require human review, contestability and documented logic\.
+
+## Online Safety Act
+
+As a user\-to\-user service, Christian Chapter should plan as an in\-scope regulated service\. Before launch it needs an illegal\-content risk assessment, documented safety measures, reporting and complaints processes, recordkeeping and named governance\. It must complete a children’s access assessment and use effective age controls to maintain an adults\-only service\. Risk assessments must be updated after material product or threat changes\.
+
+## Consumer subscriptions
+
+Show the full recurring price, trial terms, renewal date, cancellation route and material plan limits before purchase\. Send required renewal reminders\. Provide straightforward online cancellation and honour applicable cooling\-off rights\. Retain the checkout and consent version used for each purchase\. Do not preselect paid options\.
+
+## Payments and VAT
+
+Use a regulated payment provider and do not store raw card details\. UK VAT registration becomes compulsory once taxable turnover exceeds the current rolling threshold, £90,000 at the time of research\. Prices should be shown inclusive of VAT to consumers, with the model separating gross billings from net revenue\.
+
+## PECR, cookies and marketing
+
+Essential authentication, security and basket cookies can operate without optional consent where the legal test is met\. Analytics and advertising cookies require a clear choice before placement\. Email and SMS marketing consent must be separate from service messages\. Referrals need rate limits, suppression lists and wording that identifies the inviter without exposing membership\.
+
+## Equality and discrimination
+
+The product should offer inclusive gender and partner\-preference controls while allowing adults to choose who they want to meet\. Faith and denomination preferences must remain member choices, not platform judgments\. Commission counsel to review eligibility and marketing language under the Equality Act, especially any proposed exclusion based on marital history, sexuality or denomination\.
+
+## Retention schedule
+
+|Data                     |Recommended working policy                                                            |
+|-------------------------|--------------------------------------------------------------------------------------|
+|Uncompleted account      |Delete or anonymise after 90 days of inactivity following notice                      |
+|Hidden/inactive profile  |Retain while account remains open; remove from recommendations after 45 days          |
+|Closed account profile   |Delete from live systems after a short recovery window, normally 30 days              |
+|Financial records        |Retain for the statutory accounting/tax period                                        |
+|Moderation evidence      |Risk-based limited retention, generally 6–24 months; longer only for active legal need|
+|Consent and terms records|Retain evidence for the relevant limitation period                                    |
+|Backups                  |Rolling expiry with documented deletion propagation                                   |
+
+The final schedule needs legal review and vendor mapping\. Data\-subject access, correction, portability, objection, consent withdrawal and deletion require tracked admin workflows and identity checks\.
+
+---
+
+# Part 12 — Technology architecture
+
+The recommended architecture preserves the recent project lesson: use Replit for bounded prototypes and interaction demonstrations, while production product, data, payments and security are engineered in Cursor with typed components and explicit release gates\.
+
+## Application platform
+
+- Next\.js App Router, React and TypeScript\.
+- Server\-rendered public and SEO pages; authenticated application behind private routes\.
+- Progressive Web App capabilities for installability, notifications and resilient navigation\.
+- Shared design tokens and accessible component primitives; no large generic UI kit that makes the product look templated\.
+- Edge caching only for public content and safe aggregate statistics\.
+
+## Data and services
+
+- PostgreSQL with PostGIS for candidate distance calculations\.
+- Managed platform such as Supabase or Neon with separate development, staging and production databases\.
+- Private object storage for profile media, signed delivery URLs and transformation pipeline\.
+- Durable job queue for recommendations, moderation, emails, reactivation and deletion\.
+- Search initially through PostgreSQL indexes; introduce a separate search engine only when measured query load requires it\.
+
+## Authentication and security
+
+- Email/password or passkey, verified email and verified mobile\.
+- Optional authenticator\-based MFA, mandatory for admins\.
+- Short\-lived sessions, device management, credential rotation, breached\-password protection and rate limiting\.
+- Strong role\-based access: member, support, moderator, senior safety, matchmaker, finance and administrator\.
+- Every privileged view and mutation produces an immutable audit event\.
+- Encrypt transit and storage, manage secrets outside code and run dependency, static and dynamic security checks before releases\.
+
+## Provider categories
+
+- Stripe Billing and Stripe Tax for subscriptions, invoices and VAT logic\.
+- Twilio Verify or equivalent for mobile verification\.
+- Persona, Veriff or Stripe Identity for optional document verification; retain provider tokens and results, not document images\.
+- Daily, Twilio or equivalent relay for private calls\.
+- Postmark or Resend for service email\.
+- PostHog in an appropriate UK/EU configuration for product analytics, with sensitive properties prohibited by schema\.
+- Sentry or equivalent for errors and performance\.
+
+Provider selection requires DPIAs, contracts, transfer assessments, subprocessor review, deletion support and a tested exit plan\.
+
+## Data model
+
+|Domain         |Core tables                                                                                                                    |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------|
+|Identity       |`users`, `auth_identities`, `user_devices`, `roles`, `user_roles`                                                              |
+|Consent        |`consent_definitions`, `consent_records`, `terms_acceptances`, `marketing_preferences`                                         |
+|Profile        |`profiles`, `profile_visibility`, `profile_photos`, `profile_prompts`, `voice_intros`, `video_intros`                          |
+|Compatibility  |`faith_profiles`, `relationship_profiles`, `family_profiles`, `lifestyle_profiles`, `future_profiles`, `preference_rules`      |
+|Location       |`member_locations`, `travel_preferences`, `relocation_preferences`                                                             |
+|Activity       |`activity_events`, `availability_states`, `reactivation_campaigns`                                                             |
+|Recommendations|`candidate_snapshots`, `recommendations`, `recommendation_reasons`, `recommendation_events`                                    |
+|Connections    |`interests`, `matches`, `conversation_statuses`, `conversations`, `conversation_members`, `messages`, `media_messages`, `calls`|
+|Safety         |`blocks`, `reports`, `risk_signals`, `moderation_cases`, `case_evidence`, `moderation_actions`, `appeals`                      |
+|Verification   |`verification_checks`, `verification_badges`, `provider_references`                                                            |
+|Commercial     |`plans`, `prices`, `entitlements`, `subscriptions`, `invoices`, `refunds`                                                      |
+|Services       |`events`, `event_bookings`, `matchmaking_clients`, `matchmaker_notes`, `curated_introductions`                                 |
+|Growth         |`referrals`, `partner_links`, `campaign_attribution`, `content_pages`, `seo_locations`                                         |
+|Outcomes       |`outcome_surveys`, `date_outcomes`, `account_closures`, `testimonial_consents`                                                 |
+|Governance     |`notifications`, `support_tickets`, `data_requests`, `retention_jobs`, `audit_events`                                          |
+
+Each preference stores category, value, priority, visibility and effective date\. Every recommendation stores candidate snapshot, rules version, reason codes and rank inputs so the team can reproduce it\.
+
+## Matching service
+
+Use deterministic filters followed by a transparent ranking model\. Candidate generation runs incrementally after profile, preference, activity or location changes\. Precomputed candidate sets keep the interface fast\. A versioned rules registry ensures experiments do not alter past explanations\. AI may rewrite approved reason codes into natural language but cannot invent compatibility facts\.
+
+## Messaging and moderation
+
+Real\-time delivery can use a managed chat service or a database\-backed websocket service\. End\-to\-end encryption is not compatible with the promised proactive content safety unless scanning occurs on\-device; describe actual security accurately\. Encrypt data at rest and transit, tightly limit staff access, and expose message content to staff only through a case or authorised quality workflow\.
+
+## Analytics
+
+Create a governed event dictionary before implementation\. Events include registration started, consent completed, profile complete, verification complete, recommendation served, profile viewed, interest sent, interest reciprocal, message sent, reply, call, report, subscription and outcome\. IDs are pseudonymous\. Faith, relationship history and message content never enter general analytics payloads\.
+
+## SEO rendering
+
+Public pages render complete HTML on the server, use canonical URLs, sitemap segmentation, breadcrumb and organisation/article/event schema, stable metadata and image optimisation\. Authenticated pages and all profiles are `noindex` and excluded from sitemaps\. Location statistics come from a privacy\-approved aggregation service\.
+
+---
+
+# Part 13 — Full product scope and acceptance criteria
+
+The full scope is organised by activation stage because several features depend on member supply or operations\. All three layers belong to the intended platform\.
+
+## Launch\-complete layer
+
+- Public site, SEO framework and content management\.
+- Registration, age gate, explicit religious\-data consent, email/mobile verification and account recovery\.
+- Full structured profiles, photos, prompts and visibility controls\.
+- Selfie/photo verification and moderation\.
+- My Essentials with Essential, Preferred and Open\-minded states\.
+- Deterministic matching, finite introductions, controlled discovery and distance\-flexible pools\.
+- Interest, mutual match, respectful decline, messaging, block and report\.
+- Active\-profile lifecycle and taking\-a\-break controls\.
+- Free, Member and Plus entitlements; checkout, billing, cancellation and refunds\.
+- Member support and complete moderation console\.
+- Analytics, consent, data\-request, deletion and audit workflows\.
+
+## Scale activation layer
+
+- Voice introduction, voice messaging and private audio/video calling\.
+- Events catalogue, booking, waitlist, conduct and incident workflows\.
+- Partner invitations and tasteful member referrals\.
+- Privacy\-safe regional marketplace statistics\.
+- Expanded fraud models, duplicate media detection and proactive interventions\.
+- Native\-app assessment and implementation only if evidence shows web notifications and usage are insufficient\.
+
+## Service activation layer
+
+- Human profile consultations\.
+- Guided and personal matchmaking workspaces\.
+- Matchmaker search, candidate approval and feedback\.
+- Community attestation if legal, safeguarding and user research support it\.
+- Premium hosted events and retreats\.
+
+## Core acceptance criteria
+
+|Capability     |Acceptance criteria                                                                                                                                                                             |
+|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|Consent        |A member cannot submit faith details until they affirm a separate explicit statement. The system stores statement version, time and purpose. Withdrawal stops faith-based processing.           |
+|Profile privacy|Exact address, coordinates, church and employer never appear publicly by default. A member can preview all visible fields.                                                                      |
+|Essentials     |A candidate violating either member’s Essential setting is excluded. Results explain when an Essential causes low supply. No system process silently relaxes it.                                |
+|Recommendations|Every recommendation passes reciprocal eligibility and stores versioned reason codes. A member sees at least one plain-language reason and any material discussion point. No percentage appears.|
+|Activity       |Accounts inactive for 46 days are removed from new recommendations after notices. Taking a break hides a profile immediately.                                                                   |
+|Distance       |Nearby, willing-to-travel and relocation-compatible pools are distinguishable without displaying exact location.                                                                                |
+|Interest       |A decline never discloses a reason. A sender receives a clear closed status. Block/report remains available before and after closure.                                                           |
+|Messaging      |Only eligible matched members can message. Reporting is available within two actions. Block prevents all new contact immediately.                                                               |
+|Media          |Images cannot be sent before mutual media consent and automated screening. They appear blurred until the recipient reveals them.                                                                |
+|Verification   |Public badges reflect completed checks and expiry. Copy never equates identity verification with faith or character.                                                                            |
+|Fraud safety   |Money, crypto, gift-card and rapid off-platform patterns can trigger friction and a case. A permanent ban requires human review except legally required emergency action.                       |
+|Subscription   |Checkout shows total price, term, renewal and cancellation. Entitlements match the pricing page. Cancellation is completed online without contacting support.                                   |
+|Moderation     |Staff can see a case timeline, relevant evidence, prior actions, conflicts and appeal status. Every action records actor, reason and time.                                                      |
+|Deletion       |Closing hides the profile immediately, schedules deletion, cancels renewal when requested and preserves only documented legal/safety records.                                                   |
+|Accessibility  |Automated and manual checks meet WCAG 2.2 AA for keyboard, focus, zoom, contrast, errors and reduced motion.                                                                                    |
+|Performance    |Public landing pages target LCP under 2.5 seconds at the 75th percentile on mobile; primary actions work before optional motion loads.                                                          |
+|Analytics      |Funnel and outcome events reconcile to database states. Sensitive profile values and message content are absent from general analytics.                                                         |
+
+## Release gates
+
+“Finished” means production persistence, permissions, recovery, accessibility, performance, security and operating ownership have passed\. Screenshots or fixtures do not count\. High\-risk paths require test evidence: registration, consent withdrawal, account recovery, payment, cancellation, block/report, moderation action, appeal, data export and deletion\.
+
+---
+
+# Part 14 — Launch plan
+
+## Pre\-launch: 12–16 weeks
+
+- Conduct interviews and concept survey\.
+- Secure brand clearance and domains\.
+- Complete DPIA, risk assessment, policies and vendor due diligence\.
+- Recruit founding members in balanced cohorts\.
+- Create cornerstone pages and safety content\.
+- Train support and moderation; run simulated scam, harassment and urgent\-risk cases\.
+- Instrument the full funnel and liquidity dashboards\.
+
+## Founding cohort
+
+Admit members in batches\. Review profiles manually, facilitate selected introductions and interview both people after key interactions\. Keep the product UK\-wide but spend acquisition where shortages exist\. Delay monetisation until members consistently see relevant active candidates\.
+
+## Launch: first 30 days
+
+Open paid membership to cohorts meeting candidate\-depth and response targets\. Publish clear availability language\. Run small paid\-search and Meta tests, partner newsletters and referral invitations\. Hold daily safety and liquidity reviews\.
+
+## Days 31–90
+
+Optimise registration\-to\-verification and first\-conversation rates\. Correct cohort imbalances before increasing spend\. Begin the first online hosted gatherings\. Publish early editorial content and build expert partnerships\. Test Plus profile consultations with trained staff\.
+
+## Months 4–12
+
+Scale SEO, paid acquisition and partnerships region by region\. Activate local events where at least 150 relevant active members sit within a practical catchment\. Launch human introductions only where candidate supply supports the promise\. Publish trust and marketplace reports\. Revisit native apps after six months of usage data\.
+
+---
+
+# Part 15 — Financial model
+
+The accompanying workbook contains editable bear, base and strong assumptions and payer\-volume scenarios\. The key base\-case assumptions are £22 blended gross monthly revenue per payer, 12\.5% active\-to\-paid conversion, 12% monthly paid churn, £55 CAC per payer, 1\.5% plus £0\.20 card processing and 20% VAT after registration\.
+
+## Gross subscription MRR by paying members
+
+|Paying members|Bear at £18|Base at £22|Strong at £27|
+|-------------:|----------:|----------:|------------:|
+|500           |£9,000     |£11,000    |£13,500      |
+|1,000         |£18,000    |£22,000    |£27,000      |
+|2,500         |£45,000    |£55,000    |£67,500      |
+|5,000         |£90,000    |£110,000   |£135,000     |
+|10,000        |£180,000   |£220,000   |£270,000     |
+|25,000        |£450,000   |£550,000   |£675,000     |
+
+These are consumer billings including VAT\. At base case and after VAT registration, £22 gross becomes £18\.33 net revenue before payment, verification, support, moderation, infrastructure and acquisition costs\.
+
+## Payers required for gross MRR targets
+
+|Gross MRR|Bear |Base |Strong|
+|--------:|----:|----:|-----:|
+|£10,000  |556  |455  |371   |
+|£25,000  |1,389|1,137|926   |
+|£50,000  |2,778|2,273|1,852 |
+|£100,000 |5,556|4,546|3,704 |
+
+At 12\.5% active\-to\-paid conversion, £100,000 base\-case gross MRR implies roughly 36,400 active members\. The paid target therefore cannot be separated from free\-marketplace scale\.
+
+## Unit economics
+
+|Driver                   |Bear      |Base      |Strong     |
+|-------------------------|---------:|---------:|----------:|
+|Blended gross ARPPU      |£18       |£22       |£27        |
+|Monthly paid churn       |18%       |12%       |8%         |
+|Implied average paid life|5.6 months|8.3 months|12.5 months|
+|Target payer CAC         |£90       |£55       |£35        |
+|Active-to-paid conversion|7.5%      |12.5%     |16.7%      |
+
+The workbook calculates contribution LTV after VAT, processing and variable service costs\. Marketing should scale only when LTV:CAC is above 3\.0 on realised cohorts and payback is under six months\. Premium services and events should be measured separately from subscription economics\.
+
+## Cost structure
+
+- variable: card processing, identity/selfie checks, email/SMS, calling minutes, image moderation, support and moderation time;
+- semi\-variable: safety operations, customer service, matchmaking staff and event hosts;
+- fixed: product/engineering, legal and privacy, leadership, core content, insurance and baseline infrastructure;
+- acquisition: SEO production, paid media, partner campaigns, referral credit and PR\.
+
+At small scale, people and acquisition dominate infrastructure\. A credible service should not assume that automated moderation removes human staffing\.
+
+---
+
+# Part 16 — Metrics and management
+
+## Executive dashboard
+
+|Area       |Primary metrics                                                                                                  |
+|-----------|-----------------------------------------------------------------------------------------------------------------|
+|Acquisition|Visitor-to-registration, registration-to-verified-profile, source, verified-profile CAC, payer CAC               |
+|Marketplace|Active members, qualified candidates per member, gender/age/location balance, inactive share, low-supply cohorts |
+|Connection |Introductions viewed, interests, reciprocal interests, conversations, 14-day response, time to first conversation|
+|Outcomes   |Dates, continuing relationships, successful closures, satisfaction, referrals and testimonials with consent      |
+|Revenue    |Active payers, gross and net MRR, ARPPU, conversion, churn by reason, LTV, payback and refunds                   |
+|Trust      |Verification, reports per 1,000, scam interventions, moderation response, repeat offenders, appeals and reversals|
+|Quality    |Recommendation acceptance by cohort, reasons for low supply, graceful closure and complaint themes               |
+
+Do not optimise message volume or session time in isolation\. A successful member may use the product less, meet someone and leave\. The north\-star outcome is the monthly number of active members who reach a reciprocal, substantive conversation with a compatible person while reporting that the experience felt safe and worthwhile\.
+
+## Long\-term advantage
+
+The defensible assets are a balanced active UK membership, a trusted safety reputation, evidence about which compatibility explanations lead to good conversations, organic authority, partner distribution, verified success stories and trained human matchmakers\. Software features can be copied and should not be described as the moat\.
+
+---
+
+# Final recommendation
+
+Build **Christian Chapter** as a complete UK\-wide responsive web platform for Christians primarily aged 40–70 who want meaningful relationships and are dissatisfied with casual or swipe\-led dating\. Use “Mature Christian Dating UK” as an SEO phrase and possible campaign descriptor, not the consumer brand\.
+
+Lead with **Christian dating for your next chapter**\. The distinctive product is finite, considered introductions based on faith, intention, life stage, family and geographic practicality\. Members set Essentials, Preferences and Open\-minded areas\. The platform explains introductions, removes dormant profiles, supports respectful closure and embeds safety throughout\.
+
+Price at £24\.99 monthly for Member and £39\.99 for Plus, with meaningful term discounts\. Keep free participation useful enough to create liquidity and allow genuine replies\. Add profile consultations, guided introductions, personal matchmaking and events as supply\-dependent service layers within the complete product\.
+
+Acquire the first members through balanced founding cohorts, referrals, selected churches and Christian organisations, then SEO and tightly measured paid campaigns\. Remain UK\-wide while concentrating acquisition by region and cohort\. Do not scale a channel until it improves qualified candidate depth and response rates\.
+
+The business becomes unattractive if 1,000 complete profiles still fail to produce at least ten qualified candidates for the lower quartile, if cohort gender balance cannot be corrected, if severe trust incidents exceed the team’s operating capacity, or if realised payer LTV cannot support acquisition\. Under those conditions, the stronger business may be a smaller high\-touch Christian introductions service rather than a national subscription marketplace\.
+
+---
+
+# Source register
+
+Sources were accessed in September 2026 unless stated otherwise\.
+
+1. Office for National Statistics, “Religion by age and sex, England and Wales: Census 2021”: https://www\.ons\.gov\.uk/peoplepopulationandcommunity/culturalidentity/religion/articles/religionbyageandsexenglandandwales/census2021
+2. Office for National Statistics, “Religion, England and Wales: Census 2021”: https://www\.ons\.gov\.uk/peoplepopulationandcommunity/culturalidentity/religion/bulletins/religionenglandandwales/census2021
+3. Ofcom, *Online Nation 2025*: https://www\.ofcom\.org\.uk/siteassets/resources/documents/research\-and\-data/online\-research/online\-nation/2025/online\-nations\-report\-2025\.pdf
+4. Scotland’s Census results portal: https://www\.scotlandscensus\.gov\.uk/search\-the\-census
+5. Northern Ireland Statistics and Research Agency, Census: https://www\.nisra\.gov\.uk/statistics/people\-and\-communities/census
+6. Christian Connection: https://www\.christianconnection\.com/ and https://www\.christianconnection\.com/about/memberships
+7. Christian Connection UK App Store listing: https://apps\.apple\.com/gb/app/christian\-dating\-connection/id1158866595
+8. SALT: https://www\.be\-salt\.com/ and https://www\.be\-salt\.com/mature\-christian\-dating
+9. SALT UK App Store listing: https://apps\.apple\.com/gb/app/salt\-christian\-dating\-app/id1276115488
+10. ChristianCafe: https://www\.christiancafe\.com/
+11. ChristianCupid: https://www\.christiancupid\.com/en/landing/home
+12. OurTime UK: https://www\.ourtime\.co\.uk/
+13. SilverSingles UK: https://www\.silversingles\.com/
+14. friends1st current membership pricing: https://friends1st\.co\.uk/join\-today/
+15. Fusion101: https://www\.fusion101\.com/
+16. Information Commissioner’s Office, special\-category data guidance: https://ico\.org\.uk/for\-organisations/uk\-gdpr\-guidance\-and\-resources/lawful\-basis/special\-category\-data/
+17. Ofcom, guide for online services: https://www\.ofcom\.org\.uk/online\-safety/illegal\-and\-harmful\-content/guide\-for\-services
+18. UK Government, subscription\-contract implementation response: https://www\.gov\.uk/government/consultations/consultation\-on\-the\-implementation\-of\-the\-new\-subscription\-contracts\-regime/outcome/government\-response\-to\-consultation\-on\-the\-implementation\-of\-the\-new\-subscription\-contracts\-regime\-web\-accessible\-version
+19. UK Government, VAT registration: https://www\.gov\.uk/register\-for\-vat
+20. Stripe UK pricing: https://stripe\.com/gb/pricing
+
+## Evidence still required before irrevocable commitments
+
+- UKIPO exact and similar\-mark clearance\.
+- Reproducible UK 40–70 Christian and marital\-status tables covering all four nations\.
+- Google Ads Keyword Planner and Ahrefs/Semrush UK exports with date, location and match type\.
+- National concept survey and qualitative research\.
+- Vendor quotes for verification, media moderation, calls and messaging\.
+- Paid acquisition tests measured to verified active profiles and payers\.
+- Legal opinions on eligibility, subscription implementation timing, Online Safety duties and community attestation\.
