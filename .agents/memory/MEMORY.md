@@ -1,0 +1,1 @@
+- [Christian Chapter brand decisions](christian-chapter-brand.md) — founding-phase copy rules, design tokens, and durable architectural choices

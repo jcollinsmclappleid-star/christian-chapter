@@ -3,9 +3,9 @@ type ModuleMap = Record<string, () => Promise<Record<string, unknown>>>;
 export const modules: ModuleMap = {
   "./components/mockups/mcd-firstlight/Homepage.tsx": () => import("../components/mockups/mcd-firstlight/Homepage.tsx"),
   "./components/mockups/mcd-firstlight/HomepageMobile.tsx": () => import("../components/mockups/mcd-firstlight/HomepageMobile.tsx"),
-  "./components/mockups/mcd-signature/WhyYouMightGetAlong.tsx": () => import("../components/mockups/mcd-signature/WhyYouMightGetAlong.tsx"),
   "./components/mockups/mcd-gathered/Homepage.tsx": () => import("../components/mockups/mcd-gathered/Homepage.tsx"),
   "./components/mockups/mcd-gathered/HomepageMobile.tsx": () => import("../components/mockups/mcd-gathered/HomepageMobile.tsx"),
+  "./components/mockups/mcd-signature/WhyYouMightGetAlong.tsx": () => import("../components/mockups/mcd-signature/WhyYouMightGetAlong.tsx"),
   "./components/mockups/mcd-stillwater/Homepage.tsx": () => import("../components/mockups/mcd-stillwater/Homepage.tsx"),
   "./components/mockups/mcd-stillwater/HomepageMobile.tsx": () => import("../components/mockups/mcd-stillwater/HomepageMobile.tsx"),
   "./components/mockups/mcd-stillwater/WizardConfirm.tsx": () => import("../components/mockups/mcd-stillwater/WizardConfirm.tsx"),

@@ -1,0 +1,21 @@
+# Next.js
+.next/
+out/
+
+# Build info
+*.tsbuildinfo
+next-env.d.ts
+
+# Env files — keep .env.example, ignore everything else
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+
+# Dependencies
+node_modules/
+
+# Misc
+.DS_Store
+*.pem

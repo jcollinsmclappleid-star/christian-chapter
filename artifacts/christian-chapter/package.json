@@ -1,0 +1,35 @@
+{
+  "name": "@workspace/christian-chapter",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port ${PORT:-3000}",
+    "build": "next build",
+    "start": "next start --port ${PORT:-3000}",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "next": "^15.3.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "framer-motion": "^12.23.24",
+    "lucide-react": "^0.545.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.1",
+    "drizzle-orm": "^0.45.2",
+    "@neondatabase/serverless": "^0.10.4"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "typescript": "^5.7.3",
+    "tailwindcss": "^4.1.14",
+    "@tailwindcss/postcss": "^4.1.14",
+    "drizzle-kit": "^0.31.1"
+  }
+}
