@@ -218,12 +218,12 @@ export default function HomePage() {
             </div>
             <ul className="space-y-4">
               {[
-                "Phone and selfie verification before introductions",
-                "Profile and image review by our team",
-                "Romance fraud pattern detection",
-                "Private calling — your number is never shared",
-                "Report from any profile or message in two taps",
-                "Inactive profiles removed from introductions automatically",
+                "Profile and image review by our team before any introduction",
+                "Designed for: phone and selfie verification",
+                "Designed for: private calling — your number never shared",
+                "Designed for: romance fraud pattern detection",
+                "Report from any profile — always available",
+                "Designed for: inactive profiles removed from introductions automatically",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-[15px] text-ivory/85">
                   <CheckCircle size={16} className="mt-1 flex-shrink-0 text-ivory/60" />

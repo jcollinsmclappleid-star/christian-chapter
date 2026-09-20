@@ -1,0 +1,58 @@
+import {
+  pgTable,
+  serial,
+  varchar,
+  text,
+  boolean,
+  integer,
+  jsonb,
+  timestamp,
+} from "drizzle-orm/pg-core";
+
+export const foundingMembers = pgTable("founding_members", {
+  id: serial("id").primaryKey(),
+  firstName: varchar("first_name", { length: 100 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  marketingConsent: boolean("marketing_consent").default(false).notNull(),
+  dateOfBirth: varchar("date_of_birth", { length: 10 }).notNull(),
+  gender: varchar("gender", { length: 50 }).notNull(),
+  seekingGender: text("seeking_gender").array().notNull(),
+  ukRegion: varchar("uk_region", { length: 100 }).notNull(),
+  travelRadiusMiles: integer("travel_radius_miles").notNull(),
+  tradition: varchar("tradition", { length: 100 }).notNull(),
+  churchAttendance: varchar("church_attendance", { length: 100 }).notNull(),
+  faithCentrality: varchar("faith_centrality", { length: 100 }).notNull(),
+  faithDescription: text("faith_description"),
+  workStatus: varchar("work_status", { length: 100 }),
+  familySituation: varchar("family_situation", { length: 100 }),
+  interests: text("interests").array(),
+  relationshipGoal: varchar("relationship_goal", { length: 100 }),
+  openToRemarriage: boolean("open_to_remarriage"),
+  relationshipPace: varchar("relationship_pace", { length: 50 }),
+  ageRangeMin: integer("age_range_min"),
+  ageRangeMax: integer("age_range_max"),
+  preferredDistanceMiles: integer("preferred_distance_miles"),
+  meetingPreferences: text("meeting_preferences"),
+  essentials: jsonb("essentials"),
+  storyPrompt1: text("story_prompt_1"),
+  storyPrompt2: text("story_prompt_2"),
+  storyPrompt3: text("story_prompt_3"),
+  priorities: text("priorities").array(),
+  photoConsent: boolean("photo_consent").default(false),
+  status: varchar("status", { length: 50 }).default("active").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const consentRecords = pgTable("consent_records", {
+  id: serial("id").primaryKey(),
+  foundingMemberId: integer("founding_member_id")
+    .references(() => foundingMembers.id, { onDelete: "cascade" })
+    .notNull(),
+  consentType: varchar("consent_type", { length: 100 }).notNull(),
+  consentVersion: varchar("consent_version", { length: 50 }).notNull(),
+  granted: boolean("granted").notNull(),
+  grantedAt: timestamp("granted_at").defaultNow().notNull(),
+  ipAddress: varchar("ip_address", { length: 45 }),
+  userAgent: text("user_agent"),
+});

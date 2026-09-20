@@ -10,6 +10,12 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: founding-members
+    description: >
+      Founding member operations. The registration endpoint is served by the
+      Next.js app at /api/founding-members (App Router route handler), not by
+      this Express API server. Admin list/read endpoints will be added in Task
+      #8 after authentication middleware is in place.
 paths:
   /healthz:
     get:
@@ -24,6 +30,57 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /founding-members:
+    post:
+      operationId: registerFoundingMember
+      tags: [founding-members]
+      summary: Register a founding member
+      description: >
+        Submits a complete founding member wizard profile. Implemented as a
+        Next.js App Router route at /api/founding-members (not in this Express
+        server). Listed here for documentation completeness.
+        Religious data consent is required and must be explicitly true.
+        Consent version and timestamp are server-controlled; the client must
+        send religiousDataConsentTimestamp as evidence of interaction.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FoundingMemberSubmission"
+      responses:
+        "201":
+          description: Profile and consent records created successfully (atomic)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  id:
+                    type: integer
+                required: [success, id]
+        "409":
+          description: Email already registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Validation error (missing required fields or invalid values)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +91,133 @@ components:
       required:
         - status
 
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+
+    FoundingMemberSubmission:
+      type: object
+      description: Complete founding member profile from the 10-step registration wizard
+      properties:
+        firstName:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+        marketingConsent:
+          type: boolean
+          description: Optional — separate from required communications
+        dateOfBirth:
+          type: string
+          pattern: '^\d{4}-\d{2}-\d{2}$'
+        gender:
+          type: string
+        seekingGender:
+          type: array
+          items:
+            type: string
+          minItems: 1
+        ukRegion:
+          type: string
+        travelRadiusMiles:
+          type: integer
+          minimum: 5
+          maximum: 300
+        religiousDataConsent:
+          type: boolean
+          enum: [true]
+          description: Must be true. Religious belief is UK GDPR special-category data.
+        religiousDataConsentTimestamp:
+          type: string
+          description: >
+            ISO timestamp of when the user clicked the consent checkbox.
+            Used as UI interaction evidence only. Server records its own
+            authoritative timestamp.
+        religiousDataConsentVersion:
+          type: string
+          description: Informational only. Server uses its own pinned version.
+        tradition:
+          type: string
+        churchAttendance:
+          type: string
+        faithCentrality:
+          type: string
+        faithDescription:
+          type: string
+        workStatus:
+          type: string
+        familySituation:
+          type: string
+        interests:
+          type: array
+          items:
+            type: string
+        relationshipGoal:
+          type: string
+        openToRemarriage:
+          type: boolean
+          nullable: true
+        relationshipPace:
+          type: string
+        ageRangeMin:
+          type: integer
+          minimum: 18
+          maximum: 100
+        ageRangeMax:
+          type: integer
+          minimum: 18
+          maximum: 100
+        preferredDistanceMiles:
+          type: integer
+          minimum: 1
+          maximum: 300
+        meetingPreferences:
+          type: string
+        essentials:
+          type: array
+          items:
+            type: object
+            properties:
+              factor:
+                type: string
+              label:
+                type: string
+              tier:
+                type: string
+                enum: [essential, preferred, open]
+            required: [factor, label, tier]
+        storyPrompt1:
+          type: string
+        storyPrompt2:
+          type: string
+        storyPrompt3:
+          type: string
+        priorities:
+          type: array
+          items:
+            type: string
+        photoConsent:
+          type: boolean
+      required:
+        - firstName
+        - email
+        - marketingConsent
+        - dateOfBirth
+        - gender
+        - seekingGender
+        - ukRegion
+        - travelRadiusMiles
+        - religiousDataConsent
+        - religiousDataConsentTimestamp
+        - tradition
+        - churchAttendance
+        - faithCentrality
+        - interests
+        - essentials
+        - priorities
+        - photoConsent
