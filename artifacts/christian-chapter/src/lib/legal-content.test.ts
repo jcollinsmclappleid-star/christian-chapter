@@ -50,7 +50,8 @@ describe("GATE-C legal and honesty copy", () => {
     assert.doesNotMatch(home, /repeating-linear/);
     assert.doesNotMatch(home, /bg-gradient-to-/);
     assert.match(home, /\/register/);
-    assert.match(home, /Christian dating for your next chapter/);
+    assert.match(home, /Mature Christian dating/);
+    assert.doesNotMatch(home, /Christian Chapter/);
     assert.match(home, /Create your free profile/);
     assert.match(home, /faith/);
     assert.doesNotMatch(home, /IntroductionDemo|ChapterHouse/);

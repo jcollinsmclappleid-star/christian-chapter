@@ -6,12 +6,14 @@ import type { StepProps } from "../wizard-types";
 export function Step1Welcome({ data, update }: StepProps) {
   return (
     <div>
+      <p className="text-[11px] uppercase tracking-[0.22em] text-oxblood font-sans mb-4">
+        Mature Christian Dating
+      </p>
       <h1 className="font-serif text-plum mb-4 text-4xl md:text-[3.2rem] leading-[1.1]">
-        Begin here.
+        Create your profile.
       </h1>
       <p className="text-[18px] text-plum-muted leading-7 mb-8 max-w-[36rem]">
-        A short application for Christian singles aged {MINIMUM_AGE} and over.
-        About ten minutes. You can come back to it.
+        For Christian singles aged {MINIMUM_AGE} and over. About ten minutes. You can come back to it.
       </p>
 
       <ul className="grid sm:grid-cols-3 gap-4 mb-10">

@@ -72,7 +72,7 @@ export function Step5Faith({ data, update }: StepProps) {
           />
           <div>
             <p className="text-[14px] font-sans font-medium text-plum mb-1">
-              I consent to Christian Chapter processing my religious belief data — required
+              I consent to Mature Christian Dating processing my religious belief data — required
             </p>
             <p className="text-[13px] text-plum-muted leading-5">
               Information about your faith and denomination is{" "}

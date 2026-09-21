@@ -40,7 +40,7 @@ export default function ChristianRemarriagePage() {
             <h2 className="font-serif text-plum text-3xl mb-4">Faith and conscience</h2>
             <p>
               Christians disagree about remarriage after divorce, and about the
-              pastoral meaning of a church blessing. Christian Chapter does not
+              pastoral meaning of a church blessing. Mature Christian Dating does not
               take a denominational ruling. The founding application asks whether
               you are open to remarriage so that, when introductions exist, that
               preference can be respected.

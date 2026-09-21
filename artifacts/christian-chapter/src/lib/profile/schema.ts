@@ -105,7 +105,7 @@ export const AdminProfilePatchSchema = z.object({
 export function assertEligibleDob(dateOfBirth: string): string | null {
   const age = getAge(dateOfBirth);
   if (age === null) return "Enter a valid date of birth.";
-  if (age < MINIMUM_AGE) return `Christian Chapter is for adults aged ${MINIMUM_AGE} and over.`;
+  if (age < MINIMUM_AGE) return `Mature Christian Dating is for adults aged ${MINIMUM_AGE} and over.`;
   return null;
 }
 

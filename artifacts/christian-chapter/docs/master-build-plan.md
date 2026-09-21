@@ -1,4 +1,4 @@
-# Christian Chapter — living master build plan
+# Mature Christian Dating — living master build plan
 
 **Status date:** 21 September 2026  
 **Target:** complete development/staging platform. Public charging and real-member activation remain off.

@@ -36,7 +36,7 @@ export function LegalShell({
           These documents describe current founding-cohort processing. Qualified UK
           legal review is still required before paid public acquisition.{" "}
           <a href="/" className="underline">
-            Back to Christian Chapter
+            Back to Mature Christian Dating
           </a>
         </p>
       </div>

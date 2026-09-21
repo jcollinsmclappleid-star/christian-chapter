@@ -14,16 +14,16 @@ export const APPLICATION_RETENTION_DAYS = 30;
 
 /** One customer-facing account of the founding stage. Do not invent a launch date. */
 export const FOUNDING_MEMBER_COPY =
-  "Christian Chapter is welcoming its founding members now. Create your profile free and help form the first Christian Chapter cohorts. Introductions will begin cohort by cohort once there are enough compatible, active members.";
+  "Mature Christian Dating is welcoming founding members now. Create your profile free and help form the first cohorts. Introductions begin cohort by cohort once there are enough compatible, active members.";
 
 function env(name: string, fallback = ""): string {
   return (process.env[name] ?? fallback).trim();
 }
 
 export const siteConfig = {
-  brandName: "Christian Chapter",
-  descriptor: "UK Christian dating for your next chapter",
-  proposition: "Christian dating for your next chapter.",
+  brandName: "Mature Christian Dating",
+  descriptor: "Mature Christian dating",
+  proposition: "Mature Christian dating.",
   siteUrl: env("NEXT_PUBLIC_SITE_URL", "https://christianchapter.co.uk").replace(
     /\/$/,
     "",

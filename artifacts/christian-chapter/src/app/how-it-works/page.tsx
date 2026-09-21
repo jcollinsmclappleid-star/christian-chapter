@@ -4,9 +4,9 @@ import { FOUNDING_MEMBER_COPY } from "@/lib/site-config";
 import { Clock, UserCheck, MessageSquare, Heart } from "lucide-react";
 
 export const metadata = buildMetadata({
-  title: "How Christian Chapter works",
+  title: "How Mature Christian Dating works",
   description:
-    "Christian Chapter uses considered introductions — not swiping or endless browsing. Learn how we introduce Christian singles based on faith, life stage, intentions and practical compatibility.",
+    "Mature Christian Dating uses considered introductions — not swiping or endless browsing. Learn how we introduce Christian singles based on faith, life stage, intentions and practical compatibility.",
   path: "/how-it-works",
 });
 
@@ -55,7 +55,7 @@ export default function HowItWorksPage() {
             The approach
           </p>
           <h1 className="font-serif text-plum mb-6">
-            How Christian Chapter works
+            How Mature Christian Dating works
           </h1>
           <p className="text-[18px] text-plum-muted leading-7 max-w-[580px]">
             Introductions based on faith, life stage and intention — not an algorithm score. Here is what to expect.
@@ -90,7 +90,7 @@ export default function HowItWorksPage() {
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="font-serif text-plum mb-3">Only active members in your introductions</h2>
           <p className="text-[17px] text-plum-muted mb-3 leading-7">
-            One of the most common frustrations with dating services is reaching out and hearing nothing — often because the person stopped using the service. The following policy is how Christian Chapter is designed to work from launch.
+            One of the most common frustrations with dating services is reaching out and hearing nothing — often because the person stopped using the service. The following policy is how Mature Christian Dating is designed to work from launch.
           </p>
           <p className="text-[14px] text-stone mb-8">
             This is the planned activity policy, not a description of current operating state during the founding phase.
