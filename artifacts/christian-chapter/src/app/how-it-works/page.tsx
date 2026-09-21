@@ -1,5 +1,6 @@
 import { LinkButton } from "@/components/ui/button";
 import { buildMetadata } from "@/lib/metadata";
+import { FOUNDING_MEMBER_COPY } from "@/lib/site-config";
 import { Clock, UserCheck, MessageSquare, Heart } from "lucide-react";
 
 export const metadata = buildMetadata({
@@ -123,12 +124,10 @@ export default function HowItWorksPage() {
       {/* CTA */}
       <section className="section bg-ivory-dark border-t border-border">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="font-serif text-plum mb-5">Ready to begin?</h2>
-          <p className="text-[17px] text-plum-muted mb-8 leading-7">
-            Begin your application. We&apos;ll be in touch when introductions are ready.
-          </p>
+          <h2 className="font-serif text-plum mb-5">Create your profile</h2>
+          <p className="text-[17px] text-plum-muted mb-8 leading-7">{FOUNDING_MEMBER_COPY}</p>
           <LinkButton href="/register" size="lg" variant="primary">
-            Begin your application
+            Create your profile
           </LinkButton>
         </div>
       </section>

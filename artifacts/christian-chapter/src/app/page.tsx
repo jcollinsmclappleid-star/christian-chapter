@@ -1,98 +1,197 @@
-import { ChapterHouseExperience } from "@/components/chapter-house/ChapterHouseExperience";
-import { HOUSE_DESTINATIONS } from "@/components/chapter-house/houseContent";
+import { ExampleIntroduction } from "@/components/home/example-introduction";
+import { LegacyHouseRedirect } from "@/components/home/legacy-house-redirect";
 import { LinkButton } from "@/components/ui/button";
-import { siteConfig } from "@/lib/site-config";
+import { FOUNDING_MEMBER_COPY } from "@/lib/site-config";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Christian Chapter — UK Christian dating for your next chapter",
+  title: {
+    absolute: "Christian dating for your next chapter | Christian Chapter",
+  },
   description:
-    "A more thoughtful way for Christians to meet. A considered UK founding cohort for Christian singles aged 40 and over — introductions with care, not endless swiping.",
+    "Meet thoughtful Christian singles in the UK, aged 40 and over, who share your faith and want a meaningful relationship — without endless swiping.",
   alternates: { canonical: "https://christianchapter.co.uk" },
 };
 
-const rooms = [
+const steps = [
   {
-    id: "how-it-works",
-    title: "The Common Table",
-    body: "Finite introductions, each with a reason. No swipe deck. No percentage score. Matching is not live in production today.",
+    n: "1",
+    title: "Create your profile",
+    body: "Faith, the life you have now, and what you hope comes next. About ten minutes, and you can return to it.",
   },
   {
-    id: "library",
-    title: "The Library",
-    body: "A life told in five chapters. What another member would see is shaped by your visibility choices — shown here only as a labelled demonstration.",
+    n: "2",
+    title: "Set what matters",
+    body: "Mark each factor Essential, Preferred, or Open-minded. An Essential is a boundary we are designed to respect.",
   },
   {
-    id: "path",
-    title: "The Garden Path",
-    body: "Essential, Preferred and Open-minded. Nearby, Worth the journey, and Open to distance. We do not publish exact miles or live candidate counts.",
+    n: "3",
+    title: "Receive a reason",
+    body: "When a cohort is ready, introductions are finite. Each one is meant to say why it was worth your time — no swipe deck and no percentage score.",
   },
   {
-    id: "garden",
-    title: "The Sheltered Garden",
-    body: "Visibility, taking a break, block and report, and versioned religious-data consent. Verification is not live and is never proof of faith or character.",
+    n: "4",
+    title: "Answer in your own time",
+    body: "Interest, later, or no. A conversation is designed to start only when interest is mutual.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Who is Christian Chapter for?",
+    a: "UK Christians aged 40 and over. There is no maximum age. The questions are written for people with an established life, not for a student scene.",
   },
   {
-    id: "courtyard",
-    title: "The Gathering Courtyard",
-    body: "Events and personal matchmaking are upcoming. They are not offered as a live service in this founding phase.",
+    q: "What does it cost?",
+    a: "Creating a profile is free while we welcome founding members. Planned Member and Plus outcomes are described on the pricing page. Prices are not published, and there is no checkout.",
   },
   {
-    id: "membership",
-    title: "The Membership Room",
-    body: "Free during the founding phase. Planned Member and Plus outcomes are described on the pricing page. Prices are not published and there is no checkout.",
+    q: "When do introductions begin?",
+    a: FOUNDING_MEMBER_COPY,
+  },
+  {
+    q: "Who reviews my profile?",
+    a: "Submitted profiles are reviewed as a quality and safety control before anyone can be introduced. The review is not a judgment of your faith or your worth.",
   },
 ];
 
 export default function HomePage() {
   return (
     <>
-      <ChapterHouseExperience>
-        <div className="house-arrival">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-6">
-            Christian dating for the next chapter of life
+      <LegacyHouseRedirect />
+
+      <section className="bg-ivory pt-12 pb-16 md:pt-20 md:pb-24">
+        <div className="mx-auto max-w-5xl px-6">
+          <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-5">
+            Meaningful relationships for UK Christians 40+
           </p>
-          <h1 className="font-serif text-plum leading-[1.05] mb-6 max-w-[18ch]">
-            A more thoughtful way for Christians to meet.
+          <h1 className="font-serif text-plum leading-[1.05] mb-6 max-w-[16ch]">
+            Christian dating for your next chapter.
           </h1>
-          <p className="text-[18px] text-plum-muted leading-7 mb-8 max-w-[34rem]">
-            Meaningful introductions for UK Christians over 40 — shaped by faith, life experience and what truly matters next.
+          <p className="text-[18px] text-plum-muted leading-7 mb-8 max-w-[36rem]">
+            Meet thoughtful Christian singles who share your faith and want a meaningful relationship — without endless swiping.
           </p>
-          <div className="flex flex-wrap items-center gap-5 mb-8">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 mb-8">
             <LinkButton href="/register" size="lg" variant="primary">
-              Begin your chapter
+              Create your free profile
             </LinkButton>
-            <a href="/?house=table" className="text-[15px] text-plum-muted underline underline-offset-4 hover:text-plum">
-              Explore how it works
+            <a
+              href="#how-it-works"
+              className="inline-flex items-center min-h-[56px] text-[15px] text-plum underline underline-offset-4 hover:text-oxblood"
+            >
+              See how it works
             </a>
           </div>
           <p className="text-[14px] text-stone">
-            No endless swiping · Introductions with reasons · Privacy by design
+            UK-wide · Designed for Christians 40+ · Privacy by design
           </p>
         </div>
-      </ChapterHouseExperience>
+      </section>
 
-      <section id="how-it-works" className="house-rooms">
-        <div className="mx-auto max-w-5xl">
+      <section className="bg-ivory border-t border-border py-14 md:py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <h2 className="font-serif text-plum mb-5 max-w-[20ch]">
+            After 40, a photo is not the point.
+          </h2>
+          <p className="text-[18px] text-plum leading-8 max-w-[40rem]">
+            Endless swiping treats a life as a picture. Faith, family, and the shape of an ordinary week matter more than a streak. Christian Chapter is for people who want a meaningful relationship, and the time to recognise one.
+          </p>
+        </div>
+      </section>
+
+      <section id="how-it-works" className="bg-ivory-dark section scroll-mt-24">
+        <div className="mx-auto max-w-5xl px-6">
           <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-4">
-            The Chapter House
+            How it works
           </p>
-          <h2 className="font-serif text-plum mb-3">Every room, in writing.</h2>
-          <p className="text-[17px] text-plum-muted leading-7 max-w-[36rem] mb-10">
-            The house is a way to walk the product. The pages below remain if 3D cannot run.
-            {siteConfig.foundingStage ? " Joining is free during the founding phase." : ""}
+          <h2 className="font-serif text-plum mb-10 max-w-[16ch]">Four steps. No deck.</h2>
+          <ol className="max-w-3xl space-y-8">
+            {steps.map((step) => (
+              <li key={step.n} className="grid grid-cols-[2.5rem_1fr] gap-4">
+                <span className="font-serif text-[1.6rem] text-oxblood leading-none pt-1">{step.n}</span>
+                <div>
+                  <h3 className="font-sans font-semibold text-[18px] text-plum mb-1">{step.title}</h3>
+                  <p className="text-[16px] text-plum-muted leading-7">{step.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-10">
+            <a href="/how-it-works" className="text-[15px] text-plum underline underline-offset-4 hover:text-oxblood">
+              Read the full explanation
+            </a>
           </p>
-          <div className="grid md:grid-cols-2 gap-8">
-            {rooms.map((room) => (
-              <article key={room.id} id={room.id === "how-it-works" ? undefined : room.id}>
-                <h3 className="font-serif text-[1.6rem] text-plum mb-2">{room.title}</h3>
-                <p className="text-[16px] text-plum-muted leading-7">{room.body}</p>
-              </article>
+        </div>
+      </section>
+
+      <ExampleIntroduction />
+
+      <section className="bg-ivory section">
+        <div className="mx-auto max-w-5xl px-6 grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16 items-start">
+          <h2 className="font-serif text-plum max-w-[14ch]">Built for a life that is already underway.</h2>
+          <div className="space-y-5 text-[17px] text-plum-muted leading-7">
+            <p>
+              Grown children. A church you already belong to. Work that still takes the week. A distance you will travel, and a distance you will not.
+            </p>
+            <p>
+              The profile asks about those realities so an introduction can respect them. You choose what another member is allowed to see.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-evergreen text-ivory">
+        <div className="mx-auto max-w-5xl px-6">
+          <h2 className="font-serif text-ivory mb-5 max-w-[18ch]">Privacy and safety, stated plainly.</h2>
+          <p className="text-[17px] text-ivory/90 leading-7 max-w-[40rem] mb-5">
+            Faith answers are special-category data. They are collected only with a separate consent. Visibility, taking a break, and block and report are part of the product design. Controls that are still being built are described on the Safety page, not implied here.
+          </p>
+          <p className="text-[17px] text-ivory leading-7 max-w-[42rem] mb-8">{FOUNDING_MEMBER_COPY}</p>
+          <a href="/safety" className="text-[15px] text-ivory underline underline-offset-4">
+            Read how safety works
+          </a>
+        </div>
+      </section>
+
+      <section className="bg-ivory section" aria-labelledby="faq-heading">
+        <div className="mx-auto max-w-3xl px-6">
+          <h2 id="faq-heading" className="font-serif text-plum mb-8">
+            Questions worth answering first.
+          </h2>
+          <div className="divide-y divide-border border-y border-border">
+            {faqs.map((item) => (
+              <details key={item.q} className="group py-5">
+                <summary className="cursor-pointer font-sans font-semibold text-[17px] text-plum list-none flex justify-between gap-6">
+                  {item.q}
+                  <span aria-hidden className="text-oxblood font-serif text-[1.4rem] leading-none group-open:hidden">
+                    +
+                  </span>
+                  <span aria-hidden className="text-oxblood font-serif text-[1.4rem] leading-none hidden group-open:inline">
+                    –
+                  </span>
+                </summary>
+                <p className="mt-3 text-[16px] text-plum-muted leading-7">{item.a}</p>
+              </details>
             ))}
           </div>
-          <p className="mt-10 text-[14px] text-stone">
-            Destinations in the house: {HOUSE_DESTINATIONS.map((item) => item.name).join(", ")}.
+        </div>
+      </section>
+
+      <section className="bg-ivory-dark section border-t border-border">
+        <div className="mx-auto max-w-3xl px-6">
+          <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-4">
+            Begin your chapter
           </p>
+          <h2 className="font-serif text-plum mb-5 max-w-[16ch]">Create your profile. It is free.</h2>
+          <p className="text-[17px] text-plum-muted leading-7 mb-8">{FOUNDING_MEMBER_COPY}</p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <LinkButton href="/register" size="lg" variant="primary">
+              Create your free profile
+            </LinkButton>
+            <LinkButton href="/sign-in" size="lg" variant="ghost">
+              Sign in
+            </LinkButton>
+          </div>
         </div>
       </section>
     </>

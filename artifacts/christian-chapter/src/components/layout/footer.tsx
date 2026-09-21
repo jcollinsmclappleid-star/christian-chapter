@@ -3,7 +3,7 @@ import { footerLegalLine } from "@/lib/site-config";
 const links = [
   { href: "/how-it-works", label: "How it works" },
   { href: "/safety", label: "Safety" },
-  { href: "/register", label: "Begin" },
+  { href: "/register", label: "Create your profile" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
   { href: "/cookies", label: "Cookies" },

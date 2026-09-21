@@ -57,7 +57,7 @@ export function Header() {
             </a>
           )}
           <LinkButton href="/register" size="sm" variant="primary">
-            {signedIn ? "Your application" : "Begin"}
+            {signedIn ? "Continue your profile" : "Create your profile"}
           </LinkButton>
         </nav>
 
@@ -94,7 +94,7 @@ export function Header() {
           )}
           <div className="pt-4">
             <LinkButton href="/register" variant="primary" fullWidth size="lg">
-              {signedIn ? "Your application" : "Begin"}
+              {signedIn ? "Continue your profile" : "Create your profile"}
             </LinkButton>
           </div>
         </div>

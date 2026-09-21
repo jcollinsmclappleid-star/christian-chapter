@@ -12,6 +12,10 @@ export const TERMS_CONSENT_VERSION = "2026-09-20";
 export const MINIMUM_AGE = 40;
 export const APPLICATION_RETENTION_DAYS = 30;
 
+/** One customer-facing account of the founding stage. Do not invent a launch date. */
+export const FOUNDING_MEMBER_COPY =
+  "Christian Chapter is welcoming its founding members now. Create your profile free and help form the first Christian Chapter cohorts. Introductions will begin cohort by cohort once there are enough compatible, active members.";
+
 function env(name: string, fallback = ""): string {
   return (process.env[name] ?? fallback).trim();
 }

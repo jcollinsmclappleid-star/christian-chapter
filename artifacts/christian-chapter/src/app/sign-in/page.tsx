@@ -44,9 +44,9 @@ export default function SignInPage() {
         <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-5">
           Sign in
         </p>
-        <h1 className="font-serif text-plum mb-4">Return to your application</h1>
+        <h1 className="font-serif text-plum mb-4">Welcome back</h1>
         <p className="text-[17px] text-plum-muted leading-7 mb-8">
-          Enter the email you used to begin. We will send a one-time link — there is
+          Continue your profile with the email you used. We will send a one-time link — there is
           no password.
         </p>
         <form onSubmit={onSubmit} className="space-y-5">
@@ -91,7 +91,7 @@ export default function SignInPage() {
         <p className="mt-10 text-[15px] text-plum-muted">
           New here?{" "}
           <a href="/register" className="text-oxblood underline underline-offset-4">
-            Begin your application
+            Create your profile
           </a>
         </p>
       </div>

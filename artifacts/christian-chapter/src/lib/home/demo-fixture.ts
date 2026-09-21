@@ -8,7 +8,6 @@ export const demoIntroduction = {
   region: "South East England",
   tradition: "Anglican / Church of England",
   poolLabel: "Nearby",
-  alignmentText: "Strong alignment",
   why: [
     "You share a similar faith life.",
     "You are looking for a similar kind of relationship.",
@@ -30,4 +29,5 @@ export const demoEssentials = [
   { factor: "tradition", label: "Christian tradition", tier: "preferred" as const },
   { factor: "smoking", label: "Smoking", tier: "essential" as const },
   { factor: "distance", label: "Distance", tier: "preferred" as const },
+  { factor: "remarriage", label: "Remarriage", tier: "open-minded" as const },
 ];
