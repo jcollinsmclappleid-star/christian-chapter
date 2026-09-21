@@ -19,8 +19,8 @@ function getWebGLContext(strict = false): WebGLRenderingContext | WebGL2Renderin
     const canvas = document.createElement("canvas");
     const options = { failIfMajorPerformanceCaveat: strict };
     return (
-      canvas.getContext("webgl2", options) ||
-      canvas.getContext("webgl", options) ||
+      (canvas.getContext("webgl2", options) as WebGL2RenderingContext | null) ||
+      (canvas.getContext("webgl", options) as WebGLRenderingContext | null) ||
       (canvas.getContext("experimental-webgl", options) as WebGLRenderingContext | null)
     );
   } catch {
