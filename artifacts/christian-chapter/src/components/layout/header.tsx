@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Logo } from "@/components/brand/logo";
 import { LinkButton } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
@@ -32,14 +33,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-ivory/95 backdrop-blur-sm border-b border-border">
       <div className="mx-auto max-w-5xl px-6 flex items-center justify-between h-16 md:h-[72px]">
-        <a href="/" className="flex flex-col leading-none group">
-          <span className="font-serif text-[1.15rem] tracking-tight text-plum group-hover:text-oxblood transition-colors">
-            Christian Chapter
-          </span>
-          <span className="text-[10px] tracking-[0.16em] uppercase text-stone font-sans mt-0.5">
-            In faith · 40+ · UK
-          </span>
-        </a>
+        <Logo />
 
         <nav className="hidden md:flex items-center gap-7" aria-label="Main navigation">
           {links.map((link) => (

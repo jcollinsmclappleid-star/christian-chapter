@@ -37,6 +37,7 @@ describe("homepage conversion", () => {
   it("leads with the proposition and a real registration link", () => {
     const home = read("app/page.tsx");
     assert.match(home, /Christian dating for your next chapter/);
+    assert.match(home, /Mature Christian dating/);
     assert.match(home, /Create your free profile/);
     assert.match(home, /href="\/register"/);
     assert.match(home, /href="\/sign-in"/);

@@ -6,10 +6,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Christian dating for your next chapter | Christian Chapter",
+    absolute: "Mature Christian dating | Christian Chapter",
   },
   description:
-    "Meet thoughtful Christian singles in the UK, aged 40 and over, who share your faith and want a meaningful relationship — without endless swiping.",
+    "Mature Christian dating for UK adults aged 40 and over. Meet thoughtful Christian singles who share your faith and want a meaningful relationship — without endless swiping.",
   alternates: { canonical: "https://christianchapter.co.uk" },
 };
 
@@ -63,7 +63,7 @@ export default function HomePage() {
       <section className="bg-ivory pt-12 pb-16 md:pt-20 md:pb-24">
         <div className="mx-auto max-w-5xl px-6">
           <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-5">
-            Meaningful relationships for UK Christians 40+
+            Mature Christian dating
           </p>
           <h1 className="font-serif text-plum leading-[1.05] mb-6 max-w-[16ch]">
             Christian dating for your next chapter.

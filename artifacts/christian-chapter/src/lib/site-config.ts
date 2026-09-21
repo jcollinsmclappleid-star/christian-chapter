@@ -22,7 +22,9 @@ function env(name: string, fallback = ""): string {
 
 export const siteConfig = {
   brandName: "Christian Chapter",
-  descriptor: "UK Christian dating for your next chapter",
+  /** Public category name. The brand remains Christian Chapter. */
+  categoryName: "Mature Christian dating",
+  descriptor: "Mature Christian dating",
   proposition: "Christian dating for your next chapter.",
   siteUrl: env("NEXT_PUBLIC_SITE_URL", "https://christianchapter.co.uk").replace(
     /\/$/,
