@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Christian dating after bereavement — a careful guide",
   description:
-    "A thoughtful guide to Christian dating after losing a partner. Grief, readiness and the hope of a second chapter — from Christian Chapter. No sales pressure.",
+    "A thoughtful guide to Christian dating after losing a partner. Grief, readiness and the hope of a second chapter — from Mature Christian Dating. No sales pressure.",
   path: "/christian-dating/after-bereavement",
 });
 
@@ -67,7 +67,7 @@ export default function ChristianDatingAfterBereavementPage() {
               Many widowed members find it helpful to meet people who have experienced loss themselves — though this is not essential. You can indicate your openness to meeting someone who has been widowed, but it is not a filter we apply automatically.
             </p>
             <p>
-              Moving gently in early conversations tends to be appreciated by both people. There is no rush. A good introduction from Christian Chapter is a starting point — not a deadline.
+              Moving gently in early conversations tends to be appreciated by both people. There is no rush. A good introduction from Mature Christian Dating is a starting point — not a deadline.
             </p>
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function ChristianDatingAfterBereavementPage() {
 
       <section className="section bg-ivory">
         <div className="mx-auto max-w-4xl px-6">
-          <h2 className="font-serif text-plum mb-6">How Christian Chapter handles bereavement sensitively</h2>
+          <h2 className="font-serif text-plum mb-6">How Mature Christian Dating handles bereavement sensitively</h2>
           <div className="grid md:grid-cols-2 gap-5">
             {[
               {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AdminNav } from "./_components/nav";
 
 export const metadata: Metadata = {
-  title: { default: "Admin — Christian Chapter", template: "%s | Admin" },
+  title: { default: "Admin — Mature Christian Dating", template: "%s | Admin" },
   robots: { index: false, follow: false },
 };
 

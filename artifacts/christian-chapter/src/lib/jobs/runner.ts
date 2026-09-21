@@ -82,7 +82,7 @@ async function handleJob(type: string, payload: Record<string, unknown>) {
     }
     const sent = await sendTransactionalEmail({
       to: email,
-      subject: String(payload.subject ?? "Christian Chapter"),
+      subject: String(payload.subject ?? "Mature Christian Dating"),
       html: String(payload.html ?? "<p>Notification</p>"),
       text: String(payload.text ?? "Notification"),
       requestedState: payload.requestedState as RequestedState,

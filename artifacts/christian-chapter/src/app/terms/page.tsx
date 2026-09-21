@@ -4,7 +4,7 @@ import { POLICY_EFFECTIVE_DATE, POLICY_VERSION, MINIMUM_AGE } from "@/lib/site-c
 export const metadata = legalMetadata(
   "Terms of use",
   "/terms",
-  "Terms for the Christian Chapter founding cohort, including 40+ eligibility and no guarantee of introductions.",
+  "Terms for the Mature Christian Dating founding cohort, including 40+ eligibility and no guarantee of introductions.",
 );
 
 export default function TermsPage() {
@@ -41,7 +41,7 @@ export default function TermsPage() {
       </p>
       <h2>Intellectual property</h2>
       <p>
-        The Christian Chapter name, site design and copy belong to the operator.
+        The Mature Christian Dating name, site design and copy belong to the operator.
         You retain your own application answers. You grant us a limited licence
         to store and review them for the founding cohort.
       </p>

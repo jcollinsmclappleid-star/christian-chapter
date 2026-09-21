@@ -26,8 +26,8 @@ export async function issueMagicLink(opts: {
     to: opts.email,
     subject:
       opts.purpose === "verify"
-        ? "Confirm your Christian Chapter email"
-        : "Sign in to Christian Chapter",
+        ? "Confirm your Mature Christian Dating email"
+        : "Sign in to Mature Christian Dating",
     html: magicLinkEmailHtml({
       firstName: opts.firstName ?? undefined,
       action: opts.purpose,

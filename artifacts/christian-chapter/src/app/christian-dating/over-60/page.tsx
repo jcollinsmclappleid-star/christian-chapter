@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Christian dating over 60 — UK Christian singles in your 60s",
   description:
-    "Christian dating in your 60s with Christian Chapter. A contemporary, accessible service designed for mature faith and genuine companionship. UK-wide introductions.",
+    "Christian dating in your 60s with Mature Christian Dating. A contemporary, accessible service designed for mature faith and genuine companionship. UK-wide introductions.",
   path: "/christian-dating/over-60",
 });
 
@@ -44,7 +44,7 @@ export default function ChristianDatingOver60Page() {
                 For many members in their 60s, the question is not whether to enter a relationship — it&apos;s whether the right person is out there. Christianity remains the largest stated religion among this age group in the UK. The community exists. It needs a better way to find itself.
               </p>
               <p>
-                Christian Chapter&apos;s profile covers the practical questions clearly: retirement status, mobility, travel openness, grandchildren, housing preferences, and what companionship and commitment mean to you.
+                Mature Christian Dating&apos;s profile covers the practical questions clearly: retirement status, mobility, travel openness, grandchildren, housing preferences, and what companionship and commitment mean to you.
               </p>
             </div>
           </div>
@@ -52,7 +52,7 @@ export default function ChristianDatingOver60Page() {
             <h2 className="font-serif text-plum text-3xl mb-5">An accessible platform, by design</h2>
             <div className="space-y-4 text-[16px] text-plum-muted leading-7">
               <p>
-                Christian Chapter is designed to be straightforward to use. Large text, clear labels, plain language, and a format that explains what each step is for — and why we&apos;re asking.
+                Mature Christian Dating is designed to be straightforward to use. Large text, clear labels, plain language, and a format that explains what each step is for — and why we&apos;re asking.
               </p>
               <p>
                 The platform is a contemporary web product that works on any device. There is no app required. Every action is described in plain terms, and the support team is available if anything is unclear.
@@ -70,7 +70,7 @@ export default function ChristianDatingOver60Page() {
           <h2 className="font-serif text-plum mb-5">Distance and geography in your 60s</h2>
           <div className="space-y-4 text-[16px] text-plum-muted leading-7 max-w-[620px]">
             <p>
-              Many members in their 60s have greater geographic flexibility than earlier in life — retirement may mean the ability to relocate or to make longer journeys comfortably. Christian Chapter captures this.
+              Many members in their 60s have greater geographic flexibility than earlier in life — retirement may mean the ability to relocate or to make longer journeys comfortably. Mature Christian Dating captures this.
             </p>
             <p>
               You set your preferred radius and whether you&apos;re open to travelling further where both people agree. You can also declare openness to relocation — long-term or exploratory — and this shapes your introduction pool. We use travel bands, not straight-line distances.
@@ -111,7 +111,7 @@ export default function ChristianDatingOver60Page() {
 
       <section className="section bg-ivory border-t border-border">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="font-serif text-plum mb-5">Join Christian Chapter — free</h2>
+          <h2 className="font-serif text-plum mb-5">Join Mature Christian Dating — free</h2>
           <LinkButton href="/register" size="lg" variant="primary">Start your profile</LinkButton>
           <p className="mt-4 text-[13px] text-stone">Takes around 10–12 minutes. We&apos;ll save your progress at every step.</p>
         </div>

@@ -4,9 +4,9 @@ import { FOUNDING_MEMBER_COPY } from "@/lib/site-config";
 import { Shield, AlertTriangle, Flag, FileText } from "lucide-react";
 
 export const metadata = buildMetadata({
-  title: "Safety at Christian Chapter",
+  title: "Safety at Mature Christian Dating",
   description:
-    "How the Christian Chapter founding cohort is protected today, and which safety controls are still being built for later introductions.",
+    "How the Mature Christian Dating founding cohort is protected today, and which safety controls are still being built for later introductions.",
   path: "/safety",
 });
 
@@ -49,7 +49,7 @@ export default function SafetyPage() {
             Safety is part of the product, not a footnote.
           </h1>
           <p className="text-[18px] text-ivory/80 leading-7 max-w-[580px]">
-            Christian Chapter is currently a founding cohort, not a live
+            Mature Christian Dating is currently a founding cohort, not a live
             introductions network. This page separates what already operates
             from what we are building.
           </p>

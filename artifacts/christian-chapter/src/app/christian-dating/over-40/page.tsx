@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Christian dating over 40 — UK Christian singles in your 40s",
   description:
-    "Christian Chapter helps Christians in their 40s meet people who share their faith, intentions and life stage. Considered introductions, not swiping. Join free.",
+    "Mature Christian Dating helps Christians in their 40s meet people who share their faith, intentions and life stage. Considered introductions, not swiping. Join free.",
   path: "/christian-dating/over-40",
 });
 
@@ -27,7 +27,7 @@ export default function ChristianDatingOver40Page() {
             <em>in your 40s</em>
           </h1>
           <p className="text-[18px] text-plum-muted leading-7 max-w-[580px]">
-            Life has changed. You know more clearly what you believe, what you want, and what kind of relationship would actually work. Christian Chapter is built around that clarity — not against it.
+            Life has changed. You know more clearly what you believe, what you want, and what kind of relationship would actually work. Mature Christian Dating is built around that clarity — not against it.
           </p>
         </div>
       </section>
@@ -49,7 +49,7 @@ export default function ChristianDatingOver40Page() {
           <div className="space-y-5 text-[16px] text-plum-muted leading-7">
             <h2 className="font-serif text-plum text-3xl mb-4">How we approach your life stage</h2>
             <p>
-              Christian Chapter&apos;s profile covers the things that matter at this stage: dependent children, openness to future children, work patterns, custody arrangements, distance flexibility and faith expectations in a partner.
+              Mature Christian Dating&apos;s profile covers the things that matter at this stage: dependent children, openness to future children, work patterns, custody arrangements, distance flexibility and faith expectations in a partner.
             </p>
             <p>
               You set Essentials — the preferences that are firm requirements — and we never introduce you to someone who breaks them. If you need a non-smoker, you see non-smokers. If a partner&apos;s faith is essential, every introduction shares that.
@@ -86,7 +86,7 @@ export default function ChristianDatingOver40Page() {
           <div className="space-y-6">
             {[
               {
-                q: "I have children at home. Is Christian Chapter realistic for me?",
+                q: "I have children at home. Is Mature Christian Dating realistic for me?",
                 a: "Yes. Many members in their 40s have dependent children. Your profile covers family situation fully, and you can set your preferences around meeting someone who is comfortable with your circumstances. We never show you someone who would be a poor fit on this.",
               },
               {

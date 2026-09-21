@@ -10,6 +10,7 @@ import type { WizardData } from "./wizard-types";
 import { getAge } from "@/lib/age";
 import { MINIMUM_AGE } from "@/lib/site-config";
 
+import { Logo } from "@/components/brand/logo";
 import { Step1Welcome } from "./steps/step-1-welcome";
 import { Step2Account } from "./steps/step-2-account";
 import { Step3About } from "./steps/step-3-about";
@@ -277,7 +278,7 @@ export function Wizard() {
     return (
       <div className="min-h-screen bg-ivory flex flex-col">
         <header className="flex items-center justify-between px-6 h-16 border-b border-border">
-          <a href="/" className="font-serif text-plum text-lg">Christian Chapter</a>
+          <Logo />
         </header>
         <main className="flex-1 mx-auto w-full max-w-2xl px-6 py-16">
           <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-4">
@@ -310,12 +311,12 @@ export function Wizard() {
       </div>
 
       <header className="flex items-center justify-between px-6 md:px-10 h-16 border-b border-border flex-shrink-0">
-        <a href="/" className="flex flex-col leading-none">
-          <span className="font-serif text-plum text-lg tracking-tight">Christian Chapter</span>
-          <span className="text-[10px] tracking-[0.16em] uppercase text-stone font-sans mt-0.5">
+        <div className="flex flex-col">
+          <Logo />
+          <span className="text-[10px] tracking-[0.16em] uppercase text-stone font-sans mt-1 pl-11">
             Your application
           </span>
-        </a>
+        </div>
         <div className="flex items-center gap-3 text-[12px] text-stone font-sans">
           <span className="uppercase tracking-[0.18em]">
             {reviewing ? "Review your profile" : `Step ${step} of ${TOTAL_STEPS}`}

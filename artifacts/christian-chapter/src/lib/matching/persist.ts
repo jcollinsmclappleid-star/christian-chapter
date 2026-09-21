@@ -597,12 +597,12 @@ export async function sweepActivity(nowInput?: string | Date | null) {
         to: row.user.email,
         channel: "email",
         template: next.notice === "reactivation" ? "activity_reactivation" : "activity_inactive",
-        subject: "Your Christian Chapter profile",
+        subject: "Your Mature Christian Dating profile",
         text:
           next.notice === "reactivation"
             ? "We have not seen you for a while. Return soon if you would like to stay in introductions."
             : "Your profile has been removed from new introductions after a period of inactivity. Sign in to return.",
-        html: "<p>Your Christian Chapter availability has changed.</p>",
+        html: "<p>Your Mature Christian Dating availability has changed.</p>",
       });
     }
     results.push({ userId: row.user.id, ...next });

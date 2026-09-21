@@ -20,8 +20,8 @@ const grotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "Christian Chapter — Mature Christian dating",
-    template: "%s | Christian Chapter",
+    default: "Mature Christian Dating",
+    template: "%s | Mature Christian Dating",
   },
   description:
     "Mature Christian dating for UK adults aged 40 and over. Meet thoughtful Christian singles who share your faith and want a meaningful relationship.",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://christianchapter.co.uk"
   ),
   openGraph: {
-    siteName: "Christian Chapter",
+    siteName: "Mature Christian Dating",
     locale: "en_GB",
     type: "website",
   },

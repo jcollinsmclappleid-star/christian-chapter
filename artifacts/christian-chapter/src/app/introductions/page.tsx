@@ -10,7 +10,13 @@ type IntroCard = {
   alignmentText: string;
   status: string;
   why: Array<{ text: string }>;
-  card: { firstName: string | null; age: number | null; ukRegion?: string | null; tradition?: string | null };
+  card: {
+    firstName: string | null;
+    age: number | null;
+    ukRegion?: string | null;
+    tradition?: string | null;
+    photos?: Array<{ id: string; url: string; position: number }>;
+  };
 };
 
 export default function IntroductionsPage() {
@@ -86,24 +92,40 @@ export default function IntroductionsPage() {
           </div>
         ) : (
           <ol className="space-y-5">
-            {data.introductions.map((intro) => (
-              <li key={intro.id} className="rounded-[18px] border border-border bg-ivory-dark p-6">
-                <p className="text-[11px] uppercase tracking-[0.2em] text-stone mb-2">
-                  {intro.poolLabel} · {intro.alignmentText}
-                </p>
-                <h2 className="font-serif text-[2rem] text-plum mb-2">
-                  {intro.card.firstName}
-                  {intro.card.age ? `, ${intro.card.age}` : ""}
-                </h2>
-                <p className="text-[15px] text-plum-muted mb-4">
-                  {[intro.card.ukRegion, intro.card.tradition].filter(Boolean).join(" · ")}
-                </p>
-                <p className="text-[15px] text-plum mb-6">{intro.why[0]?.text}</p>
-                <LinkButton href={`/introductions/${intro.id}`} variant="primary">
-                  Open this introduction
-                </LinkButton>
+            {data.introductions.map((intro) => {
+              const photo = [...(intro.card.photos ?? [])].sort((a, b) => a.position - b.position)[0];
+              const initial = intro.card.firstName?.slice(0, 1) ?? "";
+              return (
+              <li key={intro.id} className="rounded-[18px] border border-border bg-ivory-dark overflow-hidden">
+                <div className="grid grid-cols-[7.5rem_1fr] sm:grid-cols-[9rem_1fr]">
+                  <div className="relative bg-ivory-darker min-h-[10rem]">
+                    {photo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={photo.url} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                    ) : (
+                      <span className="absolute bottom-3 left-3 font-serif text-5xl text-oxblood/80" aria-hidden>
+                        {initial}
+                      </span>
+                    )}
+                  </div>
+                  <div className="p-5">
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-stone mb-2">{intro.poolLabel}</p>
+                    <h2 className="font-serif text-[1.8rem] text-plum leading-none mb-2">
+                      {intro.card.firstName}
+                      {intro.card.age ? `, ${intro.card.age}` : ""}
+                    </h2>
+                    <p className="text-[15px] text-plum-muted mb-3">
+                      {[intro.card.ukRegion, intro.card.tradition].filter(Boolean).join(" · ")}
+                    </p>
+                    <p className="text-[15px] text-plum mb-5">{intro.why[0]?.text}</p>
+                    <LinkButton href={`/introductions/${intro.id}`} variant="primary" size="sm">
+                      Open this introduction
+                    </LinkButton>
+                  </div>
+                </div>
               </li>
-            ))}
+              );
+            })}
           </ol>
         )}
       </div>

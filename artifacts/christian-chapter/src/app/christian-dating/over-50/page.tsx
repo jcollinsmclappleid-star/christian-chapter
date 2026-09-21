@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Christian dating over 50 — UK Christian singles in your 50s",
   description:
-    "Christian Chapter helps Christians in their 50s meet someone who genuinely understands their faith, life and hopes for the next chapter. Considered UK introductions.",
+    "Mature Christian Dating helps Christians in their 50s meet someone who genuinely understands their faith, life and hopes for the next chapter. Considered UK introductions.",
   path: "/christian-dating/over-50",
 });
 
@@ -27,7 +27,7 @@ export default function ChristianDatingOver50Page() {
             <em>in your 50s</em>
           </h1>
           <p className="text-[18px] text-plum-muted leading-7 max-w-[580px]">
-            In your 50s, you have enough lived experience to know exactly what kind of relationship you want. Christian Chapter is built to help you find it — with clarity, nuance, and no wasted time.
+            In your 50s, you have enough lived experience to know exactly what kind of relationship you want. Mature Christian Dating is built to help you find it — with clarity, nuance, and no wasted time.
           </p>
         </div>
       </section>
@@ -44,7 +44,7 @@ export default function ChristianDatingOver50Page() {
                 Blended family dynamics, retirement horizons, housing situations, denomination openness, remarriage — these are the genuine compatibility questions that a dating app with twenty-character bios cannot address.
               </p>
               <p>
-                Christian Chapter asks about them. Your profile covers faith tradition and importance, family situation, relationship intention, housing preferences, retirement plans and what faith looks like day to day.
+                Mature Christian Dating asks about them. Your profile covers faith tradition and importance, family situation, relationship intention, housing preferences, retirement plans and what faith looks like day to day.
               </p>
             </div>
           </div>

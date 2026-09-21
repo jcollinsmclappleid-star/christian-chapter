@@ -32,15 +32,22 @@ export function ExampleIntroduction() {
         </p>
 
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-8 lg:gap-12 items-start">
-          <article className="rounded-lg border border-border bg-ivory p-6 md:p-8">
-            <p className="text-[12px] uppercase tracking-[0.18em] text-oxblood font-sans mb-4">
-              {DEMO_DISCLOSURE}
-            </p>
+          <article className="rounded-lg border border-border bg-ivory overflow-hidden">
+            <div className="grid sm:grid-cols-[11rem_1fr]">
+              <div className="relative aspect-[4/5] sm:aspect-auto bg-ivory-darker flex items-end p-4">
+                <span className="font-serif text-6xl text-oxblood/80 leading-none" aria-hidden>
+                  {demoIntroduction.firstName.slice(0, 1)}
+                </span>
+                <p className="absolute top-3 left-3 right-3 text-[11px] uppercase tracking-[0.14em] text-plum">
+                  {DEMO_DISCLOSURE}
+                </p>
+              </div>
+              <div className="p-6 md:p-8">
             <h3 className="font-serif text-plum text-[2rem] leading-none mb-2">
               {demoIntroduction.firstName}, {demoIntroduction.age}
             </h3>
             <p className="text-[15px] text-plum-muted mb-6">
-              {demoIntroduction.region} · {demoIntroduction.tradition} · {demoIntroduction.poolLabel}
+              {demoIntroduction.region}
             </p>
             <p className="text-[17px] text-plum leading-7 mb-8">{demoIntroduction.lookingFor}</p>
             <ol className="space-y-5">
@@ -53,6 +60,8 @@ export function ExampleIntroduction() {
                 </li>
               ))}
             </ol>
+              </div>
+            </div>
           </article>
 
           <div className="space-y-8">

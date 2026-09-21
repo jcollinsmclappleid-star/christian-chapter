@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
   const data = parse.data as WizardData & { termsAccepted: true; eligibilityAcknowledged: true };
   if (!isAtLeastAge(data.dateOfBirth, MINIMUM_AGE)) {
     return NextResponse.json(
-      { error: "Christian Chapter is for adults aged 40 and over." },
+      { error: "Mature Christian Dating is for adults aged 40 and over." },
       { status: 422 },
     );
   }

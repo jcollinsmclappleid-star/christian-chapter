@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Mature Christian dating | Christian Chapter",
+    absolute: "Mature Christian dating",
   },
   description:
     "Mature Christian dating for UK adults aged 40 and over. Meet thoughtful Christian singles who share your faith and want a meaningful relationship — without endless swiping.",
@@ -38,7 +38,7 @@ const steps = [
 
 const faqs = [
   {
-    q: "Who is Christian Chapter for?",
+    q: "Who is Mature Christian Dating for?",
     a: "UK Christians aged 40 and over. There is no maximum age. The questions are written for people with an established life, not for a student scene.",
   },
   {
@@ -62,11 +62,8 @@ export default function HomePage() {
 
       <section className="bg-ivory pt-12 pb-16 md:pt-20 md:pb-24">
         <div className="mx-auto max-w-5xl px-6">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-5">
-            Mature Christian dating
-          </p>
-          <h1 className="font-serif text-plum leading-[1.05] mb-6 max-w-[16ch]">
-            Christian dating for your next chapter.
+          <h1 className="font-serif text-plum leading-[1.05] mb-6 max-w-[14ch]">
+            Mature Christian dating.
           </h1>
           <p className="text-[18px] text-plum-muted leading-7 mb-8 max-w-[36rem]">
             Meet thoughtful Christian singles who share your faith and want a meaningful relationship — without endless swiping.
@@ -94,7 +91,7 @@ export default function HomePage() {
             After 40, a photo is not the point.
           </h2>
           <p className="text-[18px] text-plum leading-8 max-w-[40rem]">
-            Endless swiping treats a life as a picture. Faith, family, and the shape of an ordinary week matter more than a streak. Christian Chapter is for people who want a meaningful relationship, and the time to recognise one.
+            Endless swiping treats a life as a picture. Faith, family, and the shape of an ordinary week matter more than a streak.
           </p>
         </div>
       </section>
@@ -143,10 +140,9 @@ export default function HomePage() {
       <section className="section bg-evergreen text-ivory">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="font-serif text-ivory mb-5 max-w-[18ch]">Privacy and safety, stated plainly.</h2>
-          <p className="text-[17px] text-ivory/90 leading-7 max-w-[40rem] mb-5">
-            Faith answers are special-category data. They are collected only with a separate consent. Visibility, taking a break, and block and report are part of the product design. Controls that are still being built are described on the Safety page, not implied here.
+          <p className="text-[17px] text-ivory/90 leading-7 max-w-[40rem] mb-8">
+            Faith answers are collected only with a separate consent. You choose what another member can see. The Safety page lists what already operates and what is still being built.
           </p>
-          <p className="text-[17px] text-ivory leading-7 max-w-[42rem] mb-8">{FOUNDING_MEMBER_COPY}</p>
           <a href="/safety" className="text-[15px] text-ivory underline underline-offset-4">
             Read how safety works
           </a>
@@ -179,9 +175,6 @@ export default function HomePage() {
 
       <section className="bg-ivory-dark section border-t border-border">
         <div className="mx-auto max-w-3xl px-6">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-4">
-            Begin your chapter
-          </p>
           <h2 className="font-serif text-plum mb-5 max-w-[16ch]">Create your profile. It is free.</h2>
           <p className="text-[17px] text-plum-muted leading-7 mb-8">{FOUNDING_MEMBER_COPY}</p>
           <div className="flex flex-col sm:flex-row gap-4">

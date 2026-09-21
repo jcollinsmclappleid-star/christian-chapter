@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Christian dating after divorce — a thoughtful guide",
   description:
-    "A sensitive, practical guide to Christian dating after divorce. Questions of faith, readiness and finding someone who understands your history — from Christian Chapter.",
+    "A sensitive, practical guide to Christian dating after divorce. Questions of faith, readiness and finding someone who understands your history — from Mature Christian Dating.",
   path: "/christian-dating/after-divorce",
 });
 
@@ -37,7 +37,7 @@ export default function ChristianDatingAfterDivorcePage() {
           <div className="bg-ivory rounded-lg border border-border p-7 mb-10 max-w-2xl">
             <p className="text-[13px] uppercase tracking-[0.2em] text-stone font-sans mb-3">A note on this guide</p>
             <p className="text-[15px] text-plum-muted leading-6">
-              Christians hold a range of views on divorce and remarriage. This guide does not take a denominational position on those questions. It addresses the practical and emotional experience of dating again after divorce, and how Christian Chapter approaches it — respectfully, and without judgment.
+              Christians hold a range of views on divorce and remarriage. This guide does not take a denominational position on those questions. It addresses the practical and emotional experience of dating again after divorce, and how Mature Christian Dating approaches it — respectfully, and without judgment.
             </p>
           </div>
 
@@ -52,7 +52,7 @@ export default function ChristianDatingAfterDivorcePage() {
                   These are real questions, and there are no universal answers. But they are worth naming — because the people who ask them deserve a service that takes them seriously.
                 </p>
                 <p>
-                  Christian Chapter allows you to describe your situation honestly in your profile. Your relationship history is part of your story, not a disqualifying factor.
+                  Mature Christian Dating allows you to describe your situation honestly in your profile. Your relationship history is part of your story, not a disqualifying factor.
                 </p>
               </div>
             </div>
@@ -73,7 +73,7 @@ export default function ChristianDatingAfterDivorcePage() {
 
       <section className="section bg-ivory">
         <div className="mx-auto max-w-4xl px-6">
-          <h2 className="font-serif text-plum mb-6">How Christian Chapter handles this</h2>
+          <h2 className="font-serif text-plum mb-6">How Mature Christian Dating handles this</h2>
           <div className="grid md:grid-cols-2 gap-5">
             {[
               {

@@ -3,7 +3,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Christian dating UK — meet genuine Christian singles",
   description:
-    "Christian Chapter is a UK dating service for genuine Christian singles aged 40–70. Considered introductions based on faith, life stage and intention — not swiping or endless browsing.",
+    "Mature Christian Dating is a UK dating service for genuine Christian singles aged 40–70. Considered introductions based on faith, life stage and intention — not swiping or endless browsing.",
   path: "/christian-dating",
 });
 
@@ -12,7 +12,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://christianchapter.co
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Christian Chapter",
+  name: "Mature Christian Dating",
   url: siteUrl,
   description:
     "UK founding cohort for Christian dating for adults aged 40 and over. Applications and review exist; member introductions are not live.",
@@ -31,15 +31,15 @@ const breadcrumbSchema = {
 
 const faqs = [
   {
-    q: "What makes Christian Chapter different from other Christian dating services?",
+    q: "What makes Mature Christian Dating different from other Christian dating services?",
     a: "The product is designed around considered introductions rather than a browseable marketplace: faith, life stage, intentions and practical distance. That matching is not live yet. Today you can complete a founding application for a UK cohort of adults aged 40 and over.",
   },
   {
     q: "Do I have to be a regular churchgoer to join?",
-    a: "No. Christian Chapter is for people whose faith is meaningful to them and who want a partner who shares that faith. The founding application asks how you practise. Those answers are not shown to other members today.",
+    a: "No. Mature Christian Dating is for people whose faith is meaningful to them and who want a partner who shares that faith. The founding application asks how you practise. Those answers are not shown to other members today.",
   },
   {
-    q: "What age range is Christian Chapter for?",
+    q: "What age range is Mature Christian Dating for?",
     a: "The founding cohort is for adults aged 40 and over. There is no maximum age. The application, questions and copy are written for this life stage.",
   },
   {
@@ -96,7 +96,7 @@ export default function ChristianDatingPage() {
             Christian dating in the UK
           </h1>
           <p className="text-[18px] text-plum-muted leading-7 max-w-[620px] mb-8">
-            Christian Chapter is a UK dating service for genuine Christian singles. We introduce people based on faith, life stage, intentions and the practicalities of real life — not an algorithm score.
+            Mature Christian Dating is a UK dating service for genuine Christian singles. We introduce people based on faith, life stage, intentions and the practicalities of real life — not an algorithm score.
           </p>
           <LinkButton href="/register" size="lg" variant="primary">
             Join free
@@ -108,10 +108,10 @@ export default function ChristianDatingPage() {
       <section className="section bg-ivory-dark">
         <div className="mx-auto max-w-4xl px-6 grid md:grid-cols-2 gap-12">
           <div>
-            <h2 className="font-serif text-plum mb-5">Who Christian Chapter is for</h2>
+            <h2 className="font-serif text-plum mb-5">Who Mature Christian Dating is for</h2>
             <div className="space-y-4 text-[16px] text-plum-muted leading-7">
               <p>
-                Christian Chapter is designed for Christians in the UK who are serious about finding a meaningful relationship — and who want faith compatibility to be part of it.
+                Mature Christian Dating is designed for Christians in the UK who are serious about finding a meaningful relationship — and who want faith compatibility to be part of it.
               </p>
               <p>
                 The service is designed primarily for adults in their 40s, 50s and 60s: people who have clarity about who they are, what they believe, and what they&apos;re looking for in a relationship. That clarity deserves a service built around it.
@@ -206,7 +206,7 @@ export default function ChristianDatingPage() {
             Begin with a profile. No credit card needed.
           </h2>
           <LinkButton href="/register" size="lg" variant="primary">
-            Join Christian Chapter — free
+            Join Mature Christian Dating — free
           </LinkButton>
         </div>
       </section>

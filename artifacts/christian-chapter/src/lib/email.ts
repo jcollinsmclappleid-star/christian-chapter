@@ -56,7 +56,7 @@ export function magicLinkEmailHtml(opts: {
   const heading =
     opts.action === "verify"
       ? "Confirm your email"
-      : "Sign in to Christian Chapter";
+      : "Sign in to Mature Christian Dating";
   const intro =
     opts.action === "verify"
       ? "Use this link to confirm the email address on your founding application. It expires in 30 minutes and can be used once."
@@ -67,7 +67,7 @@ export function magicLinkEmailHtml(opts: {
 <head><meta charset="utf-8"><title>${heading}</title></head>
 <body style="font-family:Georgia,serif;background:#F7F3EC;color:#1E1220;margin:0;padding:40px 20px">
   <div style="max-width:560px;margin:0 auto;padding:40px 32px;border:1px solid rgba(30,18,32,0.10)">
-    <p style="font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:#8B1F2F;margin:0 0 16px">Christian Chapter</p>
+    <p style="font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:#8B1F2F;margin:0 0 16px">Mature Christian Dating</p>
     <h1 style="font-size:26px;line-height:1.2;margin:0 0 16px">${heading}</h1>
     <p style="font-size:17px;line-height:1.7;color:#6B5878">${greeting}</p>
     <p style="font-size:17px;line-height:1.7;color:#6B5878">${intro}</p>
