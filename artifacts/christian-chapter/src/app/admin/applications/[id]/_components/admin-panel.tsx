@@ -4,10 +4,15 @@ import { useState } from "react";
 import { StatusBadge } from "../../../_components/status-badge";
 
 const STATUSES = [
-  { value: "pending", label: "Pending review" },
-  { value: "active",  label: "Active" },
+  { value: "draft", label: "Draft" },
+  { value: "submitted", label: "Submitted" },
+  { value: "in_review", label: "In review" },
+  { value: "accepted", label: "Accepted" },
+  { value: "waitlisted", label: "Waitlisted" },
   { value: "flagged", label: "Flagged" },
   { value: "declined", label: "Declined" },
+  { value: "closure_requested", label: "Closure requested" },
+  { value: "closed", label: "Closed" },
 ] as const;
 
 interface AdminPanelProps {

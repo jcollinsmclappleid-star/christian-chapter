@@ -125,10 +125,10 @@ export default function HowItWorksPage() {
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-serif text-plum mb-5">Ready to begin?</h2>
           <p className="text-[17px] text-plum-muted mb-8 leading-7">
-            Join free as a founding member. Complete your profile, and we&apos;ll be in touch when introductions launch.
+            Begin your application. We&apos;ll be in touch when introductions are ready.
           </p>
           <LinkButton href="/register" size="lg" variant="primary">
-            Join free
+            Begin your application
           </LinkButton>
         </div>
       </section>

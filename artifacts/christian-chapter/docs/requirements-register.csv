@@ -1,0 +1,19 @@
+id,milestone,requirement,status,owning_files,validation,evidence
+FND-01,FND-CHECK,Magic-link account and verified email,IMPLEMENTED_UNVERIFIED,"src/app/api/auth/*,src/lib/member-session.ts",unit + route,handover GATE-A
+FND-02,FND-CHECK,40+ eligibility,VERIFIED,"src/lib/age.ts,src/lib/submit-schema.ts",unit,age.test.ts
+FND-03,FND-CHECK,Versioned terms privacy religious marketing consents,IMPLEMENTED_UNVERIFIED,"src/app/api/register/submit/route.ts,src/app/privacy/page.tsx",unit,submit-schema.test.ts
+FND-04,FND-CHECK,Closure and religious withdrawal,IMPLEMENTED_UNVERIFIED,"src/app/api/account/close/route.ts,src/app/admin/closures",manual,code
+FND-05,FND-CHECK,UK residence or intended relocation,IN_PROGRESS,"src/lib/profile/schema.ts,src/app/account/page.tsx",unit + UI,0004
+FND-06,FND-CHECK,Member data export,IN_PROGRESS,"src/app/api/account/export/route.ts",unit + UI,audit
+FND-07,FND-CHECK,Passkeys,DEFERRED_PRODUCTION,docs/architecture-decisions.md,n/a,ADR-002
+MEM-01,MEM-01,Server-persisted profile autosave,IN_PROGRESS,"src/app/api/profile/route.ts,src/app/profile",manual,code
+MEM-02,MEM-01,Four to eight photographs,IN_PROGRESS,src/app/api/profile/photos,manual,code
+MEM-03,MEM-01,Other-member preview serializer,IN_PROGRESS,"src/lib/profile/preview.ts,src/app/profile/preview",unit,preview tests
+MEM-04,MEM-01,My Essentials on profile,IN_PROGRESS,src/app/profile/_components/profile-studio.tsx,manual,code
+MEM-05,MEM-01,Voice introduction,IN_PROGRESS,src/app/api/profile/media,manual,code
+MEM-06,MEM-01,Sandbox verification journeys,IN_PROGRESS,src/app/api/profile/verify,manual,adapters
+MEM-07,MEM-01,120 synthetic members,IN_PROGRESS,src/lib/dev/seed.ts,unit,seed
+MAT-01,MAT-01,Finite introductions,IMPLEMENTED_UNVERIFIED,"src/lib/matching/*,src/app/introductions",unit + API,engine.test.ts
+ACT-01,ACT-01,Activity bands,IMPLEMENTED_UNVERIFIED,"src/lib/matching/activity.ts,src/lib/jobs/runner.ts",unit + clocked job,activity.test.ts
+CON-01,CON-01,Interest save decline match closure,IMPLEMENTED_UNVERIFIED,"src/lib/matching/connections.ts,src/app/connections",unit + API,connections.test.ts
+PAY-01,PAY-01,Sandbox billing lifecycle,IN_PROGRESS,src/lib/providers/payments.ts,adapter,public checkout off

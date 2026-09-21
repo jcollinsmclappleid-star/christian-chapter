@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { db, foundingMembers } from "@/db";
-import { ne } from "drizzle-orm";
+import { db, foundingApplications } from "@/db";
+import { requireAdminApi } from "@/lib/admin-auth";
 
 function getAge(dob: string): number {
   const birth = new Date(dob);
@@ -82,19 +82,27 @@ function isImbalanced(genderCounts: Record<string, number>): boolean {
 }
 
 export async function GET() {
+  const auth = await requireAdminApi("analytics.read");
+  if (!auth.session) return NextResponse.json({ error: auth.error }, { status: auth.status });
+
   try {
-    const members = await db
+    const raw = await db
       .select({
-        id: foundingMembers.id,
-        gender: foundingMembers.gender,
-        dateOfBirth: foundingMembers.dateOfBirth,
-        seekingGender: foundingMembers.seekingGender,
-        ageRangeMin: foundingMembers.ageRangeMin,
-        ageRangeMax: foundingMembers.ageRangeMax,
-        status: foundingMembers.status,
-        ukRegion: foundingMembers.ukRegion,
+        id: foundingApplications.id,
+        gender: foundingApplications.gender,
+        dateOfBirth: foundingApplications.dateOfBirth,
+        seekingGender: foundingApplications.seekingGender,
+        ageRangeMin: foundingApplications.ageRangeMin,
+        ageRangeMax: foundingApplications.ageRangeMax,
+        status: foundingApplications.status,
+        ukRegion: foundingApplications.ukRegion,
       })
-      .from(foundingMembers);
+      .from(foundingApplications);
+
+    const members = raw.filter(
+      (m): m is MemberRow =>
+        Boolean(m.gender && m.dateOfBirth && m.ukRegion && m.seekingGender),
+    );
 
     // ── Status counts ─────────────────────────────────────────────────
     const statusCounts: Record<string, number> = {};
@@ -103,7 +111,9 @@ export async function GET() {
     }
 
     // ── Gender × age band (exclude declined) ──────────────────────────
-    const nonDeclined = members.filter((m) => m.status !== "declined");
+    const nonDeclined = members.filter(
+      (m) => m.status !== "declined" && m.status !== "closed" && m.status !== "draft",
+    );
     const ageBandGender: Record<string, Record<string, number>> = {};
     for (const m of nonDeclined) {
       const band = getAgeBand(m.dateOfBirth);
@@ -120,7 +130,7 @@ export async function GET() {
     }
 
     // ── Candidate depth ───────────────────────────────────────────────
-    const active = members.filter((m) => m.status === "active");
+    const active = members.filter((m) => m.status === "accepted");
     const candidateDepth = calcCandidateDepth(active);
 
     // ── 60:40 warnings ────────────────────────────────────────────────

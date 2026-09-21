@@ -19,3 +19,11 @@ node_modules/
 # Misc
 .DS_Store
 *.pem
+
+# Local photo / media uploads
+.data/
+
+# Unpacked Poly Haven sources; public GLBs are the shipped copies
+art/chapter-house/vendor/
+*.blend1
+art/chapter-house/build/verify-*.png

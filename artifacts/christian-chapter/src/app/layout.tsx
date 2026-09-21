@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { EB_Garamond, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
+import { SiteChrome } from "@/components/layout/site-chrome";
 
 const garamond = EB_Garamond({
   subsets: ["latin"],
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Christian Chapter",
   },
   description:
-    "Christian dating for your next chapter. Meet genuine Christian singles aged 40–70 who share your faith, values and hopes for what comes next. UK-wide, considered introductions.",
+    "Christian dating for your next chapter. Meet genuine Christian singles aged 40–70 who share your faith, values and hopes for what comes next. A UK founding cohort with considered introductions, when the community is ready.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://christianchapter.co.uk"
   ),
@@ -44,9 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en-GB" className={`${garamond.variable} ${grotesk.variable}`}>
       <body className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

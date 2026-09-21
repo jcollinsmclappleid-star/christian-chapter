@@ -1,66 +1,72 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db, foundingMembers, consentRecords } from "@/db";
+import { db, foundingApplications, consentRecords, users, auditEvents } from "@/db";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
+import { requireAdminApi } from "@/lib/admin-auth";
 
-// GET /api/admin/applications/:id — full profile
 export async function GET(
   _request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const auth = await requireAdminApi("applications.read");
+  if (!auth.session) return NextResponse.json({ error: auth.error }, { status: auth.status });
+
   const { id } = await params;
-  const memberId = Number(id);
-  if (isNaN(memberId)) {
+  const applicationId = Number(id);
+  if (isNaN(applicationId)) {
     return NextResponse.json({ error: "Invalid id." }, { status: 400 });
   }
 
-  try {
-    const [member] = await db
-      .select()
-      .from(foundingMembers)
-      .where(eq(foundingMembers.id, memberId))
-      .limit(1);
+  const [app] = await db
+    .select()
+    .from(foundingApplications)
+    .where(eq(foundingApplications.id, applicationId))
+    .limit(1);
+  if (!app) return NextResponse.json({ error: "Not found." }, { status: 404 });
 
-    if (!member) {
-      return NextResponse.json({ error: "Not found." }, { status: 404 });
-    }
+  const [user] = await db.select().from(users).where(eq(users.id, app.userId)).limit(1);
+  const consents = await db
+    .select()
+    .from(consentRecords)
+    .where(eq(consentRecords.userId, app.userId))
+    .orderBy(consentRecords.grantedAt);
 
-    const consents = await db
-      .select()
-      .from(consentRecords)
-      .where(eq(consentRecords.foundingMemberId, memberId))
-      .orderBy(consentRecords.grantedAt);
-
-    return NextResponse.json({ member, consents });
-  } catch (err) {
-    console.error("[admin/applications/:id GET]", err);
-    return NextResponse.json({ error: "Failed to load profile." }, { status: 500 });
-  }
+  return NextResponse.json({ application: app, user, consents });
 }
 
 const PatchSchema = z.object({
-  status: z.enum(["pending", "active", "flagged", "declined"]).optional(),
+  status: z
+    .enum([
+      "draft",
+      "submitted",
+      "in_review",
+      "accepted",
+      "waitlisted",
+      "flagged",
+      "declined",
+      "closure_requested",
+      "closed",
+    ])
+    .optional(),
   internalNotes: z.string().max(5000).optional(),
 });
 
-// PATCH /api/admin/applications/:id — update status and/or notes
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const auth = await requireAdminApi("applications.review");
+  if (!auth.session) return NextResponse.json({ error: auth.error }, { status: auth.status });
+
   const { id } = await params;
-  const memberId = Number(id);
-  if (isNaN(memberId)) {
+  const applicationId = Number(id);
+  if (isNaN(applicationId)) {
     return NextResponse.json({ error: "Invalid id." }, { status: 400 });
   }
 
-  const body = await request.json().catch(() => null);
-  const parse = PatchSchema.safeParse(body);
+  const parse = PatchSchema.safeParse(await request.json().catch(() => null));
   if (!parse.success) {
-    return NextResponse.json(
-      { error: "Invalid request.", issues: parse.error.issues },
-      { status: 422 }
-    );
+    return NextResponse.json({ error: "Invalid request." }, { status: 422 });
   }
 
   const { status, internalNotes } = parse.data;
@@ -68,37 +74,31 @@ export async function PATCH(
     return NextResponse.json({ error: "Nothing to update." }, { status: 400 });
   }
 
-  const updates: Partial<typeof foundingMembers.$inferInsert> = {
+  const updates: Partial<typeof foundingApplications.$inferInsert> = {
     updatedAt: new Date(),
   };
   if (status) {
     updates.status = status;
     updates.reviewedAt = new Date();
   }
-  if (internalNotes !== undefined) {
-    updates.internalNotes = internalNotes;
-  }
+  if (internalNotes !== undefined) updates.internalNotes = internalNotes;
 
-  try {
-    const [updated] = await db
-      .update(foundingMembers)
-      .set(updates)
-      .where(eq(foundingMembers.id, memberId))
-      .returning({
-        id: foundingMembers.id,
-        status: foundingMembers.status,
-        reviewedAt: foundingMembers.reviewedAt,
-        internalNotes: foundingMembers.internalNotes,
-        updatedAt: foundingMembers.updatedAt,
-      });
+  const [updated] = await db
+    .update(foundingApplications)
+    .set(updates)
+    .where(eq(foundingApplications.id, applicationId))
+    .returning();
 
-    if (!updated) {
-      return NextResponse.json({ error: "Not found." }, { status: 404 });
-    }
+  if (!updated) return NextResponse.json({ error: "Not found." }, { status: 404 });
 
-    return NextResponse.json({ ok: true, ...updated });
-  } catch (err) {
-    console.error("[admin/applications/:id PATCH]", err);
-    return NextResponse.json({ error: "Update failed." }, { status: 500 });
-  }
+  await db.insert(auditEvents).values({
+    actorType: "admin",
+    actorId: auth.session.admin.email,
+    action: "application_status_updated",
+    entityType: "founding_application",
+    entityId: String(applicationId),
+    metadata: { status, internalNotes: internalNotes !== undefined },
+  });
+
+  return NextResponse.json({ ok: true, ...updated });
 }

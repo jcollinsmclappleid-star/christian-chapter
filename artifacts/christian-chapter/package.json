@@ -8,21 +8,33 @@
     "start": "next start --port ${PORT:-3000}",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test src/lib/age.test.ts src/lib/submit-schema.test.ts src/lib/legal-content.test.ts src/lib/admin-status.test.ts src/lib/profile/schema.test.ts src/lib/profile/preview.test.ts src/lib/dev/seed-specs.test.ts src/db/migrations.test.ts src/lib/matching/engine.test.ts src/lib/matching/activity.test.ts src/lib/matching/connections.test.ts src/lib/chapter-house/house-runtime.test.ts",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node ./scripts/apply-migrations.mjs",
+    "db:migrate:fnd01": "node ./scripts/apply-fnd01.mjs",
+    "db:migrate:platform": "node ./scripts/apply-platform.mjs",
+    "db:seed": "node --env-file=.env.local ./scripts/seed.mjs",
+    "assets:chapter-house": "node ./scripts/build-chapter-house.mjs",
+    "assets:furnishings": "node ./scripts/fetch-house-furnishings.mjs"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.45.2",
     "framer-motion": "^12.23.24",
+    "gsap": "^3.15.0",
     "iron-session": "^9.0.1",
     "lucide-react": "^0.545.0",
     "next": "^15.3.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tailwind-merge": "^3.3.1",
+    "three": "^0.180.0",
+    "ws": "^8.18.3",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -30,6 +42,7 @@
     "@types/node": "^25.3.3",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "@types/ws": "^8.18.1",
     "drizzle-kit": "^0.31.1",
     "tailwindcss": "^4.1.14",
     "typescript": "^5.7.3"

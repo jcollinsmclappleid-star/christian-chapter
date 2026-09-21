@@ -1,6 +1,7 @@
 import {
   pgTable,
   serial,
+  uuid,
   varchar,
   text,
   boolean,
@@ -48,13 +49,17 @@ export const foundingMembers = pgTable("founding_members", {
 
 export const consentRecords = pgTable("consent_records", {
   id: serial("id").primaryKey(),
-  foundingMemberId: integer("founding_member_id")
-    .references(() => foundingMembers.id, { onDelete: "cascade" })
-    .notNull(),
+  foundingMemberId: integer("founding_member_id").references(
+    () => foundingMembers.id,
+    { onDelete: "cascade" },
+  ),
+  userId: uuid("user_id"),
   consentType: varchar("consent_type", { length: 100 }).notNull(),
   consentVersion: varchar("consent_version", { length: 50 }).notNull(),
   granted: boolean("granted").notNull(),
   grantedAt: timestamp("granted_at").defaultNow().notNull(),
+  withdrawnAt: timestamp("withdrawn_at"),
+  source: varchar("source", { length: 80 }),
   ipAddress: varchar("ip_address", { length: 45 }),
   userAgent: text("user_agent"),
 });

@@ -1,22 +1,18 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { requireAdminSession } from "@/lib/admin-session";
-import { db, foundingMembers, consentRecords } from "@/db";
-import { eq } from "drizzle-orm";
+import { db, foundingApplications, consentRecords, users } from "@/db";
+import { eq, desc } from "drizzle-orm";
+import { getAge } from "@/lib/age";
 import { StatusBadge } from "../../_components/status-badge";
 import { AdminPanel } from "./_components/admin-panel";
 
 export const metadata: Metadata = { title: "Application Detail" };
 
-function getAge(dob: string): number {
-  const birth = new Date(dob);
-  const today = new Date();
-  let age = today.getFullYear() - birth.getFullYear();
-  if (
-    today.getMonth() < birth.getMonth() ||
-    (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())
-  ) age--;
-  return age;
+function getAgeLabel(dob: string | null): string {
+  if (!dob) return "—";
+  const age = getAge(dob);
+  return age === null ? dob : `${dob} (age ${age})`;
 }
 
 function fmtDate(val: Date | string): string {
@@ -64,13 +60,19 @@ export default async function ApplicationDetailPage({
   const memberId = Number(id);
   if (isNaN(memberId)) notFound();
 
-  const [members, consents] = await Promise.all([
-    db.select().from(foundingMembers).where(eq(foundingMembers.id, memberId)).limit(1),
-    db.select().from(consentRecords).where(eq(consentRecords.foundingMemberId, memberId)).orderBy(consentRecords.grantedAt),
+  const [applications] = await Promise.all([
+    db.select().from(foundingApplications).where(eq(foundingApplications.id, memberId)).limit(1),
   ]);
 
-  const m = members[0];
+  const m = applications[0];
   if (!m) notFound();
+
+  const [user] = await db.select().from(users).where(eq(users.id, m.userId)).limit(1);
+  const consents = await db
+    .select()
+    .from(consentRecords)
+    .where(eq(consentRecords.userId, m.userId))
+    .orderBy(desc(consentRecords.grantedAt));
 
   type EssentialItem = { factor: string; label: string; tier: string };
   const essentials = (m.essentials as EssentialItem[] | null) ?? [];
@@ -83,12 +85,17 @@ export default async function ApplicationDetailPage({
           <a href="/admin/applications" className="text-[12px] text-stone underline underline-offset-2 hover:text-plum font-sans">
             ← Applications
           </a>
-          <h1 className="font-serif text-plum text-3xl mt-2">{m.firstName}</h1>
-          <p className="text-[13px] text-stone font-sans mt-1">{m.email}</p>
+          <h1 className="font-serif text-plum text-3xl mt-2">{m.firstName ?? user?.firstName ?? "Application"}</h1>
+          <p className="text-[13px] text-stone font-sans mt-1">{user?.email ?? "—"}</p>
           <div className="flex items-center gap-3 mt-2">
             <StatusBadge status={m.status} />
-            <span className="text-[12px] text-stone font-sans">Submitted {fmtDate(m.createdAt)}</span>
+            <span className="text-[12px] text-stone font-sans">
+              {m.submittedAt ? `Submitted ${fmtDate(m.submittedAt)}` : `Updated ${fmtDate(m.updatedAt)}`}
+            </span>
           </div>
+          {m.hiddenAt && (
+            <p className="text-[12px] text-oxblood font-sans mt-2">Hidden from member view {fmtDate(m.hiddenAt)}</p>
+          )}
         </div>
       </div>
 
@@ -98,23 +105,25 @@ export default async function ApplicationDetailPage({
           <Section title="Account">
             <dl>
               <Field label="First name" value={m.firstName} />
-              <Field label="Email" value={m.email} />
+              <Field label="Email" value={user?.email} />
+              <Field label="Account status" value={user?.status} />
+              <Field label="Email verified" value={user?.emailVerifiedAt ? fmtDate(user.emailVerifiedAt) : "Not verified"} />
               <Field label="Marketing consent" value={m.marketingConsent ? "Yes" : "No"} />
             </dl>
           </Section>
 
           <Section title="About you">
             <dl>
-              <Field label="Date of birth" value={`${m.dateOfBirth} (age ${getAge(m.dateOfBirth)})`} />
+              <Field label="Date of birth" value={getAgeLabel(m.dateOfBirth)} />
               <Field label="Gender" value={m.gender} />
-              <Field label="Seeking" value={m.seekingGender.join(", ")} />
+              <Field label="Seeking" value={m.seekingGender?.join(", ")} />
             </dl>
           </Section>
 
           <Section title="Location">
             <dl>
               <Field label="UK region" value={m.ukRegion} />
-              <Field label="Travel radius" value={`${m.travelRadiusMiles} miles`} />
+              <Field label="Travel radius" value={m.travelRadiusMiles != null ? `${m.travelRadiusMiles} miles` : null} />
             </dl>
           </Section>
 
@@ -215,8 +224,8 @@ export default async function ApplicationDetailPage({
                         <td className="px-3 py-2 text-plum">{c.consentType}</td>
                         <td className="px-3 py-2 text-stone">{c.consentVersion}</td>
                         <td className="px-3 py-2">
-                          <span className={c.granted ? "text-evergreen" : "text-oxblood"}>
-                            {c.granted ? "Yes" : "No"}
+                          <span className={c.granted && !c.withdrawnAt ? "text-evergreen" : "text-oxblood"}>
+                            {c.granted && !c.withdrawnAt ? "Yes" : "Withdrawn / no"}
                           </span>
                         </td>
                         <td className="px-3 py-2 text-stone">{fmtDate(c.grantedAt)}</td>

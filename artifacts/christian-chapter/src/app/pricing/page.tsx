@@ -1,5 +1,6 @@
 import { LinkButton } from "@/components/ui/button";
 import { buildMetadata } from "@/lib/metadata";
+import { siteConfig } from "@/lib/site-config";
 import { CheckCircle } from "lucide-react";
 
 export const metadata = buildMetadata({
@@ -137,8 +138,10 @@ export default function PricingPage() {
           </div>
 
           <p className="text-[13px] text-stone text-center">
-            We will announce pricing and give founding members advance notice before any paid tier goes live.
-            All future prices will include UK VAT.
+            We will announce pricing and give founding applicants advance notice before any paid tier goes live.
+            {siteConfig.vatRegistered
+              ? " Published prices include UK VAT where applicable."
+              : " We do not publish a VAT number until the organisation is registered."}
           </p>
         </div>
       </section>

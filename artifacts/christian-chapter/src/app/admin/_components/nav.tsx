@@ -1,11 +1,14 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Users, LogOut } from "lucide-react";
+import { LayoutDashboard, Users, LogOut, Archive, Image, Heart } from "lucide-react";
 
 const navLinks = [
-  { href: "/admin/dashboard", label: "Cohort Dashboard", icon: LayoutDashboard },
+  { href: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/applications", label: "Applications", icon: Users },
+  { href: "/admin/profiles", label: "Profiles", icon: Image },
+  { href: "/admin/matching", label: "Introductions", icon: Heart },
+  { href: "/admin/closures", label: "Closures", icon: Archive },
 ];
 
 export function AdminNav() {

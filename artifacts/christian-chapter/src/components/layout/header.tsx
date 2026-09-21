@@ -1,57 +1,68 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LinkButton } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
-const navLinks = [
+const publicLinks = [
   { href: "/how-it-works", label: "How it works" },
   { href: "/safety", label: "Safety" },
-  { href: "/pricing", label: "Pricing" },
+];
+
+const memberLinks = [
+  { href: "/introductions", label: "Introductions" },
+  { href: "/connections", label: "Connections" },
+  { href: "/profile", label: "Profile" },
+  { href: "/account", label: "Account" },
 ];
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((res) => res.json())
+      .then((json) => setSignedIn(Boolean(json.signedIn)))
+      .catch(() => undefined);
+  }, []);
+
+  const links = signedIn ? memberLinks : publicLinks;
 
   return (
     <header className="sticky top-0 z-50 bg-ivory/95 backdrop-blur-sm border-b border-border">
-      <div className="mx-auto max-w-6xl px-6 flex items-center justify-between h-16 md:h-18">
-        {/* Logo */}
+      <div className="mx-auto max-w-5xl px-6 flex items-center justify-between h-16 md:h-[72px]">
         <a href="/" className="flex flex-col leading-none group">
-          <span className="font-serif text-[1.1rem] tracking-tight text-plum group-hover:text-oxblood transition-colors">
+          <span className="font-serif text-[1.15rem] tracking-tight text-plum group-hover:text-oxblood transition-colors">
             Christian Chapter
           </span>
-          <span className="text-[10px] tracking-[0.18em] uppercase text-stone font-sans mt-0.5">
-            UK Christian dating
+          <span className="text-[10px] tracking-[0.16em] uppercase text-stone font-sans mt-0.5">
+            In faith · 40+ · UK
           </span>
         </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
-          {navLinks.map((link) => (
+        <nav className="hidden md:flex items-center gap-7" aria-label="Main navigation">
+          {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-[14px] text-plum-muted hover:text-plum transition-colors tracking-wide"
+              className="text-[14px] text-plum-muted hover:text-plum transition-colors"
             >
               {link.label}
             </a>
           ))}
-          <a
-            href="/register"
-            className="text-[14px] text-plum-muted hover:text-plum transition-colors tracking-wide"
-          >
-            Sign in
-          </a>
+          {!signedIn && (
+            <a href="/sign-in" className="text-[14px] text-plum-muted hover:text-plum transition-colors">
+              Sign in
+            </a>
+          )}
           <LinkButton href="/register" size="sm" variant="primary">
-            Join free
+            {signedIn ? "Your application" : "Begin"}
           </LinkButton>
         </nav>
 
-        {/* Mobile hamburger */}
         <button
-          className="md:hidden p-2 rounded-md text-plum hover:bg-ivory-dark transition-colors"
+          className="md:hidden min-h-[44px] min-w-[44px] inline-flex items-center justify-center p-2 rounded-md text-plum hover:bg-ivory-dark"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
@@ -60,29 +71,32 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile nav drawer */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-ivory px-6 py-6 space-y-4">
-          {navLinks.map((link) => (
+        <div className="md:hidden border-t border-border bg-ivory px-6 py-5 space-y-1">
+          {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="block text-[16px] text-plum py-2 border-b border-border last:border-0"
+              className="block text-[17px] text-plum py-3 border-b border-border"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
             </a>
           ))}
-          <a
-            href="/register"
-            className="block text-[16px] text-plum-muted py-2"
-            onClick={() => setMobileOpen(false)}
-          >
-            Sign in
-          </a>
-          <LinkButton href="/register" variant="primary" fullWidth size="lg">
-            Join free
-          </LinkButton>
+          {!signedIn && (
+            <a
+              href="/sign-in"
+              className="block text-[17px] text-plum-muted py-3"
+              onClick={() => setMobileOpen(false)}
+            >
+              Sign in
+            </a>
+          )}
+          <div className="pt-4">
+            <LinkButton href="/register" variant="primary" fullWidth size="lg">
+              {signedIn ? "Your application" : "Begin"}
+            </LinkButton>
+          </div>
         </div>
       )}
     </header>

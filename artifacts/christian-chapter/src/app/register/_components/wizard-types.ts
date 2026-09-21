@@ -1,7 +1,13 @@
 // Founding member wizard — shared types
 
+import {
+  POLICY_VERSION,
+  RELIGIOUS_CONSENT_VERSION,
+} from "@/lib/site-config";
+
+export { RELIGIOUS_CONSENT_VERSION, POLICY_VERSION };
+
 export const WIZARD_STORAGE_KEY = "cc_wizard_v1";
-export const RELIGIOUS_CONSENT_VERSION = "2025-01";
 export const TOTAL_STEPS = 10;
 
 export type EssentialTier = "essential" | "preferred" | "open";
@@ -13,6 +19,7 @@ export interface EssentialFactor {
 }
 
 export type WizardData = {
+  eligibilityAcknowledged: boolean;
   // Step 2: Account
   firstName: string;
   email: string;
@@ -53,9 +60,11 @@ export type WizardData = {
   storyPrompt3: string;
   priorities: string[];
   photoConsent: boolean;
+  termsAccepted: boolean;
 };
 
 export const defaultWizardData: WizardData = {
+  eligibilityAcknowledged: false,
   firstName: "",
   email: "",
   marketingConsent: false,
@@ -87,6 +96,7 @@ export const defaultWizardData: WizardData = {
   storyPrompt3: "",
   priorities: [],
   photoConsent: false,
+  termsAccepted: false,
 };
 
 export interface StepProps {

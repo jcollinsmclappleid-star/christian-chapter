@@ -2,6 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
 import { sessionOptions, type AdminSession } from "@/lib/admin-session";
+import {
+  allowStaffPasswordLogin,
+  lookupStaffByEmail,
+  upsertBootstrapAdministrator,
+} from "@/lib/admin-auth";
+import { clientKey, rateLimit } from "@/lib/rate-limit";
 import { z } from "zod";
 
 const LoginSchema = z.object({
@@ -10,6 +16,14 @@ const LoginSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
+  const limited = rateLimit(clientKey(request, "admin-login"), 8, 15 * 60 * 1000);
+  if (!limited.ok) {
+    return NextResponse.json(
+      { error: "Too many attempts. Please wait and try again." },
+      { status: 429, headers: { "Retry-After": String(limited.retryAfterSec) } },
+    );
+  }
+
   const body = await request.json().catch(() => null);
   const parse = LoginSchema.safeParse(body);
   if (!parse.success) {
@@ -29,12 +43,19 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Constant-time comparison to prevent timing attacks
-  const emailMatch = email.toLowerCase() === adminEmail.toLowerCase();
   const passwordMatch = password === adminPassword;
+  const bootstrapMatch =
+    passwordMatch && email.toLowerCase() === adminEmail.toLowerCase();
 
-  if (!emailMatch || !passwordMatch) {
-    // Artificial delay to slow brute-force
+  let staff = bootstrapMatch
+    ? await upsertBootstrapAdministrator(adminEmail)
+    : null;
+
+  if (!staff && passwordMatch && allowStaffPasswordLogin()) {
+    staff = await lookupStaffByEmail(email);
+  }
+
+  if (!staff) {
     await new Promise((r) => setTimeout(r, 300));
     return NextResponse.json({ error: "Invalid credentials." }, { status: 401 });
   }
@@ -43,8 +64,13 @@ export async function POST(request: NextRequest) {
     await cookies(),
     sessionOptions
   );
-  session.admin = { email: adminEmail, loggedIn: true };
+  session.admin = {
+    email: staff.email,
+    loggedIn: true,
+    role: staff.role,
+    staffUserId: staff.staffUserId,
+  };
   await session.save();
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, role: staff.role });
 }

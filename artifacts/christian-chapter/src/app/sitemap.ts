@@ -15,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/christian-dating/over-60", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/christian-dating/after-divorce", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/christian-dating/after-bereavement", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/christian-dating/remarriage", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/guides/safety/romance-fraud", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/guides/christian-relationships/dating-across-denominations", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/privacy", priority: 0.4, changeFrequency: "monthly" as const },
+    { path: "/terms", priority: 0.4, changeFrequency: "monthly" as const },
+    { path: "/cookies", priority: 0.4, changeFrequency: "yearly" as const },
   ];
 
   return pages.map(({ path, priority, changeFrequency }) => ({

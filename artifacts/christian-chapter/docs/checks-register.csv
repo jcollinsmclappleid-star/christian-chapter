@@ -1,0 +1,11 @@
+id,gate,check,method,status
+FND-G-1,FND-G,Migrations 0001-0004 exist with down files,sql files,VERIFIED
+FND-G-2,FND-G,Unverified waitlist emails stay unverified,migrations.test.ts,VERIFIED
+FND-G-3,FND-G,Faith not stored without consent,submit-schema.test.ts,VERIFIED
+FND-G-4,FND-G,Live apply on target database,apply scripts,BLOCKED_OWNER
+FND-G-5,FND-G,Profile routes respect feature flags,require-feature,IN_PROGRESS
+MEM-G-1,MEM-G,Preview uses authorised serializer,profile/preview page,IN_PROGRESS
+MEM-G-2,MEM-G,Visibility enforced server-side,preview.ts tests,IN_PROGRESS
+MEM-G-3,MEM-G,changes_required not collapsed to draft,admin review,IN_PROGRESS
+MEM-G-4,MEM-G,Synthetic seed blocked in production,runtime.ts,VERIFIED
+MEM-G-5,MEM-G,Sandbox verification not labelled genuine,verify UI copy,IN_PROGRESS

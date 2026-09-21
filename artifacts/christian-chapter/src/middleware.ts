@@ -3,8 +3,17 @@ import { NextRequest, NextResponse } from "next/server";
 import type { AdminSession } from "@/lib/admin-session";
 
 const COOKIE_NAME = "cc_admin";
-const SESSION_SECRET =
-  process.env.SESSION_SECRET ?? "dev-placeholder-must-be-32-chars-long!!";
+
+function sessionPassword(): string {
+  const secret = process.env.SESSION_SECRET;
+  if (secret && secret.length >= 32) return secret;
+  if (process.env.NODE_ENV === "production") {
+    throw new Error("SESSION_SECRET must be set to 32+ characters in production.");
+  }
+  return "dev-placeholder-must-be-32-chars-long!!";
+}
+
+const SESSION_SECRET = sessionPassword();
 
 const PUBLIC_ADMIN_PATHS = ["/admin/login", "/api/admin/login"];
 

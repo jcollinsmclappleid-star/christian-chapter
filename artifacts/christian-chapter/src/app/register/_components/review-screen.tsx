@@ -1,6 +1,7 @@
 "use client";
 
 import type { WizardData } from "./wizard-types";
+import { POLICY_VERSION, RELIGIOUS_CONSENT_VERSION } from "./wizard-types";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -10,6 +11,7 @@ interface ReviewScreenProps {
   onSubmit: () => void;
   submitting: boolean;
   submitError: string | null;
+  onTermsChange: (accepted: boolean) => void;
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -65,6 +67,7 @@ export function ReviewScreen({
   onSubmit,
   submitting,
   submitError,
+  onTermsChange,
 }: ReviewScreenProps) {
   const STORY_PROMPT_LABELS = [
     "Prompt 1",
@@ -215,13 +218,37 @@ export function ReviewScreen({
       </div>
 
       {/* Consent statement */}
-      <div className="bg-ivory-dark border border-border rounded-lg px-5 py-4 mb-8">
+      <div className="bg-ivory-dark border border-border rounded-lg px-5 py-4 mb-8 space-y-4">
         <p className="text-[13px] text-plum-muted leading-6">
-          By submitting, you confirm your answers are accurate and that you have
-          read and agreed to our Privacy Policy and Terms of Use. Your faith
-          information is processed under your explicit consent, which was
-          recorded when you completed the faith step.
+          You are submitting a founding application, not joining a live
+          introductions marketplace. Policy versions: Privacy {POLICY_VERSION},
+          Terms {POLICY_VERSION}. Religious-belief consent version{" "}
+          {RELIGIOUS_CONSENT_VERSION}.
         </p>
+        <p className="text-[13px] text-plum-muted leading-6">
+          Read the{" "}
+          <a href="/privacy" className="underline text-plum" target="_blank" rel="noreferrer">
+            Privacy policy
+          </a>
+          {" "}and{" "}
+          <a href="/terms" className="underline text-plum" target="_blank" rel="noreferrer">
+            Terms of use
+          </a>{" "}
+          before you agree.
+        </p>
+        <label className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            checked={data.termsAccepted}
+            onChange={(e) => onTermsChange(e.target.checked)}
+            className="mt-1 w-5 h-5 accent-oxblood"
+            aria-required="true"
+          />
+          <span className="text-[14px] text-plum leading-6">
+            I have read and agree to the Privacy policy and Terms of use. I
+            confirm my answers are accurate.
+          </span>
+        </label>
       </div>
 
       {/* Error */}
@@ -242,10 +269,10 @@ export function ReviewScreen({
         </button>
         <button
           onClick={onSubmit}
-          disabled={submitting}
+          disabled={submitting || !data.termsAccepted}
           className="inline-flex items-center gap-2 min-h-[52px] px-8 text-[15px] font-sans font-medium bg-oxblood text-ivory rounded-md hover:bg-oxblood-hover transition-colors active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {submitting ? "Submitting…" : "Submit my profile →"}
+          {submitting ? "Submitting…" : "Submit my application →"}
         </button>
       </div>
     </div>

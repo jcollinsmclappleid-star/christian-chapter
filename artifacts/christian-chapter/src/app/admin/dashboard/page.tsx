@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { AlertTriangle, Users, Clock, CheckCircle, XCircle, Flag } from "lucide-react";
 import { requireAdminSession } from "@/lib/admin-session";
-import { db, foundingMembers } from "@/db";
+import { db, foundingApplications } from "@/db";
 
 export const metadata: Metadata = { title: "Cohort Dashboard" };
 
@@ -250,19 +250,33 @@ export default async function DashboardPage() {
   await requireAdminSession();
 
   // Single query — all fields needed for cohort analytics
-  const members = await db
+  const raw = await db
     .select({
-      id: foundingMembers.id,
-      gender: foundingMembers.gender,
-      dateOfBirth: foundingMembers.dateOfBirth,
-      seekingGender: foundingMembers.seekingGender,
-      ageRangeMin: foundingMembers.ageRangeMin,
-      ageRangeMax: foundingMembers.ageRangeMax,
-      status: foundingMembers.status,
-      ukRegion: foundingMembers.ukRegion,
-      createdAt: foundingMembers.createdAt,
+      id: foundingApplications.id,
+      gender: foundingApplications.gender,
+      dateOfBirth: foundingApplications.dateOfBirth,
+      seekingGender: foundingApplications.seekingGender,
+      ageRangeMin: foundingApplications.ageRangeMin,
+      ageRangeMax: foundingApplications.ageRangeMax,
+      status: foundingApplications.status,
+      ukRegion: foundingApplications.ukRegion,
+      createdAt: foundingApplications.createdAt,
     })
-    .from(foundingMembers);
+    .from(foundingApplications);
+
+  const members = raw.filter(
+    (m): m is {
+      id: number;
+      gender: string;
+      dateOfBirth: string;
+      seekingGender: string[];
+      ageRangeMin: number | null;
+      ageRangeMax: number | null;
+      status: string;
+      ukRegion: string;
+      createdAt: Date;
+    } => Boolean(m.gender && m.dateOfBirth && m.ukRegion && m.seekingGender),
+  );
 
   // ── Status counts ──────────────────────────────────────────────────────────
   const statusCounts: Record<string, number> = {};
@@ -271,7 +285,9 @@ export default async function DashboardPage() {
   }
 
   // ── Balance breakdown (exclude declined) ──────────────────────────────────
-  const nonDeclined = members.filter((m) => m.status !== "declined");
+  const nonDeclined = members.filter(
+    (m) => m.status !== "declined" && m.status !== "closed" && m.status !== "draft",
+  );
   const ageBandGender: Record<string, Record<string, number>> = {};
   const regionGender: Record<string, Record<string, number>> = {};
   for (const m of nonDeclined) {
@@ -283,7 +299,7 @@ export default async function DashboardPage() {
   }
 
   // ── Candidate depth — median + lower quartile ──────────────────────────────
-  const active = members.filter((m) => m.status === "active");
+  const active = members.filter((m) => m.status === "accepted");
   const depthStats = calcDepthStats(active);
 
   // ── 60:40 warnings ────────────────────────────────────────────────────────
@@ -311,8 +327,8 @@ export default async function DashboardPage() {
   }
 
   const statusCards = [
-    { key: "pending", label: "Pending review", icon: Clock, accent: "text-brass" },
-    { key: "active", label: "Active", icon: CheckCircle, accent: "text-evergreen" },
+    { key: "submitted", label: "Submitted", icon: Clock, accent: "text-brass" },
+    { key: "accepted", label: "Accepted", icon: CheckCircle, accent: "text-evergreen" },
     { key: "flagged", label: "Flagged", icon: Flag, accent: "text-oxblood" },
     { key: "declined", label: "Declined", icon: XCircle, accent: "text-stone" },
   ];

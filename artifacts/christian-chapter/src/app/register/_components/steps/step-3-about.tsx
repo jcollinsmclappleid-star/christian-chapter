@@ -1,20 +1,11 @@
 "use client";
 
+import { getAge } from "@/lib/age";
+import { MINIMUM_AGE } from "@/lib/site-config";
 import type { StepProps } from "../wizard-types";
 
 const genders = ["Man", "Woman", "Non-binary", "Prefer not to say"];
 const seeking = ["Men", "Women", "Open to both"];
-
-function age(dob: string): number | null {
-  if (!dob) return null;
-  const today = new Date();
-  const birth = new Date(dob);
-  if (isNaN(birth.getTime())) return null;
-  let age = today.getFullYear() - birth.getFullYear();
-  const m = today.getMonth() - birth.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
-  return age;
-}
 
 function OptionButton({
   label,
@@ -41,7 +32,7 @@ function OptionButton({
 }
 
 export function Step3About({ data, update }: StepProps) {
-  const calculatedAge = age(data.dateOfBirth);
+  const calculatedAge = getAge(data.dateOfBirth);
 
   const toggleSeeking = (value: string) => {
     const current = data.seekingGender;
@@ -65,7 +56,6 @@ export function Step3About({ data, update }: StepProps) {
       </p>
 
       <div className="space-y-9">
-        {/* Date of birth */}
         <div>
           <label htmlFor="dob" className="block text-[15px] font-sans font-medium text-plum mb-2">
             Date of birth
@@ -87,11 +77,17 @@ export function Step3About({ data, update }: StepProps) {
             )}
           </div>
           <p className="mt-2 text-[12px] text-stone">
-            Used to calculate your age for matching. Not displayed publicly.
+            Used to confirm you are {MINIMUM_AGE} or over. Not displayed to other
+            members. There is no maximum age.
           </p>
+          {calculatedAge !== null && calculatedAge < MINIMUM_AGE && (
+            <p className="mt-3 text-[14px] text-oxblood leading-6" role="alert">
+              Christian Chapter is for people aged {MINIMUM_AGE} and over. You can
+              leave this application here — there is nothing further to complete.
+            </p>
+          )}
         </div>
 
-        {/* Gender */}
         <fieldset>
           <legend className="block text-[15px] font-sans font-medium text-plum mb-3">
             I am a…
@@ -108,7 +104,6 @@ export function Step3About({ data, update }: StepProps) {
           </div>
         </fieldset>
 
-        {/* Who they're hoping to meet */}
         <fieldset>
           <legend className="block text-[15px] font-sans font-medium text-plum mb-3">
             I&rsquo;m hoping to meet… (select all that apply)

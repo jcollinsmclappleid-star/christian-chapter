@@ -15,7 +15,7 @@ const orgSchema = {
   name: "Christian Chapter",
   url: siteUrl,
   description:
-    "UK Christian dating service for singles aged 40–70. Considered introductions based on faith, life stage and intention.",
+    "UK founding cohort for Christian dating for adults aged 40 and over. Applications and review exist; member introductions are not live.",
   areaServed: "GB",
   knowsAbout: ["Christian dating", "Christian singles", "UK dating", "Faith-based relationships"],
 };
@@ -32,27 +32,27 @@ const breadcrumbSchema = {
 const faqs = [
   {
     q: "What makes Christian Chapter different from other Christian dating services?",
-    a: "Christian Chapter uses considered introductions rather than a browseable marketplace. We match based on faith alignment, life stage, intentions, family situation and practical distance — not just denomination. Every introduction comes with plain-language reasons. We remove inactive profiles so you only meet people who are genuinely available.",
+    a: "The product is designed around considered introductions rather than a browseable marketplace: faith, life stage, intentions and practical distance. That matching is not live yet. Today you can complete a founding application for a UK cohort of adults aged 40 and over.",
   },
   {
     q: "Do I have to be a regular churchgoer to join?",
-    a: "No. Christian Chapter is for people whose faith is meaningful to them and who want a partner who shares that faith — regardless of how they express it. Members range from weekly churchgoers to those with a private, daily faith. You set your own faith profile and preferences.",
+    a: "No. Christian Chapter is for people whose faith is meaningful to them and who want a partner who shares that faith. The founding application asks how you practise. Those answers are not shown to other members today.",
   },
   {
     q: "What age range is Christian Chapter for?",
-    a: "The service is designed for Christians primarily aged 40–70, though anyone 18 or over may join. The introduction system, profile questions and copy are designed with this life stage in mind — not as an afterthought.",
+    a: "The founding cohort is for adults aged 40 and over. There is no maximum age. The application, questions and copy are written for this life stage.",
   },
   {
     q: "Is it free to join?",
-    a: "Yes. Creating a profile and seeing how introductions work is free. A paid Member or Plus plan is needed to send and receive introductions and have unlimited conversations.",
+    a: "Yes. During the founding phase, joining and submitting an application is free. Paid Member or Plus plans are not on sale. We will tell founding applicants before anything changes.",
   },
   {
     q: "How do you handle inactive members?",
-    a: "Profiles inactive for 46 or more days are automatically removed from new introductions after reminder notices. This means you spend less time reaching out to people who are no longer engaging.",
+    a: "When introductions launch, the product is designed to remove long-inactive profiles after reminder notices. That behaviour is not operating yet because introductions are not live.",
   },
   {
     q: "Is my faith data kept private?",
-    a: "Yes. Your denomination, church details and faith profile are never shared publicly by default. We process religious belief data under explicit consent, separately captured at registration. You control what is visible to other members.",
+    a: "Religious-belief answers are collected only after a separate explicit consent, stored with a version, and can be withdrawn from your account. They are not published on a live member directory, because that directory does not exist yet.",
   },
 ];
 
@@ -66,6 +66,20 @@ export default function ChristianDatingPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map(({ q, a }) => ({
+              "@type": "Question",
+              name: q,
+              acceptedAnswer: { "@type": "Answer", text: a },
+            })),
+          }),
+        }}
       />
 
       {/* Hero */}
@@ -108,16 +122,16 @@ export default function ChristianDatingPage() {
             </div>
           </div>
           <div>
-            <h2 className="font-serif text-plum mb-5">How introductions work</h2>
+            <h2 className="font-serif text-plum mb-5">How introductions are designed to work</h2>
             <div className="space-y-4 text-[16px] text-plum-muted leading-7">
               <p>
-                You complete a profile covering your faith, your life now, and your hopes for what comes next. You set Essentials — preferences that are firm requirements — and Preferred factors that shape the quality of introductions.
+                You complete a founding application covering your faith, your life now, and your hopes for what comes next. You can set Essentials — preferences that would be firm requirements when matching exists.
               </p>
               <p>
-                We send three to seven introductions at a time, on a known cadence. Each comes with plain-language reasons: faith alignment, shared intentions, compatible life stage. No percentage, no score.
+                The product is designed to send a small set of introductions at a time, each with plain-language reasons. That cadence is not operating today. Submitting an application does not mean you will be shown people to meet.
               </p>
               <p>
-                You express interest, save for later, or decline — no reason required. If interest is mutual, you move to a private conversation.
+                Mutual interest, private conversation and calling are later product work. They are not available in the founding cohort.
               </p>
             </div>
           </div>
@@ -127,16 +141,16 @@ export default function ChristianDatingPage() {
       {/* Activity and safety policy */}
       <section className="section bg-ivory">
         <div className="mx-auto max-w-4xl px-6">
-          <h2 className="font-serif text-plum mb-5">Only active, verified members in your introductions</h2>
+          <h2 className="font-serif text-plum mb-5">Designed so introductions stay with people who are actually available</h2>
           <div className="space-y-4 text-[16px] text-plum-muted leading-7 max-w-[620px]">
             <p>
               A common frustration with dating services is reaching out and hearing nothing — not because the person isn&apos;t interested, but because they stopped using the service months ago.
             </p>
             <p>
-              Christian Chapter removes profiles from introductions after 46 days of inactivity. Members receive reminder notices before this happens. This means the people you see are genuinely available and engaged.
+              When introductions launch, the product is designed to remove profiles after 46 days of inactivity, with reminder notices first. That behaviour is not operating yet because introductions are not live.
             </p>
             <p>
-              Verification is required before introductions. Phone and selfie-liveness checks confirm that members are who they say they are.
+              Phone and selfie checks are planned before messaging. They are not required for a founding application today.
             </p>
           </div>
         </div>
@@ -153,6 +167,7 @@ export default function ChristianDatingPage() {
               { href: "/christian-dating/over-60", label: "Christian dating in your 60s", desc: "Security, companionship and shared values for the years ahead." },
               { href: "/christian-dating/after-divorce", label: "Christian dating after divorce", desc: "A sensitive, thoughtful guide to meeting someone new." },
               { href: "/christian-dating/after-bereavement", label: "Christian dating after bereavement", desc: "Grief, hope and the possibility of a second chapter." },
+              { href: "/christian-dating/remarriage", label: "Christian remarriage", desc: "Whether you would marry again, and how that is recorded on a founding application." },
             ].map(({ href, label, desc }) => (
               <a
                 key={href}

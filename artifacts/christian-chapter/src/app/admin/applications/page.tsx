@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { requireAdminSession } from "@/lib/admin-session";
-import { db, foundingMembers } from "@/db";
+import { db, foundingApplications, users } from "@/db";
 import { eq, desc, and } from "drizzle-orm";
+import { getAge } from "@/lib/age";
+import { ADMIN_STATUS_TABS, normalizeApplicationStatusFilter } from "@/lib/admin-status";
 import { StatusBadge } from "../_components/status-badge";
 import { FilterBar } from "./_components/filter-bar";
 
@@ -10,20 +12,10 @@ export const metadata: Metadata = { title: "Applications" };
 
 const PAGE_SIZE = 20;
 
-function getAge(dob: string): number {
-  const birth = new Date(dob);
-  const today = new Date();
-  let age = today.getFullYear() - birth.getFullYear();
-  if (
-    today.getMonth() < birth.getMonth() ||
-    (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())
-  )
-    age--;
-  return age;
-}
-
-function getAgeBand(dob: string): string {
+function getAgeBand(dob: string | null): string | null {
+  if (!dob) return null;
   const age = getAge(dob);
+  if (age === null) return null;
   if (age < 50) return "40s";
   if (age < 60) return "50s";
   if (age < 70) return "60s";
@@ -38,13 +30,7 @@ function fmtDate(iso: Date | string): string {
   });
 }
 
-const STATUS_TABS = [
-  { key: "all", label: "All" },
-  { key: "pending", label: "Pending" },
-  { key: "active", label: "Active" },
-  { key: "flagged", label: "Flagged" },
-  { key: "declined", label: "Declined" },
-];
+const STATUS_TABS = ADMIN_STATUS_TABS;
 
 export default async function ApplicationsPage({
   searchParams,
@@ -61,7 +47,7 @@ export default async function ApplicationsPage({
   await requireAdminSession();
 
   const params = await searchParams;
-  const status = params.status ?? "all";
+  const status = normalizeApplicationStatusFilter(params.status ?? "all");
   const page = Math.max(1, Number(params.page ?? "1"));
   const offset = (page - 1) * PAGE_SIZE;
   const gender = params.gender ?? "";
@@ -69,36 +55,32 @@ export default async function ApplicationsPage({
   const region = params.region ?? "";
   const tradition = params.tradition ?? "";
 
-  // Build SQL where conditions (gender, region, tradition — directly filterable)
   const conditions = [];
-  if (status !== "all") conditions.push(eq(foundingMembers.status, status));
-  if (gender) conditions.push(eq(foundingMembers.gender, gender));
-  if (region) conditions.push(eq(foundingMembers.ukRegion, region));
-  if (tradition) conditions.push(eq(foundingMembers.tradition, tradition));
+  if (status !== "all") conditions.push(eq(foundingApplications.status, status));
+  if (gender) conditions.push(eq(foundingApplications.gender, gender));
+  if (region) conditions.push(eq(foundingApplications.ukRegion, region));
+  if (tradition) conditions.push(eq(foundingApplications.tradition, tradition));
 
   const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
-  const baseSelect = {
-    id: foundingMembers.id,
-    firstName: foundingMembers.firstName,
-    email: foundingMembers.email,
-    dateOfBirth: foundingMembers.dateOfBirth,
-    gender: foundingMembers.gender,
-    ukRegion: foundingMembers.ukRegion,
-    tradition: foundingMembers.tradition,
-    ageRangeMin: foundingMembers.ageRangeMin,
-    ageRangeMax: foundingMembers.ageRangeMax,
-    status: foundingMembers.status,
-    createdAt: foundingMembers.createdAt,
-  };
-
-  // Fetch all matching rows (age band is computed, not stored — filter in TS)
-  // Fine for founding-phase cohort sizes
   let allRows = await db
-    .select(baseSelect)
-    .from(foundingMembers)
+    .select({
+      id: foundingApplications.id,
+      firstName: foundingApplications.firstName,
+      email: users.email,
+      dateOfBirth: foundingApplications.dateOfBirth,
+      gender: foundingApplications.gender,
+      ukRegion: foundingApplications.ukRegion,
+      tradition: foundingApplications.tradition,
+      ageRangeMin: foundingApplications.ageRangeMin,
+      ageRangeMax: foundingApplications.ageRangeMax,
+      status: foundingApplications.status,
+      createdAt: foundingApplications.createdAt,
+    })
+    .from(foundingApplications)
+    .innerJoin(users, eq(users.id, foundingApplications.userId))
     .where(whereClause)
-    .orderBy(desc(foundingMembers.createdAt));
+    .orderBy(desc(foundingApplications.createdAt));
 
   if (ageBand) {
     allRows = allRows.filter((r) => getAgeBand(r.dateOfBirth) === ageBand);
@@ -216,23 +198,25 @@ export default async function ApplicationsPage({
                     className="border-b border-border last:border-0 hover:bg-ivory-dark transition-colors"
                   >
                     <td className="px-4 py-3">
-                      <p className="font-medium text-plum">{row.firstName}</p>
+                      <p className="font-medium text-plum">{row.firstName ?? "—"}</p>
                       <p className="text-[11px] text-stone">{row.email}</p>
                     </td>
                     <td className="px-4 py-3 text-plum">
-                      {getAge(row.dateOfBirth)}
-                      <span className="text-[11px] text-stone ml-1">
-                        ({getAgeBand(row.dateOfBirth)})
-                      </span>
+                      {row.dateOfBirth ? getAge(row.dateOfBirth) ?? "—" : "—"}
+                      {row.dateOfBirth && getAgeBand(row.dateOfBirth) ? (
+                        <span className="text-[11px] text-stone ml-1">
+                          ({getAgeBand(row.dateOfBirth)})
+                        </span>
+                      ) : null}
                     </td>
                     <td className="px-4 py-3 text-plum max-w-[120px] truncate">
-                      {row.ukRegion}
+                      {row.ukRegion ?? "—"}
                     </td>
                     <td className="px-4 py-3 text-plum max-w-[120px] truncate">
-                      {row.tradition}
+                      {row.tradition ?? "—"}
                     </td>
                     <td className="px-4 py-3 text-plum">
-                      {row.gender}
+                      {row.gender ?? "—"}
                       {row.ageRangeMin && row.ageRangeMax
                         ? `, ${row.ageRangeMin}–${row.ageRangeMax}`
                         : ""}

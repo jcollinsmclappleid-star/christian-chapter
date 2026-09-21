@@ -72,9 +72,17 @@ export function Step2Account({ data, update }: StepProps) {
         </div>
 
         <p className="text-[12px] text-stone leading-5">
-          By continuing you agree that Christian Chapter may store your profile
-          data to provide the introduction service as described in our Privacy
-          Policy and Terms of Use.
+          By continuing you agree that Christian Chapter may store your account
+          and application data as described in our{" "}
+          <a href="/privacy" className="underline underline-offset-2 text-plum">
+            Privacy policy
+          </a>{" "}
+          and{" "}
+          <a href="/terms" className="underline underline-offset-2 text-plum">
+            Terms of use
+          </a>
+          . We will email you a one-time link to confirm this address before the
+          application can become active.
         </p>
       </div>
     </div>
