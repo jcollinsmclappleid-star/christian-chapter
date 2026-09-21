@@ -8,7 +8,6 @@ const nextConfig: NextConfig = {
     "bufferutil",
     "utf-8-validate",
   ],
-  transpilePackages: ["three", "@react-three/fiber", "@react-three/drei"],
   // Self-contained — no dependencies on Replit artifact routing
   // Connect via standard env vars: DATABASE_URL, RESEND_API_KEY, etc.
   images: {

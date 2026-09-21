@@ -1,5 +1,12 @@
 # Build journal
 
+## 2026-09-21 — Homepage conversion
+
+- Removed the Chapter House homepage, 3D runtime, posters, and `?house=` modals.
+- Replaced them with a product-led page and a labelled example introduction that is not a match.
+- Founding-stage customer copy now uses one explanation. Age confirmation is separate from that explanation.
+- Heading and link colours sit in the Tailwind base layer so ivory text wins on oxblood and evergreen.
+
 ## 2026-09-20 — FND-CHECK living plan
 
 - Created docs registers and ADRs under `docs/`.

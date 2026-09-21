@@ -1,6 +1,6 @@
 "use client";
 
-import { MINIMUM_AGE } from "@/lib/site-config";
+import { FOUNDING_MEMBER_COPY, MINIMUM_AGE } from "@/lib/site-config";
 import type { StepProps } from "../wizard-types";
 
 export function Step1Welcome({ data, update }: StepProps) {
@@ -17,8 +17,8 @@ export function Step1Welcome({ data, update }: StepProps) {
       <ul className="grid sm:grid-cols-3 gap-4 mb-10">
         {[
           { title: "Private", body: "Faith details are asked for with your consent, and never sold." },
-          { title: "Reviewed", body: "A person reads what you share before anyone is introduced." },
-          { title: "Unhurried", body: "No swipe deck. A few considered introductions, when ready." },
+          { title: "Reviewed", body: "Submitted profiles are checked as a quality and safety control before anyone is introduced." },
+          { title: "Unhurried", body: "No swipe deck. Introductions are finite, and only once a cohort can support them." },
         ].map((item) => (
           <li key={item.title} className="border-t border-oxblood/25 pt-4">
             <p className="font-sans font-semibold text-[15px] text-plum mb-1">{item.title}</p>
@@ -27,6 +27,7 @@ export function Step1Welcome({ data, update }: StepProps) {
         ))}
       </ul>
 
+      <p className="text-[15px] text-plum-muted leading-7 mb-6">{FOUNDING_MEMBER_COPY}</p>
       <label className="flex items-start gap-3 cursor-pointer rounded-lg border border-border-medium bg-ivory p-5">
         <input
           type="checkbox"
@@ -36,8 +37,7 @@ export function Step1Welcome({ data, update }: StepProps) {
           aria-required="true"
         />
         <span className="text-[15px] text-plum leading-6">
-          I am aged {MINIMUM_AGE} or over, and I understand this is a UK founding
-          cohort — not a live introductions marketplace yet.
+          I confirm I am aged {MINIMUM_AGE} or over.
         </span>
       </label>
     </div>

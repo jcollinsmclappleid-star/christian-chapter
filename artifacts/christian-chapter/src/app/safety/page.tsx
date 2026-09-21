@@ -1,5 +1,6 @@
 import { LinkButton } from "@/components/ui/button";
 import { buildMetadata } from "@/lib/metadata";
+import { FOUNDING_MEMBER_COPY } from "@/lib/site-config";
 import { Shield, AlertTriangle, Flag, FileText } from "lucide-react";
 
 export const metadata = buildMetadata({
@@ -138,13 +139,10 @@ export default function SafetyPage() {
 
       <section className="section bg-ivory-dark border-t border-border">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="font-serif text-plum mb-5">Join the founding cohort.</h2>
-          <p className="text-[17px] text-plum-muted mb-8 leading-7">
-            Free during this phase. Confirm your email. We will not pretend
-            introductions are live.
-          </p>
+          <h2 className="font-serif text-plum mb-5">Create your profile</h2>
+          <p className="text-[17px] text-plum-muted mb-8 leading-7">{FOUNDING_MEMBER_COPY}</p>
           <LinkButton href="/register" size="lg" variant="trust">
-            Begin your application
+            Create your profile
           </LinkButton>
         </div>
       </section>

@@ -17,3 +17,4 @@ MAT-01,MAT-01,Finite introductions,IMPLEMENTED_UNVERIFIED,"src/lib/matching/*,sr
 ACT-01,ACT-01,Activity bands,IMPLEMENTED_UNVERIFIED,"src/lib/matching/activity.ts,src/lib/jobs/runner.ts",unit + clocked job,activity.test.ts
 CON-01,CON-01,Interest save decline match closure,IMPLEMENTED_UNVERIFIED,"src/lib/matching/connections.ts,src/app/connections",unit + API,connections.test.ts
 PAY-01,PAY-01,Sandbox billing lifecycle,IN_PROGRESS,src/lib/providers/payments.ts,adapter,public checkout off
+HOME-01,SEO-01,Conversion homepage without Chapter House,IMPLEMENTED_UNVERIFIED,"src/app/page.tsx,src/components/home/example-introduction.tsx",unit + browser,homepage.test.ts

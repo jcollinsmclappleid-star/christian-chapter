@@ -1,6 +1,6 @@
 # Christian Chapter — living master build plan
 
-**Status date:** 20 September 2026  
+**Status date:** 21 September 2026  
 **Target:** complete development/staging platform. Public charging and real-member activation remain off.
 
 This file is the repository-owned contract. It supersedes “MEM-01 only” and waitlist-as-product readings. Admin stays lean (review / approve / message) until a later milestone needs more.
@@ -36,6 +36,10 @@ This file is the repository-owned contract. It supersedes “MEM-01 only” and 
 1. MSG-01 messaging between matched members
 2. TRU-01 verification / preventative safety
 3. Browser verification of introductions with a signed-in synthetic member
+
+## Homepage (21 September 2026)
+
+The Chapter House is removed. The public homepage is a conversion page: proposition, four-step explanation, a labelled example introduction from `src/lib/home/demo-fixture.ts`, founding-stage copy, and links into the existing register and sign-in journeys. `CHAPTER_HOUSE_RUNTIME_CONTRACT.md` is superseded for visual structure. Privacy, consent, and claim-integrity rules remain.
 
 ## Owner actions
 

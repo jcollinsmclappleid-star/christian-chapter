@@ -1,30 +1,15 @@
 # Chapter House runtime contract
 
-## Law
+**Superseded for homepage structure — 21 September 2026.**
 
-- 3D is decorative. DOM is the product.
-- The canvas is `aria-hidden`. Every destination is a labelled control.
-- Tiers: A live 3D, B reduced 3D, C designed posters.
-- Pause world motion while a product surface is open.
-- URL is the place: `?house=` and optional `?view=`.
-- No faith answers, emails, or fixture identities in the URL or analytics.
-- Meaningful H1, Begin your chapter, and Sign in render before the 3D chunk.
-- Synthetic demonstrations are labelled. They are not members.
+The Chapter House, its 3D runtime, poster fallbacks, room labels, and `?house=` product modals are no longer the homepage. Do not restore them as a scene, cutaway, or faux-3D environment.
 
-## Capability
+Old `?house=` and `?houseTier=` links are stripped. Room values (`table`, `library`, `path`, `garden`, `courtyard`, `membership`) scroll to `#how-it-works`.
 
-- `?houseTier=static` forces C.
-- `?houseTier=3d` requests A/B if WebGL is available.
-- Reduced motion and data-saver select C.
-- Three.js, R3F, Drei and GSAP load only on `/` for A/B.
+## Rules that still apply
 
-## Places
-
-`welcome` · `table` · `library` · `path` · `garden` · `courtyard` · `membership`
-
-GLB roots: `Threshold`, `Table`, `Library`, `Path`, `Garden`, `Courtyard`, `Membership`.
-The world is a symbolic still-life, not an open house: door, table, books, path, garden, basin, lamp.
-
-## Honesty
-
-Public copy follows `siteConfig`. Matching, verification, events, matchmaking and checkout are not described as live when their flags are off.
+- The homepage is semantic HTML. It does not load WebGL, a canvas, or a 3D runtime.
+- Synthetic demonstrations are labelled “Demonstration profile — not a real member”. They are not written to production tables and they are not matches.
+- No faith answers, emails, or fixture identities belong in the URL or analytics.
+- Public copy follows `siteConfig` and `FOUNDING_MEMBER_COPY`. Matching, verification, events, matchmaking, and checkout are not described as live when their flags are off.
+- Privacy, consent, safety, accessibility, and claim-integrity requirements are unchanged.

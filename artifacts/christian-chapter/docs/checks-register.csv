@@ -9,3 +9,5 @@ MEM-G-2,MEM-G,Visibility enforced server-side,preview.ts tests,IN_PROGRESS
 MEM-G-3,MEM-G,changes_required not collapsed to draft,admin review,IN_PROGRESS
 MEM-G-4,MEM-G,Synthetic seed blocked in production,runtime.ts,VERIFIED
 MEM-G-5,MEM-G,Sandbox verification not labelled genuine,verify UI copy,IN_PROGRESS
+HOME-G-1,HOME,Homepage has no Chapter House runtime,homepage.test.ts,VERIFIED
+HOME-G-2,HOME,Example introduction is labelled and not a match,homepage.test.ts,VERIFIED
