@@ -108,7 +108,7 @@ export function Step5Faith({ data, update }: StepProps) {
             value={data.tradition}
             onChange={(e) => update({ tradition: e.target.value })}
             disabled={!data.religiousDataConsent}
-            className="w-full min-h-[52px] px-4 bg-ivory border border-border-medium rounded-md text-plum text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood appearance-none disabled:opacity-50"
+            className="w-full min-h-[52px] px-4 bg-paper border border-border-medium rounded-md text-plum text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood appearance-none disabled:opacity-50"
           >
             <option value="" disabled>
               Select your tradition…
@@ -160,7 +160,7 @@ export function Step5Faith({ data, update }: StepProps) {
             rows={4}
             disabled={!data.religiousDataConsent}
             placeholder="Feel free to be as specific or as general as you like."
-            className="w-full p-4 bg-ivory border border-border-medium rounded-md text-plum text-[16px] leading-7 resize-y placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-oxblood disabled:opacity-50"
+            className="w-full p-4 bg-paper border border-border-medium rounded-md text-plum text-[16px] leading-7 resize-y placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-oxblood disabled:opacity-50"
           />
           <p className="mt-2 text-[12px] text-stone">
             Used for matching only — not shown on your public profile.

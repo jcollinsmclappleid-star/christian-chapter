@@ -58,7 +58,7 @@ export default function SignInPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full min-h-[52px] px-4 border border-border-medium rounded-xl bg-white text-[16px] focus:outline-none focus:ring-2 focus:ring-life"
+              className="w-full min-h-[52px] px-4 border border-border-medium rounded-xl bg-paper text-[16px] focus:outline-none focus:ring-2 focus:ring-life"
             />
           </div>
           {message && (

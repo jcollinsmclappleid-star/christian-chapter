@@ -93,7 +93,7 @@ export default function HomePage() {
       <section className="bg-ivory">
         <ul className="mx-auto grid max-w-6xl gap-3 px-4 py-8 sm:grid-cols-2 lg:grid-cols-4 md:px-8">
           {points.map((point) => (
-            <li key={point.title} className="rounded-2xl border border-border bg-white p-4">
+            <li key={point.title} className="rounded-2xl border border-border bg-paper shadow-card p-4">
               <span className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${point.tone}`}>
                 <point.icon className="h-6 w-6" />
               </span>
@@ -136,7 +136,7 @@ export default function HomePage() {
           <h2 className="mb-5 font-sans text-[1.35rem] font-semibold text-plum">How it works</h2>
           <ol className="grid max-w-3xl gap-3 sm:grid-cols-2">
             {steps.map((step) => (
-              <li key={step.n} className="rounded-2xl border border-border bg-white p-4">
+              <li key={step.n} className="rounded-2xl border border-border bg-paper shadow-card p-4">
                 <span className="font-sans text-[13px] font-semibold text-life">{step.n}</span>
                 <h3 className="mt-1 font-sans text-[16px] font-semibold text-plum">{step.title}</h3>
                 <p className="text-[14px] leading-5 text-plum-muted">{step.body}</p>

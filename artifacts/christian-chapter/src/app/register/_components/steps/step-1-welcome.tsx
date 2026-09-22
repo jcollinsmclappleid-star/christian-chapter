@@ -30,7 +30,7 @@ export function Step1Welcome({ data, update }: StepProps) {
       </ul>
 
       <p className="text-[15px] text-plum-muted leading-7 mb-6">{FOUNDING_MEMBER_COPY}</p>
-      <label className="flex items-start gap-3 cursor-pointer rounded-lg border border-border-medium bg-ivory p-5">
+      <label className="flex items-start gap-3 cursor-pointer rounded-lg border border-border-medium bg-paper p-5">
         <input
           type="checkbox"
           checked={data.eligibilityAcknowledged}

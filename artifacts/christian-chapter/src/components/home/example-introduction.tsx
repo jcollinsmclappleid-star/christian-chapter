@@ -3,7 +3,7 @@ import { DEMO_DISCLOSURE, demoIntroduction } from "@/lib/home/demo-fixture";
 export function ExampleIntroduction() {
   return (
     <article
-      className="overflow-hidden rounded-[28px] border border-border bg-white shadow-card"
+      className="overflow-hidden rounded-[28px] border border-border bg-paper shadow-card"
       aria-labelledby="example-introduction-heading"
     >
       <div className="flex h-40 items-center justify-center bg-ivory-darker">

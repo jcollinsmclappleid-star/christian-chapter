@@ -2,13 +2,14 @@
 
 @theme {
   /* ── Colour palette ── */
-  --color-ivory: #F3F7F4;
-  --color-ivory-dark: #E4EEE8;
-  --color-ivory-darker: #D3E3DA;
+  --color-ivory: #D0DDD3;
+  --color-ivory-dark: #C5D4CA;
+  --color-ivory-darker: #B7C9BD;
+  --color-paper: #F4F8F5;
 
   --color-plum: #14261C;
   --color-plum-soft: #24382C;
-  --color-plum-muted: #4D6458;
+  --color-plum-muted: #445E50;
 
   --color-oxblood: #8B1F2F;
   --color-oxblood-hover: #7A1A28;
@@ -27,10 +28,10 @@
   --color-brass: #C4A05A;
   --color-brass-light: #F5EDD8;
 
-  --color-stone: #9A8E9A;
-  --color-mist: #C8BFC8;
-  --color-border: rgba(30, 18, 32, 0.12);
-  --color-border-medium: rgba(30, 18, 32, 0.20);
+  --color-stone: #4A5E54;
+  --color-mist: #8AA093;
+  --color-border: rgba(20, 38, 28, 0.16);
+  --color-border-medium: rgba(20, 38, 28, 0.28);
 
   /* ── Typography ── */
   --font-family-serif: var(--font-garamond), Georgia, "Times New Roman", serif;

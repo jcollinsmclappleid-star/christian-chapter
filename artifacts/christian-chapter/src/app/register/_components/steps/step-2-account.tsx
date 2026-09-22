@@ -28,7 +28,7 @@ export function Step2Account({ data, update }: StepProps) {
             value={data.firstName}
             onChange={(e) => update({ firstName: e.target.value })}
             placeholder="Your first name"
-            className="w-full min-h-[52px] px-4 bg-ivory border border-border-medium rounded-md text-plum text-[16px] placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-oxblood transition-shadow"
+            className="w-full min-h-[52px] px-4 bg-paper border border-border-medium rounded-md text-plum text-[16px] placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-oxblood transition-shadow"
           />
         </div>
 
@@ -45,7 +45,7 @@ export function Step2Account({ data, update }: StepProps) {
             value={data.email}
             onChange={(e) => update({ email: e.target.value })}
             placeholder="you@example.com"
-            className="w-full min-h-[52px] px-4 bg-ivory border border-border-medium rounded-md text-plum text-[16px] placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-oxblood transition-shadow"
+            className="w-full min-h-[52px] px-4 bg-paper border border-border-medium rounded-md text-plum text-[16px] placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-oxblood transition-shadow"
           />
         </div>
 
