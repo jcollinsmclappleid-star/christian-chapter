@@ -34,6 +34,8 @@
   --color-border-medium: rgba(20, 38, 28, 0.28);
 
   /* ── Typography ── */
+  --font-sans: var(--font-grotesk), "system-ui", -apple-system, sans-serif;
+  --font-serif: var(--font-garamond), Georgia, "Times New Roman", serif;
   --font-family-serif: var(--font-garamond), Georgia, "Times New Roman", serif;
   --font-family-sans: var(--font-grotesk), "system-ui", -apple-system, sans-serif;
 
@@ -117,6 +119,10 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+.hero-shade {
+  background: linear-gradient(to top, rgba(20, 38, 28, 0.62) 0%, rgba(20, 38, 28, 0.08) 42%, rgba(20, 38, 28, 0.2) 100%);
 }
 
 /* ── Selection ── */
