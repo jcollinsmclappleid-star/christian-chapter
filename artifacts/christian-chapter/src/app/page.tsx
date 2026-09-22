@@ -69,19 +69,22 @@ const charge = [
 
 const photos = [
   {
-    src: "/images/home/hero-evening.jpg",
-    alt: "A couple in their fifties laughing together at a candlelit table",
-    caption: "The evening you said yes to.",
+    src: "/images/home/life-after-church.jpg",
+    alt: "A Black couple in their fifties laughing on church steps after a service",
+    event: "After church",
+    note: "Faith in the week, not a line added later.",
   },
   {
-    src: "/images/home/city-laugh.jpg",
-    alt: "A couple walking a city street at dusk, laughing",
-    caption: "Someone to laugh with.",
+    src: "/images/home/life-family-table.jpg",
+    alt: "Friends of different backgrounds sharing a meal at a home table",
+    event: "The family table",
+    note: "A life already going on, with room for someone new.",
   },
   {
-    src: "/images/home/terrace-toast.jpg",
-    alt: "Two people on a sunny terrace, glasses raised",
-    caption: "Glad to be there.",
+    src: "/images/home/life-choir.jpg",
+    alt: "A multicultural church choir of adults laughing between songs",
+    event: "Still in the choir",
+    note: "A church you already belong to.",
   },
 ];
 
@@ -95,11 +98,11 @@ export default function HomePage() {
 
       <section className="relative h-[calc(100svh-3.5rem)] overflow-hidden bg-life">
         <Image
-          src="/images/home/hero-evening.jpg"
-          alt="A couple in their fifties laughing together at a candlelit table"
+          src="/images/home/life-after-church.jpg"
+          alt="A Black couple in their fifties laughing on church steps after a service"
           fill
           priority
-          className="object-cover object-[center_30%]"
+          className="object-cover object-[center_22%]"
           sizes="100vw"
         />
         <div className="hero-shade absolute inset-0" />
@@ -154,19 +157,27 @@ export default function HomePage() {
 
       <section className="bg-ivory" aria-labelledby="people-heading">
         <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
-          <h2 id="people-heading" className={`${display} max-w-[14ch] text-[2.05rem] md:text-[2.6rem]`}>
-            This is the feeling.
+          <h2 id="people-heading" className={`${display} max-w-[16ch] text-[2.05rem] md:text-[2.6rem]`}>
+            A life, in pictures.
           </h2>
           <p className="mt-3 max-w-xl text-[17px] leading-6 text-plum-muted">
-            Love, laughter, and someone glad to be there. These photographs are not members.
+            The week as someone might show it: church, the table, the people they sing with. These photographs are not members.
           </p>
-          <ul className="mt-8 flex snap-x gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
+          <ul className="mt-6 flex flex-col gap-4 md:grid md:grid-cols-3">
             {photos.map((photo) => (
-              <li key={photo.src} className="w-[82%] shrink-0 snap-start md:w-auto">
-                <div className="relative h-[26rem] overflow-hidden rounded-[28px]">
-                  <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="(min-width: 768px) 30vw, 82vw" />
+              <li key={photo.src} className="relative h-[78vh] max-h-[40rem] overflow-hidden rounded-[28px] md:h-[34rem]">
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 30vw, 100vw"
+                />
+                <div className="life-caption absolute inset-x-0 bottom-0 px-5 pb-5 pt-24 text-white">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/80">Life event</p>
+                  <p className="mt-1 font-sans text-[1.55rem] font-bold leading-none tracking-tight">{photo.event}</p>
+                  <p className="mt-2 max-w-[24rem] text-[15px] leading-5 text-white/90">{photo.note}</p>
                 </div>
-                <p className={`${display} mt-3 text-[1.15rem]`}>{photo.caption}</p>
               </li>
             ))}
           </ul>

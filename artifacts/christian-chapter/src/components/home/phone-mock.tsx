@@ -1,54 +1,70 @@
-import { DEMO_DISCLOSURE, demoChapters, demoIntroduction } from "@/lib/home/demo-fixture";
+import { DEMO_DISCLOSURE, demoIntroduction, demoProfiles } from "@/lib/home/demo-fixture";
+import Image from "next/image";
 
-function PhoneFrame({ label, children }: { label: string; children: React.ReactNode }) {
+const lifeThumbs = [
+  { src: "/images/home/life-after-church.jpg", alt: "A couple on church steps after a service" },
+  { src: "/images/home/life-family-table.jpg", alt: "Friends sharing a meal at a home table" },
+  { src: "/images/home/life-choir.jpg", alt: "A choir rehearsing in a church" },
+];
+
+function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-[272px] shrink-0 overflow-hidden rounded-[2.25rem] border-[10px] border-white bg-paper shadow-card">
-      <div className="flex items-center justify-between bg-life px-4 py-2.5 text-white">
-        <span className="font-sans text-[13px] font-semibold tracking-tight">{label}</span>
-        <span className="h-1.5 w-8 rounded-full bg-white/70" />
-      </div>
-      <div className="px-4 pb-5 pt-4">{children}</div>
+    <div className="w-[280px] shrink-0 overflow-hidden rounded-[2.25rem] border-[10px] border-white bg-paper shadow-card">
+      {children}
     </div>
   );
 }
 
 export function PhoneMocks() {
-  const chapter = demoChapters[0];
-
   return (
     <div className="flex gap-5 overflow-x-auto px-1 pb-3 md:justify-center">
-      <PhoneFrame label="Introduction">
-        <p className="text-[11px] leading-4 text-tide">{DEMO_DISCLOSURE}</p>
-        <div className="mt-3 flex h-32 items-end rounded-2xl bg-life-light px-3 pb-3">
-          <span className="font-sans text-5xl font-bold leading-none text-life" aria-hidden>
-            {demoIntroduction.firstName.slice(0, 1)}
-          </span>
+      {demoProfiles.map((profile) => (
+        <PhoneFrame key={profile.firstName}>
+          <div className="relative h-64">
+            <Image
+              src={profile.photo}
+              alt={`${profile.firstName}, a demonstration profile photograph`}
+              fill
+              className="object-cover object-[center_20%]"
+              sizes="280px"
+            />
+            <p className="absolute left-3 top-3 max-w-[14rem] rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-semibold leading-4 text-life">
+              {DEMO_DISCLOSURE}
+            </p>
+          </div>
+          <div className="px-3.5 pb-4 pt-3">
+            <p className="font-sans text-[1.45rem] font-bold leading-none tracking-tight text-plum">
+              {profile.firstName}, {profile.age}
+            </p>
+            <p className="mt-1.5 text-[13px] leading-5 text-plum-muted">
+              {profile.region} · {profile.poolLabel}
+            </p>
+            <p className="mt-1 text-[13px] font-medium text-life">{profile.tradition}</p>
+            <p className="mt-3 text-[14px] leading-5 text-plum">{profile.lifeEvent}</p>
+            <div className="mt-3 flex gap-1.5">
+              {lifeThumbs.map((thumb) => (
+                <div key={thumb.src} className="relative h-14 flex-1 overflow-hidden rounded-lg">
+                  <Image src={thumb.src} alt={thumb.alt} fill className="object-cover" sizes="80px" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </PhoneFrame>
+      ))}
+
+      <PhoneFrame>
+        <div className="px-3.5 pb-4 pt-4">
+          <p className="text-[11px] leading-4 text-life">{DEMO_DISCLOSURE}</p>
+          <p className="mt-3 font-sans text-[15px] font-bold text-plum">Why this introduction</p>
+          <ul className="mt-3 space-y-3">
+            {demoIntroduction.why.map((reason) => (
+              <li key={reason} className="border-l-2 border-life pl-3 text-[14px] leading-5 text-plum">
+                {reason}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-[12px] leading-5 text-stone">Exact miles are not published.</p>
         </div>
-        <p className="mt-3 font-sans text-[1.45rem] font-bold leading-none tracking-tight text-plum">
-          {demoIntroduction.firstName}, {demoIntroduction.age}
-        </p>
-        <p className="mt-1.5 text-[13px] leading-5 text-plum-muted">
-          {demoIntroduction.region} · {demoIntroduction.poolLabel}
-        </p>
-        <p className="mt-1 text-[13px] text-tide">{demoIntroduction.tradition}</p>
-        <p className="mt-3 text-[14px] leading-5 text-plum">{demoIntroduction.lookingFor}</p>
-      </PhoneFrame>
-
-      <PhoneFrame label="Why this introduction">
-        <ul className="space-y-3">
-          {demoIntroduction.why.map((reason) => (
-            <li key={reason} className="border-l-2 border-life pl-3 text-[14px] leading-5 text-plum">
-              {reason}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-5 text-[12px] leading-5 text-stone">Exact miles are not published.</p>
-      </PhoneFrame>
-
-      <PhoneFrame label={chapter.title}>
-        <p className="font-sans text-[1.2rem] font-bold leading-tight text-plum">{chapter.title}</p>
-        <p className="mt-3 text-[14px] leading-6 text-plum-muted">{chapter.body}</p>
-        <p className="mt-5 text-[12px] leading-5 text-stone">{DEMO_DISCLOSURE}</p>
       </PhoneFrame>
     </div>
   );
