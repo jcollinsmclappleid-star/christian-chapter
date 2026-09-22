@@ -5,7 +5,7 @@ import { Heart } from "lucide-react";
 export const metadata = buildMetadata({
   title: "Success stories — Mature Christian Dating",
   description:
-    "Real stories from Mature Christian Dating members who found meaningful relationships. We publish stories only with full, granular consent.",
+    "Mature Christian Dating has no success stories yet. A story is published only with the specific consent of everyone involved.",
   path: "/success-stories",
 });
 

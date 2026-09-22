@@ -8,8 +8,10 @@ import type { StepProps } from "../wizard-types";
 import {
   ATTENDANCE_OPTIONS,
   CENTRALITY_OPTIONS,
+  CHILDREN_SITUATIONS,
   INTENTION_OPTIONS,
   INTEREST_GROUPS,
+  MARITAL_SITUATIONS,
   PARTNER_HOPES,
   RELIGIOUS_CONSENT_VERSION,
   TRADITIONS,
@@ -69,7 +71,10 @@ export function StepWho({ data, update }: StepProps) {
       <h1 className="mb-4 font-sans text-4xl font-bold leading-[1.05] tracking-[-0.03em] text-[#2C2118]">
         Who would you be glad to meet?
       </h1>
-      <Note>Start where it feels light. This is for love, company, and a faith you do not have to explain.</Note>
+      <Note>
+        This is the first thing a future partner is allowed to know. It helps them recognise who the meeting is for.
+        You can add more after you have a profile.
+      </Note>
       <fieldset>
         <legend className="mb-3 font-sans text-[15px] font-semibold">I am</legend>
         <div className="grid grid-cols-2 gap-2">
@@ -109,7 +114,10 @@ export function StepAge({ data, update }: StepProps) {
   return (
     <div>
       <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">Your age is welcome here.</h2>
-      <Note>Forty and over is the room. There is no ceiling, and the number is not shown as a countdown.</Note>
+      <Note>
+        Forty and over is the room. The age helps someone of a similar life stage recognise you, and it is said as a welcome.
+        You can add more after you have a profile.
+      </Note>
       <label htmlFor="dob" className="mb-2 block font-sans text-[15px] font-semibold">
         Date of birth
       </label>
@@ -136,7 +144,10 @@ export function StepPlace({ data, update }: StepProps) {
   return (
     <div>
       <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">Somewhere a good day could happen.</h2>
-      <Note>A region is enough. We never publish miles, and we never store a street address.</Note>
+      <Note>
+        A region is enough for a day out, and it helps someone picture meeting you. Miles are not published.
+        You can add more after you have a profile.
+      </Note>
       <div className="flex flex-wrap gap-2">
         {UK_REGIONS.map((region) => (
           <Chip key={region} label={region} selected={data.ukRegion === region} onClick={() => update({ ukRegion: region })} />
@@ -150,7 +161,10 @@ export function StepFaithLight({ data, update }: StepProps) {
   return (
     <div>
       <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">Faith can be quiet or central.</h2>
-      <Note>It stays yours. It needs its own consent, and it is never sold.</Note>
+      <Note>
+        Quiet or central, this helps someone recognise the faith already in the room. It is never sold.
+        You can add more after you have a profile.
+      </Note>
       <label className="mb-6 flex items-start gap-3 rounded-2xl border border-[#E4D3C4] bg-[#FFF9F3] p-5">
         <input
           type="checkbox"
@@ -216,8 +230,37 @@ export function StepLife({ data, update }: StepProps) {
   return (
     <div>
       <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">What actually fills a week?</h2>
-      <Note>Pick what is true, including the unexpected. You can add the longer story after you sign in.</Note>
+      <Note>
+        This step is optional. A marital situation, children, and a few activities help someone picture a week they could join.
+        You can add more after you have a profile.
+      </Note>
       <fieldset>
+        <legend className="mb-3 font-sans text-[15px] font-semibold">Marital situation</legend>
+        <div className="flex flex-wrap gap-2">
+          {MARITAL_SITUATIONS.map((option) => (
+            <Chip
+              key={option}
+              label={option}
+              selected={data.maritalSituation === option}
+              onClick={() => update({ maritalSituation: data.maritalSituation === option ? "" : option })}
+            />
+          ))}
+        </div>
+      </fieldset>
+      <fieldset className="mt-6">
+        <legend className="mb-3 font-sans text-[15px] font-semibold">Children</legend>
+        <div className="flex flex-wrap gap-2">
+          {CHILDREN_SITUATIONS.map((option) => (
+            <Chip
+              key={option}
+              label={option}
+              selected={data.childrenSituation === option}
+              onClick={() => update({ childrenSituation: data.childrenSituation === option ? "" : option })}
+            />
+          ))}
+        </div>
+      </fieldset>
+      <fieldset className="mt-6">
         <legend className="mb-3 font-sans text-[15px] font-semibold">What you are hoping for</legend>
         <div className="flex flex-wrap gap-2">
           {INTENTION_OPTIONS.map((option) => (
@@ -297,10 +340,13 @@ export function StepPhoto({ data, update }: StepProps) {
   return (
     <div>
       <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">One photograph is enough for now.</h2>
-      <Note>A person reviews it before anyone else sees it. You can add more once you have signed in.</Note>
+      <Note>
+        This step is optional. A current face, in daylight, doing something you actually do, helps someone recognise you.
+        A person reviews it before anyone else sees it. You can add more after you have a profile.
+      </Note>
       <label className="flex min-h-40 cursor-pointer flex-col items-center justify-center rounded-[28px] border border-dashed border-[#C9A892] bg-[#FFF9F3] px-6 py-8 text-center">
         <span className="font-sans text-[16px] font-semibold text-[#8C3D22]">Add a photograph</span>
-        <span className="mt-1 text-[14px] text-[#6B5346]">JPEG, PNG or a photo from your camera roll.</span>
+        <span className="mt-1 text-[14px] text-[#6B5346]">From your gallery or camera. A current face, in daylight, doing something you actually do.</span>
         <input
           type="file"
           accept="image/*"
@@ -331,6 +377,8 @@ export function StepLine({ data, update }: StepProps) {
       interests: data.interests,
       partnerHopes: data.partnerHopes,
       hobbyNote: data.hobbyNote,
+      maritalSituation: data.maritalSituation,
+      childrenSituation: data.childrenSituation,
     });
     update({
       storyPrompt1: line,
@@ -341,7 +389,10 @@ export function StepLine({ data, update }: StepProps) {
   return (
     <div>
       <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">A short line is enough.</h2>
-      <Note>You do not need a full biography yet. Populate this from what you have already said, then change any word.</Note>
+      <Note>
+        Finish with this. A line in your own words helps someone recognise you, and every word stays editable.
+        You can add more after you have a profile.
+      </Note>
       <button
         type="button"
         onClick={populate}
@@ -382,7 +433,7 @@ export function StepReady({ data, update }: StepProps) {
       <div className="flex min-h-[50vh] flex-col items-center justify-center text-center" role="status">
         <div className="h-16 w-16 animate-pulse rounded-full bg-[#F3E6DA]" />
         <h2 className="mt-6 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118]">Putting your profile together.</h2>
-        <p className="mt-3 max-w-sm text-[16px] leading-6 text-[#6B5346]">The answers you gave are becoming a person someone could meet.</p>
+        <p className="mt-3 max-w-sm text-[16px] leading-6 text-[#6B5346]">The answers you gave are becoming someone a future partner could recognise.</p>
       </div>
     );
   }
@@ -393,6 +444,7 @@ export function StepReady({ data, update }: StepProps) {
       <Note>{FOUNDING_MEMBER_COPY}</Note>
       <p className="mb-6 text-[15px] leading-6 text-[#6B5346]">
         Matching goes live on {OPENING_OFFER_ENDS_LABEL}. Leave a name and an email, and this profile is kept for you. Nothing is charged.
+        You can add more after you have a profile.
       </p>
       <div className="space-y-4">
         <label className="block">

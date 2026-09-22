@@ -35,11 +35,11 @@ export const siteConfig = {
   brandName: "Mature Christian Dating",
   descriptor: "Mature Christian dating",
   proposition: "Mature Christian dating.",
-  siteUrl: env("NEXT_PUBLIC_SITE_URL", "https://christianchapter.co.uk").replace(
+  siteUrl: env("NEXT_PUBLIC_SITE_URL", "https://maturechristiandating.co.uk").replace(
     /\/$/,
     "",
   ),
-  contactEmail: env("LEGAL_CONTACT_EMAIL", "hello@christianchapter.co.uk"),
+  contactEmail: env("LEGAL_CONTACT_EMAIL", "hello@maturechristiandating.co.uk"),
   /** Empty = not an incorporated company in copy. */
   legalEntityName: env("LEGAL_ENTITY_NAME"),
   icoComplaintsUrl: "https://ico.org.uk/make-a-complaint/",

@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import {
   defaultWizardData,
+  FLOW_VERSION,
   WIZARD_STORAGE_KEY,
   TOTAL_STEPS,
 } from "./wizard-types";
@@ -97,8 +98,8 @@ export function Wizard() {
         const raw = localStorage.getItem(WIZARD_STORAGE_KEY);
         if (raw) {
           const parsed = JSON.parse(raw) as { version?: number; data?: Partial<WizardData>; step?: number };
-          if (parsed.data) setData((prev) => ({ ...prev, ...parsed.data, flowVersion: 3 }));
-          if (parsed.version === 3 && parsed.step && parsed.step >= 1 && parsed.step <= TOTAL_STEPS) {
+          if (parsed.data) setData((prev) => ({ ...prev, ...parsed.data, flowVersion: FLOW_VERSION }));
+          if (parsed.version === FLOW_VERSION && parsed.step && parsed.step >= 1 && parsed.step <= TOTAL_STEPS) {
             setStep(parsed.step);
           }
         }
@@ -117,7 +118,7 @@ export function Wizard() {
     try {
       localStorage.setItem(
         WIZARD_STORAGE_KEY,
-        JSON.stringify({ version: 3, data: nextData, step: nextStep }),
+        JSON.stringify({ version: FLOW_VERSION, data: nextData, step: nextStep }),
       );
     } catch {
       // ignore

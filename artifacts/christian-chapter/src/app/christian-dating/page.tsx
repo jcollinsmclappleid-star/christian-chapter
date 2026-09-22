@@ -1,5 +1,6 @@
 import { LinkButton } from "@/components/ui/button";
 import { buildMetadata } from "@/lib/metadata";
+import { FOUNDING_MEMBER_COPY, siteConfig } from "@/lib/site-config";
 export const metadata = buildMetadata({
   title: "Christian dating UK — meet genuine Christian singles",
   description:
@@ -7,25 +8,20 @@ export const metadata = buildMetadata({
   path: "/christian-dating",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://christianchapter.co.uk";
-
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Mature Christian Dating",
-  url: siteUrl,
-  description:
-    "UK founding cohort for Christian dating for adults aged 40 and over. Applications and review exist; member introductions are not live.",
-  areaServed: "GB",
-  knowsAbout: ["Christian dating", "Christian singles", "UK dating", "Faith-based relationships"],
+  name: siteConfig.brandName,
+  url: siteConfig.siteUrl,
+  email: siteConfig.contactEmail,
 };
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-    { "@type": "ListItem", position: 2, name: "Christian dating", item: `${siteUrl}/christian-dating` },
+    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.siteUrl },
+    { "@type": "ListItem", position: 2, name: "Christian dating", item: `${siteConfig.siteUrl}/christian-dating` },
   ],
 };
 
@@ -44,7 +40,7 @@ const faqs = [
   },
   {
     q: "Is it free to join?",
-    a: "Yes. During the founding phase, joining and submitting an application is free. Paid Member or Plus plans are not on sale. We will tell founding applicants before anything changes.",
+    a: `Yes. ${FOUNDING_MEMBER_COPY}`,
   },
   {
     q: "How do you handle inactive members?",

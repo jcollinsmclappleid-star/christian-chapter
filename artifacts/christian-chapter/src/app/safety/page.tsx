@@ -1,6 +1,6 @@
 import { LinkButton } from "@/components/ui/button";
 import { buildMetadata } from "@/lib/metadata";
-import { FOUNDING_MEMBER_COPY } from "@/lib/site-config";
+import { FOUNDING_MEMBER_COPY, siteConfig } from "@/lib/site-config";
 import { Shield, AlertTriangle, Flag, FileText } from "lucide-react";
 
 export const metadata = buildMetadata({
@@ -112,8 +112,8 @@ export default function SafetyPage() {
           </ul>
           <p className="text-[15px] text-plum-muted leading-6">
             During the founding cohort, email {""}
-            <a href="mailto:hello@christianchapter.co.uk" className="underline">
-              hello@christianchapter.co.uk
+            <a href={`mailto:${siteConfig.contactEmail}`} className="underline">
+              {siteConfig.contactEmail}
             </a>{" "}
             to report concern. You can also contact{" "}
             <a

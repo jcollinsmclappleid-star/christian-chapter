@@ -2,7 +2,7 @@ import { IconBlock, IconCovenant, IconEye, IconFaith, IconLamp, IconLeave, IconO
 import { LegacyHouseRedirect } from "@/components/home/legacy-house-redirect";
 import { PhoneMocks } from "@/components/home/phone-mock";
 import { LinkButton } from "@/components/ui/button";
-import { FOUNDING_MEMBER_COPY } from "@/lib/site-config";
+import { FOUNDING_MEMBER_COPY, siteConfig } from "@/lib/site-config";
 import type { Metadata } from "next";
 import Image from "next/image";
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   description:
     "Mature Christian dating for UK adults aged 40 and over. Meet thoughtful Christian singles who share your faith and want a meaningful relationship — without endless swiping.",
-  alternates: { canonical: "https://christianchapter.co.uk" },
+  alternates: { canonical: siteConfig.siteUrl },
 };
 
 const rightPlace = [

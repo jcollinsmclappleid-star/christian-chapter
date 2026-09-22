@@ -4,6 +4,8 @@ import { footerLegalLine } from "@/lib/site-config";
 const links = [
   { href: "/how-it-works", label: "How it works" },
   { href: "/safety", label: "Safety" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/christian-dating", label: "Christian dating" },
   { href: "/register", label: "Create your profile" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },

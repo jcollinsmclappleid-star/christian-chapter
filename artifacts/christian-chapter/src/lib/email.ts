@@ -19,7 +19,7 @@ export async function sendServiceEmail(opts: {
   }
 
   const fromEmail =
-    process.env.RESEND_FROM_EMAIL?.trim() || "hello@christianchapter.co.uk";
+    process.env.RESEND_FROM_EMAIL?.trim() || siteConfig.contactEmail;
 
   try {
     const res = await fetch("https://api.resend.com/emails", {

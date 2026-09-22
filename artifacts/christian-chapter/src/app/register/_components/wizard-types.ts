@@ -9,6 +9,8 @@ export { RELIGIOUS_CONSENT_VERSION, POLICY_VERSION };
 
 export const WIZARD_STORAGE_KEY = "cc_wizard_v1";
 export const TOTAL_STEPS = 8;
+/** 4 adds optional marital situation and children. Older drafts restart at step 1. */
+export const FLOW_VERSION = 4;
 
 export type EssentialTier = "essential" | "preferred" | "open";
 
@@ -42,6 +44,10 @@ export type WizardData = {
   // Step 6: Life now
   workStatus: string;
   familySituation: string;
+  /** Optional. Never married, divorced, widowed, or separated. */
+  maritalSituation: string;
+  /** Optional. None, adult children, children at home, or grandchildren. */
+  childrenSituation: string;
   interests: string[];
   // Step 7: Relationship intentions
   relationshipGoal: string;
@@ -66,7 +72,7 @@ export type WizardData = {
   photoDataUrl: string;
   /** Set after the ready screen has finished assembling the profile. */
   profileReady: boolean;
-  /** 3 = short build, then email once the profile is ready. Older drafts restart. */
+  /** Matches FLOW_VERSION. Older drafts restart at step 1 and keep answers that still fit. */
   flowVersion: number;
 };
 
@@ -89,6 +95,8 @@ export const defaultWizardData: WizardData = {
   faithDescription: "",
   workStatus: "",
   familySituation: "",
+  maritalSituation: "",
+  childrenSituation: "",
   interests: [],
   relationshipGoal: "",
   openToRemarriage: null,
@@ -108,7 +116,7 @@ export const defaultWizardData: WizardData = {
   hobbyNote: "",
   photoDataUrl: "",
   profileReady: false,
-  flowVersion: 3,
+  flowVersion: FLOW_VERSION,
 };
 
 export interface StepProps {
@@ -138,13 +146,16 @@ export const TRADITIONS = [
   "Anglican / Church of England",
   "Baptist",
   "Catholic",
+  "Orthodox",
   "Charismatic / Pentecostal",
   "Evangelical",
+  "Lutheran",
   "Methodist",
   "Presbyterian",
   "Reformed",
   "Salvation Army",
   "Non-denominational",
+  "Independent or house church",
   "Other / interdenominational",
 ];
 
@@ -202,6 +213,10 @@ export const PARTNER_HOPES = [
   "honest about the past",
   "glad of a quiet evening",
 ];
+
+export const MARITAL_SITUATIONS = ["Never married", "Divorced", "Widowed", "Separated"];
+
+export const CHILDREN_SITUATIONS = ["None", "Adult children", "Children at home", "Grandchildren"];
 
 export const INTENTION_OPTIONS = [
   "Companionship, and see where it leads",

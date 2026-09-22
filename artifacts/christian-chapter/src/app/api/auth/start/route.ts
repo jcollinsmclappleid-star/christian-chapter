@@ -5,7 +5,7 @@ import { db, foundingApplications, users } from "@/db";
 import { issueMagicLink } from "@/lib/auth-email";
 import { clientKey, rateLimit } from "@/lib/rate-limit";
 import { wizardToApplicationValues } from "@/lib/application-map";
-import { defaultWizardData, type WizardData } from "@/app/register/_components/wizard-types";
+import { defaultWizardData, FLOW_VERSION, type WizardData } from "@/app/register/_components/wizard-types";
 
 const Schema = z.object({
   firstName: z.string().min(1).max(100),
@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
     firstName,
     email,
     marketingConsent: parse.data.marketingConsent ?? false,
-    flowVersion: 3,
+    flowVersion: FLOW_VERSION,
   };
   const values = wizardToApplicationValues(draft, parse.data.step ?? 10);
 

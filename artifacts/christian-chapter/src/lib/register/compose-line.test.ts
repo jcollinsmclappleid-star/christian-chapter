@@ -18,6 +18,23 @@ describe("compose profile line", () => {
     assert.match(line, /cooking, live music, and astronomy/);
     assert.match(line, /dance when the song is right/);
     assert.match(line, /someone who laughs easily/);
+    assert.doesNotMatch(line, /divorced|children/i);
+  });
+
+  it("includes marital situation and children when they were chosen", () => {
+    const line = composeProfileLine({
+      age: 61,
+      region: "Wales",
+      tradition: "Methodist",
+      churchAttendance: "Monthly",
+      interests: ["Gardening"],
+      partnerHopes: [],
+      hobbyNote: "",
+      maritalSituation: "Widowed",
+      childrenSituation: "Adult children",
+    });
+    assert.match(line, /I'm widowed/);
+    assert.match(line, /adult children/);
   });
 
   it("still offers a line when little has been chosen", () => {

@@ -1,14 +1,16 @@
 import type { WizardData } from "@/app/register/_components/wizard-types";
-import { defaultWizardData } from "@/app/register/_components/wizard-types";
+import { defaultWizardData, FLOW_VERSION } from "@/app/register/_components/wizard-types";
 import type { FoundingApplication } from "@/db";
 
 export function applicationToWizard(
   row: FoundingApplication,
 ): { data: WizardData; step: number } {
   const payload = (row.wizardPayload ?? {}) as Partial<WizardData>;
+  const storedVersion = payload.flowVersion;
   const data: WizardData = {
     ...defaultWizardData,
     ...payload,
+    flowVersion: FLOW_VERSION,
     firstName: row.firstName ?? payload.firstName ?? "",
     email: payload.email ?? "",
     marketingConsent: row.marketingConsent,
@@ -43,8 +45,7 @@ export function applicationToWizard(
     eligibilityAcknowledged: row.eligibilityAcknowledged,
     termsAccepted: payload.termsAccepted ?? false,
   };
-  const storedVersion = (row.wizardPayload as { flowVersion?: number } | null)?.flowVersion;
-  const step = storedVersion === 3 ? Math.min(Math.max(row.currentStep ?? 1, 1), 8) : 1;
+  const step = storedVersion === FLOW_VERSION ? Math.min(Math.max(row.currentStep ?? 1, 1), 8) : 1;
   return { data, step };
 }
 
