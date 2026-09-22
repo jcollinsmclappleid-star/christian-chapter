@@ -2,17 +2,24 @@
 
 @theme {
   /* ── Colour palette ── */
-  --color-ivory: #F7F3EC;
-  --color-ivory-dark: #EAE4D8;
-  --color-ivory-darker: #D8D0C4;
+  --color-ivory: #F3F7F4;
+  --color-ivory-dark: #E4EEE8;
+  --color-ivory-darker: #D3E3DA;
 
-  --color-plum: #1E1220;
-  --color-plum-soft: #3D2748;
-  --color-plum-muted: #6B5878;
+  --color-plum: #14261C;
+  --color-plum-soft: #24382C;
+  --color-plum-muted: #4D6458;
 
   --color-oxblood: #8B1F2F;
   --color-oxblood-hover: #7A1A28;
   --color-oxblood-light: #F5ECEE;
+
+  --color-life: #126B3C;
+  --color-life-hover: #0E5732;
+  --color-life-light: #E5F3EB;
+
+  --color-tide: #1E5E78;
+  --color-tide-light: #E6F1F6;
 
   --color-evergreen: #1D4A36;
   --color-evergreen-light: #EAF2EE;
@@ -62,7 +69,7 @@ body {
 
 /* ── Focus ── */
 :focus-visible {
-  outline: 2px solid theme(--color-oxblood);
+  outline: 2px solid theme(--color-life);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -113,6 +120,6 @@ body {
 
 /* ── Selection ── */
 ::selection {
-  background-color: theme(--color-oxblood-light);
-  color: theme(--color-oxblood);
+  background-color: theme(--color-life-light);
+  color: theme(--color-life);
 }

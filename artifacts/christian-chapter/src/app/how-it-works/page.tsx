@@ -65,8 +65,8 @@ export default function HowItWorksPage() {
             {steps.map(({ icon: Icon, step, title, desc }) => (
               <div key={step} className="grid md:grid-cols-[60px_1fr] gap-6 items-start">
                 <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 rounded-full bg-oxblood-light border border-oxblood/20 flex items-center justify-center">
-                    <Icon size={20} className="text-oxblood" />
+                  <div className="w-12 h-12 rounded-full bg-life-light border border-life/20 flex items-center justify-center">
+                    <Icon size={20} className="text-life" />
                   </div>
                   <span className="text-[11px] uppercase tracking-[0.2em] text-stone font-sans">{step}</span>
                 </div>

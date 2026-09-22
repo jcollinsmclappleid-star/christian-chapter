@@ -307,7 +307,7 @@ export function Wizard() {
   return (
     <div className="min-h-screen bg-ivory flex flex-col">
       <div className="h-1 bg-ivory-dark flex-shrink-0" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={TOTAL_STEPS}>
-        <div className="h-full bg-oxblood transition-all duration-500 ease-out" style={{ width: `${progress}%` }} />
+        <div className="h-full bg-life transition-all duration-500 ease-out" style={{ width: `${progress}%` }} />
       </div>
 
       <header className="flex items-center justify-between px-6 md:px-10 h-16 border-b border-border flex-shrink-0">
@@ -369,7 +369,7 @@ export function Wizard() {
           <button
             onClick={goNext}
             disabled={!canContinue || submitting}
-            className="inline-flex items-center min-h-[52px] px-7 text-[15px] font-sans font-medium bg-oxblood text-ivory rounded-md disabled:opacity-50"
+            className="inline-flex items-center min-h-[52px] px-7 text-[15px] font-sans font-medium bg-life text-white rounded-full disabled:opacity-50"
           >
             {submitting && step === 2 && !authenticated
               ? "Sending link…"

@@ -3,16 +3,16 @@ import { DEMO_DISCLOSURE, demoIntroduction } from "@/lib/home/demo-fixture";
 export function ExampleIntroduction() {
   return (
     <article
-      className="overflow-hidden rounded-2xl border border-border bg-ivory"
+      className="overflow-hidden rounded-[28px] border border-border bg-white shadow-card"
       aria-labelledby="example-introduction-heading"
     >
       <div className="flex h-40 items-center justify-center bg-ivory-darker">
-        <span className="font-serif text-7xl leading-none text-oxblood/80" aria-hidden>
+        <span className="font-serif text-7xl leading-none text-life/80" aria-hidden>
           {demoIntroduction.firstName.slice(0, 1)}
         </span>
       </div>
       <div className="p-5">
-        <p className="text-[13px] leading-5 text-stone">{DEMO_DISCLOSURE}</p>
+        <p className="text-[13px] leading-5 text-tide">{DEMO_DISCLOSURE}</p>
         <h2 id="example-introduction-heading" className="mt-2 font-sans text-[1.65rem] font-semibold leading-none text-plum">
           {demoIntroduction.firstName}, {demoIntroduction.age}
         </h2>

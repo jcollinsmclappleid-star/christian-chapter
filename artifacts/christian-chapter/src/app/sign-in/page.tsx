@@ -58,7 +58,7 @@ export default function SignInPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full min-h-[52px] px-4 border border-border-medium rounded-xl bg-ivory text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood"
+              className="w-full min-h-[52px] px-4 border border-border-medium rounded-xl bg-white text-[16px] focus:outline-none focus:ring-2 focus:ring-life"
             />
           </div>
           {message && (
@@ -80,14 +80,14 @@ export default function SignInPage() {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="w-full min-h-[52px] px-7 bg-oxblood text-ivory rounded-full font-sans font-medium text-[15px] disabled:opacity-50"
+            className="w-full min-h-[52px] px-7 bg-life text-white rounded-full font-sans font-medium text-[15px] disabled:opacity-50"
           >
             {status === "sending" ? "Sending…" : "Email me a sign-in link"}
           </button>
         </form>
         <p className="mt-10 text-[15px] text-plum-muted">
           New here?{" "}
-          <a href="/register" className="text-oxblood underline underline-offset-4">
+          <a href="/register" className="text-life underline underline-offset-4">
             Create your profile
           </a>
         </p>

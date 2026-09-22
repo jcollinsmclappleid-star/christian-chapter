@@ -31,7 +31,7 @@ export function Header() {
           <>
             <nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
               {memberLinks.map((link) => (
-                <a key={link.href} href={link.href} className="text-[15px] text-plum hover:text-oxblood">
+                <a key={link.href} href={link.href} className="text-[15px] text-plum hover:text-life">
                   {link.label}
                 </a>
               ))}
