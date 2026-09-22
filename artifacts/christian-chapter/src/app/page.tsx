@@ -76,6 +76,7 @@ const photos = [
 ];
 
 const display = "font-sans font-bold leading-[1.05] tracking-[-0.03em] text-plum";
+const displayOnNight = "font-sans font-bold leading-[1.05] tracking-[-0.03em] text-paper";
 
 export default function HomePage() {
   return (
@@ -110,34 +111,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="how-it-works" className="scroll-mt-20 bg-ivory">
+      <section id="how-it-works" className="scroll-mt-20 bg-plum">
         <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
-          <h2 className={`${display} text-[2.05rem] md:text-[2.6rem]`}>You are in the right place.</h2>
-          <p className="mt-3 max-w-xl text-[17px] leading-6 text-plum-muted">
+          <h2 className={`${displayOnNight} text-[2.05rem] md:text-[2.6rem]`}>You are in the right place.</h2>
+          <p className="mt-3 max-w-xl text-[17px] leading-6 text-mist">
             Mature Christian dating for adults whose life and faith are already underway.
           </p>
           <ul className="mt-8">
             {rightPlace.map((item) => (
-              <li key={item.title} className="grid grid-cols-[3.25rem_1fr] gap-4 border-t border-border py-5">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-life-light text-life">
+              <li key={item.title} className="grid grid-cols-[3.25rem_1fr] gap-4 border-t border-white/15 py-5">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-glow">
                   <item.icon className="h-7 w-7" />
                 </span>
                 <div>
-                  <h3 className={`${display} text-[1.3rem]`}>{item.title}</h3>
-                  <p className="mt-1 text-[17px] leading-6 text-plum-muted">{item.body}</p>
+                  <h3 className={`${displayOnNight} text-[1.3rem]`}>{item.title}</h3>
+                  <p className="mt-1 text-[17px] leading-6 text-mist">{item.body}</p>
                 </div>
               </li>
             ))}
           </ul>
           <p className="mt-2">
-            <a href="/how-it-works" className="text-[16px] font-semibold text-tide underline underline-offset-4">
+            <a href="/how-it-works" className="text-[16px] font-semibold text-glow underline underline-offset-4">
               See how it works
             </a>
           </p>
         </div>
       </section>
 
-      <section className="bg-ivory-dark" aria-labelledby="people-heading">
+      <section className="bg-ivory" aria-labelledby="people-heading">
         <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
           <h2 id="people-heading" className={`${display} max-w-[14ch] text-[2.05rem] md:text-[2.6rem]`}>
             Ordinary days. A shared faith.
@@ -158,12 +159,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-ivory" aria-labelledby="phone-heading">
+      <section className="bg-plum" aria-labelledby="phone-heading">
         <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
-          <h2 id="phone-heading" className={`${display} max-w-[16ch] text-[2.05rem] md:text-[2.6rem]`}>
+          <h2 id="phone-heading" className={`${displayOnNight} max-w-[16ch] text-[2.05rem] md:text-[2.6rem]`}>
             An introduction, in your hand.
           </h2>
-          <p className="mt-3 max-w-xl text-[17px] leading-6 text-plum-muted">
+          <p className="mt-3 max-w-xl text-[17px] leading-6 text-mist">
             A labelled demonstration of the profile and the reason. It is not a member.
           </p>
           <div className="mt-8">
@@ -172,7 +173,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-ivory-dark" aria-labelledby="assurance-heading">
+      <section className="bg-ivory" aria-labelledby="assurance-heading">
         <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
           <h2 id="assurance-heading" className={`${display} text-[2.05rem] md:text-[2.6rem]`}>
             Begin with some assurance.
@@ -180,7 +181,7 @@ export default function HomePage() {
           <ul className="mt-8">
             {assurance.map((item) => (
               <li key={item.title} className="grid grid-cols-[3.25rem_1fr] gap-4 border-t border-border py-5">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-tide-light text-tide">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-life text-paper">
                   <item.icon className="h-7 w-7" />
                 </span>
                 <div>

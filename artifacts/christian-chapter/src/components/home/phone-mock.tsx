@@ -2,7 +2,7 @@ import { DEMO_DISCLOSURE, demoChapters, demoIntroduction } from "@/lib/home/demo
 
 function PhoneFrame({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="w-[272px] shrink-0 overflow-hidden rounded-[2.25rem] border-[10px] border-plum bg-paper shadow-card">
+    <div className="w-[272px] shrink-0 overflow-hidden rounded-[2.25rem] border-[10px] border-glow bg-paper shadow-card">
       <div className="flex items-center justify-between bg-life px-4 py-2.5 text-white">
         <span className="font-sans text-[13px] font-semibold tracking-tight">{label}</span>
         <span className="h-1.5 w-8 rounded-full bg-white/70" />
@@ -19,7 +19,7 @@ export function PhoneMocks() {
     <div className="flex gap-5 overflow-x-auto px-1 pb-3 md:justify-center">
       <PhoneFrame label="Introduction">
         <p className="text-[11px] leading-4 text-tide">{DEMO_DISCLOSURE}</p>
-        <div className="mt-3 flex h-32 items-end rounded-2xl bg-ivory-darker px-3 pb-3">
+        <div className="mt-3 flex h-32 items-end rounded-2xl bg-life-light px-3 pb-3">
           <span className="font-sans text-5xl font-bold leading-none text-life" aria-hidden>
             {demoIntroduction.firstName.slice(0, 1)}
           </span>

@@ -2,22 +2,25 @@
 
 @theme {
   /* ── Colour palette ── */
-  --color-ivory: #D0DDD3;
-  --color-ivory-dark: #C5D4CA;
-  --color-ivory-darker: #B7C9BD;
-  --color-paper: #F4F8F5;
+  /* Warm linen ground: hospitable, not a gray sage and not white. */
+  --color-ivory: #EFE6D4;
+  --color-ivory-dark: #E4D7C0;
+  --color-ivory-darker: #D9C9AD;
+  --color-paper: #FBF7F0;
 
-  --color-plum: #14261C;
-  --color-plum-soft: #24382C;
-  --color-plum-muted: #445E50;
+  /* Deep garden: the serious anchor. */
+  --color-plum: #10241C;
+  --color-plum-soft: #1A3328;
+  --color-plum-muted: #3F5649;
 
   --color-oxblood: #8B1F2F;
   --color-oxblood-hover: #7A1A28;
   --color-oxblood-light: #F5ECEE;
 
-  --color-life: #126B3C;
-  --color-life-hover: #0E5732;
-  --color-life-light: #E5F3EB;
+  /* Jewel green: the action. Bright enough to invite, dark enough for white type. */
+  --color-life: #0F7A45;
+  --color-life-hover: #0C6338;
+  --color-life-light: #E3F6EA;
 
   --color-tide: #1E5E78;
   --color-tide-light: #E6F1F6;
@@ -27,6 +30,7 @@
 
   --color-brass: #C4A05A;
   --color-brass-light: #F5EDD8;
+  --color-glow: #E8C56B;
 
   --color-stone: #4A5E54;
   --color-mist: #8AA093;
@@ -48,7 +52,7 @@
 
   /* ── Shadows (almost none — depth from layering) ── */
   --shadow-subtle: 0 1px 3px rgba(30, 18, 32, 0.06);
-  --shadow-card: 0 2px 8px rgba(30, 18, 32, 0.08);
+  --shadow-card: 0 12px 32px rgba(16, 36, 28, 0.14);
 }
 
 /* ── Base ── */
@@ -122,7 +126,7 @@ body {
 }
 
 .hero-shade {
-  background: linear-gradient(to top, rgba(20, 38, 28, 0.62) 0%, rgba(20, 38, 28, 0.08) 42%, rgba(20, 38, 28, 0.2) 100%);
+  background: linear-gradient(to top, rgba(16, 36, 28, 0.55) 0%, rgba(16, 36, 28, 0.05) 46%, rgba(16, 36, 28, 0.28) 100%);
 }
 
 /* ── Selection ── */

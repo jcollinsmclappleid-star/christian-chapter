@@ -60,7 +60,7 @@ export function HeroIntake() {
               className={`min-h-12 rounded-full border text-[15px] font-semibold ${
                 gender === option
                   ? "border-life bg-life text-white"
-                  : "border-border-medium bg-ivory text-plum"
+                  : "border-border-medium bg-ivory-dark text-plum"
               }`}
             >
               {option}
@@ -81,7 +81,7 @@ export function HeroIntake() {
               className={`min-h-12 rounded-full border px-2 text-[14px] font-semibold ${
                 seeking === option
                   ? "border-life bg-life text-white"
-                  : "border-border-medium bg-ivory text-plum"
+                  : "border-border-medium bg-ivory-dark text-plum"
               }`}
             >
               {option === "Open to both" ? "Both" : option}

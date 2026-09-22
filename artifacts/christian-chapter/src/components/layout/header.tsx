@@ -23,21 +23,21 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-ivory">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-plum">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-5">
-        <Logo />
+        <Logo tone="light" />
 
         {signedIn ? (
           <>
             <nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
               {memberLinks.map((link) => (
-                <a key={link.href} href={link.href} className="text-[15px] text-plum hover:text-life">
+                <a key={link.href} href={link.href} className="text-[15px] text-paper hover:text-glow">
                   {link.label}
                 </a>
               ))}
             </nav>
             <button
-              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md p-2 text-plum md:hidden"
+              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md p-2 text-paper md:hidden"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
@@ -46,19 +46,19 @@ export function Header() {
             </button>
           </>
         ) : (
-          <a href="/sign-in" className="text-[15px] font-medium text-plum">
+          <a href="/sign-in" className="text-[15px] font-medium text-paper hover:text-glow">
             Sign in
           </a>
         )}
       </div>
 
       {signedIn && mobileOpen && (
-        <nav className="border-t border-border bg-ivory px-5 py-2 md:hidden" aria-label="Main navigation">
+        <nav className="border-t border-white/10 bg-plum px-5 py-2 md:hidden" aria-label="Main navigation">
           {memberLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="block border-b border-border py-3 text-[17px] text-plum"
+              className="block border-b border-white/10 py-3 text-[17px] text-paper"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
