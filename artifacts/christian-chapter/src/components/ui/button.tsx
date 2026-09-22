@@ -15,13 +15,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-oxblood text-ivory hover:bg-oxblood-hover active:scale-[0.98] focus-visible:ring-oxblood",
+    "bg-life text-white hover:bg-life-hover active:scale-[0.98] focus-visible:ring-life",
   ghost:
     "border border-plum/25 text-plum hover:bg-plum/5 active:scale-[0.98] focus-visible:ring-plum",
   trust:
-    "bg-evergreen text-ivory hover:bg-evergreen/90 active:scale-[0.98] focus-visible:ring-evergreen",
+    "bg-tide text-white hover:bg-tide/90 active:scale-[0.98] focus-visible:ring-tide",
   outline:
-    "border border-oxblood text-oxblood hover:bg-oxblood-light active:scale-[0.98] focus-visible:ring-oxblood",
+    "border border-life text-life hover:bg-life-light active:scale-[0.98] focus-visible:ring-life",
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -50,7 +50,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           "inline-flex items-center justify-center gap-2",
           "font-sans font-medium tracking-wide",
-          "rounded-md",
+          "rounded-full",
           "transition-all duration-150",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
           "disabled:opacity-50 disabled:cursor-not-allowed",
@@ -93,9 +93,9 @@ export function LinkButton({
       className={cn(
         "inline-flex items-center justify-center gap-2",
         "font-sans font-medium tracking-wide",
-        "rounded-md",
+        "rounded-full",
         "transition-all duration-150",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-oxblood focus-visible:ring-offset-2",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-life focus-visible:ring-offset-2",
         variants[variant],
         sizes[size],
         fullWidth && "w-full",

@@ -29,7 +29,7 @@ export function Step4Location({ data, update }: StepProps) {
             id="region"
             value={data.ukRegion}
             onChange={(e) => update({ ukRegion: e.target.value })}
-            className="w-full min-h-[52px] px-4 bg-ivory border border-border-medium rounded-md text-plum text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood appearance-none"
+            className="w-full min-h-[52px] px-4 bg-paper border border-border-medium rounded-md text-plum text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood appearance-none"
           >
             <option value="" disabled>
               Select your region…

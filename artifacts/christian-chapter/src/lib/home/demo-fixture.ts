@@ -25,6 +25,38 @@ export const demoChapters = [
   { id: "next", title: "My next chapter", body: "Someone to share Sundays and the quiet midweek." },
 ];
 
+/** Labelled demonstration profiles for the phone. Never written to the database. */
+export const demoProfiles = [
+  {
+    firstName: "Samuel",
+    age: 57,
+    region: "London",
+    tradition: "Baptist",
+    poolLabel: "Nearby",
+    photo: "/images/home/profile-samuel.jpg",
+    lifeEvent: "A bright walk, then I cook.",
+    moments: [
+      { src: "/images/home/samuel-park.jpg", alt: "Samuel laughing on a sunny riverside walk" },
+      { src: "/images/home/samuel-kitchen.jpg", alt: "Samuel cooking in a bright kitchen" },
+    ],
+    lookingFor: "Someone kind, with a living faith and time for a shared life.",
+  },
+  {
+    firstName: "Priya",
+    age: 52,
+    region: "West Midlands",
+    tradition: "Catholic",
+    poolLabel: "Nearby",
+    photo: "/images/home/profile-priya.jpg",
+    lifeEvent: "Saturday flowers, then coffee in the sun.",
+    moments: [
+      { src: "/images/home/priya-market.jpg", alt: "Priya laughing at a sunny flower market" },
+      { src: "/images/home/priya-cafe.jpg", alt: "Priya with coffee by a bright cafe window" },
+    ],
+    lookingFor: "Company first. Marriage if it is right, without hurry.",
+  },
+];
+
 export const demoEssentials = [
   { factor: "tradition", label: "Christian tradition", tier: "preferred" as const },
   { factor: "smoking", label: "Smoking", tier: "essential" as const },

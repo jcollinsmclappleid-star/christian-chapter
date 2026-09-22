@@ -55,7 +55,7 @@ export function Step10Story({ data, update }: StepProps) {
               onChange={(e) => update({ [key]: e.target.value })}
               rows={4}
               placeholder="There's no right answer — just tell us what feels true."
-              className="w-full p-4 bg-ivory border border-border-medium rounded-md text-plum text-[16px] leading-7 resize-y placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-oxblood"
+              className="w-full p-4 bg-paper border border-border-medium rounded-md text-plum text-[16px] leading-7 resize-y placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-oxblood"
             />
           </div>
         ))}
@@ -84,7 +84,7 @@ export function Step10Story({ data, update }: StepProps) {
                 onChange={(e) => setPriority(i, e.target.value)}
                 placeholder={`Priority ${i + 1}`}
                 maxLength={80}
-                className="flex-1 min-h-[48px] px-4 bg-ivory border border-border-medium rounded-md text-plum text-[16px] placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-oxblood"
+                className="flex-1 min-h-[48px] px-4 bg-paper border border-border-medium rounded-md text-plum text-[16px] placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-oxblood"
               />
             </div>
           ))}

@@ -68,7 +68,7 @@ export function Step3About({ data, update }: StepProps) {
               onChange={(e) => update({ dateOfBirth: e.target.value })}
               max={new Date().toISOString().split("T")[0]}
               min="1935-01-01"
-              className="flex-1 min-h-[52px] px-4 bg-ivory border border-border-medium rounded-md text-plum text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood"
+              className="flex-1 min-h-[52px] px-4 bg-paper border border-border-medium rounded-md text-plum text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood"
             />
             {calculatedAge !== null && (
               <span className="text-[15px] text-plum-muted font-sans whitespace-nowrap">

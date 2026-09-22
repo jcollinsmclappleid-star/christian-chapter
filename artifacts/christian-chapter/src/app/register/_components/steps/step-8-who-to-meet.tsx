@@ -40,7 +40,7 @@ export function Step8WhoToMeet({ data, update }: StepProps) {
                     ageRangeMax: Math.max(data.ageRangeMax, Number(e.target.value) + 1),
                   })
                 }
-                className="w-full min-h-[52px] px-4 bg-ivory border border-border-medium rounded-md text-plum text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood appearance-none"
+                className="w-full min-h-[52px] px-4 bg-paper border border-border-medium rounded-md text-plum text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood appearance-none"
               >
                 {Array.from({ length: AGE_MAX - AGE_MIN }, (_, i) => AGE_MIN + i).map(
                   (age) => (
@@ -64,7 +64,7 @@ export function Step8WhoToMeet({ data, update }: StepProps) {
                     ageRangeMin: Math.min(data.ageRangeMin, Number(e.target.value) - 1),
                   })
                 }
-                className="w-full min-h-[52px] px-4 bg-ivory border border-border-medium rounded-md text-plum text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood appearance-none"
+                className="w-full min-h-[52px] px-4 bg-paper border border-border-medium rounded-md text-plum text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood appearance-none"
               >
                 {Array.from({ length: AGE_MAX - AGE_MIN + 1 }, (_, i) => AGE_MIN + 1 + i).map(
                   (age) => (
@@ -116,7 +116,7 @@ export function Step8WhoToMeet({ data, update }: StepProps) {
             onChange={(e) => update({ meetingPreferences: e.target.value })}
             rows={4}
             placeholder="For example: family importance, career, sense of humour, or anything that matters to you."
-            className="w-full p-4 bg-ivory border border-border-medium rounded-md text-plum text-[16px] leading-7 resize-y placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-oxblood"
+            className="w-full p-4 bg-paper border border-border-medium rounded-md text-plum text-[16px] leading-7 resize-y placeholder:text-stone focus:outline-none focus:ring-2 focus:ring-oxblood"
           />
         </div>
       </div>

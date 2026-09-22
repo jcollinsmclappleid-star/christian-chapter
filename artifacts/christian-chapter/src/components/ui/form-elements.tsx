@@ -31,7 +31,7 @@ export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputE
         ref={ref}
         className={cn(
           "w-full px-4 py-3 min-h-[52px]",
-          "bg-ivory border rounded-md",
+          "bg-paper border rounded-md",
           "text-[16px] text-plum placeholder:text-stone",
           "transition-colors duration-150",
           "focus:outline-none focus:ring-2 focus:ring-oxblood focus:border-transparent",
@@ -57,7 +57,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaHTMLAttributes<H
         ref={ref}
         className={cn(
           "w-full px-4 py-3",
-          "bg-ivory border rounded-md",
+          "bg-paper border rounded-md",
           "text-[16px] text-plum placeholder:text-stone",
           "resize-y min-h-[120px]",
           "transition-colors duration-150",
@@ -84,7 +84,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLSel
         ref={ref}
         className={cn(
           "w-full px-4 py-3 min-h-[52px]",
-          "bg-ivory border rounded-md",
+          "bg-paper border rounded-md",
           "text-[16px] text-plum",
           "appearance-none cursor-pointer",
           "transition-colors duration-150",

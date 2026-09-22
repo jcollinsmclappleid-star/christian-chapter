@@ -2,30 +2,44 @@
 
 @theme {
   /* ── Colour palette ── */
-  --color-ivory: #F7F3EC;
-  --color-ivory-dark: #EAE4D8;
-  --color-ivory-darker: #D8D0C4;
+  /* Ice ground so the blue and the photographs do the talking. */
+  --color-ivory: #F3F6FF;
+  --color-ivory-dark: #E6ECFB;
+  --color-ivory-darker: #D5DEF5;
+  --color-paper: #FFFFFF;
 
-  --color-plum: #1E1220;
-  --color-plum-soft: #3D2748;
-  --color-plum-muted: #6B5878;
+  --color-plum: #12182B;
+  --color-plum-soft: #1C2744;
+  --color-plum-muted: #3E4C6E;
 
   --color-oxblood: #8B1F2F;
   --color-oxblood-hover: #7A1A28;
   --color-oxblood-light: #F5ECEE;
+
+  /* Match blue: the arrival colour. White type clears it comfortably. */
+  --color-life: #1927F0;
+  --color-life-hover: #121EC4;
+  --color-life-light: #E7EBFF;
+
+  --color-tide: #1927F0;
+  --color-tide-light: #E7EBFF;
+  --color-foam: #E4E9FF;
 
   --color-evergreen: #1D4A36;
   --color-evergreen-light: #EAF2EE;
 
   --color-brass: #C4A05A;
   --color-brass-light: #F5EDD8;
+  --color-glow: #E4E9FF;
 
-  --color-stone: #9A8E9A;
-  --color-mist: #C8BFC8;
-  --color-border: rgba(30, 18, 32, 0.12);
-  --color-border-medium: rgba(30, 18, 32, 0.20);
+  --color-stone: #4A5678;
+  --color-mist: #5C6B8A;
+  --color-border: rgba(18, 24, 43, 0.14);
+  --color-border-medium: rgba(18, 24, 43, 0.28);
 
   /* ── Typography ── */
+  --font-sans: var(--font-grotesk), "system-ui", -apple-system, sans-serif;
+  --font-serif: var(--font-garamond), Georgia, "Times New Roman", serif;
   --font-family-serif: var(--font-garamond), Georgia, "Times New Roman", serif;
   --font-family-sans: var(--font-grotesk), "system-ui", -apple-system, sans-serif;
 
@@ -38,7 +52,7 @@
 
   /* ── Shadows (almost none — depth from layering) ── */
   --shadow-subtle: 0 1px 3px rgba(30, 18, 32, 0.06);
-  --shadow-card: 0 2px 8px rgba(30, 18, 32, 0.08);
+  --shadow-card: 0 16px 40px rgba(25, 39, 240, 0.16);
 }
 
 /* ── Base ── */
@@ -62,7 +76,7 @@ body {
 
 /* ── Focus ── */
 :focus-visible {
-  outline: 2px solid theme(--color-oxblood);
+  outline: 2px solid theme(--color-life);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -77,9 +91,9 @@ body {
     color: theme(--color-plum);
   }
 
-  h1 { font-size: clamp(2.6rem, 5.5vw, 5rem); }
-  h2 { font-size: clamp(2rem, 4vw, 3.4rem); }
-  h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+  h1 { font-size: clamp(2rem, 4vw, 2.75rem); }
+  h2 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
+  h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); }
 
   p { max-width: 68ch; }
 
@@ -98,8 +112,8 @@ body {
 
 /* ── Section spacing ── */
 .section {
-  padding-top: clamp(4rem, 8vw, 7rem);
-  padding-bottom: clamp(4rem, 8vw, 7rem);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
 /* ── Reduced motion ── */
@@ -111,8 +125,16 @@ body {
   }
 }
 
+.hero-shade {
+  background: linear-gradient(to top, rgba(10, 16, 70, 0.62) 0%, rgba(25, 39, 240, 0.02) 48%, rgba(8, 14, 48, 0.18) 100%);
+}
+
+.life-caption {
+  background: linear-gradient(to top, rgba(10, 16, 48, 0.88) 0%, rgba(10, 16, 48, 0.35) 42%, rgba(10, 16, 48, 0) 100%);
+}
+
 /* ── Selection ── */
 ::selection {
-  background-color: theme(--color-oxblood-light);
-  color: theme(--color-oxblood);
+  background-color: theme(--color-life-light);
+  color: theme(--color-life);
 }
