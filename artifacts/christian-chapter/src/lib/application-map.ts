@@ -44,7 +44,7 @@ export function applicationToWizard(
     termsAccepted: payload.termsAccepted ?? false,
   };
   const storedVersion = (row.wizardPayload as { flowVersion?: number } | null)?.flowVersion;
-  const step = storedVersion === 2 ? Math.min(Math.max(row.currentStep ?? 1, 1), 10) : 1;
+  const step = storedVersion === 3 ? Math.min(Math.max(row.currentStep ?? 1, 1), 8) : 1;
   return { data, step };
 }
 

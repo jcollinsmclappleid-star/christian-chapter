@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
     firstName,
     email,
     marketingConsent: parse.data.marketingConsent ?? false,
-    flowVersion: 2,
+    flowVersion: 3,
   };
   const values = wizardToApplicationValues(draft, parse.data.step ?? 10);
 

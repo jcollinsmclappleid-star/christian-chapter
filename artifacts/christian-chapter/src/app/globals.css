@@ -129,6 +129,16 @@ body {
   background: linear-gradient(to top, rgba(10, 16, 70, 0.62) 0%, rgba(25, 39, 240, 0.02) 48%, rgba(8, 14, 48, 0.18) 100%);
 }
 
+.intake {
+  background: #F6EFE6;
+  color: #2C2118;
+}
+
+.intake-card {
+  background: #FFF9F3;
+  border: 1px solid rgba(90, 48, 24, 0.14);
+}
+
 .life-caption {
   background: linear-gradient(to top, rgba(10, 16, 48, 0.88) 0%, rgba(10, 16, 48, 0.35) 42%, rgba(10, 16, 48, 0) 100%);
 }

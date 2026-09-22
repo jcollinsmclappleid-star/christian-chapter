@@ -25,7 +25,7 @@ export const MEMBER_PRICE_LABEL = "£29 a month";
 
 /** One customer-facing account of the founding stage. */
 export const FOUNDING_MEMBER_COPY =
-  "Mature Christian Dating is free until 14 February 2027. During that opening offer, founding members can be introduced by hand: the team connects two profiles. From 15 February 2027 the member price is £29 a month. No payment is taken before then.";
+  "Mature Christian Dating is free for founding members until 14 February 2027. Matching goes live on 14 February 2027. The member price of £29 a month starts on 15 February 2027. No payment is taken before then.";
 
 function env(name: string, fallback = ""): string {
   return (process.env[name] ?? fallback).trim();

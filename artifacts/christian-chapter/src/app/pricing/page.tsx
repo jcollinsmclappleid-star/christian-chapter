@@ -12,7 +12,7 @@ export const metadata = buildMetadata({
 const foundingBenefits = [
   "Complete your full profile",
   "Set your Essentials, Preferred and Open-minded preferences",
-  "A hand-picked introduction when the team connects two profiles",
+  "A profile ready for when matching goes live on 14 February 2027",
   "No card, and no payment, during the opening offer",
 ];
 
@@ -30,8 +30,8 @@ const faqs = [
     a: "Public one-month list prices checked in September 2026 were about £29.99 on Match in the UK, about £29.95 on Christian Connection, about £44.95 on eharmony, and about £24.95 a month for a short SilverSingles plan. Longer plans on those services cost less per month. Offers change.",
   },
   {
-    q: "What is the hand-picked service?",
-    a: "During the free period, an administrator can connect two submitted profiles. Each person then sees the other as an introduction, with a written reason. It is not a guarantee of a match, and it is not a public directory.",
+    q: "When does matching go live?",
+    a: `Matching goes live on ${OPENING_OFFER_ENDS_LABEL}. Until then you can build your profile free as a founding member. It is not a guarantee of a match.`,
   },
   {
     q: "Can I cancel at any time?",
@@ -51,7 +51,7 @@ export default function PricingPage() {
             Free until {OPENING_OFFER_ENDS_LABEL}.
           </h1>
           <p className="text-[17px] text-plum-muted leading-7 max-w-[540px]">
-            Then the member price is {MEMBER_PRICE_LABEL}. Nothing is charged during the opening offer, and founding members can be introduced by hand.
+            Then matching goes live, and the member price is {MEMBER_PRICE_LABEL}. Nothing is charged during the opening offer.
           </p>
         </div>
       </section>

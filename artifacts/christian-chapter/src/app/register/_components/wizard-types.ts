@@ -8,7 +8,7 @@ import {
 export { RELIGIOUS_CONSENT_VERSION, POLICY_VERSION };
 
 export const WIZARD_STORAGE_KEY = "cc_wizard_v1";
-export const TOTAL_STEPS = 10;
+export const TOTAL_STEPS = 8;
 
 export type EssentialTier = "essential" | "preferred" | "open";
 
@@ -61,7 +61,12 @@ export type WizardData = {
   priorities: string[];
   photoConsent: boolean;
   termsAccepted: boolean;
-  /** 2 = email is the last step. Older drafts restart at the first question. */
+  partnerHopes: string[];
+  hobbyNote: string;
+  photoDataUrl: string;
+  /** Set after the ready screen has finished assembling the profile. */
+  profileReady: boolean;
+  /** 3 = short build, then email once the profile is ready. Older drafts restart. */
   flowVersion: number;
 };
 
@@ -99,7 +104,11 @@ export const defaultWizardData: WizardData = {
   priorities: [],
   photoConsent: false,
   termsAccepted: false,
-  flowVersion: 2,
+  partnerHopes: [],
+  hobbyNote: "",
+  photoDataUrl: "",
+  profileReady: false,
+  flowVersion: 3,
 };
 
 export interface StepProps {
@@ -155,24 +164,52 @@ export const CENTRALITY_OPTIONS = [
   "Everything — it shapes all I do",
 ];
 
-export const INTERESTS_OPTIONS = [
-  "Country walks / hiking",
-  "Travel",
-  "Live music / concerts",
-  "Reading",
-  "Gardening",
-  "Cooking / baking",
-  "Arts and crafts",
-  "Cycling",
-  "Theatre / cinema",
-  "Volunteering",
-  "Sport",
-  "DIY",
-  "Photography",
-  "History / heritage",
-  "Prayer groups / Bible study",
-  "Community / social action",
+export const INTEREST_GROUPS: { title: string; options: string[] }[] = [
+  {
+    title: "Outdoors",
+    options: ["Country walks", "Coastal paths", "Gardening", "Cycling", "Wild swimming", "Birdwatching"],
+  },
+  {
+    title: "Table and home",
+    options: ["Cooking", "Baking", "Sunday lunch", "A good cup of tea", "DIY", "Hosting friends"],
+  },
+  {
+    title: "Making",
+    options: ["Photography", "Painting", "Choir", "An instrument", "Crafts", "Writing"],
+  },
+  {
+    title: "Out in the world",
+    options: ["Live music", "Theatre", "Cinema", "Travel", "Museums", "Dancing", "Sport"],
+  },
+  {
+    title: "A quieter week",
+    options: ["Reading", "Prayer", "Volunteering", "Board games", "Podcasts", "Learning a language"],
+  },
+  {
+    title: "A bit unexpected",
+    options: ["Ballroom", "Sourdough", "Classic cars", "Pilgrimage walks", "Astronomy", "Karaoke", "Football away days"],
+  },
 ];
+
+export const PARTNER_HOPES = [
+  "kind, and who means it",
+  "who laughs easily",
+  "with a faith already in the room",
+  "curious about ordinary days",
+  "steady, and not in a rush",
+  "good with family",
+  "happy to cook and to go out",
+  "honest about the past",
+  "glad of a quiet evening",
+];
+
+export const INTENTION_OPTIONS = [
+  "Companionship, and see where it leads",
+  "A committed relationship",
+  "Marriage if it is right, without hurry",
+];
+
+export const INTERESTS_OPTIONS = INTEREST_GROUPS.flatMap((group) => group.options);
 
 export const ESSENTIAL_FACTORS: { factor: string; label: string }[] = [
   { factor: "smoking", label: "Non-smoker" },

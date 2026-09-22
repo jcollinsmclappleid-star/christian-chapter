@@ -23,11 +23,13 @@ export default function TermsPage() {
       </p>
       <h2>Opening offer</h2>
       <p>
-        Joining is free until 14 February 2027. During that offer an
-        administrator may connect two submitted profiles, so each person can
-        see a hand-picked introduction. From 15 February 2027 the published
-        member price is £29 a month. No payment is taken before billing is
-        switched on, and this page does not start a subscription.
+        Joining is free for founding members until 14 February 2027. Matching
+        goes live on 14 February 2027. The published member price of £29 a
+        month starts on 15 February 2027. No payment is taken before billing
+        is switched on, and this page does not start a subscription. An
+        administrator may prepare a connection between two profiles before
+        that date. That is not a live matching service, and it is not a
+        guarantee of an introduction.
       </p>
       <h2>No guarantee of a match or a date</h2>
       <p>

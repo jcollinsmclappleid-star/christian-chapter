@@ -44,10 +44,11 @@ export default function SafetyPage() {
         <div className="mx-auto max-w-4xl px-5 py-8 md:py-12">
           <h1 className="font-sans font-semibold text-plum">Safety</h1>
           <p className="mt-3 text-[17px] leading-6 text-plum-muted max-w-[36rem]">
-            Mature Christian Dating is a founding cohort. During the opening
-            offer an administrator can connect two profiles. That is a
-            hand-picked introduction, not a live browsing network. This page
-            separates what already operates from what we are building.
+            Mature Christian Dating is a founding cohort. Matching goes live on
+            14 February 2027. Until then an administrator can prepare a
+            connection between two profiles. That is not a live browsing
+            network. This page separates what already operates from what we
+            are building.
           </p>
         </div>
       </section>
