@@ -250,14 +250,14 @@ export function Wizard() {
   if (checkEmail) {
     return (
       <div className="intake flex min-h-screen flex-col">
-        <header className="flex h-16 items-center justify-between border-b border-[#E4D3C4] px-6">
+        <header className="flex h-16 items-center justify-between border-b border-ivory-darker px-6">
           <Logo />
         </header>
         <main className="mx-auto w-full max-w-2xl flex-1 px-6 py-16">
-          <p className="mb-4 font-sans text-[11px] uppercase tracking-[0.3em] text-[#8C3D22]">
+          <p className="mb-4 font-sans text-[11px] uppercase tracking-[0.3em] text-life">
             Confirm your email
           </p>
-          <h1 className="mb-5 font-sans text-4xl font-bold tracking-[-0.03em] text-[#2C2118]">Check your inbox</h1>
+          <h1 className="mb-5 font-sans text-4xl font-bold tracking-[-0.03em] text-plum">Check your inbox</h1>
           <p className="text-[17px] text-plum-muted leading-7 mb-6">
             We have sent a one-time link to <strong className="text-plum">{checkEmail}</strong>.
             Confirm that address before your founding application can become active.
@@ -269,7 +269,7 @@ export function Wizard() {
               <a href={devLink} className="underline text-plum">open the magic link</a>
             </p>
           )}
-          <a href="/sign-in" className="underline text-oxblood text-[15px]">
+          <a href="/sign-in" className="underline text-life text-[15px]">
             Didn&apos;t get it? Request another link
           </a>
         </main>
@@ -281,22 +281,22 @@ export function Wizard() {
 
   return (
     <div className="intake flex min-h-screen flex-col">
-      <div className="h-1 flex-shrink-0 bg-[#E7D9CC]" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={TOTAL_STEPS}>
-        <div className="h-full bg-[#8C3D22] transition-all duration-500 ease-out" style={{ width: `${progress}%` }} />
+      <div className="h-1 flex-shrink-0 bg-ivory-darker" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={TOTAL_STEPS}>
+        <div className="h-full bg-life transition-all duration-500 ease-out" style={{ width: `${progress}%` }} />
       </div>
 
-      <header className="flex h-16 flex-shrink-0 items-center justify-between border-b border-[#E4D3C4] px-6 md:px-10">
+      <header className="flex h-16 flex-shrink-0 items-center justify-between border-b border-ivory-darker px-6 md:px-10">
         <div className="flex flex-col">
           <Logo />
-          <span className="mt-1 pl-11 font-sans text-[10px] uppercase tracking-[0.16em] text-[#8C3D22]">
+          <span className="mt-1 pl-11 font-sans text-[10px] uppercase tracking-[0.16em] text-life">
             Your profile
           </span>
         </div>
-        <div className="flex items-center gap-3 font-sans text-[12px] text-[#6B5346]">
+        <div className="flex items-center gap-3 font-sans text-[12px] text-plum-muted">
           <span className="uppercase tracking-[0.18em]">
             {reviewing ? "Review your profile" : `Step ${step} of ${TOTAL_STEPS}`}
           </span>
-          {!reviewing && <span className="hidden text-[#2C2118] sm:inline">{stepTitles[step - 1]}</span>}
+          {!reviewing && <span className="hidden text-plum sm:inline">{stepTitles[step - 1]}</span>}
         </div>
       </header>
 
@@ -324,7 +324,7 @@ export function Wizard() {
             <StepComponent data={data} update={update} onNext={goNext} onBack={goBack} step={step} />
           )}
           {submitError && !reviewing && (
-            <p className="mt-6 text-[14px] text-[#8B1F2F]" role="alert">
+            <p className="mt-6 text-[14px] text-oxblood" role="alert">
               {submitError}
             </p>
           )}
@@ -332,18 +332,18 @@ export function Wizard() {
       </main>
 
       {showNav && (
-        <nav className="sticky bottom-0 z-10 flex items-center justify-between gap-4 border-t border-[#E4D3C4] bg-[#F6EFE6]/95 px-6 py-4 md:px-10">
+        <nav className="sticky bottom-0 z-10 flex items-center justify-between gap-4 border-t border-ivory-darker bg-ivory/95 px-6 py-4 md:px-10">
           <button
             onClick={goBack}
             disabled={step === 1}
-            className="inline-flex min-h-[48px] items-center rounded-full border border-[#E4D3C4] px-5 text-[15px] text-[#6B5346] disabled:opacity-40"
+            className="inline-flex min-h-[48px] items-center rounded-full border border-ivory-darker px-5 text-[15px] text-plum-muted disabled:opacity-40"
           >
             ← Back
           </button>
           <button
             onClick={goNext}
             disabled={!canContinue || submitting}
-            className="inline-flex min-h-[52px] items-center rounded-full bg-[#8C3D22] px-7 font-sans text-[15px] font-medium text-white disabled:opacity-50"
+            className="inline-flex min-h-[52px] items-center rounded-full bg-life px-7 font-sans text-[15px] font-medium text-white disabled:opacity-50"
           >
             {submitting && step === TOTAL_STEPS && !authenticated
               ? "Sending link…"

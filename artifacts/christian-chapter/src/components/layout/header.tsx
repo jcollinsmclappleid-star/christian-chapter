@@ -23,7 +23,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-life">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-plum">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-5">
         <Logo tone="light" />
 
@@ -53,7 +53,7 @@ export function Header() {
       </div>
 
       {signedIn && mobileOpen && (
-        <nav className="border-t border-white/10 bg-life px-5 py-2 md:hidden" aria-label="Main navigation">
+        <nav className="border-t border-white/10 bg-plum px-5 py-2 md:hidden" aria-label="Main navigation">
           {memberLinks.map((link) => (
             <a
               key={link.href}

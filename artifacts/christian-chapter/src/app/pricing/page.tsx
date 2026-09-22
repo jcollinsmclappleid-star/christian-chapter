@@ -44,7 +44,7 @@ export default function PricingPage() {
     <>
       <section className="section bg-ivory pb-10">
         <div className="mx-auto max-w-4xl px-6">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-5">
+          <p className="text-[11px] uppercase tracking-[0.28em] text-life font-sans mb-5">
             Pricing
           </p>
           <h1 className="font-serif text-plum mb-5">

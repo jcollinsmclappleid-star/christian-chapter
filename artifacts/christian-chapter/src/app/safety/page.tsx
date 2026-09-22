@@ -127,7 +127,7 @@ export default function SafetyPage() {
             . In an emergency call 999.
           </p>
           <p className="mt-6">
-            <a href="/guides/safety/romance-fraud" className="underline text-oxblood">
+            <a href="/guides/safety/romance-fraud" className="underline text-life">
               Read the romance fraud guide →
             </a>
           </p>

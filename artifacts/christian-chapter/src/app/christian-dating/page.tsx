@@ -168,9 +168,9 @@ export default function ChristianDatingPage() {
               <a
                 key={href}
                 href={href}
-                className="block p-5 rounded-lg border border-border bg-ivory hover:border-oxblood/30 transition-colors group"
+                className="block p-5 rounded-lg border border-border bg-ivory hover:border-life/30 transition-colors group"
               >
-                <h3 className="font-sans font-semibold text-[15px] text-plum mb-2 group-hover:text-oxblood transition-colors">
+                <h3 className="font-sans font-semibold text-[15px] text-plum mb-2 group-hover:text-life transition-colors">
                   {label}
                 </h3>
                 <p className="text-[14px] text-plum-muted leading-5">{desc}</p>

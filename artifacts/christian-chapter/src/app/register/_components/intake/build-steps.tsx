@@ -19,7 +19,7 @@ import {
 } from "../wizard-types";
 
 function Note({ children }: { children: React.ReactNode }) {
-  return <p className="mb-6 rounded-2xl bg-[#F3E6DA] px-4 py-3 text-[15px] leading-6 text-[#5C3B2E]">{children}</p>;
+  return <p className="mb-6 rounded-2xl bg-life-light px-4 py-3 text-[15px] leading-6 text-plum">{children}</p>;
 }
 
 function Chip({
@@ -37,7 +37,7 @@ function Chip({
       aria-pressed={selected}
       onClick={onClick}
       className={`min-h-11 rounded-full border px-3.5 text-left text-[14px] font-semibold ${
-        selected ? "border-[#8C3D22] bg-[#8C3D22] text-white" : "border-[#E4D3C4] bg-[#FFF9F3] text-[#2C2118]"
+        selected ? "border-life bg-life text-white" : "border-ivory-darker bg-paper text-plum"
       }`}
     >
       {label}
@@ -68,7 +68,7 @@ export function StepWho({ data, update }: StepProps) {
   const seeking = ["Women", "Men", "Open to both"];
   return (
     <div>
-      <h1 className="mb-4 font-sans text-4xl font-bold leading-[1.05] tracking-[-0.03em] text-[#2C2118]">
+      <h1 className="mb-4 font-sans text-4xl font-bold leading-[1.05] tracking-[-0.03em] text-plum">
         Who would you be glad to meet?
       </h1>
       <Note>
@@ -96,12 +96,12 @@ export function StepWho({ data, update }: StepProps) {
           ))}
         </div>
       </fieldset>
-      <label className="mt-6 flex items-start gap-3 rounded-2xl border border-[#E4D3C4] bg-[#FFF9F3] p-5">
+      <label className="mt-6 flex items-start gap-3 rounded-2xl border border-ivory-darker bg-paper p-5">
         <input
           type="checkbox"
           checked={data.eligibilityAcknowledged}
           onChange={(event) => update({ eligibilityAcknowledged: event.target.checked })}
-          className="mt-1 h-5 w-5 accent-[#8C3D22]"
+          className="mt-1 h-5 w-5 accent-life"
         />
         <span className="text-[15px] leading-6">I confirm I am aged {MINIMUM_AGE} or over.</span>
       </label>
@@ -113,7 +113,7 @@ export function StepAge({ data, update }: StepProps) {
   const age = getAge(data.dateOfBirth);
   return (
     <div>
-      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">Your age is welcome here.</h2>
+      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">Your age is welcome here.</h2>
       <Note>
         Forty and over is the room. The age helps someone of a similar life stage recognise you, and it is said as a welcome.
         You can add more after you have a profile.
@@ -128,11 +128,11 @@ export function StepAge({ data, update }: StepProps) {
         min="1935-01-01"
         max={new Date().toISOString().split("T")[0]}
         onChange={(event) => update({ dateOfBirth: event.target.value })}
-        className="min-h-[52px] w-full rounded-2xl border border-[#E4D3C4] bg-[#FFF9F3] px-4 text-[16px]"
+        className="min-h-[52px] w-full rounded-2xl border border-ivory-darker bg-paper px-4 text-[16px]"
       />
-      {age !== null && <p className="mt-3 text-[15px] text-[#6B5346]">Age {age}</p>}
+      {age !== null && <p className="mt-3 text-[15px] text-plum-muted">Age {age}</p>}
       {age !== null && age < MINIMUM_AGE && (
-        <p className="mt-3 text-[14px] text-[#8B1F2F]" role="alert">
+        <p className="mt-3 text-[14px] text-oxblood" role="alert">
           Mature Christian Dating is for people aged {MINIMUM_AGE} and over.
         </p>
       )}
@@ -143,7 +143,7 @@ export function StepAge({ data, update }: StepProps) {
 export function StepPlace({ data, update }: StepProps) {
   return (
     <div>
-      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">Somewhere a good day could happen.</h2>
+      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">Somewhere a good day could happen.</h2>
       <Note>
         A region is enough for a day out, and it helps someone picture meeting you. Miles are not published.
         You can add more after you have a profile.
@@ -160,12 +160,12 @@ export function StepPlace({ data, update }: StepProps) {
 export function StepFaithLight({ data, update }: StepProps) {
   return (
     <div>
-      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">Faith can be quiet or central.</h2>
+      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">Faith can be quiet or central.</h2>
       <Note>
         Quiet or central, this helps someone recognise the faith already in the room. It is never sold.
         You can add more after you have a profile.
       </Note>
-      <label className="mb-6 flex items-start gap-3 rounded-2xl border border-[#E4D3C4] bg-[#FFF9F3] p-5">
+      <label className="mb-6 flex items-start gap-3 rounded-2xl border border-ivory-darker bg-paper p-5">
         <input
           type="checkbox"
           checked={data.religiousDataConsent}
@@ -176,7 +176,7 @@ export function StepFaithLight({ data, update }: StepProps) {
               religiousDataConsentVersion: RELIGIOUS_CONSENT_VERSION,
             })
           }
-          className="mt-1 h-5 w-5 accent-[#8C3D22]"
+          className="mt-1 h-5 w-5 accent-life"
           aria-required="true"
         />
         <span className="text-[14px] leading-6">
@@ -229,7 +229,7 @@ export function StepFaithLight({ data, update }: StepProps) {
 export function StepLife({ data, update }: StepProps) {
   return (
     <div>
-      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">What actually fills a week?</h2>
+      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">What actually fills a week?</h2>
       <Note>
         This step is optional. A marital situation, children, and a few activities help someone picture a week they could join.
         You can add more after you have a profile.
@@ -308,7 +308,7 @@ export function StepLife({ data, update }: StepProps) {
           onChange={(event) => update({ hobbyNote: event.target.value })}
           rows={3}
           placeholder="A Tuesday habit, a thing you love that never makes the lists."
-          className="w-full rounded-2xl border border-[#E4D3C4] bg-[#FFF9F3] px-4 py-3 text-[16px]"
+          className="w-full rounded-2xl border border-ivory-darker bg-paper px-4 py-3 text-[16px]"
         />
       </label>
     </div>
@@ -339,14 +339,14 @@ export function StepPhoto({ data, update }: StepProps) {
 
   return (
     <div>
-      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">One photograph is enough for now.</h2>
+      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">One photograph is enough for now.</h2>
       <Note>
         This step is optional. A current face, in daylight, doing something you actually do, helps someone recognise you.
         A person reviews it before anyone else sees it. You can add more after you have a profile.
       </Note>
-      <label className="flex min-h-40 cursor-pointer flex-col items-center justify-center rounded-[28px] border border-dashed border-[#C9A892] bg-[#FFF9F3] px-6 py-8 text-center">
-        <span className="font-sans text-[16px] font-semibold text-[#8C3D22]">Add a photograph</span>
-        <span className="mt-1 text-[14px] text-[#6B5346]">From your gallery or camera. A current face, in daylight, doing something you actually do.</span>
+      <label className="flex min-h-40 cursor-pointer flex-col items-center justify-center rounded-[28px] border border-dashed border-ivory-darker bg-paper px-6 py-8 text-center">
+        <span className="font-sans text-[16px] font-semibold text-life">Add a photograph</span>
+        <span className="mt-1 text-[14px] text-plum-muted">From your gallery or camera. A current face, in daylight, doing something you actually do.</span>
         <input
           type="file"
           accept="image/*"
@@ -359,7 +359,7 @@ export function StepPhoto({ data, update }: StepProps) {
         <img src={data.photoDataUrl} alt="Your photograph" className="mt-4 h-48 w-full rounded-[28px] object-cover" />
       )}
       {error && (
-        <p className="mt-3 text-[14px] text-[#8B1F2F]" role="alert">
+        <p className="mt-3 text-[14px] text-oxblood" role="alert">
           {error}
         </p>
       )}
@@ -388,7 +388,7 @@ export function StepLine({ data, update }: StepProps) {
 
   return (
     <div>
-      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">A short line is enough.</h2>
+      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">A short line is enough.</h2>
       <Note>
         Finish with this. A line in your own words helps someone recognise you, and every word stays editable.
         You can add more after you have a profile.
@@ -396,7 +396,7 @@ export function StepLine({ data, update }: StepProps) {
       <button
         type="button"
         onClick={populate}
-        className="inline-flex min-h-12 items-center rounded-full bg-[#8C3D22] px-5 text-[15px] font-semibold text-white"
+        className="inline-flex min-h-12 items-center rounded-full bg-life px-5 text-[15px] font-semibold text-white"
       >
         Populate from my answers
       </button>
@@ -406,7 +406,7 @@ export function StepLine({ data, update }: StepProps) {
           value={data.storyPrompt1}
           onChange={(event) => update({ storyPrompt1: event.target.value })}
           rows={5}
-          className="w-full rounded-2xl border border-[#E4D3C4] bg-[#FFF9F3] px-4 py-3 text-[16px] leading-6"
+          className="w-full rounded-2xl border border-ivory-darker bg-paper px-4 py-3 text-[16px] leading-6"
         />
       </label>
     </div>
@@ -431,18 +431,18 @@ export function StepReady({ data, update }: StepProps) {
   if (phase === "building") {
     return (
       <div className="flex min-h-[50vh] flex-col items-center justify-center text-center" role="status">
-        <div className="h-16 w-16 animate-pulse rounded-full bg-[#F3E6DA]" />
-        <h2 className="mt-6 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118]">Putting your profile together.</h2>
-        <p className="mt-3 max-w-sm text-[16px] leading-6 text-[#6B5346]">The answers you gave are becoming someone a future partner could recognise.</p>
+        <div className="h-16 w-16 animate-pulse rounded-full bg-life-light" />
+        <h2 className="mt-6 font-sans text-3xl font-bold tracking-[-0.03em] text-plum">Putting your profile together.</h2>
+        <p className="mt-3 max-w-sm text-[16px] leading-6 text-plum-muted">The answers you gave are becoming someone a future partner could recognise.</p>
       </div>
     );
   }
 
   return (
     <div>
-      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-[#2C2118] md:text-4xl">Your profile is ready.</h2>
+      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">Your profile is ready.</h2>
       <Note>{FOUNDING_MEMBER_COPY}</Note>
-      <p className="mb-6 text-[15px] leading-6 text-[#6B5346]">
+      <p className="mb-6 text-[15px] leading-6 text-plum-muted">
         Matching goes live on {OPENING_OFFER_ENDS_LABEL}. Leave a name and an email, and this profile is kept for you. Nothing is charged.
         You can add more after you have a profile.
       </p>
@@ -453,7 +453,7 @@ export function StepReady({ data, update }: StepProps) {
             value={data.firstName}
             onChange={(event) => update({ firstName: event.target.value })}
             autoComplete="given-name"
-            className="min-h-[52px] w-full rounded-2xl border border-[#E4D3C4] bg-[#FFF9F3] px-4 text-[16px]"
+            className="min-h-[52px] w-full rounded-2xl border border-ivory-darker bg-paper px-4 text-[16px]"
           />
         </label>
         <label className="block">
@@ -463,7 +463,7 @@ export function StepReady({ data, update }: StepProps) {
             value={data.email}
             onChange={(event) => update({ email: event.target.value })}
             autoComplete="email"
-            className="min-h-[52px] w-full rounded-2xl border border-[#E4D3C4] bg-[#FFF9F3] px-4 text-[16px]"
+            className="min-h-[52px] w-full rounded-2xl border border-ivory-darker bg-paper px-4 text-[16px]"
           />
         </label>
       </div>

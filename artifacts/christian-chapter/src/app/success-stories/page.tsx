@@ -14,7 +14,7 @@ export default function SuccessStoriesPage() {
     <>
       <section className="section bg-ivory">
         <div className="mx-auto max-w-4xl px-6">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-5">
+          <p className="text-[11px] uppercase tracking-[0.28em] text-life font-sans mb-5">
             Success stories
           </p>
           <h1 className="font-serif text-plum mb-6">
@@ -30,7 +30,7 @@ export default function SuccessStoriesPage() {
       <section className="section bg-ivory-dark">
         <div className="mx-auto max-w-4xl px-6">
           <div className="rounded-lg border border-border bg-ivory p-10 text-center max-w-xl mx-auto">
-            <Heart size={28} className="text-oxblood/40 mx-auto mb-5" />
+            <Heart size={28} className="text-life/40 mx-auto mb-5" />
             <h2 className="font-serif text-plum text-2xl mb-4">Stories coming soon</h2>
             <p className="text-[16px] text-plum-muted leading-6 mb-6">
               Mature Christian Dating is in its founding phase. We&apos;re building a community of genuine connections, and as members share their outcomes with us — and give their explicit consent to be featured — their stories will appear on this page.

@@ -28,7 +28,7 @@ export default async function VerifyPage({
       <section className="section bg-ivory">
         <div className="mx-auto max-w-lg px-6 text-center">
           <p className="text-[17px] text-plum-muted mb-6">Confirming your email…</p>
-          <a href={`/api/auth/verify?${qs.toString()}`} className="underline text-oxblood">
+          <a href={`/api/auth/verify?${qs.toString()}`} className="underline text-life">
             Continue
           </a>
         </div>

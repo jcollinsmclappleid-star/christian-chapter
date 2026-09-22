@@ -32,48 +32,48 @@ export function MiniProfile({ data }: { data: WizardData }) {
   return (
     <aside className="intake-card rounded-[28px] p-4 shadow-card md:sticky md:top-6">
       <section aria-label="You">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#8C3D22]">You</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-life">You</p>
         <div className="mt-3 flex items-center gap-3">
-          <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-[#F3E6DA]">
+          <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-life-light">
             {data.photoDataUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={data.photoDataUrl} alt="" className="h-full w-full object-cover" />
             ) : (
-              <span className="flex h-full items-center justify-center text-[22px] font-semibold text-[#8C3D22]">
+              <span className="flex h-full items-center justify-center text-[22px] font-semibold text-life">
                 {name.slice(0, 1)}
               </span>
             )}
           </div>
           <div>
-            <p className="font-sans text-[1.35rem] font-bold leading-none tracking-tight text-[#2C2118]">
+            <p className="font-sans text-[1.35rem] font-bold leading-none tracking-tight text-plum">
               {name}
               {age ? `, ${age}` : ""}
             </p>
-            <p className="mt-1 text-[13px] leading-5 text-[#6B5346]">
+            <p className="mt-1 text-[13px] leading-5 text-plum-muted">
               {[data.ukRegion, data.tradition].filter(Boolean).join(" · ") || "A life already underway"}
             </p>
             {household.length > 0 && (
-              <p className="mt-1 text-[13px] leading-5 text-[#5C3B2E]">{household.join(" · ")}</p>
+              <p className="mt-1 text-[13px] leading-5 text-plum">{household.join(" · ")}</p>
             )}
           </div>
         </div>
         {activities.length > 0 && (
           <ul className="mt-3 flex flex-wrap gap-1.5">
             {activities.map((chip) => (
-              <li key={chip} className="rounded-full bg-[#F3E6DA] px-2.5 py-1 text-[12px] font-medium text-[#5C3B2E]">
+              <li key={chip} className="rounded-full bg-life-light px-2.5 py-1 text-[12px] font-medium text-plum">
                 {chip}
               </li>
             ))}
           </ul>
         )}
         {data.storyPrompt1.trim() && (
-          <p className="mt-3 text-[14px] leading-5 text-[#2C2118]">{data.storyPrompt1.trim()}</p>
+          <p className="mt-3 text-[14px] leading-5 text-plum">{data.storyPrompt1.trim()}</p>
         )}
-        <p className="mt-3 text-[13px] leading-5 text-[#8C3D22]">{profileEncouragement(card)}</p>
+        <p className="mt-3 text-[13px] leading-5 text-life">{profileEncouragement(card)}</p>
       </section>
-      <section aria-label="Who you're hoping to meet" className="mt-4 border-t border-[#E4D3C4] pt-3">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#8C3D22]">Who you&apos;re hoping to meet</p>
-        <p className="mt-2 text-[14px] leading-5 text-[#2C2118]">{hopeSummary(card)}</p>
+      <section aria-label="Who you're hoping to meet" className="mt-4 border-t border-ivory-darker pt-3">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-life">Who you&apos;re hoping to meet</p>
+        <p className="mt-2 text-[14px] leading-5 text-plum">{hopeSummary(card)}</p>
       </section>
     </aside>
   );
