@@ -95,7 +95,7 @@ export default function HomePage() {
     <>
       <LegacyHouseRedirect />
 
-      <section className="relative h-[calc(100svh-3.5rem)] overflow-hidden bg-plum">
+      <section className="relative h-[calc(100svh-3.5rem)] overflow-hidden bg-life">
         <Image
           src="/images/home/joy-rooftop.jpg"
           alt="A couple in their fifties laughing together on a sunny rooftop"
@@ -132,7 +132,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="how-it-works" className="scroll-mt-20 bg-plum">
+      <section id="how-it-works" className="scroll-mt-20 bg-life">
         <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
           <h2 className={`${displayOnNight} text-[2.05rem] md:text-[2.6rem]`}>You are in the right place.</h2>
           <p className="mt-3 max-w-xl text-[17px] leading-6 text-foam">
@@ -188,7 +188,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-plum" aria-labelledby="phone-heading">
+      <section className="bg-life" aria-labelledby="phone-heading">
         <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
           <h2 id="phone-heading" className={`${displayOnNight} max-w-[16ch] text-[2.05rem] md:text-[2.6rem]`}>
             An introduction, in your hand.

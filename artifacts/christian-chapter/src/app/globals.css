@@ -16,21 +16,21 @@
   --color-oxblood-hover: #7A1A28;
   --color-oxblood-light: #F5ECEE;
 
-  /* Hearth. A clay of our own, not Match's electric blue. White type clears it. */
-  --color-life: #8C3D22;
-  --color-life-hover: #732F18;
-  --color-life-light: #F3E6DA;
+  /* Cobalt. Close to a dating-site blue, shifted off Match's #1927F0. White type clears it. */
+  --color-life: #1651B6;
+  --color-life-hover: #104093;
+  --color-life-light: #E3ECF7;
 
-  --color-tide: #8C3D22;
-  --color-tide-light: #F3E6DA;
-  --color-foam: #F6E6DA;
+  --color-tide: #1651B6;
+  --color-tide-light: #E3ECF7;
+  --color-foam: #E7F0FA;
 
   --color-evergreen: #1D4A36;
   --color-evergreen-light: #EAF2EE;
 
   --color-brass: #C4A05A;
   --color-brass-light: #F5EDD8;
-  --color-glow: #F6E6DA;
+  --color-glow: #F4F8FF;
 
   --color-stone: #6B5346;
   --color-mist: #7A6458;
