@@ -40,15 +40,10 @@ const planned = [
 export default function SafetyPage() {
   return (
     <>
-      <section className="section bg-evergreen text-ivory pb-16">
-        <div className="mx-auto max-w-4xl px-6">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-ivory/60 font-sans mb-5">
-            Trust and safety
-          </p>
-          <h1 className="font-serif text-ivory mb-6">
-            Safety is part of the product, not a footnote.
-          </h1>
-          <p className="text-[18px] text-ivory/80 leading-7 max-w-[580px]">
+      <section className="border-b border-border bg-ivory">
+        <div className="mx-auto max-w-4xl px-5 py-8 md:py-12">
+          <h1 className="font-sans font-semibold text-plum">Safety</h1>
+          <p className="mt-3 text-[17px] leading-6 text-plum-muted max-w-[36rem]">
             Mature Christian Dating is currently a founding cohort, not a live
             introductions network. This page separates what already operates
             from what we are building.

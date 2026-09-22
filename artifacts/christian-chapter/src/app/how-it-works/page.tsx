@@ -49,16 +49,11 @@ export default function HowItWorksPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-ivory section pb-14">
-        <div className="mx-auto max-w-4xl px-6">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-5">
-            The approach
-          </p>
-          <h1 className="font-serif text-plum mb-6">
-            How Mature Christian Dating works
-          </h1>
-          <p className="text-[18px] text-plum-muted leading-7 max-w-[580px]">
-            Introductions based on faith, life stage and intention — not an algorithm score. Here is what to expect.
+      <section className="border-b border-border bg-ivory">
+        <div className="mx-auto max-w-4xl px-5 py-8 md:py-12">
+          <h1 className="font-sans font-semibold text-plum">How it works</h1>
+          <p className="mt-3 text-[17px] leading-6 text-plum-muted max-w-[36rem]">
+            Introductions based on faith, life stage and intention — not an algorithm score.
           </p>
         </div>
       </section>

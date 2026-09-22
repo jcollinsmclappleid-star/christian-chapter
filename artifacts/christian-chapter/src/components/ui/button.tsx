@@ -50,7 +50,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           "inline-flex items-center justify-center gap-2",
           "font-sans font-medium tracking-wide",
-          "rounded-md",
+          "rounded-full",
           "transition-all duration-150",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
           "disabled:opacity-50 disabled:cursor-not-allowed",
@@ -93,7 +93,7 @@ export function LinkButton({
       className={cn(
         "inline-flex items-center justify-center gap-2",
         "font-sans font-medium tracking-wide",
-        "rounded-md",
+        "rounded-full",
         "transition-all duration-150",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-oxblood focus-visible:ring-offset-2",
         variants[variant],

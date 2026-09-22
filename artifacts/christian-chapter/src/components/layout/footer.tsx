@@ -15,7 +15,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border bg-ivory">
-      <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col md:flex-row md:items-center justify-between gap-5">
+      <div className="mx-auto max-w-5xl px-5 py-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <Logo />
           <p className="text-[13px] text-stone mt-1">{footerLegalLine(year)}</p>

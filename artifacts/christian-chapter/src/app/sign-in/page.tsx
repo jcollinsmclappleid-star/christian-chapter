@@ -39,13 +39,10 @@ export default function SignInPage() {
   }
 
   return (
-    <section className="section bg-ivory">
-      <div className="mx-auto max-w-lg px-6">
-        <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-5">
-          Sign in
-        </p>
-        <h1 className="font-serif text-plum mb-4">Welcome back</h1>
-        <p className="text-[17px] text-plum-muted leading-7 mb-8">
+    <section className="bg-ivory">
+      <div className="mx-auto max-w-md px-5 pt-10 pb-16">
+        <h1 className="font-sans font-semibold text-[2rem] leading-tight text-plum">Sign in</h1>
+        <p className="mt-3 mb-6 text-[16px] leading-6 text-plum-muted">
           Continue your profile with the email you used. We will send a one-time link — there is
           no password.
         </p>
@@ -61,7 +58,7 @@ export default function SignInPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full min-h-[52px] px-4 border border-border-medium rounded-md bg-ivory text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood"
+              className="w-full min-h-[52px] px-4 border border-border-medium rounded-xl bg-ivory text-[16px] focus:outline-none focus:ring-2 focus:ring-oxblood"
             />
           </div>
           {message && (
@@ -83,7 +80,7 @@ export default function SignInPage() {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="min-h-[52px] px-7 bg-oxblood text-ivory rounded-md font-sans text-[15px] disabled:opacity-50"
+            className="w-full min-h-[52px] px-7 bg-oxblood text-ivory rounded-full font-sans font-medium text-[15px] disabled:opacity-50"
           >
             {status === "sending" ? "Sending…" : "Email me a sign-in link"}
           </button>
