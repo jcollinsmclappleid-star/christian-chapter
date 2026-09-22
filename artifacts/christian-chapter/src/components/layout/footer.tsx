@@ -14,18 +14,18 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/10 bg-plum">
+    <footer className="border-t border-white/10 bg-life">
       <div className="mx-auto max-w-5xl px-5 py-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <Logo tone="light" />
-          <p className="text-[13px] text-mist mt-1">{footerLegalLine(year)}</p>
+          <p className="text-[13px] text-foam mt-1">{footerLegalLine(year)}</p>
         </div>
         <nav className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-[13px] text-mist hover:text-paper"
+              className="text-[13px] text-foam hover:text-paper"
             >
               {link.label}
             </a>

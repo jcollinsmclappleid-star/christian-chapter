@@ -2,40 +2,40 @@
 
 @theme {
   /* ── Colour palette ── */
-  /* Warm linen ground: hospitable, not a gray sage and not white. */
-  --color-ivory: #EFE6D4;
-  --color-ivory-dark: #E4D7C0;
-  --color-ivory-darker: #D9C9AD;
-  --color-paper: #FBF7F0;
+  /* Ice ground so the blue and the photographs do the talking. */
+  --color-ivory: #F3F6FF;
+  --color-ivory-dark: #E6ECFB;
+  --color-ivory-darker: #D5DEF5;
+  --color-paper: #FFFFFF;
 
-  /* Deep garden: the serious anchor. */
-  --color-plum: #10241C;
-  --color-plum-soft: #1A3328;
-  --color-plum-muted: #3F5649;
+  --color-plum: #12182B;
+  --color-plum-soft: #1C2744;
+  --color-plum-muted: #3E4C6E;
 
   --color-oxblood: #8B1F2F;
   --color-oxblood-hover: #7A1A28;
   --color-oxblood-light: #F5ECEE;
 
-  /* Jewel green: the action. Bright enough to invite, dark enough for white type. */
-  --color-life: #0F7A45;
-  --color-life-hover: #0C6338;
-  --color-life-light: #E3F6EA;
+  /* Match blue: the arrival colour. White type clears it comfortably. */
+  --color-life: #1927F0;
+  --color-life-hover: #121EC4;
+  --color-life-light: #E7EBFF;
 
-  --color-tide: #1E5E78;
-  --color-tide-light: #E6F1F6;
+  --color-tide: #1927F0;
+  --color-tide-light: #E7EBFF;
+  --color-foam: #E4E9FF;
 
   --color-evergreen: #1D4A36;
   --color-evergreen-light: #EAF2EE;
 
   --color-brass: #C4A05A;
   --color-brass-light: #F5EDD8;
-  --color-glow: #E8C56B;
+  --color-glow: #E4E9FF;
 
-  --color-stone: #4A5E54;
-  --color-mist: #8AA093;
-  --color-border: rgba(20, 38, 28, 0.16);
-  --color-border-medium: rgba(20, 38, 28, 0.28);
+  --color-stone: #4A5678;
+  --color-mist: #5C6B8A;
+  --color-border: rgba(18, 24, 43, 0.14);
+  --color-border-medium: rgba(18, 24, 43, 0.28);
 
   /* ── Typography ── */
   --font-sans: var(--font-grotesk), "system-ui", -apple-system, sans-serif;
@@ -52,7 +52,7 @@
 
   /* ── Shadows (almost none — depth from layering) ── */
   --shadow-subtle: 0 1px 3px rgba(30, 18, 32, 0.06);
-  --shadow-card: 0 12px 32px rgba(16, 36, 28, 0.14);
+  --shadow-card: 0 16px 40px rgba(25, 39, 240, 0.16);
 }
 
 /* ── Base ── */
@@ -126,7 +126,7 @@ body {
 }
 
 .hero-shade {
-  background: linear-gradient(to top, rgba(16, 36, 28, 0.55) 0%, rgba(16, 36, 28, 0.05) 46%, rgba(16, 36, 28, 0.28) 100%);
+  background: linear-gradient(to top, rgba(10, 16, 70, 0.78) 0%, rgba(25, 39, 240, 0.12) 46%, rgba(8, 14, 48, 0.38) 100%);
 }
 
 /* ── Selection ── */

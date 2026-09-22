@@ -2,7 +2,7 @@ import { DEMO_DISCLOSURE, demoChapters, demoIntroduction } from "@/lib/home/demo
 
 function PhoneFrame({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="w-[272px] shrink-0 overflow-hidden rounded-[2.25rem] border-[10px] border-glow bg-paper shadow-card">
+    <div className="w-[272px] shrink-0 overflow-hidden rounded-[2.25rem] border-[10px] border-white bg-paper shadow-card">
       <div className="flex items-center justify-between bg-life px-4 py-2.5 text-white">
         <span className="font-sans text-[13px] font-semibold tracking-tight">{label}</span>
         <span className="h-1.5 w-8 rounded-full bg-white/70" />

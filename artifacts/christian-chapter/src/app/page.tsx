@@ -1,5 +1,5 @@
 import { HeroIntake } from "@/components/home/hero-intake";
-import { IconCovenant, IconFaith, IconLamp, IconOlive } from "@/components/home/mark-icons";
+import { IconBlock, IconCovenant, IconEye, IconFaith, IconLamp, IconLeave, IconOlive, IconPause } from "@/components/home/mark-icons";
 import { LegacyHouseRedirect } from "@/components/home/legacy-house-redirect";
 import { PhoneMocks } from "@/components/home/phone-mock";
 import { LinkButton } from "@/components/ui/button";
@@ -19,59 +19,69 @@ export const metadata: Metadata = {
 const rightPlace = [
   {
     icon: IconFaith,
-    title: "Faith belongs in the introduction",
-    body: "Not as a line added to a general dating profile.",
+    title: "Faith, in the room",
+    body: "It belongs in the introduction, not as a line added later.",
   },
   {
     icon: IconOlive,
-    title: "A life already underway",
-    body: "Work, family, and a church you already belong to.",
+    title: "A life with colour in it",
+    body: "Work, family, church, and room for someone new.",
   },
   {
     icon: IconCovenant,
     title: "A few people, with a reason",
-    body: "Finite introductions. No swipe deck and no percentage score.",
+    body: "An introduction you can understand. No swipe deck and no percentage score.",
   },
 ];
 
-const assurance = [
+const charge = [
   {
-    icon: IconLamp,
-    title: "Reviewed with care",
-    body: "Submitted profiles are checked as a quality and safety control before anyone is introduced.",
+    icon: IconLeave,
+    title: "Close in one step",
+    body: "Confirm it, and your profile is hidden at once.",
   },
   {
-    icon: IconOlive,
-    title: "Private by design",
-    body: "You choose what another member is allowed to see.",
+    icon: IconEye,
+    title: "You choose what is seen",
+    body: "Every answer has a visibility you set.",
+  },
+  {
+    icon: IconPause,
+    title: "Take a break",
+    body: "Step out of introductions without losing your profile.",
+  },
+  {
+    icon: IconBlock,
+    title: "Block, and it holds",
+    body: "Someone you block is kept out of your introductions.",
   },
   {
     icon: IconFaith,
-    title: "Faith, with consent",
-    body: "Faith answers are collected only with a separate consent, and they are never sold.",
+    title: "Faith is never sold",
+    body: "Faith answers need their own consent, and they are never sold.",
   },
   {
-    icon: IconCovenant,
-    title: "Free to start",
-    body: "Create your profile while we welcome founding members. There is no checkout.",
+    icon: IconLamp,
+    title: "A person reviews first",
+    body: "A profile is checked for quality and safety before anyone is introduced.",
   },
 ];
 
 const photos = [
   {
-    src: "/images/home/hero-park.jpg",
-    alt: "A couple in their fifties walking through a green park",
-    caption: "An ordinary afternoon.",
+    src: "/images/home/hero-evening.jpg",
+    alt: "A couple in their fifties laughing together at a candlelit table",
+    caption: "The evening you said yes to.",
   },
   {
-    src: "/images/home/cafe-daylight.jpg",
-    alt: "A woman in her late fifties reading by a sunlit cafe window",
-    caption: "Daylight, and time.",
+    src: "/images/home/city-laugh.jpg",
+    alt: "A couple walking a city street at dusk, laughing",
+    caption: "Someone to laugh with.",
   },
   {
-    src: "/images/home/churchyard-walk.jpg",
-    alt: "Two people in their sixties leaving a churchyard onto green grass",
-    caption: "After church, the rest of the day.",
+    src: "/images/home/terrace-toast.jpg",
+    alt: "Two people on a sunny terrace, glasses raised",
+    caption: "Glad to be there.",
   },
 ];
 
@@ -83,26 +93,30 @@ export default function HomePage() {
     <>
       <LegacyHouseRedirect />
 
-      <section className="relative h-[calc(100svh-3.5rem)] overflow-hidden bg-plum">
+      <section className="relative h-[calc(100svh-3.5rem)] overflow-hidden bg-life">
         <Image
-          src="/images/home/hero-park.jpg"
-          alt="A couple in their fifties walking through a green park"
+          src="/images/home/hero-evening.jpg"
+          alt="A couple in their fifties laughing together at a candlelit table"
           fill
           priority
-          className="object-cover object-[center_20%]"
+          className="object-cover object-[center_30%]"
           sizes="100vw"
         />
         <div className="hero-shade absolute inset-0" />
         <div className="relative z-10 flex h-full items-end md:items-center">
           <div className="mx-auto w-full max-w-6xl md:px-8">
-            <div className="w-full rounded-t-[28px] bg-paper px-5 pb-4 pt-4 shadow-card md:max-w-[26rem] md:rounded-[28px] md:px-6 md:py-6">
-              <h1 className={`${display} text-[1.7rem] md:text-[2.15rem]`}>Mature Christian dating.</h1>
-              <p className="mt-1 text-[15px] leading-5 text-plum-muted">
-                For Christian singles aged 40 and over who want a meaningful relationship.
+            <div className="px-5 pb-3 md:max-w-[26rem] md:px-1">
+              <h1 className="font-sans text-[2.15rem] font-bold leading-[1.02] tracking-[-0.03em] text-white md:text-[2.6rem]">
+                Mature Christian dating.
+              </h1>
+              <p className="mt-2 max-w-[22rem] text-[16px] leading-5 text-white/90">
+                Love, company, and a faith you do not have to explain.
               </p>
+            </div>
+            <div className="w-full rounded-t-[28px] bg-paper px-5 pb-4 pt-4 shadow-card md:max-w-[26rem] md:rounded-[28px] md:px-6 md:py-6">
               <HeroIntake />
               <p className="mt-3 text-center text-[15px]">
-                <a href="/sign-in" className="font-semibold text-tide underline underline-offset-4">
+                <a href="/sign-in" className="font-semibold text-life underline underline-offset-4">
                   Sign in
                 </a>
               </p>
@@ -111,27 +125,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="how-it-works" className="scroll-mt-20 bg-plum">
+      <section id="how-it-works" className="scroll-mt-20 bg-life">
         <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
           <h2 className={`${displayOnNight} text-[2.05rem] md:text-[2.6rem]`}>You are in the right place.</h2>
-          <p className="mt-3 max-w-xl text-[17px] leading-6 text-mist">
-            Mature Christian dating for adults whose life and faith are already underway.
+          <p className="mt-3 max-w-xl text-[17px] leading-6 text-foam">
+            For people who want love, and want it with a faith already in the room.
           </p>
           <ul className="mt-8">
             {rightPlace.map((item) => (
               <li key={item.title} className="grid grid-cols-[3.25rem_1fr] gap-4 border-t border-white/15 py-5">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-glow">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-white">
                   <item.icon className="h-7 w-7" />
                 </span>
                 <div>
                   <h3 className={`${displayOnNight} text-[1.3rem]`}>{item.title}</h3>
-                  <p className="mt-1 text-[17px] leading-6 text-mist">{item.body}</p>
+                  <p className="mt-1 text-[17px] leading-6 text-foam">{item.body}</p>
                 </div>
               </li>
             ))}
           </ul>
           <p className="mt-2">
-            <a href="/how-it-works" className="text-[16px] font-semibold text-glow underline underline-offset-4">
+            <a href="/how-it-works" className="text-[16px] font-semibold text-white underline underline-offset-4">
               See how it works
             </a>
           </p>
@@ -141,10 +155,10 @@ export default function HomePage() {
       <section className="bg-ivory" aria-labelledby="people-heading">
         <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
           <h2 id="people-heading" className={`${display} max-w-[14ch] text-[2.05rem] md:text-[2.6rem]`}>
-            Ordinary days. A shared faith.
+            This is the feeling.
           </h2>
           <p className="mt-3 max-w-xl text-[17px] leading-6 text-plum-muted">
-            Photographs of a life like yours. These are not members.
+            Love, laughter, and someone glad to be there. These photographs are not members.
           </p>
           <ul className="mt-8 flex snap-x gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
             {photos.map((photo) => (
@@ -159,12 +173,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-plum" aria-labelledby="phone-heading">
+      <section className="bg-life" aria-labelledby="phone-heading">
         <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
           <h2 id="phone-heading" className={`${displayOnNight} max-w-[16ch] text-[2.05rem] md:text-[2.6rem]`}>
             An introduction, in your hand.
           </h2>
-          <p className="mt-3 max-w-xl text-[17px] leading-6 text-mist">
+          <p className="mt-3 max-w-xl text-[17px] leading-6 text-foam">
             A labelled demonstration of the profile and the reason. It is not a member.
           </p>
           <div className="mt-8">
@@ -176,10 +190,13 @@ export default function HomePage() {
       <section className="bg-ivory" aria-labelledby="assurance-heading">
         <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
           <h2 id="assurance-heading" className={`${display} text-[2.05rem] md:text-[2.6rem]`}>
-            Begin with some assurance.
+            You stay in charge.
           </h2>
+          <p className="mt-3 max-w-xl text-[17px] leading-6 text-plum-muted">
+            The controls people expect, already part of how this works.
+          </p>
           <ul className="mt-8">
-            {assurance.map((item) => (
+            {charge.map((item) => (
               <li key={item.title} className="grid grid-cols-[3.25rem_1fr] gap-4 border-t border-border py-5">
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-life text-paper">
                   <item.icon className="h-7 w-7" />
