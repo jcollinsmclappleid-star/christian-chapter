@@ -1,12 +1,6 @@
 import { DEMO_DISCLOSURE, demoIntroduction, demoProfiles } from "@/lib/home/demo-fixture";
 import Image from "next/image";
 
-const lifeThumbs = [
-  { src: "/images/home/life-after-church.jpg", alt: "A couple on church steps after a service" },
-  { src: "/images/home/life-family-table.jpg", alt: "Friends sharing a meal at a home table" },
-  { src: "/images/home/life-choir.jpg", alt: "A choir rehearsing in a church" },
-];
-
 function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="w-[280px] shrink-0 overflow-hidden rounded-[2.25rem] border-[10px] border-white bg-paper shadow-card">
@@ -42,9 +36,9 @@ export function PhoneMocks() {
             <p className="mt-1 text-[13px] font-medium text-life">{profile.tradition}</p>
             <p className="mt-3 text-[14px] leading-5 text-plum">{profile.lifeEvent}</p>
             <div className="mt-3 flex gap-1.5">
-              {lifeThumbs.map((thumb) => (
-                <div key={thumb.src} className="relative h-14 flex-1 overflow-hidden rounded-lg">
-                  <Image src={thumb.src} alt={thumb.alt} fill className="object-cover" sizes="80px" />
+              {profile.moments.map((moment) => (
+                <div key={moment.src} className="relative h-16 flex-1 overflow-hidden rounded-lg">
+                  <Image src={moment.src} alt={moment.alt} fill className="object-cover" sizes="120px" />
                 </div>
               ))}
             </div>

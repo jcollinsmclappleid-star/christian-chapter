@@ -34,7 +34,11 @@ export const demoProfiles = [
     tradition: "Baptist",
     poolLabel: "Nearby",
     photo: "/images/home/profile-samuel.jpg",
-    lifeEvent: "Sunday still starts at church.",
+    lifeEvent: "A bright walk, then I cook.",
+    moments: [
+      { src: "/images/home/samuel-park.jpg", alt: "Samuel laughing on a sunny riverside walk" },
+      { src: "/images/home/samuel-kitchen.jpg", alt: "Samuel cooking in a bright kitchen" },
+    ],
     lookingFor: "Someone kind, with a living faith and time for a shared life.",
   },
   {
@@ -44,7 +48,11 @@ export const demoProfiles = [
     tradition: "Catholic",
     poolLabel: "Nearby",
     photo: "/images/home/profile-priya.jpg",
-    lifeEvent: "I cook for people I love, and I still sing when I know the hymn.",
+    lifeEvent: "Saturday flowers, then coffee in the sun.",
+    moments: [
+      { src: "/images/home/priya-market.jpg", alt: "Priya laughing at a sunny flower market" },
+      { src: "/images/home/priya-cafe.jpg", alt: "Priya with coffee by a bright cafe window" },
+    ],
     lookingFor: "Company first. Marriage if it is right, without hurry.",
   },
 ];

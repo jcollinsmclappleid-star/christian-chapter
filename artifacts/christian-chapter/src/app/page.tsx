@@ -69,22 +69,22 @@ const charge = [
 
 const photos = [
   {
-    src: "/images/home/life-after-church.jpg",
-    alt: "A Black couple in their fifties laughing on church steps after a service",
-    event: "After church",
-    note: "Faith in the week, not a line added later.",
+    src: "/images/home/joy-courtyard.jpg",
+    alt: "A couple laughing together in a sunny courtyard",
+    event: "Out in the light",
+    note: "Fun, and someone glad to be beside you.",
   },
   {
-    src: "/images/home/life-family-table.jpg",
-    alt: "Friends of different backgrounds sharing a meal at a home table",
-    event: "The family table",
-    note: "A life already going on, with room for someone new.",
+    src: "/images/home/joy-kitchen.jpg",
+    alt: "A couple laughing while cooking in a bright kitchen",
+    event: "In the kitchen",
+    note: "Love that looks like a real afternoon.",
   },
   {
-    src: "/images/home/life-choir.jpg",
-    alt: "A multicultural church choir of adults laughing between songs",
-    event: "Still in the choir",
-    note: "A church you already belong to.",
+    src: "/images/home/joy-park.jpg",
+    alt: "A couple laughing together on a sunny park lawn",
+    event: "A good day outside",
+    note: "Joy, and a life with room for someone new.",
   },
 ];
 
@@ -98,11 +98,11 @@ export default function HomePage() {
 
       <section className="relative h-[calc(100svh-3.5rem)] overflow-hidden bg-life">
         <Image
-          src="/images/home/life-after-church.jpg"
-          alt="A Black couple in their fifties laughing on church steps after a service"
+          src="/images/home/joy-rooftop.jpg"
+          alt="A couple in their fifties laughing together on a sunny rooftop"
           fill
           priority
-          className="object-cover object-[center_22%]"
+          className="object-cover object-[center_30%]"
           sizes="100vw"
         />
         <div className="hero-shade absolute inset-0" />
@@ -161,7 +161,7 @@ export default function HomePage() {
             A life, in pictures.
           </h2>
           <p className="mt-3 max-w-xl text-[17px] leading-6 text-plum-muted">
-            The week as someone might show it: church, the table, the people they sing with. These photographs are not members.
+            Other people, other days: outside in the sun, and inside where the light is good. These photographs are not members.
           </p>
           <ul className="mt-6 flex flex-col gap-4 md:grid md:grid-cols-3">
             {photos.map((photo) => (

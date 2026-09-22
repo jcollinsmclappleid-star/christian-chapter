@@ -126,7 +126,7 @@ body {
 }
 
 .hero-shade {
-  background: linear-gradient(to top, rgba(10, 16, 70, 0.78) 0%, rgba(25, 39, 240, 0.08) 42%, rgba(8, 14, 48, 0.28) 100%);
+  background: linear-gradient(to top, rgba(10, 16, 70, 0.62) 0%, rgba(25, 39, 240, 0.02) 48%, rgba(8, 14, 48, 0.18) 100%);
 }
 
 .life-caption {
