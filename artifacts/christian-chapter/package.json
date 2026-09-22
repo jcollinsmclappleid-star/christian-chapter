@@ -8,7 +8,7 @@
     "start": "next start --port ${PORT:-3000}",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test src/lib/age.test.ts src/lib/submit-schema.test.ts src/lib/legal-content.test.ts src/lib/admin-status.test.ts src/lib/profile/schema.test.ts src/lib/profile/preview.test.ts src/lib/dev/seed-specs.test.ts src/db/migrations.test.ts src/lib/matching/engine.test.ts src/lib/matching/activity.test.ts src/lib/matching/connections.test.ts src/lib/home/homepage.test.ts",
+    "test": "node --experimental-strip-types --test src/lib/age.test.ts src/lib/submit-schema.test.ts src/lib/legal-content.test.ts src/lib/admin-status.test.ts src/lib/profile/schema.test.ts src/lib/profile/preview.test.ts src/lib/dev/seed-specs.test.ts src/db/migrations.test.ts src/lib/matching/engine.test.ts src/lib/matching/activity.test.ts src/lib/matching/connections.test.ts src/lib/matching/hand-pick.test.ts src/lib/home/homepage.test.ts",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:generate": "drizzle-kit generate",

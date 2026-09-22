@@ -30,41 +30,40 @@ function validateEmail(email: string) {
 function canContinueStep(step: number, d: WizardData): boolean {
   switch (step) {
     case 1:
-      return d.eligibilityAcknowledged;
-    case 2:
-      return !!d.firstName.trim() && validateEmail(d.email);
-    case 3: {
+      return d.eligibilityAcknowledged && !!d.gender && d.seekingGender.length > 0;
+    case 2: {
       const age = getAge(d.dateOfBirth);
-      return !!d.dateOfBirth && !!d.gender && d.seekingGender.length > 0 && age !== null && age >= MINIMUM_AGE;
+      return !!d.dateOfBirth && age !== null && age >= MINIMUM_AGE;
     }
-    case 4:
+    case 3:
       return !!d.ukRegion;
-    case 5:
+    case 4:
       return (
         d.religiousDataConsent &&
         !!d.tradition &&
         !!d.churchAttendance &&
         !!d.faithCentrality
       );
-    case 6:
+    case 5:
       return !!d.workStatus && !!d.familySituation;
-    case 7:
+    case 6:
       return !!d.relationshipGoal;
-    case 8:
+    case 7:
       return d.ageRangeMin < d.ageRangeMax;
-    case 9:
+    case 8:
       return true;
-    case 10:
+    case 9:
       return !!(d.storyPrompt1.trim() || d.storyPrompt2.trim() || d.storyPrompt3.trim());
+    case 10:
+      return !!d.firstName.trim() && validateEmail(d.email);
     default:
       return false;
   }
 }
 
 const stepTitles = [
-  "Welcome",
-  "Your account",
-  "About you",
+  "Who you are",
+  "Your age",
   "Your location",
   "Your faith",
   "Your life now",
@@ -72,11 +71,11 @@ const stepTitles = [
   "Who you hope to meet",
   "My Essentials",
   "Your story",
+  "Your email",
 ];
 
 const StepComponents = [
   Step1Welcome,
-  Step2Account,
   Step3About,
   Step4Location,
   Step5Faith,
@@ -85,6 +84,7 @@ const StepComponents = [
   Step8WhoToMeet,
   Step9Essentials,
   Step10Story,
+  Step2Account,
 ];
 
 export function Wizard() {
@@ -126,9 +126,9 @@ export function Wizard() {
       try {
         const raw = localStorage.getItem(WIZARD_STORAGE_KEY);
         if (raw) {
-          const parsed = JSON.parse(raw) as { data?: Partial<WizardData>; step?: number };
-          if (parsed.data) setData((prev) => ({ ...prev, ...parsed.data }));
-          if (parsed.step && parsed.step >= 1 && parsed.step <= TOTAL_STEPS) {
+          const parsed = JSON.parse(raw) as { version?: number; data?: Partial<WizardData>; step?: number };
+          if (parsed.data) setData((prev) => ({ ...prev, ...parsed.data, flowVersion: 2 }));
+          if (parsed.version === 2 && parsed.step && parsed.step >= 1 && parsed.step <= TOTAL_STEPS) {
             setStep(parsed.step);
           }
         }
@@ -147,7 +147,7 @@ export function Wizard() {
     try {
       localStorage.setItem(
         WIZARD_STORAGE_KEY,
-        JSON.stringify({ data: nextData, step: nextStep }),
+        JSON.stringify({ version: 2, data: nextData, step: nextStep }),
       );
     } catch {
       // ignore
@@ -179,7 +179,7 @@ export function Wizard() {
   );
 
   const goNext = useCallback(async () => {
-    if (step === 2 && !authenticated) {
+    if (step === TOTAL_STEPS && !authenticated) {
       setSubmitting(true);
       setSubmitError(null);
       try {
@@ -190,6 +190,8 @@ export function Wizard() {
             firstName: data.firstName,
             email: data.email,
             marketingConsent: data.marketingConsent,
+            step: TOTAL_STEPS,
+            data,
           }),
         });
         const json = (await res.json()) as { error?: string; message?: string; devLink?: string };
@@ -199,7 +201,7 @@ export function Wizard() {
         }
         setCheckEmail(data.email);
         setDevLink(json.devLink ?? null);
-        persistLocal(data, 2);
+        persistLocal(data, TOTAL_STEPS);
       } catch {
         setSubmitError("Network error. Please try again.");
       } finally {
@@ -371,10 +373,12 @@ export function Wizard() {
             disabled={!canContinue || submitting}
             className="inline-flex items-center min-h-[52px] px-7 text-[15px] font-sans font-medium bg-life text-white rounded-full disabled:opacity-50"
           >
-            {submitting && step === 2 && !authenticated
+            {submitting && step === TOTAL_STEPS && !authenticated
               ? "Sending link…"
               : isLastStep
-                ? "Review →"
+                ? authenticated
+                  ? "Review →"
+                  : "Save my place"
                 : "Continue →"}
           </button>
         </nav>

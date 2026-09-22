@@ -1,5 +1,6 @@
 "use client";
 
+import { StepNote } from "../step-note";
 import type { StepProps } from "../wizard-types";
 
 const radiusOptions = [10, 20, 30, 40, 50, 75, 100, 150, 200];
@@ -9,16 +10,10 @@ const AGE_MAX = 80;
 export function Step8WhoToMeet({ data, update }: StepProps) {
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-4">
-        Step 8 of 10
-      </p>
-      <h2 className="font-serif text-plum mb-4 text-3xl md:text-4xl">
-        Who you hope to meet
+      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+        Picture a good Sunday.
       </h2>
-      <p className="text-[17px] text-plum-muted leading-7 mb-10">
-        These are preferences, not filters. A small age or distance difference
-        won&rsquo;t stop a promising introduction — but it helps us prioritise.
-      </p>
+      <StepNote>Who has room in it? These are preferences, not a wall. A small difference will not end a good introduction.</StepNote>
 
       <div className="space-y-9">
         {/* Age range */}

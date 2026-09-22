@@ -1,4 +1,3 @@
-import { HeroIntake } from "@/components/home/hero-intake";
 import { IconBlock, IconCovenant, IconEye, IconFaith, IconLamp, IconLeave, IconOlive, IconPause } from "@/components/home/mark-icons";
 import { LegacyHouseRedirect } from "@/components/home/legacy-house-redirect";
 import { PhoneMocks } from "@/components/home/phone-mock";
@@ -116,8 +115,13 @@ export default function HomePage() {
                 Love, company, and a faith you do not have to explain.
               </p>
             </div>
-            <div className="w-full rounded-t-[28px] bg-paper px-5 pb-4 pt-4 shadow-card md:max-w-[26rem] md:rounded-[28px] md:px-6 md:py-6">
-              <HeroIntake />
+            <div className="w-full rounded-t-[28px] bg-paper px-5 pb-5 pt-5 shadow-card md:max-w-[26rem] md:rounded-[28px] md:px-6 md:py-6">
+              <a
+                href="/register"
+                className="inline-flex min-h-14 w-full items-center justify-center rounded-full bg-life px-8 text-[17px] font-semibold text-white"
+              >
+                Meet Christian Singles
+              </a>
               <p className="mt-3 text-center text-[15px]">
                 <a href="/sign-in" className="font-semibold text-life underline underline-offset-4">
                   Sign in

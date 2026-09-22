@@ -57,6 +57,23 @@ export const demoProfiles = [
   },
 ];
 
+/** A labelled demonstration of a hand-picked introduction on a phone. Not members. */
+export const demoConnection = {
+  left: {
+    firstName: "James",
+    age: 54,
+    photo: "/images/home/connect-james.jpg",
+    alt: "James laughing in a sunny park, a demonstration photograph",
+  },
+  right: {
+    firstName: "Amara",
+    age: 51,
+    photo: "/images/home/connect-amara.jpg",
+    alt: "Amara laughing at a sunny cafe, a demonstration photograph",
+  },
+  line: "A hand-picked introduction.",
+};
+
 export const demoEssentials = [
   { factor: "tradition", label: "Christian tradition", tier: "preferred" as const },
   { factor: "smoking", label: "Smoking", tier: "essential" as const },

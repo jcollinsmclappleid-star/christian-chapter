@@ -43,7 +43,9 @@ export function applicationToWizard(
     eligibilityAcknowledged: row.eligibilityAcknowledged,
     termsAccepted: payload.termsAccepted ?? false,
   };
-  return { data, step: Math.min(Math.max(row.currentStep ?? 1, 1), 10) };
+  const storedVersion = (row.wizardPayload as { flowVersion?: number } | null)?.flowVersion;
+  const step = storedVersion === 2 ? Math.min(Math.max(row.currentStep ?? 1, 1), 10) : 1;
+  return { data, step };
 }
 
 export function wizardToApplicationValues(data: WizardData, step: number) {

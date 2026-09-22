@@ -270,10 +270,12 @@ export function alignmentLabelText(label: AlignmentLabel): string {
   return "Some common ground";
 }
 
-export function poolLabel(pool: DistancePool): string {
+export function poolLabel(pool: string): string {
   if (pool === "nearby") return "Nearby";
   if (pool === "worth_the_journey") return "Worth the journey";
-  return "Open to distance";
+  if (pool === "open_to_distance") return "Open to distance";
+  if (pool === "handpicked") return "Chosen for you";
+  return "Nearby";
 }
 
 function whyFor(alignment: AlignmentScore, pool: DistancePool): Array<{ code: string; text: string }> {

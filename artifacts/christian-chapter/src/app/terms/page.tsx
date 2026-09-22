@@ -21,11 +21,19 @@ export default function TermsPage() {
         service is designed for people in the United Kingdom. We may refuse or
         close applications that do not meet these terms.
       </p>
+      <h2>Opening offer</h2>
+      <p>
+        Joining is free until 14 February 2027. During that offer an
+        administrator may connect two submitted profiles, so each person can
+        see a hand-picked introduction. From 15 February 2027 the published
+        member price is £29 a month. No payment is taken before billing is
+        switched on, and this page does not start a subscription.
+      </p>
       <h2>No guarantee of a match or a date</h2>
       <p>
         Joining the founding cohort does not entitle you to introductions,
-        messages, or a relationship. We may wait until the cohort is balanced
-        before any later matching product exists.
+        messages, or a relationship. A hand-picked introduction is a choice the
+        team makes. It is not a promise of a match, a date, or a reply.
       </p>
       <h2>Accuracy and conduct</h2>
       <p>

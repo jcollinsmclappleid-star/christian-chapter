@@ -1,5 +1,6 @@
 "use client";
 
+import { StepNote } from "../step-note";
 import type { StepProps } from "../wizard-types";
 import { INTERESTS_OPTIONS } from "../wizard-types";
 
@@ -35,16 +36,10 @@ export function Step6LifeNow({ data, update }: StepProps) {
 
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-4">
-        Step 6 of 10
-      </p>
-      <h2 className="font-serif text-plum mb-4 text-3xl md:text-4xl">
-        Your life now
+      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+        The ordinary bits are the good bits.
       </h2>
-      <p className="text-[17px] text-plum-muted leading-7 mb-10">
-        A few details about your current situation help us find people at a
-        genuinely compatible life stage.
-      </p>
+      <StepNote>Work, family, and what you do for joy. This is a life with room for someone new.</StepNote>
 
       <div className="space-y-9">
         {/* Work / retirement status */}

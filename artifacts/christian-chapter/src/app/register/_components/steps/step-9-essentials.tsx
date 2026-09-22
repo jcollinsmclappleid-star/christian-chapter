@@ -1,5 +1,6 @@
 "use client";
 
+import { StepNote } from "../step-note";
 import type { StepProps, EssentialTier, EssentialFactor } from "../wizard-types";
 import { ESSENTIAL_FACTORS } from "../wizard-types";
 
@@ -40,16 +41,10 @@ export function Step9Essentials({ data, update }: StepProps) {
 
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-4">
-        Step 9 of 10
-      </p>
-      <h2 className="font-serif text-plum mb-4 text-3xl md:text-4xl">
-        My Essentials
+      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+        Draw the lines that matter.
       </h2>
-      <p className="text-[17px] text-plum-muted leading-7 mb-5">
-        For each of the factors below, tell us how it sits with you. This step is
-        optional — skip any you&rsquo;re unsure about.
-      </p>
+      <StepNote>Everything else can stay open. Skip any line you are unsure about.</StepNote>
 
       {/* Legend */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">

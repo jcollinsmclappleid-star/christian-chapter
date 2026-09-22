@@ -1,4 +1,4 @@
-import { and, desc, eq, inArray, or } from "drizzle-orm";
+import { and, desc, eq, inArray, ne, or } from "drizzle-orm";
 import {
   db,
   activityEvents,
@@ -13,6 +13,8 @@ import {
   users,
 } from "@/db";
 import { writeAudit } from "@/lib/audit";
+import { OPENING_OFFER_ENDS_ISO } from "@/lib/site-config";
+import { HAND_PICK_POOL, handPickBlockers, handPickedStillOpen } from "./hand-pick";
 import { publicProfileView } from "@/lib/profile/preview";
 import { enqueueJob } from "@/lib/jobs/queue";
 import { transitionActivity, publicActivityLabel } from "./activity";
@@ -153,7 +155,13 @@ export async function generateIntroductionsForUser(userId: string, nowInput?: st
   await db
     .update(introductions)
     .set({ status: "expired" })
-    .where(and(eq(introductions.viewerUserId, userId), inArray(introductions.status, ["presented"])));
+    .where(
+      and(
+        eq(introductions.viewerUserId, userId),
+        inArray(introductions.status, ["presented"]),
+        ne(introductions.pool, HAND_PICK_POOL),
+      ),
+    );
 
   const created = [];
   for (const [index, row] of built.selected.entries()) {
@@ -201,7 +209,12 @@ async function currentSnapshot(userId: string, now: Date) {
   const [snapshot] = await db
     .select()
     .from(recommendationSnapshots)
-    .where(eq(recommendationSnapshots.viewerUserId, userId))
+    .where(
+      and(
+        eq(recommendationSnapshots.viewerUserId, userId),
+        ne(recommendationSnapshots.rulesVersion, HAND_PICK_POOL),
+      ),
+    )
     .orderBy(desc(recommendationSnapshots.generatedAt))
     .limit(1);
   if (!snapshot) return null;
@@ -238,11 +251,19 @@ export async function listMemberIntroductions(userId: string, nowInput?: string 
   for (const row of rows) {
     if (row.status === "expired" || row.status === "declined") continue;
     const candidate = all.find((item) => item.userId === row.candidateUserId);
-    if (!viewer || !candidate || candidateExclusions(viewer, candidate, ctx).length) {
-      await db.update(introductions).set({ status: "expired" }).where(eq(introductions.id, row.id));
+    if (!viewer || !candidate || !introductionStillOpen(row.pool, viewer, candidate, ctx)) {
+      if (row.pool !== HAND_PICK_POOL) {
+        await db.update(introductions).set({ status: "expired" }).where(eq(introductions.id, row.id));
+      }
       continue;
     }
     served.push(await serializeIntroduction(row, candidate, now));
+  }
+
+  const picked = await handPickedCards(userId, now);
+  const seen = new Set(served.map((item) => item.id));
+  for (const card of picked) {
+    if (!seen.has(card.id)) served.push(card);
   }
 
   const payload = snapshot.payload as { restrictingRules?: string[] };
@@ -281,7 +302,7 @@ async function serializeIntroduction(
     id: row.id,
     rank: row.rank,
     pool: row.pool,
-    poolLabel: poolLabel(row.pool as "nearby" | "worth_the_journey" | "open_to_distance"),
+    poolLabel: poolLabel(row.pool),
     alignmentLabel: row.alignmentLabel,
     alignmentText: alignmentLabelText(row.alignmentLabel as "strong_alignment" | "good_potential" | "some_common_ground"),
     why: row.why,
@@ -301,7 +322,7 @@ export async function getMemberIntroduction(userId: string, introductionId: stri
   const viewer = all.find((item) => item.userId === userId);
   const candidate = all.find((item) => item.userId === row.candidateUserId);
   const ctx = await loadContext(now);
-  if (!viewer || !candidate || candidateExclusions(viewer, candidate, ctx).length) {
+  if (!viewer || !candidate || !introductionStillOpen(row.pool, viewer, candidate, ctx)) {
     return { error: "This introduction is no longer available.", status: 410 as const };
   }
   await recordMeaningfulActivity(userId, "introduction_viewed", now);
@@ -322,7 +343,7 @@ export async function actOnIntroduction(
   const viewer = all.find((item) => item.userId === userId);
   const candidate = all.find((item) => item.userId === row.candidateUserId);
   const ctx = await loadContext(now);
-  if (!viewer || !candidate || candidateExclusions(viewer, candidate, ctx).length) {
+  if (!viewer || !candidate || !introductionStillOpen(row.pool, viewer, candidate, ctx)) {
     return { error: "This introduction is no longer available.", status: 409 as const };
   }
 
@@ -650,6 +671,171 @@ export async function explainIntroduction(introductionId: string) {
     viewerExclusions: viewer ? viewerEligibility(viewer, ctx) : [],
     candidateExclusions: viewer && candidate ? candidateExclusions(viewer, candidate, ctx) : [],
   };
+}
+
+function pairTouches(a: string, b: string, pairs: Array<{ a: string; b: string }>) {
+  return pairs.some((pair) => (pair.a === a && pair.b === b) || (pair.a === b && pair.b === a));
+}
+
+function introductionStillOpen(
+  pool: string,
+  viewer: MatchableProfile,
+  candidate: MatchableProfile,
+  ctx: MatchContext,
+) {
+  const blocked = pairTouches(viewer.userId, candidate.userId, ctx.blocks) || pairTouches(viewer.userId, candidate.userId, ctx.reports);
+  if (pool === HAND_PICK_POOL) {
+    return handPickedStillOpen({
+      samePerson: viewer.userId === candidate.userId,
+      viewerClosed: viewer.userStatus === "closed" || viewer.userStatus === "closure_requested",
+      candidateClosed: candidate.userStatus === "closed" || candidate.userStatus === "closure_requested",
+      viewerHidden: Boolean(viewer.hiddenAt),
+      candidateHidden: Boolean(candidate.hiddenAt) || candidate.profileStatus === "hidden" || candidate.profileStatus === "paused",
+      blocked,
+    });
+  }
+  return candidateExclusions(viewer, candidate, ctx).length === 0;
+}
+
+async function handPickedCards(userId: string, now: Date) {
+  const rows = await db
+    .select()
+    .from(introductions)
+    .where(
+      and(
+        eq(introductions.viewerUserId, userId),
+        eq(introductions.pool, HAND_PICK_POOL),
+        eq(introductions.status, "presented"),
+      ),
+    );
+  const all = await loadProfiles();
+  const viewer = all.find((item) => item.userId === userId);
+  if (!viewer) return [];
+  const ctx = await loadContext(now);
+  const cards = [];
+  for (const row of rows) {
+    const candidate = all.find((item) => item.userId === row.candidateUserId);
+    if (!candidate || !introductionStillOpen(HAND_PICK_POOL, viewer, candidate, ctx)) continue;
+    cards.push(await serializeIntroduction(row, candidate, now));
+  }
+  return cards;
+}
+
+export async function listHandPickedIntroductions(userId: string, nowInput?: string | Date | null) {
+  const now = resolveNow(nowInput ?? null);
+  const picked = await handPickedCards(userId, now);
+  return {
+    snapshotId: null,
+    rulesVersion: HAND_PICK_POOL,
+    refreshAt: new Date(`${OPENING_OFFER_ENDS_ISO}T23:59:59.000Z`),
+    introductions: picked,
+    restrictingRules: picked.length
+      ? []
+      : ["When the team connects you with someone, that introduction appears here."],
+  };
+}
+
+export async function createHandPickedPair(input: {
+  adminId: string;
+  userAId: string;
+  userBId: string;
+  reason: string;
+}) {
+  const reason = input.reason.trim();
+  if (reason.length < 12) {
+    return { error: "Write a short reason for this introduction.", status: 400 as const };
+  }
+  const now = new Date();
+  const all = await loadProfiles();
+  const left = all.find((item) => item.userId === input.userAId);
+  const right = all.find((item) => item.userId === input.userBId);
+  if (!left || !right) return { error: "Both profiles need to exist.", status: 404 as const };
+  const ctx = await loadContext(now);
+  const blocked =
+    pairTouches(left.userId, right.userId, ctx.blocks) || pairTouches(left.userId, right.userId, ctx.reports);
+  const blockedReason = handPickBlockers(
+    {
+      userId: left.userId,
+      status: left.profileStatus,
+      hidden: Boolean(left.hiddenAt) || left.profileStatus === "hidden" || left.profileStatus === "paused",
+      emailVerified: left.emailVerified,
+      accountClosed: left.userStatus === "closed" || left.userStatus === "closure_requested",
+    },
+    {
+      userId: right.userId,
+      status: right.profileStatus,
+      hidden: Boolean(right.hiddenAt) || right.profileStatus === "hidden" || right.profileStatus === "paused",
+      emailVerified: right.emailVerified,
+      accountClosed: right.userStatus === "closed" || right.userStatus === "closure_requested",
+    },
+    blocked,
+  );
+  if (blockedReason) return { error: blockedReason, status: 400 as const };
+
+  const existing = await db
+    .select()
+    .from(introductions)
+    .where(
+      and(
+        eq(introductions.pool, HAND_PICK_POOL),
+        eq(introductions.status, "presented"),
+        or(
+          and(eq(introductions.viewerUserId, left.userId), eq(introductions.candidateUserId, right.userId)),
+          and(eq(introductions.viewerUserId, right.userId), eq(introductions.candidateUserId, left.userId)),
+        ),
+      ),
+    );
+  const have = new Set(existing.map((row) => row.viewerUserId));
+  const expiresAt = new Date(`${OPENING_OFFER_ENDS_ISO}T23:59:59.000Z`);
+  const created: string[] = existing.map((row) => row.id);
+
+  for (const [viewer, candidate] of [
+    [left, right],
+    [right, left],
+  ] as const) {
+    if (have.has(viewer.userId)) continue;
+    const [snapshot] = await db
+      .insert(recommendationSnapshots)
+      .values({
+        viewerUserId: viewer.userId,
+        rulesVersion: HAND_PICK_POOL,
+        generatedAt: now,
+        clockAt: now,
+        expiresAt,
+        payload: { kind: HAND_PICK_POOL, reason, otherUserId: candidate.userId },
+      })
+      .returning();
+    const [intro] = await db
+      .insert(introductions)
+      .values({
+        snapshotId: snapshot.id,
+        viewerUserId: viewer.userId,
+        candidateUserId: candidate.userId,
+        pool: HAND_PICK_POOL,
+        alignmentLabel: "good_potential",
+        why: [{ code: "handpicked", text: reason }],
+        worthDiscussing: [],
+        rank: 1,
+        score: 0,
+        exploration: false,
+        status: "presented",
+        presentedAt: now,
+        expiresAt,
+      })
+      .returning();
+    created.push(intro.id);
+  }
+
+  await writeAudit({
+    actorType: "admin",
+    actorId: input.adminId,
+    action: "hand_picked_introduction",
+    entityType: "introduction",
+    entityId: created[0] ?? left.userId,
+    metadata: { userAId: left.userId, userBId: right.userId },
+  });
+
+  return { ok: true as const, introductionIds: created };
 }
 
 export async function matchingInventory() {

@@ -61,6 +61,8 @@ export type WizardData = {
   priorities: string[];
   photoConsent: boolean;
   termsAccepted: boolean;
+  /** 2 = email is the last step. Older drafts restart at the first question. */
+  flowVersion: number;
 };
 
 export const defaultWizardData: WizardData = {
@@ -97,6 +99,7 @@ export const defaultWizardData: WizardData = {
   priorities: [],
   photoConsent: false,
   termsAccepted: false,
+  flowVersion: 2,
 };
 
 export interface StepProps {
