@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 const memberLinks = [
   { href: "/introductions", label: "Introductions" },
   { href: "/connections", label: "Connections" },
+  { href: "/conversations", label: "Conversations" },
   { href: "/profile", label: "Profile" },
   { href: "/profile/views", label: "Who looked" },
   { href: "/account", label: "Settings" },

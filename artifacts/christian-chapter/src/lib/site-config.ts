@@ -22,6 +22,9 @@ export const OPENING_OFFER_ENDS_LABEL = "14 February 2027";
 export const OPENING_OFFER_ENDS_ISO = "2027-02-14";
 export const MEMBER_PRICE_GBP = 29;
 export const MEMBER_PRICE_LABEL = "£29 a month";
+/** First charge. 14 February 2027 stays inside the free opening offer. */
+export const MEMBER_BILLING_STARTS_ISO = "2027-02-15T00:00:00.000Z";
+export const MEMBER_BILLING_STARTS_LABEL = "15 February 2027";
 
 /** Separate from membership. Not charged until billing is switched on. */
 export const INCOGNITO_PRICE_GBP = 9;

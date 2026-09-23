@@ -45,6 +45,12 @@ interface AccountPayload {
   };
   signIns?: Array<{ id: string; createdAt: string }>;
   blocks?: Array<{ userId: string; firstName: string | null }>;
+  billing?: {
+    cardSaved: boolean;
+    stripeReady: boolean;
+    collectsLabel: string;
+    priceLabel: string;
+  };
 }
 
 function statusLabel(status: string) {
@@ -73,7 +79,16 @@ export default function AccountPage() {
   const [deleteReason, setDeleteReason] = useState<"met_someone" | "other">("other");
 
   useEffect(() => {
-    fetch("/api/account")
+    const sessionId = new URLSearchParams(window.location.search).get("session_id");
+    const start = sessionId
+      ? fetch("/api/billing/checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sessionId }),
+        })
+      : Promise.resolve();
+    start
+      .then(() => fetch("/api/account"))
       .then(async (res) => {
         if (res.status === 401) {
           window.location.href = "/sign-in";
@@ -81,6 +96,10 @@ export default function AccountPage() {
         }
         const json = await res.json();
         setData(json);
+        if (sessionId) {
+          window.history.replaceState({}, "", "/account");
+          setNotice("Your card is saved. The first payment is 15 February 2027.");
+        }
       })
       .catch(() => setError("Could not load your account."));
   }, []);
@@ -248,6 +267,34 @@ export default function AccountPage() {
             </button>
           )}
         </div>
+
+        <h2 className="font-serif text-2xl text-plum mb-3">Membership card</h2>
+        <p className="text-[15px] text-plum-muted mb-4">
+          {data.billing?.cardSaved
+            ? `A card is saved. The first payment of ${data.billing.priceLabel} is taken on ${data.billing.collectsLabel}. Nothing is taken before then.`
+            : `You can save a card now. Membership stays free through 14 February 2027. The first payment of ${data.billing?.priceLabel ?? "£29 a month"} is taken on ${data.billing?.collectsLabel ?? "15 February 2027"}. We never store the card number.`}
+        </p>
+        {!data.billing?.cardSaved && (
+          <button
+            type="button"
+            disabled={busy || data.billing?.stripeReady === false}
+            onClick={async () => {
+              setBusy(true);
+              const res = await fetch("/api/billing/checkout", { method: "POST" });
+              const json = await res.json().catch(() => ({}));
+              if (!res.ok || !json.url) {
+                setNotice(json.error ?? "Card saving is not connected yet.");
+                setBusy(false);
+                return;
+              }
+              window.location.href = json.url;
+            }}
+            className="min-h-[44px] px-5 border border-border rounded-md text-[14px] mb-10 disabled:opacity-50"
+          >
+            {data.billing?.stripeReady === false ? "Card saving is not connected yet" : "Save a card"}
+          </button>
+        )}
+        {data.billing?.cardSaved && <div className="mb-10" />}
 
         <h2 className="font-serif text-2xl text-plum mb-3">Who looked</h2>
         <p className="text-[15px] text-plum-muted mb-4">

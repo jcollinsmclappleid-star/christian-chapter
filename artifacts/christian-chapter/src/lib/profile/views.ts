@@ -2,6 +2,7 @@ import { and, desc, eq, inArray } from "drizzle-orm";
 import { db, memberPhotos, memberProfiles, profileViews, users } from "@/db";
 import { sendServiceEmail } from "@/lib/email";
 import { INCOGNITO_PRICE_LABEL, INCOGNITO_STARTS_LABEL, siteConfig } from "@/lib/site-config";
+import { photoIsPublic } from "./photos";
 import { viewIsFreshDuplicate } from "./visit-policy";
 
 export async function recordNamedProfileView(input: {
@@ -88,6 +89,7 @@ export async function listProfileViews(viewedUserId: string) {
           userId: memberPhotos.userId,
           id: memberPhotos.id,
           position: memberPhotos.position,
+          moderationStatus: memberPhotos.moderationStatus,
         })
         .from(memberPhotos)
         .where(inArray(memberPhotos.userId, viewerIds))
@@ -95,7 +97,7 @@ export async function listProfileViews(viewedUserId: string) {
 
   return latest.slice(0, 40).map((row) => {
     const photo = photos
-      .filter((item) => item.userId === row.viewerUserId)
+      .filter((item) => item.userId === row.viewerUserId && photoIsPublic(item.moderationStatus))
       .sort((a, b) => a.position - b.position)[0];
     return {
       id: row.id,

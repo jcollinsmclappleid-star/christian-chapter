@@ -1,6 +1,8 @@
 import { getIronSession, type IronSession } from "iron-session";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { eq } from "drizzle-orm";
+import { db, users } from "@/db";
 
 export interface MemberUser {
   id: string;
@@ -55,6 +57,14 @@ export async function requireMemberApi(): Promise<
   const session = await getMemberSession();
   if (!session.user?.id) {
     return { session: null, error: "Sign in required." };
+  }
+  const [user] = await db
+    .select({ status: users.status })
+    .from(users)
+    .where(eq(users.id, session.user.id))
+    .limit(1);
+  if (!user || user.status === "suspended" || user.status === "closed") {
+    return { session: null, error: "This account is not active." };
   }
   return { session: session as AuthedMemberSession, error: null };
 }

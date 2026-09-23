@@ -1,5 +1,5 @@
 import { and, eq, lte } from "drizzle-orm";
-import { db, jobs, notifications, memberPhotos } from "@/db";
+import { db, jobs, notifications } from "@/db";
 import { sendTransactionalEmail } from "@/lib/providers/email";
 import { moderateImage } from "@/lib/providers/image-moderation";
 import { recordProviderResult } from "@/lib/providers/record";
@@ -114,12 +114,6 @@ async function handleJob(type: string, payload: Record<string, unknown>) {
       objectKey,
       requestedState: payload.requestedState as RequestedState,
     });
-    if (photoId) {
-      await db
-        .update(memberPhotos)
-        .set({ moderationStatus: outcome.state === "pass" ? "clear" : outcome.state })
-        .where(eq(memberPhotos.id, photoId));
-    }
     await recordProviderResult({
       feature: "image_moderation",
       entityType: "member_photo",

@@ -8,7 +8,9 @@ const navLinks = [
   { href: "/admin/applications", label: "Applications", icon: Users },
   { href: "/admin/profiles", label: "Profiles", icon: Image },
   { href: "/admin/photo-checks", label: "Photo checks", icon: Image },
+  { href: "/admin/photographs", label: "Photographs", icon: Image },
   { href: "/admin/matching", label: "Introductions", icon: Heart },
+  { href: "/admin/members", label: "Members", icon: Users },
   { href: "/admin/closures", label: "Closures", icon: Archive },
 ];
 

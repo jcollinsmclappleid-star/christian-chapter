@@ -72,6 +72,16 @@ describe("GATE-E reversible FND-01 migration", () => {
     assert.match(down, /DROP TABLE IF EXISTS "sign_in_events"/);
   });
 
+  it("stores photographs, paired conversations and a saved card", () => {
+    const sql = readFileSync(path.join(dir, "0008_photos_chat_billing.sql"), "utf8");
+    const down = readFileSync(path.join(dir, "0008_photos_chat_billing.down.sql"), "utf8");
+    assert.match(sql, /image_data/);
+    assert.match(sql, /CREATE TABLE IF NOT EXISTS "conversations"/);
+    assert.match(sql, /CREATE TABLE IF NOT EXISTS "chat_messages"/);
+    assert.match(sql, /CREATE TABLE IF NOT EXISTS "billing_agreements"/);
+    assert.match(down, /DROP TABLE IF EXISTS "conversations"/);
+  });
+
   it("rolls back without dropping founding_members", () => {
     assert.match(down, /DROP TABLE IF EXISTS "users"/);
     assert.match(down, /DROP TABLE IF EXISTS "founding_applications"/);

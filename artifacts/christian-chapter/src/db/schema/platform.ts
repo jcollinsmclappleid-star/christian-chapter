@@ -131,6 +131,7 @@ export const memberPhotos = pgTable("member_photos", {
   userId: uuid("user_id").notNull(),
   position: integer("position").notNull(),
   storageKey: varchar("storage_key", { length: 255 }).notNull(),
+  imageData: text("image_data"),
   moderationStatus: varchar("moderation_status", { length: 40 }).default("pending").notNull(),
   verificationStatus: varchar("verification_status", { length: 40 }).default("unverified").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -277,6 +278,40 @@ export const signInEvents = pgTable("sign_in_events", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 }, (table) => [
   index("sign_in_events_user_idx").on(table.userId, table.createdAt),
+]);
+
+export const conversations = pgTable("conversations", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userLowId: uuid("user_low_id").notNull(),
+  userHighId: uuid("user_high_id").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex("conversations_pair_unique").on(table.userLowId, table.userHighId),
+]);
+
+export const chatMessages = pgTable("chat_messages", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  conversationId: uuid("conversation_id")
+    .references(() => conversations.id, { onDelete: "cascade" })
+    .notNull(),
+  senderUserId: uuid("sender_user_id").notNull(),
+  body: text("body").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => [
+  index("chat_messages_conversation_idx").on(table.conversationId, table.createdAt),
+]);
+
+export const billingAgreements = pgTable("billing_agreements", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: uuid("user_id").notNull(),
+  stripeCustomerId: varchar("stripe_customer_id", { length: 80 }),
+  stripeSubscriptionId: varchar("stripe_subscription_id", { length: 80 }),
+  status: varchar("status", { length: 40 }).default("none").notNull(),
+  collectionOn: timestamp("collection_on").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex("billing_agreements_user_unique").on(table.userId),
 ]);
 
 export const activityEvents = pgTable("activity_events", {

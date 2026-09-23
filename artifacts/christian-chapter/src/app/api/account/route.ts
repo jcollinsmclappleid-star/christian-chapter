@@ -16,7 +16,8 @@ import { requestMeta } from "@/lib/auth-email";
 import { ensureMemberProfile } from "@/lib/profile/ensure";
 import { hasPrivateBrowsingEntitlement } from "@/lib/profile/private-browsing";
 import { allowSandboxAdapters } from "@/lib/platform/runtime";
-import { INCOGNITO_PRICE_LABEL } from "@/lib/site-config";
+import { INCOGNITO_PRICE_LABEL, MEMBER_BILLING_STARTS_LABEL, MEMBER_PRICE_LABEL } from "@/lib/site-config";
+import { billingStatus } from "@/lib/billing/collect-later";
 
 export async function GET() {
   const { session, error } = await requireMemberApi();
@@ -100,6 +101,11 @@ export async function GET() {
     },
     signIns: signIns.map((row) => ({ id: row.id, createdAt: row.createdAt.toISOString() })),
     blocks: blocks.map((row) => ({ userId: row.userId, firstName: row.firstName })),
+    billing: {
+      ...(await billingStatus(session.user.id)),
+      collectsLabel: MEMBER_BILLING_STARTS_LABEL,
+      priceLabel: MEMBER_PRICE_LABEL,
+    },
   });
 }
 

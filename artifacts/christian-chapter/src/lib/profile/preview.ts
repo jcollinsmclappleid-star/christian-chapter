@@ -50,14 +50,14 @@ export function publicProfileView(
     photos: hide("photos")
       ? []
       : photos
-          .filter((p) => p.moderationStatus === "clear" || p.moderationStatus === "pending")
+          .filter((p) => p.moderationStatus === "clear")
           .map((photo) => ({
             ...photo,
             url: `/api/profile/photos/${photo.id}`,
           })),
     media: hide("media")
       ? []
-      : media.filter((m) => m.moderationStatus === "clear" || m.moderationStatus === "pending"),
+      : media.filter((m) => m.moderationStatus === "clear"),
     visibilityNote:
       viewer === "member"
         ? "This is how another member would see your profile before a match."
