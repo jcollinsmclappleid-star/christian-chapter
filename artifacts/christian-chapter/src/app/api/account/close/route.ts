@@ -12,6 +12,7 @@ import { requireMemberApi, getMemberSession } from "@/lib/member-session";
 import { writeAudit } from "@/lib/audit";
 import { APPLICATION_RETENTION_DAYS } from "@/lib/site-config";
 import { requestMeta } from "@/lib/auth-email";
+import { releasePhotoCheckForUser } from "@/lib/photo-check-store";
 
 const Schema = z.object({
   confirm: z.literal(true),
@@ -63,6 +64,8 @@ export async function POST(request: NextRequest) {
       });
     }
   });
+
+  await releasePhotoCheckForUser(session.user.id, now);
 
   await writeAudit({
     actorType: "member",

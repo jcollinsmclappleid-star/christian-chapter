@@ -13,9 +13,10 @@ export default function PrivacyPage() {
       <p>
         This notice describes processing that actually happens today: creating a
         founding-member account, confirming an email address, storing a founding
-        application, recording consents, and human review by administrators.
+        application, recording consents, a person comparing one check photograph,
+        and human review by administrators.
         We do not currently operate member-to-member matching, messaging,
-        calling, photo verification or paid subscriptions.
+        calling, automated face recognition, or paid subscriptions.
       </p>
       <h2>Who we are</h2>
       <p>
@@ -32,6 +33,7 @@ export default function PrivacyPage() {
         <li>Religious belief and practice, processed only with your separate explicit consent.</li>
         <li>Relationship, family and lifestyle answers on the founding application.</li>
         <li>Security and audit data: IP address, user agent, timestamps of consents and admin actions.</li>
+        <li>One check photograph of your face, only after you agree, and only until a person decides or 24 hours pass.</li>
       </ul>
       <h2>Purposes and lawful bases</h2>
       <p>
@@ -53,6 +55,12 @@ export default function PrivacyPage() {
         website. We do not load advertising pixels.
       </p>
       <h2>Retention and closure</h2>
+      <p>
+        A check photograph is deleted when a person records the decision. If no
+        decision is made, it is deleted after 24 hours. Closing your account
+        deletes it at once. We keep the result of the check, not the photograph,
+        and we do not send the photograph to any other company.
+      </p>
       <p>
         You may request closure from your account. The application is hidden
         immediately. Remaining records are scheduled for deletion after a
@@ -78,9 +86,9 @@ export default function PrivacyPage() {
       </p>
       <h2>What we do not process yet</h2>
       <p>
-        Profile photographs, selfie verification, messages, calls, location
-        coordinates, payment cards and automated introductions are out of
-        current processing.
+        Automated face recognition, messages, calls, location coordinates,
+        payment cards and automated introductions are out of current processing.
+        Profile photographs on the public profile are a separate, later step.
       </p>
     </LegalShell>
   );

@@ -3,8 +3,8 @@
  * Public copy must read this rather than inventing Ltd/VAT/prices.
  */
 
-export const POLICY_VERSION = "2026-09-22";
-export const POLICY_EFFECTIVE_DATE = "22 September 2026";
+export const POLICY_VERSION = "2026-09-23";
+export const POLICY_EFFECTIVE_DATE = "23 September 2026";
 export const RELIGIOUS_CONSENT_VERSION = "2026-09-20";
 export const MARKETING_CONSENT_VERSION = "2026-09-20";
 export const TERMS_CONSENT_VERSION = "2026-09-22";

@@ -145,6 +145,19 @@ export const memberMedia = pgTable("member_media", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+/** One face check per member. The photograph is cleared once a person decides, or after 24 hours. */
+export const photoChecks = pgTable("photo_checks", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: uuid("user_id").notNull(),
+  status: varchar("status", { length: 40 }).default("pending").notNull(),
+  imageData: text("image_data"),
+  contentType: varchar("content_type", { length: 40 }),
+  consentedAt: timestamp("consented_at").notNull(),
+  decidedAt: timestamp("decided_at"),
+  imageDeletedAt: timestamp("image_deleted_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => [uniqueIndex("photo_checks_user_unique").on(table.userId)]);
+
 export const verificationChecks = pgTable("verification_checks", {
   id: uuid("id").defaultRandom().primaryKey(),
   userId: uuid("user_id").notNull(),
