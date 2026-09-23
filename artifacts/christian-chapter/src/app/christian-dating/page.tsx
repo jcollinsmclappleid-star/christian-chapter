@@ -127,7 +127,7 @@ export default function ChristianDatingPage() {
                 The product is designed to send a small set of introductions at a time, each with plain-language reasons. That cadence is not operating today. Submitting an application does not mean you will be shown people to meet.
               </p>
               <p>
-                Mutual interest, private conversation and calling are later product work. They are not available in the founding cohort.
+                Automated introductions are not live. An administrator can connect two profiles, and those two people can write to each other. There is no open messaging network, and calling is not available.
               </p>
             </div>
           </div>
@@ -164,6 +164,7 @@ export default function ChristianDatingPage() {
               { href: "/christian-dating/after-divorce", label: "Christian dating after divorce", desc: "A sensitive, thoughtful guide to meeting someone new." },
               { href: "/christian-dating/after-bereavement", label: "Christian dating after bereavement", desc: "Grief, hope and the possibility of a second chapter." },
               { href: "/christian-dating/remarriage", label: "Christian remarriage", desc: "Whether you would marry again, and how that is recorded on a founding application." },
+              { href: "/christian-dating/widowed", label: "Christian dating when you have been widowed", desc: "A long marriage, adult children, and a profile written when you have decided to look." },
             ].map(({ href, label, desc }) => (
               <a
                 key={href}
@@ -177,6 +178,61 @@ export default function ChristianDatingPage() {
               </a>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section bg-ivory">
+        <div className="mx-auto max-w-4xl px-6">
+          <h2 className="font-serif text-plum mb-3">By tradition</h2>
+          <p className="text-[16px] text-plum-muted leading-7 mb-8 max-w-[640px]">
+            People search by the church they actually belong to. These pages explain what that tradition asks of a relationship. They are not a live directory.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              ["/christian-dating/anglican", "Anglican"],
+              ["/christian-dating/baptist", "Baptist"],
+              ["/christian-dating/catholic", "Catholic"],
+              ["/christian-dating/methodist", "Methodist"],
+              ["/christian-dating/pentecostal", "Pentecostal"],
+              ["/christian-dating/presbyterian", "Presbyterian"],
+            ].map(([href, label]) => (
+              <a key={href} href={href} className="block p-5 rounded-lg border border-border bg-ivory-dark hover:border-life/30">
+                <h3 className="font-sans font-semibold text-[15px] text-plum">{label} dating</h3>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-ivory-dark">
+        <div className="mx-auto max-w-4xl px-6">
+          <h2 className="font-serif text-plum mb-3">By region</h2>
+          <p className="text-[16px] text-plum-muted leading-7 mb-8 max-w-[640px]">
+            A region page describes church life and the practical shape of meeting there. It does not list members, and it does not publish how far anyone will travel.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              ["/christian-dating/greater-london", "Greater London"],
+              ["/christian-dating/south-east-england", "South East England"],
+              ["/christian-dating/south-west-england", "South West England"],
+              ["/christian-dating/east-of-england", "East of England"],
+              ["/christian-dating/east-midlands", "East Midlands"],
+              ["/christian-dating/west-midlands", "West Midlands"],
+              ["/christian-dating/yorkshire-and-the-humber", "Yorkshire and the Humber"],
+              ["/christian-dating/north-west-england", "North West England"],
+              ["/christian-dating/north-east-england", "North East England"],
+              ["/christian-dating/scotland", "Scotland"],
+              ["/christian-dating/wales", "Wales"],
+              ["/christian-dating/northern-ireland", "Northern Ireland"],
+            ].map(([href, label]) => (
+              <a key={href} href={href} className="block p-5 rounded-lg border border-border bg-ivory hover:border-life/30">
+                <h3 className="font-sans font-semibold text-[15px] text-plum">{label}</h3>
+              </a>
+            ))}
+          </div>
+          <p className="mt-8 text-[15px]">
+            <a href="/guides" className="text-life underline">Guides for writing a profile, a first meeting, and a first date</a>
+          </p>
         </div>
       </section>
 

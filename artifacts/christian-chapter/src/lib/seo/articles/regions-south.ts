@@ -1,4 +1,4 @@
-import type { SeoArticle } from "../article";
+import type { SeoArticle } from "../article.ts";
 
 export const southernRegionArticles: SeoArticle[] = [
   {
@@ -35,7 +35,7 @@ export const southernRegionArticles: SeoArticle[] = [
         paragraphs: [
           "Mature Christian Dating is for UK adults aged 40 and over, and there is no maximum age. A founding profile asks for your tradition, your attendance, how central faith is, your relationship history, your UK region and how far you can travel. Greater London, written there, is a broad region. It is not a street address and it should not be turned into one.",
           "Relationship history belongs in that same quiet place. A long marriage, a divorce, years alone, or the death of a partner are common shapes of adult life, including for people who have rebuilt in a new borough. Write what you are actually open to. Leave out the name of your congregation if being recognised early would feel too exposed.",
-          "A photograph is visible to other members only after it is verified. You can see your own while that decision is open. The pause matters in a city where a picture may be recognised by a colleague or someone from church. There is no open messaging network and no calling, so a photograph is not a door for strangers to knock on.",
+          "A photograph is visible to other members only after it is verified. While the decision is open, that picture stays visible to you alone. The pause matters in a city where a picture may be recognised by a colleague or someone from church. There is no open messaging network and no calling, so a photograph is not a door for strangers to knock on.",
         ],
       },
       {

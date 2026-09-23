@@ -1,3 +1,5 @@
+import { articleForPath, articleSourceFile } from "./catalog.ts";
+
 /**
  * SEO brief registry.
  * Unpublished records have an empty body. They stay noindex until a later task
@@ -147,7 +149,7 @@ const TRADITION_PAGES: { slug: string; name: string; query: string }[] = [
   { slug: "presbyterian", name: "Presbyterian", query: "presbyterian dating uk" },
 ];
 
-export const seoBriefs: SeoBrief[] = [
+const registry: SeoBrief[] = [
   published({
     path: "/",
     primaryQuery: "mature christian dating",
@@ -510,6 +512,27 @@ export const seoBriefs: SeoBrief[] = [
     }),
   ),
 ];
+
+export const seoBriefs: SeoBrief[] = registry.map((record) => {
+  const article = articleForPath(record.path);
+  const sourceFile = articleSourceFile(record.path);
+  if (!article || !sourceFile) return record;
+  return {
+    ...record,
+    h1: article.h1,
+    title: article.title,
+    description: article.description,
+    status: "published",
+    index: "index",
+    body: article.lede,
+    secondPassSignedAt: "2026-09-23",
+    sourceFile,
+    internalLinks: article.related.map((link) => link.href),
+    lastModified: "2026-09-23",
+    changeFrequency: "monthly",
+    priority: record.path === "/guides" ? 0.6 : 0.7,
+  };
+});
 
 export function mayIndex(record: SeoBrief): boolean {
   return record.status === "published" && record.index === "index";

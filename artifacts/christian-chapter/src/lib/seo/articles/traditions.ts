@@ -1,4 +1,4 @@
-import type { SeoArticle } from "../article";
+import type { SeoArticle } from "../article.ts";
 
 export const traditionArticles: SeoArticle[] = [
   {

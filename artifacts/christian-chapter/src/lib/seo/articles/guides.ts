@@ -1,4 +1,4 @@
-import type { SeoArticle } from "../article";
+import type { SeoArticle } from "../article.ts";
 
 export const guideArticles: SeoArticle[] = [
   {
@@ -39,7 +39,7 @@ export const guideArticles: SeoArticle[] = [
         heading: "A service that will not treat you as a novelty",
         paragraphs: [
           "A widow or a widower is not a curiosity, and a decent service does not write about you as one. You are an adult with a marriage behind you, a faith that has had to hold a funeral, and a present week of work, church, family or quiet. The profile should sound like that week. Widowhood is the history. It is not a costume.",
-          "Mature Christian Dating is for adults aged 40 and over, with no maximum age. Faith answers are held only with separate consent, so your tradition and your church life are not slipped in beside an ordinary sign-up. Joining is free until 14 February 2027. Matching goes live that day, and from 15 February 2027 the member price is £29 a month. No payment is taken during the opening offer. None of those facts is a promise that you will meet someone.",
+          "Mature Christian Dating is for adults aged 40 and over, with no maximum age. Faith answers are held only with separate consent, so your tradition and your church life are not slipped in beside an ordinary sign-up. Joining is free until 14 February 2027. Matching goes live that day, and from 15 February 2027 the member price is £29 a month. Nothing is collected while the opening offer lasts. None of those facts is a promise that you will meet someone.",
         ],
       },
       {
@@ -191,7 +191,7 @@ export const guideArticles: SeoArticle[] = [
         paragraphs: [
           "Say whether you live in the UK or intend to, and name your UK region. The service is built around the United Kingdom, so the region is not a trivial extra. If you are planning to move, give the region you are heading for, not a city you only visit. Someone arranging a later meeting needs a true map.",
           "The form also asks how far you can travel. Answer with a distance you would willingly repeat, including on a dark evening, not the furthest you have ever gone for a holiday. This guide does not publish a sample radius. A copied figure becomes a promise, and then a wriggle, and a wriggle is a poor beginning.",
-          "Add at least one photograph, and no more than five. Other members see a photograph only after it is verified. You can see your own while that decision is open. Prefer a clear, recent face to a distant landscape, a group in which you cannot be found, or a picture from another decade. Sunglasses that hide you are weaker than daylight and a calm expression.",
+          "Add at least one photograph, and no more than five. Other members see a photograph only after it is verified. Until it is verified, that photograph stays on your profile for you alone. Prefer a clear, recent face to a distant landscape, a group in which you cannot be found, or a picture from another decade. Sunglasses that hide you are weaker than daylight and a calm expression.",
         ],
       },
       {
