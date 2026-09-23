@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { getAge } from "@/lib/age";
 import { MINIMUM_AGE } from "@/lib/site-config";
+import { PROFILE_PHOTO_LIMIT } from "./photos";
 import { VISIBILITY_FIELDS, VISIBILITY_LEVELS } from "./visibility";
 
 export const PROFILE_STATUSES = [
@@ -145,7 +146,9 @@ export function submitBlockingErrors(profile: {
   if (!profile.ukResidence) errors.push("Declare UK residence or intended relocation.");
   if (!profile.ukRegion) errors.push("Add your UK region.");
   if (!profile.travelRadiusMiles) errors.push("Add how far you can travel.");
-  if (profile.photoCount < 4) errors.push("Add at least four photographs.");
-  if (profile.photoCount > 8) errors.push("Keep eight photographs or fewer.");
+  if (profile.photoCount < 1) errors.push("Add at least one photograph.");
+  if (profile.photoCount > PROFILE_PHOTO_LIMIT) {
+    errors.push("Keep five photographs or fewer.");
+  }
   return errors;
 }

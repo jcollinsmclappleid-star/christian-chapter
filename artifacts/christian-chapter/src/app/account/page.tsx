@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { LinkButton } from "@/components/ui/button";
+import { APPLICATION_RETENTION_DAYS } from "@/lib/site-config";
 
 interface AccountPayload {
   user: {
@@ -28,6 +29,10 @@ interface AccountPayload {
     ukResidence: "resident" | "intending_to_relocate" | null;
     openToRelocation: boolean | null;
   };
+  presence?: {
+    activityState: string;
+    profileStatus: string;
+  };
 }
 
 function statusLabel(status: string) {
@@ -49,6 +54,10 @@ export default function AccountPage() {
   const [data, setData] = useState<AccountPayload | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [confirmWithdraw, setConfirmWithdraw] = useState(false);
+  const [deleteReason, setDeleteReason] = useState<"met_someone" | "other">("other");
 
   useEffect(() => {
     fetch("/api/account")
@@ -76,27 +85,63 @@ export default function AccountPage() {
   }
 
   async function withdrawReligious() {
-    if (
-      !confirm(
-        "Withdrawing religious-data consent stops faith-based processing and closes your founding application. Continue?",
-      )
-    )
-      return;
     setBusy(true);
     const res = await fetch("/api/account/withdraw-religious", { method: "POST" });
-    const json = await res.json();
-    alert(json.message ?? "Updated.");
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      setNotice(json.error ?? "That consent could not be withdrawn.");
+      setBusy(false);
+      return;
+    }
     window.location.reload();
   }
 
-  async function closeAccount() {
-    if (!confirm("Request account closure? Your application will be hidden immediately.")) return;
+  async function setPresence(state: "available" | "taking_a_break") {
     setBusy(true);
-    await fetch("/api/account/close", {
+    setNotice(null);
+    const res = await fetch("/api/account/availability", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ confirm: true, reason: "other" }),
+      body: JSON.stringify({ state, conversationPolicy: "preserve" }),
     });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      setNotice(json.error ?? "That could not be saved.");
+      setBusy(false);
+      return;
+    }
+    setData((current) =>
+      current
+        ? {
+            ...current,
+            presence: {
+              activityState: json.activityState ?? state,
+              profileStatus: state === "taking_a_break" ? "paused" : "approved",
+            },
+          }
+        : current,
+    );
+    setNotice(
+      state === "taking_a_break"
+        ? "Your profile is suspended. New introductions stop. Existing conversations stay."
+        : "Your profile can be included in new introductions again.",
+    );
+    setBusy(false);
+  }
+
+  async function closeAccount() {
+    setBusy(true);
+    const res = await fetch("/api/account/close", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ confirm: true, reason: deleteReason }),
+    });
+    if (!res.ok) {
+      const json = await res.json().catch(() => ({}));
+      setNotice(json.error ?? "The account could not be deleted.");
+      setBusy(false);
+      return;
+    }
     window.location.href = "/";
   }
 
@@ -109,24 +154,31 @@ export default function AccountPage() {
     return (
       <section className="section bg-ivory">
         <div className="mx-auto max-w-2xl px-6">
-          <p className="text-plum-muted">{error ?? "Loading your founding application…"}</p>
+          <p className="text-plum-muted">{error ?? "Opening your settings…"}</p>
         </div>
       </section>
     );
   }
 
   const marketing = data.consents.find((c) => c.type === "marketing");
+  const suspended =
+    data.presence?.activityState === "taking_a_break" || data.presence?.profileStatus === "paused";
 
   return (
     <section className="section bg-ivory">
       <div className="mx-auto max-w-2xl px-6">
         <p className="text-[11px] uppercase tracking-[0.28em] text-life font-sans mb-4">
-          Your founding application
+          Settings
         </p>
         <h1 className="font-serif text-plum mb-2">
-          {data.user.firstName ? `Hello, ${data.user.firstName}.` : "Your account"}
+          {data.user.firstName ? `${data.user.firstName}’s settings` : "Your settings"}
         </h1>
         <p className="text-[16px] text-plum-muted mb-10">{data.user.email}</p>
+        {notice && (
+          <p className="mb-8 rounded-md border border-border bg-paper px-4 py-3 text-[15px] text-plum" role="status">
+            {notice}
+          </p>
+        )}
 
         <dl className="space-y-4 mb-10">
           <div>
@@ -248,71 +300,126 @@ export default function AccountPage() {
           </span>
         </label>
 
-        <h2 className="font-serif text-2xl text-plum mb-3">Availability</h2>
+        <h2 className="font-serif text-2xl text-plum mb-3">Suspend your profile</h2>
         <p className="text-[15px] text-plum-muted mb-4">
-          Taking a break removes you from new introductions immediately. Existing
-          conversations stay unless you choose to close them.
+          {suspended
+            ? "Your profile is suspended. You are left out of new introductions. Your account, photographs, and existing conversations stay."
+            : "Suspend your profile when you want time away. You are left out of new introductions at once. Your account stays, and existing conversations stay."}
         </p>
         <div className="flex flex-wrap gap-3 mb-10">
-          <button
-            type="button"
-            disabled={busy}
-            onClick={async () => {
-              setBusy(true);
-              await fetch("/api/account/availability", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ state: "taking_a_break", conversationPolicy: "preserve" }),
-              });
-              setBusy(false);
-              alert("You are taking a break. New introductions will stop.");
-            }}
-            className="min-h-[44px] px-5 border border-border rounded-md text-[14px]"
-          >
-            Take a break
-          </button>
-          <button
-            type="button"
-            disabled={busy}
-            onClick={async () => {
-              setBusy(true);
-              await fetch("/api/account/availability", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ state: "available" }),
-              });
-              setBusy(false);
-              alert("Welcome back. You can appear in introductions again.");
-            }}
-            className="min-h-[44px] px-5 border border-border rounded-md text-[14px]"
-          >
-            I’m available again
-          </button>
+          {suspended ? (
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => void setPresence("available")}
+              className="min-h-[44px] px-5 rounded-md bg-life text-paper text-[14px] disabled:opacity-50"
+            >
+              Return to introductions
+            </button>
+          ) : (
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => void setPresence("taking_a_break")}
+              className="min-h-[44px] px-5 border border-border rounded-md text-[14px] disabled:opacity-50"
+            >
+              Suspend profile
+            </button>
+          )}
         </div>
 
-        <h2 className="font-serif text-2xl text-plum mb-3">Close or withdraw</h2>
+        <h2 className="font-serif text-2xl text-plum mb-3">Faith data</h2>
         <p className="text-[15px] text-plum-muted leading-6 mb-4">
           Withdrawing religious-data consent stops faith-based processing and closes
-          the dating application. Closure hides your application immediately. We
-          keep only records we are required to keep for a limited period — not
-          “already deleted from backups.”
+          the dating application.
         </p>
-        <div className="flex flex-wrap gap-3">
+        {confirmWithdraw ? (
+          <div className="mb-10 flex flex-wrap gap-3">
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => void withdrawReligious()}
+              className="min-h-[44px] px-5 rounded-md bg-oxblood text-paper text-[14px] disabled:opacity-50"
+            >
+              Withdraw consent and close the application
+            </button>
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => setConfirmWithdraw(false)}
+              className="min-h-[44px] px-5 border border-border rounded-md text-[14px]"
+            >
+              Keep consent
+            </button>
+          </div>
+        ) : (
           <button
+            type="button"
             disabled={busy}
-            onClick={withdrawReligious}
-            className="min-h-[44px] px-5 border border-border rounded-md text-[14px]"
+            onClick={() => setConfirmWithdraw(true)}
+            className="min-h-[44px] px-5 border border-border rounded-md text-[14px] mb-10 disabled:opacity-50"
           >
             Withdraw religious-data consent
           </button>
+        )}
+
+        <h2 className="font-serif text-2xl text-plum mb-3">Delete your account</h2>
+        <p className="text-[15px] text-plum-muted leading-6 mb-4">
+          Deleting hides your profile at once and signs you out. Remaining records are
+          removed after {APPLICATION_RETENTION_DAYS} days, except what we must keep for
+          security or the law. A check photograph, if one is still held, is deleted now.
+        </p>
+        {confirmDelete ? (
+          <div className="rounded-md border border-oxblood/30 bg-paper p-4 mb-4">
+            <p className="text-[15px] text-plum mb-3">Delete this account?</p>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {(
+                [
+                  ["met_someone", "I met someone"],
+                  ["other", "Another reason"],
+                ] as const
+              ).map(([value, label]) => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => setDeleteReason(value)}
+                  className={`min-h-[40px] px-3 rounded-md border text-[14px] ${
+                    deleteReason === value ? "border-life bg-life-light text-life" : "border-border"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => void closeAccount()}
+                className="min-h-[44px] px-5 rounded-md bg-oxblood text-paper text-[14px] disabled:opacity-50"
+              >
+                Delete my account
+              </button>
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => setConfirmDelete(false)}
+                className="min-h-[44px] px-5 border border-border rounded-md text-[14px]"
+              >
+                Keep my account
+              </button>
+            </div>
+          </div>
+        ) : (
           <button
+            type="button"
             disabled={busy}
-            onClick={closeAccount}
-            className="min-h-[44px] px-5 border border-oxblood/30 text-oxblood rounded-md text-[14px]"
+            onClick={() => setConfirmDelete(true)}
+            className="min-h-[44px] px-5 border border-oxblood/30 text-oxblood rounded-md text-[14px] disabled:opacity-50"
           >
-            Request account closure
+            Delete account
           </button>
-        </div>
+        )}
       </div>
     </section>
   );

@@ -11,6 +11,7 @@ export type ProfilePrompt = { prompt: string; answer: string };
 export type StudioProfile = {
   id: string;
   status: string;
+  activityState?: string;
   firstName: string | null;
   dateOfBirth: string | null;
   gender: string | null;

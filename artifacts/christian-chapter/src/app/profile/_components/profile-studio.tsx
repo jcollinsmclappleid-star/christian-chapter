@@ -2,7 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DatingProfileView } from "@/components/profile/dating-profile-view";
+import { PROFILE_PHOTO_LIMIT } from "@/lib/profile/photos";
 import type { StudioProfile } from "@/lib/profile/types";
+import { MemberSpace } from "./member-space";
 import {
   ATTENDANCE_OPTIONS,
   CENTRALITY_OPTIONS,
@@ -23,7 +25,7 @@ const HISTORY = [
 ];
 const PACE = ["Unhurried", "Steady", "Ready when it is right"];
 const WORK = ["Working", "Semi-retired", "Retired", "Other"];
-const SLOTS = [1, 2, 3, 4, 5, 6, 7, 8];
+const SLOTS = Array.from({ length: PROFILE_PHOTO_LIMIT }, (_, index) => index + 1);
 
 type Section = "photos" | "story" | "about" | "faith" | "life" | "looking" | "place" | "essentials" | "privacy";
 
@@ -57,6 +59,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
   const [saveState, setSaveState] = useState<"saved" | "saving" | "error">("saved");
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const pending = useRef<Record<string, unknown>>({});
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -95,16 +98,27 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
     if (timer.current) clearTimeout(timer.current);
   }, []);
 
-  async function uploadPhoto(file: File) {
+  async function uploadPhotos(files: File[]) {
     setUploading(true);
-    const data = new FormData();
-    data.append("file", file);
-    const res = await fetch("/api/profile/photos", { method: "POST", body: data });
-    if (res.ok) {
-      const photo = await res.json();
+    setUploadError(null);
+    let added = 0;
+    for (const file of files) {
+      if (profile.photos.length + added >= PROFILE_PHOTO_LIMIT) {
+        setUploadError("Five photographs is the maximum.");
+        break;
+      }
+      const data = new FormData();
+      data.append("file", file);
+      const res = await fetch("/api/profile/photos", { method: "POST", body: data });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setUploadError(json.error ?? "That photograph could not be added.");
+        break;
+      }
+      added += 1;
       setProfile((current) => ({
         ...current,
-        photos: [...current.photos, photo].sort((a, b) => a.position - b.position),
+        photos: [...current.photos, json].sort((a, b) => a.position - b.position),
         completion: {
           ...current.completion,
           photoCount: current.photos.length + 1,
@@ -112,6 +126,13 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
       }));
     }
     setUploading(false);
+  }
+
+  function openPhotos() {
+    setSection("photos");
+    requestAnimationFrame(() => {
+      document.getElementById("photographs")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   }
 
   async function removePhoto(id: string) {
@@ -157,8 +178,11 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
 
   const photosBySlot = useMemo(() => {
     const sorted = [...profile.photos].sort((a, b) => a.position - b.position);
+    if (sorted.length > PROFILE_PHOTO_LIMIT) return sorted;
     return SLOTS.map((_, index) => sorted[index] ?? null);
   }, [profile.photos]);
+
+  const hasSpace = Boolean(profile.firstName) || profile.photos.length > 0 || profile.completion.ready;
 
   const sections: { id: Section; label: string }[] = [
     { id: "photos", label: "Photos" },
@@ -173,7 +197,10 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
   ];
 
   return (
-    <div className="grid lg:grid-cols-[minmax(280px,390px)_minmax(0,1fr)] gap-10 items-start">
+    <div>
+      {hasSpace && <MemberSpace profile={profile} onEditPhotos={openPhotos} />}
+      <div className={`grid gap-10 items-start ${hasSpace ? "" : "lg:grid-cols-[minmax(280px,390px)_minmax(0,1fr)]"}`}>
+      {!hasSpace && (
       <aside className="lg:sticky lg:top-24">
         <div className="rounded-[28px] border border-border bg-ivory-dark/40 p-3 md:p-4">
           <p className="text-[11px] uppercase tracking-[0.22em] text-stone text-center mb-3">
@@ -182,6 +209,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
           <DatingProfileView profile={profile} compact />
         </div>
       </aside>
+      )}
 
       <div>
         {profile.messages[0] && (
@@ -194,7 +222,11 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
         <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
           <div>
             <p className="text-[11px] uppercase tracking-[0.28em] text-life mb-2">Your profile</p>
-            <h1 className="font-serif text-plum text-[2.4rem] leading-none">Be someone worth meeting.</h1>
+            {hasSpace ? (
+              <h2 className="font-serif text-plum text-[2.4rem] leading-none">Edit your profile</h2>
+            ) : (
+              <h1 className="font-serif text-plum text-[2.4rem] leading-none">Be someone worth meeting.</h1>
+            )}
           </div>
           <p className="text-[13px] text-stone" aria-live="polite">
             {saveState === "saving" ? "Saving…" : saveState === "error" ? "Couldn’t save — try again." : "Saved"}
@@ -219,19 +251,26 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
         </div>
 
         {section === "photos" && (
-          <section>
+          <section id="photographs">
             <h2 className="font-serif text-3xl text-plum mb-2">Photographs</h2>
             <p className="text-[16px] text-plum-muted mb-6 max-w-[48ch]">
-              Four to eight recent photographs. The first is your introduction — a clear, current face works best.
+              Up to five photographs. You can add several at once. The first is how someone meets you — a clear, current face works best.
             </p>
+            {profile.photos.length > PROFILE_PHOTO_LIMIT && (
+              <p className="mb-4 text-[15px] text-oxblood">Remove photographs until five remain.</p>
+            )}
+            {uploadError && (
+              <p className="mb-4 text-[15px] text-oxblood" role="alert">{uploadError}</p>
+            )}
             <input
               ref={fileRef}
               type="file"
               accept="image/jpeg,image/png,image/webp"
+              multiple
               className="sr-only"
               onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) void uploadPhoto(file);
+                const files = [...(e.target.files ?? [])];
+                if (files.length) void uploadPhotos(files);
                 e.target.value = "";
               }}
             />
@@ -274,7 +313,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
                   ) : (
                     <button
                       type="button"
-                      disabled={uploading || profile.photos.length >= 8}
+                      disabled={uploading || profile.photos.length >= PROFILE_PHOTO_LIMIT}
                       onClick={() => fileRef.current?.click()}
                       className="absolute inset-0 flex flex-col items-center justify-center text-plum-muted hover:bg-ivory-darker/60"
                     >
@@ -688,7 +727,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
               Full preview
             </a>
             <a href="/profile/verify" className="min-h-[48px] px-5 inline-flex items-center rounded-md border border-border text-[14px]">
-              Development verification
+              Confirm your photograph
             </a>
             {profile.status === "approved" ? (
               <p className="min-h-[48px] inline-flex items-center text-[14px] text-evergreen">Approved and visible to the team.</p>
@@ -707,6 +746,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
             )}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

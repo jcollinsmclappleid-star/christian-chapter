@@ -9,8 +9,8 @@ import { recordProviderResult } from "@/lib/providers/record";
 import { writeAudit } from "@/lib/audit";
 import { randomUUID } from "node:crypto";
 import { featureGate } from "@/lib/platform/require-feature";
+import { PROFILE_PHOTO_LIMIT } from "@/lib/profile/photos";
 
-const MAX_PHOTOS = 8;
 const MAX_BYTES = 8 * 1024 * 1024;
 
 export async function POST(request: NextRequest) {
@@ -25,8 +25,8 @@ export async function POST(request: NextRequest) {
     .from(memberPhotos)
     .where(eq(memberPhotos.profileId, profile.id));
 
-  if (existing.length >= MAX_PHOTOS) {
-    return NextResponse.json({ error: "Eight photographs is the maximum." }, { status: 422 });
+  if (existing.length >= PROFILE_PHOTO_LIMIT) {
+    return NextResponse.json({ error: "Five photographs is the maximum." }, { status: 422 });
   }
 
   const form = await request.formData().catch(() => null);
