@@ -10,6 +10,7 @@ import {
   promotionBlockers,
   seoBriefs,
 } from "./briefs.ts";
+import { searchArticles } from "./catalog.ts";
 import {
   QC_CHECKLIST,
   duplicateMetadata,
@@ -47,6 +48,7 @@ const PUBLISHED_PATHS = [
   "/privacy",
   "/terms",
   "/cookies",
+  ...searchArticles.map((article) => article.path),
 ];
 
 describe("seo registry", () => {
