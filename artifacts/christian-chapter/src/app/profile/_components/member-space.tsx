@@ -1,3 +1,5 @@
+"use client";
+
 import { getAge } from "@/lib/age";
 import { PROFILE_PHOTO_LIMIT } from "@/lib/profile/photos";
 import type { StudioProfile } from "@/lib/profile/types";
