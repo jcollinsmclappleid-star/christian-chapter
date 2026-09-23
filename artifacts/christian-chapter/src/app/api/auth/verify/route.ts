@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { and, eq, isNull } from "drizzle-orm";
-import { db, emailTokens, users } from "@/db";
+import { db, emailTokens, signInEvents, users } from "@/db";
 import { getMemberSession } from "@/lib/member-session";
 import { hashToken } from "@/lib/tokens";
 import { touchUser } from "@/lib/auth-email";
@@ -14,7 +14,6 @@ export async function GET(request: NextRequest) {
   }
 
   const token = request.nextUrl.searchParams.get("token") ?? "";
-  const purpose = request.nextUrl.searchParams.get("purpose") ?? "verify";
   if (!token) {
     return NextResponse.redirect(new URL("/verify?error=missing", request.url));
   }
@@ -37,6 +36,18 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(new URL("/verify?error=expired", request.url));
   }
 
+  const purpose = row.purpose;
+  let email = user.email;
+  if (purpose === "change_email") {
+    const nextEmail = row.subjectEmail?.toLowerCase().trim();
+    if (!nextEmail) return NextResponse.redirect(new URL("/verify?error=expired", request.url));
+    const [taken] = await db.select({ id: users.id }).from(users).where(eq(users.email, nextEmail)).limit(1);
+    if (taken && taken.id !== user.id) {
+      return NextResponse.redirect(new URL("/account?email=taken", request.url));
+    }
+    email = nextEmail;
+  }
+
   await db.update(emailTokens).set({ usedAt: now }).where(eq(emailTokens.id, row.id));
 
   const verifiedAt = user.emailVerifiedAt ?? now;
@@ -48,6 +59,7 @@ export async function GET(request: NextRequest) {
   await db
     .update(users)
     .set({
+      email,
       emailVerifiedAt: verifiedAt,
       status: nextStatus,
       lastActiveAt: now,
@@ -55,19 +67,25 @@ export async function GET(request: NextRequest) {
     })
     .where(eq(users.id, user.id));
 
+  await db.insert(signInEvents).values({
+    userId: user.id,
+    userAgent: request.headers.get("user-agent")?.slice(0, 200) ?? null,
+    createdAt: now,
+  });
+
   await touchUser(user.id);
   await writeAudit({
     actorType: "member",
     actorId: user.id,
-    action: purpose === "sign_in" ? "signed_in" : "email_verified",
+    action: purpose === "change_email" ? "email_changed" : purpose === "sign_in" ? "signed_in" : "email_verified",
     entityType: "user",
     entityId: user.id,
   });
 
   const session = await getMemberSession();
-  session.user = { id: user.id, email: user.email };
+  session.user = { id: user.id, email };
   await session.save();
 
-  const dest = purpose === "sign_in" ? "/account" : "/register";
+  const dest = purpose === "verify" ? "/register" : "/account";
   return NextResponse.redirect(new URL(dest, request.url));
 }

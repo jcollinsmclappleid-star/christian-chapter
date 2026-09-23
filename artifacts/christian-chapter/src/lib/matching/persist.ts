@@ -14,6 +14,10 @@ import {
 } from "@/db";
 import { writeAudit } from "@/lib/audit";
 import { OPENING_OFFER_ENDS_ISO } from "@/lib/site-config";
+import { isBrowsingPrivately } from "@/lib/profile/private-browsing";
+import { notifyNewIntroduction } from "@/lib/profile/notices";
+import { recordNamedProfileView } from "@/lib/profile/views";
+import { isFeatureEnabled } from "@/lib/platform/features";
 import { HAND_PICK_POOL, handPickBlockers, handPickedStillOpen } from "./hand-pick";
 import { publicProfileView } from "@/lib/profile/preview";
 import { enqueueJob } from "@/lib/jobs/queue";
@@ -186,6 +190,10 @@ export async function generateIntroductionsForUser(userId: string, nowInput?: st
     created.push(intro);
   }
 
+  if (created.length) {
+    await notifyNewIntroduction(userId, null);
+  }
+
   await writeAudit({
     actorType: "system",
     actorId: userId,
@@ -325,8 +333,32 @@ export async function getMemberIntroduction(userId: string, introductionId: stri
   if (!viewer || !candidate || !introductionStillOpen(row.pool, viewer, candidate, ctx)) {
     return { error: "This introduction is no longer available.", status: 410 as const };
   }
-  await recordMeaningfulActivity(userId, "introduction_viewed", now);
-  return serializeIntroduction(row, candidate, now);
+  const [viewerProfile] = await db
+    .select({
+      planEntitlement: memberProfiles.planEntitlement,
+      privateBrowsing: memberProfiles.privateBrowsing,
+      firstName: memberProfiles.firstName,
+    })
+    .from(memberProfiles)
+    .where(eq(memberProfiles.userId, userId))
+    .limit(1);
+  const privately = viewerProfile ? isBrowsingPrivately(viewerProfile) : false;
+  if (!privately) {
+    await recordMeaningfulActivity(userId, "introduction_viewed", now);
+    await recordNamedProfileView({
+      viewerUserId: userId,
+      viewedUserId: row.candidateUserId,
+      source: row.pool,
+      now,
+      viewerFirstName: viewerProfile?.firstName,
+    });
+  }
+  const serialized = await serializeIntroduction(row, candidate, now);
+  return {
+    ...serialized,
+    memberId: row.candidateUserId,
+    canAct: isFeatureEnabled("interests_and_mutual_matches"),
+  };
 }
 
 export async function actOnIntroduction(
@@ -824,6 +856,7 @@ export async function createHandPickedPair(input: {
       })
       .returning();
     created.push(intro.id);
+    await notifyNewIntroduction(viewer.userId, candidate.firstName);
   }
 
   await writeAudit({

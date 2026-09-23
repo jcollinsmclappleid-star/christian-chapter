@@ -61,6 +61,17 @@ describe("GATE-E reversible FND-01 migration", () => {
     assert.match(down, /DROP TABLE IF EXISTS "photo_checks"/);
   });
 
+  it("records named profile visits and private-browsing settings", () => {
+    const sql = readFileSync(path.join(dir, "0007_views_and_settings.sql"), "utf8");
+    const down = readFileSync(path.join(dir, "0007_views_and_settings.down.sql"), "utf8");
+    assert.match(sql, /CREATE TABLE IF NOT EXISTS "profile_views"/);
+    assert.match(sql, /CREATE TABLE IF NOT EXISTS "sign_in_events"/);
+    assert.match(sql, /private_browsing/);
+    assert.match(sql, /subject_email/);
+    assert.match(down, /DROP TABLE IF EXISTS "profile_views"/);
+    assert.match(down, /DROP TABLE IF EXISTS "sign_in_events"/);
+  });
+
   it("rolls back without dropping founding_members", () => {
     assert.match(down, /DROP TABLE IF EXISTS "users"/);
     assert.match(down, /DROP TABLE IF EXISTS "founding_applications"/);

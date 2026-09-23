@@ -73,6 +73,7 @@ export const emailTokens = pgTable("email_tokens", {
     .notNull(),
   purpose: varchar("purpose", { length: 40 }).notNull(),
   tokenHash: varchar("token_hash", { length: 64 }).notNull(),
+  subjectEmail: varchar("subject_email", { length: 255 }),
   expiresAt: timestamp("expires_at").notNull(),
   usedAt: timestamp("used_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),

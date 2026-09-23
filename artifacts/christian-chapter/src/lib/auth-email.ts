@@ -8,7 +8,8 @@ export async function issueMagicLink(opts: {
   userId: string;
   email: string;
   firstName?: string | null;
-  purpose: "verify" | "sign_in";
+  purpose: "verify" | "sign_in" | "change_email";
+  subjectEmail?: string | null;
 }): Promise<{ ok: true; delivered: boolean; url: string } | { ok: false; error: string }> {
   const raw = generateRawToken();
   const tokenHash = hashToken(raw);
@@ -19,21 +20,29 @@ export async function issueMagicLink(opts: {
     userId: opts.userId,
     purpose: opts.purpose,
     tokenHash,
+    subjectEmail: opts.subjectEmail ?? null,
     expiresAt,
   });
 
   const result = await sendServiceEmail({
     to: opts.email,
     subject:
-      opts.purpose === "verify"
-        ? "Confirm your Mature Christian Dating email"
-        : "Sign in to Mature Christian Dating",
+      opts.purpose === "change_email"
+        ? "Confirm your new Mature Christian Dating email"
+        : opts.purpose === "verify"
+          ? "Confirm your Mature Christian Dating email"
+          : "Sign in to Mature Christian Dating",
     html: magicLinkEmailHtml({
       firstName: opts.firstName ?? undefined,
       action: opts.purpose,
       url,
     }),
-    text: `${opts.purpose === "verify" ? "Confirm your email" : "Sign in"}: ${url}`,
+    text:
+      opts.purpose === "change_email"
+        ? `Confirm your new email: ${url}`
+        : opts.purpose === "verify"
+          ? `Confirm your email: ${url}`
+          : `Sign in: ${url}`,
   });
 
   if (!result.ok) {

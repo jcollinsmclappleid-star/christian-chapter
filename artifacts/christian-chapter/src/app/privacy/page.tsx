@@ -13,10 +13,11 @@ export default function PrivacyPage() {
       <p>
         This notice describes processing that actually happens today: creating a
         founding-member account, confirming an email address, storing a founding
-        application, recording consents, and checking one photograph against
-        the profile photograph.
-        We do not currently operate member-to-member matching, messaging,
-        calling, or paid subscriptions.
+        application, recording consents, recording who opened an introduction,
+        and checking one photograph against the profile photograph.
+        We do not currently operate member-to-member messaging, calling, or
+        paid subscriptions. A hand-picked introduction can be opened. Automated
+        matching is not live.
       </p>
       <h2>Who we are</h2>
       <p>
@@ -34,6 +35,8 @@ export default function PrivacyPage() {
         <li>Relationship, family and lifestyle answers on the founding application.</li>
         <li>Security and audit data: IP address, user agent, timestamps of consents and admin actions.</li>
         <li>One check photograph of your face, only after you agree, and only until the check is finished or 24 hours pass.</li>
+        <li>When you open an introduction, the time and your name, unless private browsing is on.</li>
+        <li>Recent sign-in times, and your choices about introduction and profile-view emails.</li>
       </ul>
       <h2>Purposes and lawful bases</h2>
       <p>
@@ -55,6 +58,12 @@ export default function PrivacyPage() {
         website. We do not load advertising pixels.
       </p>
       <h2>Retention and closure</h2>
+      <p>
+        Opening an introduction records a visit the other member can see, with
+        your name and the time. Private browsing is a separate subscription of
+        £9 a month from 15 February 2027. It is not charged now. While it is on,
+        that visit is not shown and does not mark you as recently active.
+      </p>
       <p>
         A check photograph is deleted when the check is finished. If it is still
         waiting, it is deleted after 24 hours. Closing your account

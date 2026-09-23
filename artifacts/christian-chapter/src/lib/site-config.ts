@@ -23,6 +23,11 @@ export const OPENING_OFFER_ENDS_ISO = "2027-02-14";
 export const MEMBER_PRICE_GBP = 29;
 export const MEMBER_PRICE_LABEL = "£29 a month";
 
+/** Separate from membership. Not charged until billing is switched on. */
+export const INCOGNITO_PRICE_GBP = 9;
+export const INCOGNITO_PRICE_LABEL = "£9 a month";
+export const INCOGNITO_STARTS_LABEL = "15 February 2027";
+
 /** One customer-facing account of the founding stage. */
 export const FOUNDING_MEMBER_COPY =
   "Mature Christian Dating is free for founding members until 14 February 2027. Matching goes live on 14 February 2027. The member price of £29 a month starts on 15 February 2027. No payment is taken before then.";

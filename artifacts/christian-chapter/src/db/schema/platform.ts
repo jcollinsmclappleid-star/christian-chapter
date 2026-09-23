@@ -108,6 +108,9 @@ export const memberProfiles = pgTable("member_profiles", {
   prompts: jsonb("prompts"),
   reviewNotes: text("review_notes"),
   planEntitlement: varchar("plan_entitlement", { length: 20 }).default("free").notNull(),
+  privateBrowsing: boolean("private_browsing").default(false).notNull(),
+  notifyIntroductions: boolean("notify_introductions").default(true).notNull(),
+  notifyProfileViews: boolean("notify_profile_views").default(true).notNull(),
   activityState: varchar("activity_state", { length: 40 }).default("active_now").notNull(),
   synthetic: boolean("synthetic").default(false).notNull(),
   submittedAt: timestamp("submitted_at"),
@@ -255,6 +258,26 @@ export const memberReports = pgTable("member_reports", {
   status: varchar("status", { length: 40 }).default("open").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+export const profileViews = pgTable("profile_views", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  viewerUserId: uuid("viewer_user_id").notNull(),
+  viewedUserId: uuid("viewed_user_id").notNull(),
+  source: varchar("source", { length: 40 }).default("introduction").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => [
+  index("profile_views_viewed_idx").on(table.viewedUserId, table.createdAt),
+  index("profile_views_pair_idx").on(table.viewerUserId, table.viewedUserId, table.createdAt),
+]);
+
+export const signInEvents = pgTable("sign_in_events", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: uuid("user_id").notNull(),
+  userAgent: varchar("user_agent", { length: 200 }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => [
+  index("sign_in_events_user_idx").on(table.userId, table.createdAt),
+]);
 
 export const activityEvents = pgTable("activity_events", {
   id: uuid("id").defaultRandom().primaryKey(),

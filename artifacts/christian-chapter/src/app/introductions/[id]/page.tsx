@@ -6,6 +6,8 @@ import { DatingProfileView } from "@/components/profile/dating-profile-view";
 
 type Intro = {
   id: string;
+  memberId?: string;
+  canAct?: boolean;
   poolLabel: string;
   alignmentText: string;
   activityLabel: string;
@@ -86,6 +88,33 @@ export default function IntroductionDossierPage() {
     );
   }
 
+  const dossier = intro;
+
+  async function safety(action: "block" | "report") {
+    if (!dossier.memberId) return;
+    setBusy(true);
+    const res = await fetch("/api/safety/block", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: dossier.memberId,
+        action,
+        source: "introduction",
+        reason: action === "report" ? "concern" : undefined,
+      }),
+    });
+    setBusy(false);
+    if (!res.ok) {
+      setError("That could not be saved.");
+      return;
+    }
+    if (action === "block") {
+      window.location.href = "/introductions";
+      return;
+    }
+    setDone("We’ve recorded that. They will not be introduced to you.");
+  }
+
   const actions = (
     <div className="flex flex-col gap-3">
       <button
@@ -156,15 +185,42 @@ export default function IntroductionDossierPage() {
               </ul>
             </div>
           )}
-          <div className="hidden md:block">{actions}</div>
+          <div className="hidden md:block">{intro.canAct === false ? null : actions}</div>
+          {intro.canAct === false && (
+            <p className="text-[15px] text-plum-muted">
+              You can look. Responding opens when matching is switched on.
+            </p>
+          )}
+          {intro.memberId && (
+            <div className="flex flex-wrap gap-3">
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => void safety("block")}
+                className="min-h-[44px] px-4 text-[14px] text-plum-muted underline underline-offset-4"
+              >
+                Block
+              </button>
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => void safety("report")}
+                className="min-h-[44px] px-4 text-[14px] text-plum-muted underline underline-offset-4"
+              >
+                Report
+              </button>
+            </div>
+          )}
           {done && <p className="text-[15px] text-evergreen">{done}</p>}
           {error && <p className="text-[15px] text-oxblood">{error}</p>}
         </aside>
       </div>
 
-      <div className="md:hidden fixed inset-x-0 bottom-0 border-t border-border bg-ivory/95 px-4 py-3">
-        {done ? <p className="text-[14px] text-evergreen">{done}</p> : actions}
-      </div>
+      {intro.canAct !== false && (
+        <div className="md:hidden fixed inset-x-0 bottom-0 border-t border-border bg-ivory/95 px-4 py-3">
+          {done ? <p className="text-[14px] text-evergreen">{done}</p> : actions}
+        </div>
+      )}
     </section>
   );
 }
