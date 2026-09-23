@@ -23,14 +23,14 @@ const now = [
   },
   {
     icon: Flag,
-    title: "Human review of submitted applications",
-    desc: "Administrators can read submitted founding applications, change status, and leave notes. That queue exists. It is not 24/7 member-to-member moderation.",
+    title: "Applications are reviewed",
+    desc: "Submitted founding applications are reviewed before a profile can be treated as active. That is not 24/7 member-to-member moderation.",
   },
 ];
 
 const planned = [
   "Phone and selfie verification before messaging",
-  "Duplicate-image detection and automated photo matching",
+  "Photograph checks before messaging",
   "Romance-fraud pattern friction inside conversations",
   "Private relay calling that never shares your number",
   "In-product report from a live profile, message or call",

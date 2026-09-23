@@ -42,7 +42,7 @@ const path = [
   {
     n: "2",
     title: "We look for the fit",
-    body: "A person reads what you asked for. An introduction arrives with a reason you can understand.",
+    body: "An introduction arrives with a reason you can understand.",
   },
   {
     n: "3",
@@ -54,8 +54,8 @@ const path = [
 const safety = [
   {
     icon: IconLamp,
-    title: "A person checks first",
-    body: "Every photograph and every line is read before anyone else can see the profile.",
+    title: "Checked before anyone else sees it",
+    body: "Photographs and profile lines are checked before a profile can be seen.",
   },
   {
     icon: IconBlock,

@@ -9,9 +9,9 @@ type CheckView = {
 };
 
 const statusCopy: Record<string, string> = {
-  pending: "A person has this photograph. It is deleted when they decide, or within 24 hours if they do not.",
-  matched: "A person confirmed this photograph matches you. The photograph itself has been deleted.",
-  not_matched: "A person could not confirm the match. The photograph has been deleted. You can send another.",
+  pending: "This photograph is held for the check. It is deleted when the check is finished, or within 24 hours.",
+  matched: "This photograph matches your profile. The photograph itself has been deleted.",
+  not_matched: "This photograph could not be confirmed. It has been deleted. You can send another.",
   expired: "The photograph was deleted after 24 hours with no decision. You can send another.",
 };
 
@@ -58,10 +58,10 @@ export default function ProfileVerifyPage() {
         <a href="/profile" className="text-[14px] text-plum-muted underline underline-offset-4">
           Back to profile
         </a>
-        <h1 className="font-serif text-plum mt-4 mb-3">A photograph, checked by a person</h1>
+        <h1 className="font-serif text-plum mt-4 mb-3">Confirm your photograph</h1>
         <p className="text-[16px] text-plum-muted mb-4">
-          Send one current photograph of your face. A person compares it with the photograph on your profile.
-          We keep it only until that decision, and never longer than 24 hours. Then it is deleted.
+          Send one current photograph of your face. It is compared with the photograph on your profile.
+          We keep it only until the check is finished, and never longer than 24 hours. Then it is deleted.
           We keep the result, not the photograph. It is not sent to any other company.
         </p>
         {check?.status && (
@@ -91,7 +91,7 @@ export default function ProfileVerifyPage() {
             disabled={!consent || busy}
             className="min-h-[48px] px-5 rounded-md bg-life text-paper text-[14px] disabled:opacity-50"
           >
-            {busy ? "Sending…" : "Send for a person to check"}
+            {busy ? "Sending…" : "Send photograph"}
           </button>
         </form>
         {message && (

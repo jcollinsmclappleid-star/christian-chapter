@@ -32,7 +32,7 @@ export default function ConfirmPage() {
             {
               num: "02",
               title: "Application submitted",
-              body: "Our team can review completeness and cohort balance. That is not automated matching.",
+              body: "Applications are reviewed for completeness and cohort balance.",
             },
             {
               num: "03",

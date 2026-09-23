@@ -342,7 +342,7 @@ export function StepPhoto({ data, update }: StepProps) {
       <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">One photograph is enough for now.</h2>
       <Note>
         This step is optional. A current face, in daylight, doing something you actually do, helps someone recognise you.
-        A person reviews it before anyone else sees it. You can add more after you have a profile.
+        You can add more after you have a profile.
       </Note>
       <label className="flex min-h-40 cursor-pointer flex-col items-center justify-center rounded-[28px] border border-dashed border-ivory-darker bg-paper px-6 py-8 text-center">
         <span className="font-sans text-[16px] font-semibold text-life">Add a photograph</span>

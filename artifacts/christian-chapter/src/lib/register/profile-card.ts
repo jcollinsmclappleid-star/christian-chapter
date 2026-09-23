@@ -26,7 +26,7 @@ function namedList(items: string[]): string {
 /** Names the newest fact. Each step should read as a different sentence. */
 export function profileEncouragement(data: ProfileCardInput): string {
   if (data.storyPrompt1.trim()) return "That line already sounds like you.";
-  if (data.photoDataUrl) return "A face is on your profile. A person reviews it before anyone else sees it.";
+  if (data.photoDataUrl) return "A face is on your profile.";
   if (data.interests.length) {
     return `${namedList(data.interests.slice(0, 3))}. This is starting to sound like a week someone could join.`;
   }
