@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
 import { EB_Garamond, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/layout/site-chrome";
@@ -25,9 +26,7 @@ export const metadata: Metadata = {
   },
   description:
     "Mature Christian dating for UK adults aged 40 and over. Meet thoughtful Christian singles who share your faith and want a meaningful relationship.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://christianchapter.co.uk"
-  ),
+  metadataBase: new URL(siteConfig.siteUrl),
   openGraph: {
     siteName: "Mature Christian Dating",
     locale: "en_GB",

@@ -52,6 +52,15 @@ describe("GATE-E reversible FND-01 migration", () => {
     assert.match(mat, /mat-01\.1/);
   });
 
+  it("stores a face-check photograph that can be cleared", () => {
+    const sql = readFileSync(path.join(dir, "0006_photo_check.sql"), "utf8");
+    const down = readFileSync(path.join(dir, "0006_photo_check.down.sql"), "utf8");
+    assert.match(sql, /CREATE TABLE IF NOT EXISTS "photo_checks"/);
+    assert.match(sql, /"image_data" text/);
+    assert.match(sql, /ON DELETE CASCADE/);
+    assert.match(down, /DROP TABLE IF EXISTS "photo_checks"/);
+  });
+
   it("rolls back without dropping founding_members", () => {
     assert.match(down, /DROP TABLE IF EXISTS "users"/);
     assert.match(down, /DROP TABLE IF EXISTS "founding_applications"/);

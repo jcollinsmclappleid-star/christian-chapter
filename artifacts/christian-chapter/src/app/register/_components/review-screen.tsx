@@ -33,7 +33,7 @@ function getAge(dob: string): number {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-7">
-      <h3 className="text-[11px] uppercase tracking-[0.22em] text-stone font-sans mb-3 pb-2 border-b-2 border-oxblood/25">
+      <h3 className="text-[11px] uppercase tracking-[0.22em] text-stone font-sans mb-3 pb-2 border-b-2 border-life/25">
         {title}
       </h3>
       <dl className="space-y-0">{children}</dl>
@@ -85,7 +85,7 @@ export function ReviewScreen({
 
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-4">
+      <p className="text-[11px] uppercase tracking-[0.3em] text-life font-sans mb-4">
         Review your profile
       </p>
       <h2 className="font-serif text-plum mb-4 text-3xl md:text-4xl">

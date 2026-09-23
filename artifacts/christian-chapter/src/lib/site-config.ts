@@ -3,18 +3,29 @@
  * Public copy must read this rather than inventing Ltd/VAT/prices.
  */
 
-export const POLICY_VERSION = "2026-09-20";
-export const POLICY_EFFECTIVE_DATE = "20 September 2026";
+export const POLICY_VERSION = "2026-09-23";
+export const POLICY_EFFECTIVE_DATE = "23 September 2026";
 export const RELIGIOUS_CONSENT_VERSION = "2026-09-20";
 export const MARKETING_CONSENT_VERSION = "2026-09-20";
-export const TERMS_CONSENT_VERSION = "2026-09-20";
+export const TERMS_CONSENT_VERSION = "2026-09-22";
 
 export const MINIMUM_AGE = 40;
 export const APPLICATION_RETENTION_DAYS = 30;
 
-/** One customer-facing account of the founding stage. Do not invent a launch date. */
+/**
+ * Opening offer. The monthly figure is the price after this date.
+ * It is shown so people can see it. Billing is not switched on, so nothing is charged.
+ * £29 sits with the public one-month list prices checked in September 2026:
+ * Match UK about £29.99, Christian Connection about £29.95.
+ */
+export const OPENING_OFFER_ENDS_LABEL = "14 February 2027";
+export const OPENING_OFFER_ENDS_ISO = "2027-02-14";
+export const MEMBER_PRICE_GBP = 29;
+export const MEMBER_PRICE_LABEL = "£29 a month";
+
+/** One customer-facing account of the founding stage. */
 export const FOUNDING_MEMBER_COPY =
-  "Mature Christian Dating is welcoming founding members now. Create your profile free and help form the first cohorts. Introductions begin cohort by cohort once there are enough compatible, active members.";
+  "Mature Christian Dating is free for founding members until 14 February 2027. Matching goes live on 14 February 2027. The member price of £29 a month starts on 15 February 2027. No payment is taken before then.";
 
 function env(name: string, fallback = ""): string {
   return (process.env[name] ?? fallback).trim();
@@ -24,16 +35,17 @@ export const siteConfig = {
   brandName: "Mature Christian Dating",
   descriptor: "Mature Christian dating",
   proposition: "Mature Christian dating.",
-  siteUrl: env("NEXT_PUBLIC_SITE_URL", "https://christianchapter.co.uk").replace(
+  siteUrl: env("NEXT_PUBLIC_SITE_URL", "https://maturechristiandating.co.uk").replace(
     /\/$/,
     "",
   ),
-  contactEmail: env("LEGAL_CONTACT_EMAIL", "hello@christianchapter.co.uk"),
+  contactEmail: env("LEGAL_CONTACT_EMAIL", "hello@maturechristiandating.co.uk"),
   /** Empty = not an incorporated company in copy. */
   legalEntityName: env("LEGAL_ENTITY_NAME"),
   icoComplaintsUrl: "https://ico.org.uk/make-a-complaint/",
   foundingStage: true,
-  pricesPublished: false,
+  /** The later price is published. Checkout is not. */
+  pricesPublished: true,
   vatRegistered: env("VAT_REGISTERED") === "true",
   memberMatchingLive: false,
   verificationLive: false,

@@ -134,7 +134,7 @@ export default function IntroductionDossierPage() {
         </div>
 
         <aside className="md:sticky md:top-24 space-y-6">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-oxblood">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-life">
             {intro.poolLabel} · {intro.activityLabel}
           </p>
           <h1 className="font-serif text-plum text-[2.4rem]">{intro.alignmentText}</h1>

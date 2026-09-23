@@ -2,40 +2,40 @@
 
 @theme {
   /* ── Colour palette ── */
-  /* Ice ground so the blue and the photographs do the talking. */
-  --color-ivory: #F3F6FF;
-  --color-ivory-dark: #E6ECFB;
-  --color-ivory-darker: #D5DEF5;
-  --color-paper: #FFFFFF;
+  /* Warm paper. The photographs and the hearth colour do the talking. */
+  --color-ivory: #F6EFE6;
+  --color-ivory-dark: #EFE4D6;
+  --color-ivory-darker: #E4D3C4;
+  --color-paper: #FFF9F3;
 
-  --color-plum: #12182B;
-  --color-plum-soft: #1C2744;
-  --color-plum-muted: #3E4C6E;
+  --color-plum: #2C2118;
+  --color-plum-soft: #3A2C22;
+  --color-plum-muted: #6B5346;
 
   --color-oxblood: #8B1F2F;
   --color-oxblood-hover: #7A1A28;
   --color-oxblood-light: #F5ECEE;
 
-  /* Match blue: the arrival colour. White type clears it comfortably. */
-  --color-life: #1927F0;
-  --color-life-hover: #121EC4;
-  --color-life-light: #E7EBFF;
+  /* Cobalt. Close to a dating-site blue, shifted off Match's #1927F0. White type clears it. */
+  --color-life: #1651B6;
+  --color-life-hover: #104093;
+  --color-life-light: #E3ECF7;
 
-  --color-tide: #1927F0;
-  --color-tide-light: #E7EBFF;
-  --color-foam: #E4E9FF;
+  --color-tide: #1651B6;
+  --color-tide-light: #E3ECF7;
+  --color-foam: #E7F0FA;
 
   --color-evergreen: #1D4A36;
   --color-evergreen-light: #EAF2EE;
 
   --color-brass: #C4A05A;
   --color-brass-light: #F5EDD8;
-  --color-glow: #E4E9FF;
+  --color-glow: #F4F8FF;
 
-  --color-stone: #4A5678;
-  --color-mist: #5C6B8A;
-  --color-border: rgba(18, 24, 43, 0.14);
-  --color-border-medium: rgba(18, 24, 43, 0.28);
+  --color-stone: #6B5346;
+  --color-mist: #7A6458;
+  --color-border: rgba(44, 33, 24, 0.14);
+  --color-border-medium: rgba(44, 33, 24, 0.28);
 
   /* ── Typography ── */
   --font-sans: var(--font-grotesk), "system-ui", -apple-system, sans-serif;
@@ -51,8 +51,8 @@
   --radius-full: 9999px;
 
   /* ── Shadows (almost none — depth from layering) ── */
-  --shadow-subtle: 0 1px 3px rgba(30, 18, 32, 0.06);
-  --shadow-card: 0 16px 40px rgba(25, 39, 240, 0.16);
+  --shadow-subtle: 0 1px 3px rgba(44, 33, 24, 0.06);
+  --shadow-card: 0 16px 40px rgba(44, 33, 24, 0.12);
 }
 
 /* ── Base ── */
@@ -126,11 +126,21 @@ body {
 }
 
 .hero-shade {
-  background: linear-gradient(to top, rgba(10, 16, 70, 0.62) 0%, rgba(25, 39, 240, 0.02) 48%, rgba(8, 14, 48, 0.18) 100%);
+  background: linear-gradient(to top, rgba(28, 16, 10, 0.62) 0%, rgba(44, 33, 24, 0.04) 48%, rgba(20, 12, 8, 0.18) 100%);
+}
+
+.intake {
+  background: theme(--color-ivory);
+  color: theme(--color-plum);
+}
+
+.intake-card {
+  background: theme(--color-paper);
+  border: 1px solid theme(--color-border);
 }
 
 .life-caption {
-  background: linear-gradient(to top, rgba(10, 16, 48, 0.88) 0%, rgba(10, 16, 48, 0.35) 42%, rgba(10, 16, 48, 0) 100%);
+  background: linear-gradient(to top, rgba(28, 16, 10, 0.88) 0%, rgba(28, 16, 10, 0.35) 42%, rgba(28, 16, 10, 0) 100%);
 }
 
 /* ── Selection ── */

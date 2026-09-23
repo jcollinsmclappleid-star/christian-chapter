@@ -2,58 +2,18 @@
 
 import { getAge } from "@/lib/age";
 import { MINIMUM_AGE } from "@/lib/site-config";
+import { StepNote } from "../step-note";
 import type { StepProps } from "../wizard-types";
-
-const genders = ["Man", "Woman", "Non-binary", "Prefer not to say"];
-const seeking = ["Men", "Women", "Open to both"];
-
-function OptionButton({
-  label,
-  selected,
-  onClick,
-}: {
-  label: string;
-  selected: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`min-h-[52px] px-4 py-2 rounded-md border text-[15px] font-sans transition-colors text-left ${
-        selected
-          ? "border-oxblood bg-oxblood-light text-oxblood font-medium"
-          : "border-border-medium bg-ivory text-plum-muted hover:bg-ivory-dark"
-      }`}
-    >
-      {label}
-    </button>
-  );
-}
 
 export function Step3About({ data, update }: StepProps) {
   const calculatedAge = getAge(data.dateOfBirth);
 
-  const toggleSeeking = (value: string) => {
-    const current = data.seekingGender;
-    if (current.includes(value)) {
-      update({ seekingGender: current.filter((g) => g !== value) });
-    } else {
-      update({ seekingGender: [...current, value] });
-    }
-  };
-
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-4">
-        Step 3 of 10
-      </p>
-      <h2 className="font-serif text-plum mb-4 text-3xl md:text-4xl">
-        About you
+      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+        Your age is welcome here.
       </h2>
-      <p className="text-[17px] text-plum-muted leading-7 mb-10">
-        These details help us identify people at a compatible life stage.
-      </p>
+      <StepNote>This is for people with a life already underway. There is no upper age.</StepNote>
 
       <div className="space-y-9">
         <div>
@@ -87,38 +47,6 @@ export function Step3About({ data, update }: StepProps) {
             </p>
           )}
         </div>
-
-        <fieldset>
-          <legend className="block text-[15px] font-sans font-medium text-plum mb-3">
-            I am a…
-          </legend>
-          <div className="grid grid-cols-2 gap-3">
-            {genders.map((g) => (
-              <OptionButton
-                key={g}
-                label={g}
-                selected={data.gender === g}
-                onClick={() => update({ gender: g })}
-              />
-            ))}
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend className="block text-[15px] font-sans font-medium text-plum mb-3">
-            I&rsquo;m hoping to meet… (select all that apply)
-          </legend>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {seeking.map((s) => (
-              <OptionButton
-                key={s}
-                label={s}
-                selected={data.seekingGender.includes(s)}
-                onClick={() => toggleSeeking(s)}
-              />
-            ))}
-          </div>
-        </fieldset>
       </div>
     </div>
   );

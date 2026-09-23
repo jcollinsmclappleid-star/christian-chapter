@@ -38,7 +38,9 @@ describe("homepage conversion", () => {
     const home = read("app/page.tsx");
     assert.match(home, /<h1[^>]*>\s*Mature Christian dating\./);
     assert.doesNotMatch(home, /Christian Chapter/);
+    assert.match(home, /Meet Christian Singles/);
     assert.match(home, /Create your free profile/);
+    assert.doesNotMatch(home, /HeroIntake|Looking to meet/);
     assert.match(home, /href="\/register"/);
     assert.match(home, /href="\/sign-in"/);
     assert.match(home, /See how it works/);

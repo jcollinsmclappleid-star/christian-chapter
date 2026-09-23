@@ -56,7 +56,7 @@ export default function IntroductionsPage() {
   return (
     <section className="bg-ivory section">
       <div className="mx-auto max-w-3xl px-6">
-        <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-4">
+        <p className="text-[11px] uppercase tracking-[0.28em] text-life font-sans mb-4">
           Today’s introductions
         </p>
         <h1 className="font-serif text-plum mb-4">A small set, chosen with care</h1>
@@ -103,7 +103,7 @@ export default function IntroductionsPage() {
                       // eslint-disable-next-line @next/next/no-img-element
                       <img src={photo.url} alt="" className="absolute inset-0 h-full w-full object-cover" />
                     ) : (
-                      <span className="absolute bottom-3 left-3 font-serif text-5xl text-oxblood/80" aria-hidden>
+                      <span className="absolute bottom-3 left-3 font-serif text-5xl text-life/80" aria-hidden>
                         {initial}
                       </span>
                     )}

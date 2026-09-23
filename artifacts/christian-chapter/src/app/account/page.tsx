@@ -120,7 +120,7 @@ export default function AccountPage() {
   return (
     <section className="section bg-ivory">
       <div className="mx-auto max-w-2xl px-6">
-        <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-4">
+        <p className="text-[11px] uppercase tracking-[0.28em] text-life font-sans mb-4">
           Your founding application
         </p>
         <h1 className="font-serif text-plum mb-2">

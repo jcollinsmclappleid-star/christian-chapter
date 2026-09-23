@@ -8,7 +8,9 @@ import {
 export { RELIGIOUS_CONSENT_VERSION, POLICY_VERSION };
 
 export const WIZARD_STORAGE_KEY = "cc_wizard_v1";
-export const TOTAL_STEPS = 10;
+export const TOTAL_STEPS = 8;
+/** 4 adds optional marital situation and children. Older drafts restart at step 1. */
+export const FLOW_VERSION = 4;
 
 export type EssentialTier = "essential" | "preferred" | "open";
 
@@ -42,6 +44,10 @@ export type WizardData = {
   // Step 6: Life now
   workStatus: string;
   familySituation: string;
+  /** Optional. Never married, divorced, widowed, or separated. */
+  maritalSituation: string;
+  /** Optional. None, adult children, children at home, or grandchildren. */
+  childrenSituation: string;
   interests: string[];
   // Step 7: Relationship intentions
   relationshipGoal: string;
@@ -61,6 +67,13 @@ export type WizardData = {
   priorities: string[];
   photoConsent: boolean;
   termsAccepted: boolean;
+  partnerHopes: string[];
+  hobbyNote: string;
+  photoDataUrl: string;
+  /** Set after the ready screen has finished assembling the profile. */
+  profileReady: boolean;
+  /** Matches FLOW_VERSION. Older drafts restart at step 1 and keep answers that still fit. */
+  flowVersion: number;
 };
 
 export const defaultWizardData: WizardData = {
@@ -82,6 +95,8 @@ export const defaultWizardData: WizardData = {
   faithDescription: "",
   workStatus: "",
   familySituation: "",
+  maritalSituation: "",
+  childrenSituation: "",
   interests: [],
   relationshipGoal: "",
   openToRemarriage: null,
@@ -97,6 +112,11 @@ export const defaultWizardData: WizardData = {
   priorities: [],
   photoConsent: false,
   termsAccepted: false,
+  partnerHopes: [],
+  hobbyNote: "",
+  photoDataUrl: "",
+  profileReady: false,
+  flowVersion: FLOW_VERSION,
 };
 
 export interface StepProps {
@@ -126,13 +146,16 @@ export const TRADITIONS = [
   "Anglican / Church of England",
   "Baptist",
   "Catholic",
+  "Orthodox",
   "Charismatic / Pentecostal",
   "Evangelical",
+  "Lutheran",
   "Methodist",
   "Presbyterian",
   "Reformed",
   "Salvation Army",
   "Non-denominational",
+  "Independent or house church",
   "Other / interdenominational",
 ];
 
@@ -152,24 +175,57 @@ export const CENTRALITY_OPTIONS = [
   "Everything — it shapes all I do",
 ];
 
-export const INTERESTS_OPTIONS = [
-  "Country walks / hiking",
-  "Travel",
-  "Live music / concerts",
-  "Reading",
-  "Gardening",
-  "Cooking / baking",
-  "Arts and crafts",
-  "Cycling",
-  "Theatre / cinema",
-  "Volunteering",
-  "Sport",
-  "DIY",
-  "Photography",
-  "History / heritage",
-  "Prayer groups / Bible study",
-  "Community / social action",
+export const INTEREST_GROUPS: { title: string; options: string[] }[] = [
+  {
+    title: "Days you love",
+    options: ["Country walks", "Coastal paths", "Gardening", "Cycling", "Wild swimming", "Birdwatching"],
+  },
+  {
+    title: "Time you would share",
+    options: ["Cooking", "Baking", "Sunday lunch", "A good cup of tea", "DIY", "Hosting friends"],
+  },
+  {
+    title: "Making",
+    options: ["Photography", "Painting", "Choir", "An instrument", "Crafts", "Writing"],
+  },
+  {
+    title: "Going out",
+    options: ["Live music", "Theatre", "Cinema", "Travel", "Museums", "Dancing", "Sport"],
+  },
+  {
+    title: "Quieter pleasures",
+    options: ["Reading", "Prayer", "Volunteering", "Board games", "Podcasts", "Learning a language"],
+  },
+  {
+    title: "A bit unexpected",
+    options: ["Ballroom", "Sourdough", "Classic cars", "Pilgrimage walks", "Astronomy", "Karaoke", "Football away days"],
+  },
 ];
+
+export const PARTNER_HOPES = [
+  "kind, and who means it",
+  "who laughs easily",
+  "with a faith already in the room",
+  "curious about ordinary days",
+  "steady, and not in a rush",
+  "good with family",
+  "happy to cook and to go out",
+  "ready for a lasting love",
+  "honest about the past",
+  "glad of a quiet evening",
+];
+
+export const MARITAL_SITUATIONS = ["Never married", "Divorced", "Widowed", "Separated"];
+
+export const CHILDREN_SITUATIONS = ["None", "Adult children", "Children at home", "Grandchildren"];
+
+export const INTENTION_OPTIONS = [
+  "Companionship, and see where it leads",
+  "A committed relationship",
+  "Marriage if it is right, without hurry",
+];
+
+export const INTERESTS_OPTIONS = INTEREST_GROUPS.flatMap((group) => group.options);
 
 export const ESSENTIAL_FACTORS: { factor: string; label: string }[] = [
   { factor: "smoking", label: "Non-smoker" },

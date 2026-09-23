@@ -4,11 +4,15 @@ import { z } from "zod";
 import { db, foundingApplications, users } from "@/db";
 import { issueMagicLink } from "@/lib/auth-email";
 import { clientKey, rateLimit } from "@/lib/rate-limit";
+import { wizardToApplicationValues } from "@/lib/application-map";
+import { defaultWizardData, FLOW_VERSION, type WizardData } from "@/app/register/_components/wizard-types";
 
 const Schema = z.object({
   firstName: z.string().min(1).max(100),
   email: z.string().email(),
   marketingConsent: z.boolean().optional(),
+  step: z.number().int().min(1).max(10).optional(),
+  data: z.record(z.string(), z.unknown()).optional(),
 });
 
 const GENERIC =
@@ -51,8 +55,18 @@ export async function POST(request: NextRequest) {
       .where(eq(users.id, user.id));
   }
 
+  const draft = {
+    ...defaultWizardData,
+    ...((parse.data.data ?? {}) as Partial<WizardData>),
+    firstName,
+    email,
+    marketingConsent: parse.data.marketingConsent ?? false,
+    flowVersion: FLOW_VERSION,
+  };
+  const values = wizardToApplicationValues(draft, parse.data.step ?? 10);
+
   const [existingApp] = await db
-    .select({ id: foundingApplications.id })
+    .select({ id: foundingApplications.id, status: foundingApplications.status })
     .from(foundingApplications)
     .where(eq(foundingApplications.userId, user.id))
     .limit(1);
@@ -60,11 +74,11 @@ export async function POST(request: NextRequest) {
   if (!existingApp) {
     await db.insert(foundingApplications).values({
       userId: user.id,
-      firstName,
-      marketingConsent: parse.data.marketingConsent ?? false,
+      ...values,
       status: "draft",
-      currentStep: 2,
     });
+  } else if (existingApp.status === "draft") {
+    await db.update(foundingApplications).set(values).where(eq(foundingApplications.id, existingApp.id));
   }
 
   const purpose = user.emailVerifiedAt ? "sign_in" : "verify";

@@ -1,19 +1,17 @@
 "use client";
 
+import { StepNote } from "../step-note";
 import type { StepProps } from "../wizard-types";
 
 export function Step2Account({ data, update }: StepProps) {
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-4">
-        Step 2 of 10
-      </p>
-      <h2 className="font-serif text-plum mb-4 text-3xl md:text-4xl">
-        Your account
+      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+        You&rsquo;ve done the thoughtful part.
       </h2>
-      <p className="text-[17px] text-plum-muted leading-7 mb-10">
-        We&rsquo;ll use your email to let you know when we find a promising connection.
-      </p>
+      <StepNote>
+        Leave a name and an email, and we&rsquo;ll keep your place. Nothing is charged. We&rsquo;ll send a link to confirm the address.
+      </StepNote>
 
       <div className="space-y-7">
         {/* First name */}

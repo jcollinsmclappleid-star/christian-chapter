@@ -193,7 +193,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
 
         <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood mb-2">Your profile</p>
+            <p className="text-[11px] uppercase tracking-[0.28em] text-life mb-2">Your profile</p>
             <h1 className="font-serif text-plum text-[2.4rem] leading-none">Be someone worth meeting.</h1>
           </div>
           <p className="text-[13px] text-stone" aria-live="polite">
@@ -313,7 +313,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
             </p>
             {profile.prompts.map((item, index) => (
               <label key={item.prompt} className="block rounded-[18px] border border-border bg-ivory p-5">
-                <span className="block text-[12px] uppercase tracking-[0.18em] text-oxblood mb-3">
+                <span className="block text-[12px] uppercase tracking-[0.18em] text-life mb-3">
                   {item.prompt}
                 </span>
                 <textarea
@@ -700,7 +700,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
               <button
                 type="button"
                 onClick={() => void submit()}
-                className="min-h-[48px] px-6 rounded-md bg-oxblood text-ivory text-[14px] hover:bg-oxblood-hover"
+                className="min-h-[48px] px-6 rounded-md bg-life text-paper text-[14px] hover:bg-life-hover"
               >
                 Submit for review
               </button>

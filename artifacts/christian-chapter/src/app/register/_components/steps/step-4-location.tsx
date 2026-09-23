@@ -1,5 +1,6 @@
 "use client";
 
+import { StepNote } from "../step-note";
 import type { StepProps } from "../wizard-types";
 import { UK_REGIONS } from "../wizard-types";
 
@@ -8,16 +9,10 @@ const radiusOptions = [10, 20, 30, 40, 50, 75, 100, 150, 200];
 export function Step4Location({ data, update }: StepProps) {
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-4">
-        Step 4 of 10
-      </p>
-      <h2 className="font-serif text-plum mb-4 text-3xl md:text-4xl">
-        Your location
+      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+        Somewhere you already know.
       </h2>
-      <p className="text-[17px] text-plum-muted leading-7 mb-10">
-        We use your broad location to find introductions within a reasonable
-        distance. Your exact address is never stored or shared.
-      </p>
+      <StepNote>A broad area is enough. We never publish miles, and we never store a street address.</StepNote>
 
       <div className="space-y-9">
         {/* UK region */}

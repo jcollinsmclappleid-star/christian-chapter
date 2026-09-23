@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { siteConfig } from "./site-config";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://christianchapter.co.uk";
+const siteUrl = siteConfig.siteUrl;
 const siteName = "Mature Christian Dating";
 const defaultDescription =
   "Christian dating for your next chapter. Meet genuine Christian singles aged 40–70 who share your faith, values and hopes for what comes next. A UK founding cohort.";

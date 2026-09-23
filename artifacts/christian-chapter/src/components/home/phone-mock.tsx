@@ -1,4 +1,5 @@
-import { DEMO_DISCLOSURE, demoIntroduction, demoProfiles } from "@/lib/home/demo-fixture";
+import { IconFaith, IconHeart } from "@/components/home/mark-icons";
+import { DEMO_DISCLOSURE, demoConnection, demoIntroduction, demoProfiles } from "@/lib/home/demo-fixture";
 import Image from "next/image";
 
 function PhoneFrame({ children }: { children: React.ReactNode }) {
@@ -49,15 +50,36 @@ export function PhoneMocks() {
       <PhoneFrame>
         <div className="px-3.5 pb-4 pt-4">
           <p className="text-[11px] leading-4 text-life">{DEMO_DISCLOSURE}</p>
-          <p className="mt-3 font-sans text-[15px] font-bold text-plum">Why this introduction</p>
-          <ul className="mt-3 space-y-3">
-            {demoIntroduction.why.map((reason) => (
-              <li key={reason} className="border-l-2 border-life pl-3 text-[14px] leading-5 text-plum">
+          <p className="mt-3 font-sans text-[15px] font-bold text-plum">An introduction</p>
+          <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center">
+            {[demoConnection.left, demoConnection.right].map((person, index) => (
+              <div key={person.firstName} className="contents">
+                {index === 1 && (
+                  <div className="flex flex-col items-center px-1 text-life">
+                    <IconFaith className="h-6 w-6" />
+                    <IconHeart className="mt-1 h-6 w-6" />
+                  </div>
+                )}
+                <div className="flex flex-col items-center">
+                  <div className="relative h-[4.5rem] w-[4.5rem] overflow-hidden rounded-full">
+                    <Image src={person.photo} alt={person.alt} fill className="object-cover object-[center_20%]" sizes="72px" />
+                  </div>
+                  <p className="mt-1.5 text-center text-[12px] font-semibold text-plum">
+                    {person.firstName}, {person.age}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 font-sans text-[14px] font-bold text-plum">{demoConnection.line}</p>
+          <ul className="mt-3 space-y-2">
+            {demoIntroduction.why.slice(0, 2).map((reason) => (
+              <li key={reason} className="border-l-2 border-life pl-3 text-[13px] leading-5 text-plum">
                 {reason}
               </li>
             ))}
           </ul>
-          <p className="mt-4 text-[12px] leading-5 text-stone">Exact miles are not published.</p>
+          <p className="mt-3 text-[12px] leading-5 text-stone">Exact miles are not published.</p>
         </div>
       </PhoneFrame>
     </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { StepNote } from "../step-note";
 import type { StepProps } from "../wizard-types";
 import { STORY_PROMPTS } from "../wizard-types";
 
@@ -22,16 +23,10 @@ export function Step10Story({ data, update }: StepProps) {
 
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-4">
-        Step 10 of 10
-      </p>
-      <h2 className="font-serif text-plum mb-4 text-3xl md:text-4xl">
-        Your story
+      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+        This is the part people fall for.
       </h2>
-      <p className="text-[17px] text-plum-muted leading-7 mb-5">
-        These responses help us understand who you are beyond the categories.
-        Answer at least one — as little or as much as feels right.
-      </p>
+      <StepNote>A few true sentences are enough. Answer at least one, in your own words.</StepNote>
       <p className="text-[13px] text-stone mb-10">
         {answered === 0
           ? "Answer at least one prompt to continue."

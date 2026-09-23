@@ -10,7 +10,7 @@ export default function ConfirmPage() {
   return (
     <div className="min-h-[70vh] bg-ivory">
       <div className="mx-auto max-w-3xl px-6 py-20 md:py-28">
-        <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-6 text-center">
+        <p className="text-[11px] uppercase tracking-[0.3em] text-life font-sans mb-6 text-center">
           Founding application
         </p>
         <h1 className="font-serif text-plum mb-6 text-center">
@@ -32,7 +32,7 @@ export default function ConfirmPage() {
             {
               num: "02",
               title: "Application submitted",
-              body: "Our team can review completeness and cohort balance. That is not automated matching.",
+              body: "Applications are reviewed for completeness and cohort balance.",
             },
             {
               num: "03",
@@ -41,7 +41,7 @@ export default function ConfirmPage() {
             },
           ].map(({ num, title, body }) => (
             <div key={num} className="border-t-2 border-oxblood/30 pt-5">
-              <p className="font-serif text-oxblood text-3xl mb-4">{num}</p>
+              <p className="font-serif text-life text-3xl mb-4">{num}</p>
               <h3 className="font-sans font-semibold text-[15px] text-plum mb-2">{title}</h3>
               <p className="text-[14px] text-plum-muted leading-6">{body}</p>
             </div>

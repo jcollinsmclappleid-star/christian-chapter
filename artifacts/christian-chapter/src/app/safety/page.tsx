@@ -1,6 +1,6 @@
 import { LinkButton } from "@/components/ui/button";
 import { buildMetadata } from "@/lib/metadata";
-import { FOUNDING_MEMBER_COPY } from "@/lib/site-config";
+import { FOUNDING_MEMBER_COPY, siteConfig } from "@/lib/site-config";
 import { Shield, AlertTriangle, Flag, FileText } from "lucide-react";
 
 export const metadata = buildMetadata({
@@ -23,14 +23,14 @@ const now = [
   },
   {
     icon: Flag,
-    title: "Human review of submitted applications",
-    desc: "Administrators can read submitted founding applications, change status, and leave notes. That queue exists. It is not 24/7 member-to-member moderation.",
+    title: "Applications are reviewed",
+    desc: "Submitted founding applications are reviewed before a profile can be treated as active. That is not 24/7 member-to-member moderation.",
   },
 ];
 
 const planned = [
   "Phone and selfie verification before messaging",
-  "Duplicate-image detection and automated photo matching",
+  "Photograph checks before messaging",
   "Romance-fraud pattern friction inside conversations",
   "Private relay calling that never shares your number",
   "In-product report from a live profile, message or call",
@@ -44,9 +44,11 @@ export default function SafetyPage() {
         <div className="mx-auto max-w-4xl px-5 py-8 md:py-12">
           <h1 className="font-sans font-semibold text-plum">Safety</h1>
           <p className="mt-3 text-[17px] leading-6 text-plum-muted max-w-[36rem]">
-            Mature Christian Dating is currently a founding cohort, not a live
-            introductions network. This page separates what already operates
-            from what we are building.
+            Mature Christian Dating is a founding cohort. Matching goes live on
+            14 February 2027. Until then an administrator can prepare a
+            connection between two profiles. That is not a live browsing
+            network. This page separates what already operates from what we
+            are building.
           </p>
         </div>
       </section>
@@ -110,8 +112,8 @@ export default function SafetyPage() {
           </ul>
           <p className="text-[15px] text-plum-muted leading-6">
             During the founding cohort, email {""}
-            <a href="mailto:hello@christianchapter.co.uk" className="underline">
-              hello@christianchapter.co.uk
+            <a href={`mailto:${siteConfig.contactEmail}`} className="underline">
+              {siteConfig.contactEmail}
             </a>{" "}
             to report concern. You can also contact{" "}
             <a
@@ -125,7 +127,7 @@ export default function SafetyPage() {
             . In an emergency call 999.
           </p>
           <p className="mt-6">
-            <a href="/guides/safety/romance-fraud" className="underline text-oxblood">
+            <a href="/guides/safety/romance-fraud" className="underline text-life">
               Read the romance fraud guide →
             </a>
           </p>

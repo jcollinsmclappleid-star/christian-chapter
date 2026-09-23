@@ -1,5 +1,6 @@
 "use client";
 
+import { StepNote } from "../step-note";
 import { RELIGIOUS_CONSENT_VERSION, TRADITIONS, ATTENDANCE_OPTIONS, CENTRALITY_OPTIONS } from "../wizard-types";
 import type { StepProps } from "../wizard-types";
 
@@ -48,16 +49,10 @@ export function Step5Faith({ data, update }: StepProps) {
 
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-4">
-        Step 5 of 10
-      </p>
-      <h2 className="font-serif text-plum mb-4 text-3xl md:text-4xl">
-        Your faith
+      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+        Faith can be honest here.
       </h2>
-      <p className="text-[17px] text-plum-muted leading-7 mb-8">
-        We&rsquo;ll use this to identify people whose faith is genuinely compatible
-        with yours. This information is never displayed publicly.
-      </p>
+      <StepNote>It belongs in the introduction. It needs its own consent, and it is never sold.</StepNote>
 
       {/* ── GDPR consent — mandatory ──────────────────────────────────────── */}
       <div className={`rounded-lg border-2 p-5 mb-10 ${data.religiousDataConsent ? "border-evergreen bg-evergreen-light" : "border-border-medium bg-ivory-dark"}`}>

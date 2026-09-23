@@ -21,11 +21,21 @@ export default function TermsPage() {
         service is designed for people in the United Kingdom. We may refuse or
         close applications that do not meet these terms.
       </p>
+      <h2>Opening offer</h2>
+      <p>
+        Joining is free for founding members until 14 February 2027. Matching
+        goes live on 14 February 2027. The published member price of £29 a
+        month starts on 15 February 2027. No payment is taken before billing
+        is switched on, and this page does not start a subscription. An
+        administrator may prepare a connection between two profiles before
+        that date. That is not a live matching service, and it is not a
+        guarantee of an introduction.
+      </p>
       <h2>No guarantee of a match or a date</h2>
       <p>
         Joining the founding cohort does not entitle you to introductions,
-        messages, or a relationship. We may wait until the cohort is balanced
-        before any later matching product exists.
+        messages, or a relationship. A hand-picked introduction is a choice the
+        team makes. It is not a promise of a match, a date, or a reply.
       </p>
       <h2>Accuracy and conduct</h2>
       <p>

@@ -1,5 +1,6 @@
 "use client";
 
+import { StepNote } from "../step-note";
 import type { StepProps } from "../wizard-types";
 
 const goals = [
@@ -19,16 +20,10 @@ const paces = [
 export function Step7Intentions({ data, update }: StepProps) {
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-4">
-        Step 7 of 10
-      </p>
-      <h2 className="font-serif text-plum mb-4 text-3xl md:text-4xl">
-        Relationship intentions
+      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+        Say what you actually want.
       </h2>
-      <p className="text-[17px] text-plum-muted leading-7 mb-10">
-        Knowing what you&rsquo;re looking for helps us find someone whose intentions
-        are genuinely aligned with yours.
-      </p>
+      <StepNote>There is no hurry, and no wrong pace. Companionship and marriage can both be honest answers.</StepNote>
 
       <div className="space-y-9">
         {/* What you're looking for */}

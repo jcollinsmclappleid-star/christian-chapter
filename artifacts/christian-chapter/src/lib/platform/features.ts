@@ -44,7 +44,7 @@ const DEFAULTS: Record<FeatureKey, FlagMatrix> = {
   events: { local: true, test: true, staging: false, production: false },
   referrals: { local: true, test: true, staging: false, production: false },
   community_partner_links: { local: true, test: true, staging: false, production: false },
-  personal_matchmaking: { local: true, test: true, staging: false, production: false },
+  personal_matchmaking: { local: true, test: true, staging: true, production: true },
   location_seo_aggregates: { local: false, test: true, staging: false, production: false },
 };
 

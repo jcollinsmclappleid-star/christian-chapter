@@ -86,6 +86,18 @@ export function IconBlock({ className }: IconProps) {
   );
 }
 
+export function IconHeart({ className }: IconProps) {
+  return frame(
+    <path
+      d="M16 25s-7.5-4.6-7.5-10.2C8.5 11.6 11 9.5 13.6 9.5c1.6 0 2.8.8 3.4 2 .6-1.2 1.8-2 3.4-2 2.6 0 5.1 2.1 5.1 5.3C23.5 20.4 16 25 16 25Z"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinejoin="round"
+    />,
+    className,
+  );
+}
+
 export function IconLamp({ className }: IconProps) {
   return frame(
     <>

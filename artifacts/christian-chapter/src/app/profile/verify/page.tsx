@@ -2,38 +2,54 @@
 
 import { useEffect, useState } from "react";
 
+type CheckView = {
+  status: string | null;
+  imageHeld: boolean;
+  decidedAt: string | null;
+};
+
+const statusCopy: Record<string, string> = {
+  pending: "This photograph is held for the check. It is deleted when the check is finished, or within 24 hours.",
+  matched: "This photograph matches your profile. The photograph itself has been deleted.",
+  not_matched: "This photograph could not be confirmed. It has been deleted. You can send another.",
+  expired: "The photograph was deleted after 24 hours with no decision. You can send another.",
+};
+
 export default function ProfileVerifyPage() {
-  const [notice, setNotice] = useState("Development checks only.");
+  const [check, setCheck] = useState<CheckView | null>(null);
+  const [consent, setConsent] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
-  const [msisdn, setMsisdn] = useState("");
-  const [code, setCode] = useState("");
-  const [challengeId, setChallengeId] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    fetch("/api/profile/verify")
+    fetch("/api/profile/photo-check")
       .then(async (res) => {
-        if (res.status === 401) {
-          window.location.href = "/sign-in?next=/profile/verify";
-          return;
-        }
-        const json = await res.json();
-        setNotice(json.notice ?? notice);
+        if (res.status === 401) return;
+        if (!res.ok) return;
+        setCheck(await res.json());
       })
       .catch(() => undefined);
-  }, [notice]);
+  }, []);
 
-  async function run(body: Record<string, unknown>) {
-    const res = await fetch("/api/profile/verify", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    const json = await res.json();
-    setMessage(json.message ?? json.error);
-    if (json.check?.payload && typeof json.check.payload === "object") {
-      const data = (json.check.payload as { data?: { challengeId?: string } }).data;
-      if (data?.challengeId) setChallengeId(data.challengeId);
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setBusy(true);
+    setMessage(null);
+    const body = new FormData(event.currentTarget);
+    body.set("consent", consent ? "true" : "false");
+    const res = await fetch("/api/profile/photo-check", { method: "POST", body });
+    const json = await res.json().catch(() => ({}));
+    if (res.status === 401) {
+      window.location.href = "/sign-in?next=/profile/verify";
+      return;
     }
+    if (!res.ok) {
+      setMessage(json.error ?? "That photograph could not be saved.");
+      setBusy(false);
+      return;
+    }
+    setCheck(json);
+    setBusy(false);
   }
 
   return (
@@ -42,55 +58,47 @@ export default function ProfileVerifyPage() {
         <a href="/profile" className="text-[14px] text-plum-muted underline underline-offset-4">
           Back to profile
         </a>
-        <h1 className="font-serif text-plum mt-4 mb-3">Verification</h1>
-        <p className="text-[16px] text-plum-muted mb-8">{notice}</p>
-
-        <div className="space-y-4 mb-10">
+        <h1 className="font-serif text-plum mt-4 mb-3">Confirm your photograph</h1>
+        <p className="text-[16px] text-plum-muted mb-4">
+          Send one current photograph of your face. It is compared with the photograph on your profile.
+          We keep it only until the check is finished, and never longer than 24 hours. Then it is deleted.
+          We keep the result, not the photograph. It is not sent to any other company.
+        </p>
+        {check?.status && (
+          <p className="mb-6 text-[16px] text-plum">{statusCopy[check.status] ?? check.status}</p>
+        )}
+        <form onSubmit={onSubmit} className="space-y-4">
+          <label className="flex items-start gap-3 text-[15px] leading-6 text-plum">
+            <input
+              type="checkbox"
+              className="mt-1 accent-life"
+              checked={consent}
+              onChange={(event) => setConsent(event.target.checked)}
+            />
+            <span>
+              I agree to Mature Christian Dating storing this photograph only for the check, and deleting it when the
+              check is finished or after 24 hours.
+            </span>
+          </label>
           <input
-            value={msisdn}
-            onChange={(e) => setMsisdn(e.target.value)}
-            placeholder="Mobile number (sandbox)"
-            className="w-full min-h-[52px] px-4 rounded-md border border-border-medium"
+            name="file"
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            className="block w-full text-[15px]"
           />
           <button
-            type="button"
-            onClick={() => void run({ kind: "mobile", msisdn })}
-            className="min-h-[48px] px-5 rounded-md bg-plum text-ivory text-[14px]"
+            type="submit"
+            disabled={!consent || busy}
+            className="min-h-[48px] px-5 rounded-md bg-life text-paper text-[14px] disabled:opacity-50"
           >
-            Send development SMS code
+            {busy ? "Sending…" : "Send photograph"}
           </button>
-          <input
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-            placeholder="Code (246810 in sandbox)"
-            className="w-full min-h-[52px] px-4 rounded-md border border-border-medium"
-          />
-          <button
-            type="button"
-            onClick={() => void run({ kind: "mobile", code, challengeId })}
-            className="min-h-[48px] px-5 rounded-md border border-border text-[14px]"
-          >
-            Confirm mobile
-          </button>
-        </div>
-
-        <div className="flex flex-wrap gap-3 mb-8">
-          <button
-            type="button"
-            onClick={() => void run({ kind: "selfie" })}
-            className="min-h-[48px] px-5 rounded-md border border-border text-[14px]"
-          >
-            Development selfie check
-          </button>
-          <button
-            type="button"
-            onClick={() => void run({ kind: "photo_match" })}
-            className="min-h-[48px] px-5 rounded-md border border-border text-[14px]"
-          >
-            Development photo-match
-          </button>
-        </div>
-        {message && <p className="text-[15px] text-plum">{message}</p>}
+        </form>
+        {message && (
+          <p className="mt-4 text-[15px] text-oxblood" role="alert">
+            {message}
+          </p>
+        )}
       </div>
     </section>
   );
