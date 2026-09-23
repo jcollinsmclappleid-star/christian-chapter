@@ -229,10 +229,10 @@ export function StepFaithLight({ data, update }: StepProps) {
 export function StepLife({ data, update }: StepProps) {
   return (
     <div>
-      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">What actually fills a week?</h2>
+      <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">The life a partner would be joining.</h2>
       <Note>
-        This step is optional. A marital situation, children, and a few activities help someone picture a week they could join.
-        You can add more after you have a profile.
+        This step is optional. Say who is already with you, the love you want, and a few things you would be glad to share.
+        That is how someone pictures a future with you. You can add more after you have a profile.
       </Note>
       <fieldset>
         <legend className="mb-3 font-sans text-[15px] font-semibold">Marital situation</legend>

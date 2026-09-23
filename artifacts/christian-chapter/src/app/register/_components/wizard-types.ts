@@ -177,11 +177,11 @@ export const CENTRALITY_OPTIONS = [
 
 export const INTEREST_GROUPS: { title: string; options: string[] }[] = [
   {
-    title: "Outdoors",
+    title: "Days you love",
     options: ["Country walks", "Coastal paths", "Gardening", "Cycling", "Wild swimming", "Birdwatching"],
   },
   {
-    title: "Table and home",
+    title: "Time you would share",
     options: ["Cooking", "Baking", "Sunday lunch", "A good cup of tea", "DIY", "Hosting friends"],
   },
   {
@@ -189,11 +189,11 @@ export const INTEREST_GROUPS: { title: string; options: string[] }[] = [
     options: ["Photography", "Painting", "Choir", "An instrument", "Crafts", "Writing"],
   },
   {
-    title: "Out in the world",
+    title: "Going out",
     options: ["Live music", "Theatre", "Cinema", "Travel", "Museums", "Dancing", "Sport"],
   },
   {
-    title: "A quieter week",
+    title: "Quieter pleasures",
     options: ["Reading", "Prayer", "Volunteering", "Board games", "Podcasts", "Learning a language"],
   },
   {
@@ -210,6 +210,7 @@ export const PARTNER_HOPES = [
   "steady, and not in a rush",
   "good with family",
   "happy to cook and to go out",
+  "ready for a lasting love",
   "honest about the past",
   "glad of a quiet evening",
 ];

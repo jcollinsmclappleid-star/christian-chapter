@@ -50,7 +50,7 @@ const stepTitles = [
   "Your age",
   "Your place",
   "Your faith",
-  "Your week",
+  "The life you want",
   "A photograph",
   "A short line",
   "Your profile",

@@ -15,39 +15,47 @@ export const metadata: Metadata = {
   alternates: { canonical: siteConfig.siteUrl },
 };
 
-const rightPlace = [
+const promise = [
   {
-    icon: IconFaith,
-    title: "Faith, in the room",
-    body: "It belongs in the introduction, not as a line added later.",
+    icon: IconCovenant,
+    title: "Your person",
+    body: "Not a crowd. A small number of people, each one a possible yes.",
   },
   {
     icon: IconOlive,
-    title: "A life with colour in it",
-    body: "Work, family, church, and room for someone new.",
+    title: "A love that can last",
+    body: "Marriage if it is right. Company that is serious. You say which.",
   },
   {
-    icon: IconCovenant,
-    title: "A few people, with a reason",
-    body: "An introduction you can understand. No swipe deck and no percentage score.",
+    icon: IconFaith,
+    title: "Faith, already understood",
+    body: "It belongs in the introduction, so you are not starting from scratch.",
   },
 ];
 
-const charge = [
+const path = [
   {
-    icon: IconLeave,
-    title: "Close in one step",
-    body: "Confirm it, and your profile is hidden at once.",
+    n: "1",
+    title: "Show who you are",
+    body: "Your faith, the life you have, and the love you want. A few honest lines are enough to begin.",
   },
   {
-    icon: IconEye,
-    title: "You choose what is seen",
-    body: "Every answer has a visibility you set.",
+    n: "2",
+    title: "We look for the fit",
+    body: "A person reads what you asked for. An introduction arrives with a reason you can understand.",
   },
   {
-    icon: IconPause,
-    title: "Take a break",
-    body: "Step out of introductions without losing your profile.",
+    n: "3",
+    title: "You decide",
+    body: "Interest, a conversation, or a no. Nothing moves forward unless you want it to.",
+  },
+];
+
+const safety = [
+  {
+    icon: IconLamp,
+    title: "A person checks first",
+    body: "Every photograph and every line is read before anyone else can see the profile.",
   },
   {
     icon: IconBlock,
@@ -59,31 +67,49 @@ const charge = [
     title: "Faith is never sold",
     body: "Faith answers need their own consent, and they are never sold.",
   },
+];
+
+const charge = [
   {
-    icon: IconLamp,
-    title: "A person reviews first",
-    body: "A profile is checked for quality and safety before anyone is introduced.",
+    icon: IconCovenant,
+    title: "Only a real fit",
+    body: "A person who misses what you marked essential is not introduced.",
+  },
+  {
+    icon: IconEye,
+    title: "You choose what is seen",
+    body: "Every answer has a visibility you set.",
+  },
+  {
+    icon: IconLeave,
+    title: "Hide it in one step",
+    body: "Confirm it, and your profile is hidden at once.",
+  },
+  {
+    icon: IconPause,
+    title: "Step away, and it stays",
+    body: "Take a break from introductions without losing what you wrote.",
   },
 ];
 
 const photos = [
   {
     src: "/images/home/joy-courtyard.jpg",
-    alt: "A couple laughing together in a sunny courtyard",
-    event: "Out in the light",
-    note: "Fun, and someone glad to be beside you.",
+    alt: "A couple laughing together, glad to be beside each other",
+    line: "Someone who chooses you",
+    note: "Love that is glad to be seen with you.",
   },
   {
     src: "/images/home/joy-kitchen.jpg",
-    alt: "A couple laughing while cooking in a bright kitchen",
-    event: "In the kitchen",
-    note: "Love that looks like a real afternoon.",
+    alt: "A couple laughing together over a meal they made",
+    line: "A life you share",
+    note: "Ordinary days, and the person who wants them with you.",
   },
   {
     src: "/images/home/joy-park.jpg",
-    alt: "A couple laughing together on a sunny park lawn",
-    event: "A good day outside",
-    note: "Joy, and a life with room for someone new.",
+    alt: "A couple laughing together, easy in each other's company",
+    line: "The match you hoped for",
+    note: "A person who wants the same future.",
   },
 ];
 
@@ -112,7 +138,7 @@ export default function HomePage() {
                 Mature Christian dating.
               </h1>
               <p className="mt-2 max-w-[22rem] text-[16px] leading-5 text-white/90">
-                Love, company, and a faith you do not have to explain.
+                Find a lasting love, with someone who shares your faith.
               </p>
             </div>
             <div className="w-full rounded-t-[28px] bg-paper px-5 pb-5 pt-5 shadow-card md:max-w-[26rem] md:rounded-[28px] md:px-6 md:py-6">
@@ -134,12 +160,12 @@ export default function HomePage() {
 
       <section id="how-it-works" className="scroll-mt-20 bg-life">
         <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
-          <h2 className={`${displayOnNight} text-[2.05rem] md:text-[2.6rem]`}>You are in the right place.</h2>
+          <h2 className={`${displayOnNight} text-[2.05rem] md:text-[2.6rem]`}>The person you have been hoping to meet.</h2>
           <p className="mt-3 max-w-xl text-[17px] leading-6 text-foam">
-            For people who want love, and want it with a faith already in the room.
+            A match who wants the same relationship, and a faith you do not have to explain.
           </p>
           <ul className="mt-8">
-            {rightPlace.map((item) => (
+            {promise.map((item) => (
               <li key={item.title} className="grid grid-cols-[3.25rem_1fr] gap-4 border-t border-white/15 py-5">
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-white">
                   <item.icon className="h-7 w-7" />
@@ -161,11 +187,11 @@ export default function HomePage() {
 
       <section className="bg-ivory" aria-labelledby="people-heading">
         <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
-          <h2 id="people-heading" className={`${display} max-w-[16ch] text-[2.05rem] md:text-[2.6rem]`}>
-            A life, in pictures.
+          <h2 id="people-heading" className={`${display} max-w-[18ch] text-[2.05rem] md:text-[2.6rem]`}>
+            Picture the match.
           </h2>
           <p className="mt-3 max-w-xl text-[17px] leading-6 text-plum-muted">
-            Other people, other days: outside in the sun, and inside where the light is good. These photographs are not members.
+            Someone beside you, glad of the life you already have. These photographs are not members.
           </p>
           <ul className="mt-6 flex flex-col gap-4 md:grid md:grid-cols-3">
             {photos.map((photo) => (
@@ -178,8 +204,8 @@ export default function HomePage() {
                   sizes="(min-width: 768px) 30vw, 100vw"
                 />
                 <div className="life-caption absolute inset-x-0 bottom-0 px-5 pb-5 pt-24 text-white">
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/80">Life event</p>
-                  <p className="mt-1 font-sans text-[1.55rem] font-bold leading-none tracking-tight">{photo.event}</p>
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/80">The love</p>
+                  <p className="mt-1 font-sans text-[1.55rem] font-bold leading-none tracking-tight">{photo.line}</p>
                   <p className="mt-2 max-w-[24rem] text-[15px] leading-5 text-white/90">{photo.note}</p>
                 </div>
               </li>
@@ -188,13 +214,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-life" aria-labelledby="phone-heading">
-        <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
-          <h2 id="phone-heading" className={`${displayOnNight} max-w-[16ch] text-[2.05rem] md:text-[2.6rem]`}>
-            An introduction, in your hand.
-          </h2>
+      <section className="bg-life" aria-labelledby="path-heading">
+        <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
+          <h2 id="path-heading" className={`${displayOnNight} text-[2.05rem] md:text-[2.6rem]`}>How you reach them.</h2>
           <p className="mt-3 max-w-xl text-[17px] leading-6 text-foam">
-            A labelled demonstration of the profile and the reason. It is not a member.
+            A clear path from the profile you write to the person you might choose.
+          </p>
+          <ol className="mt-8">
+            {path.map((item) => (
+              <li key={item.n} className="grid grid-cols-[3.25rem_1fr] gap-4 border-t border-white/15 py-5">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 font-sans text-[1.25rem] font-bold text-white">
+                  {item.n}
+                </span>
+                <div>
+                  <h3 className={`${displayOnNight} text-[1.3rem]`}>{item.title}</h3>
+                  <p className="mt-1 text-[17px] leading-6 text-foam">{item.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="bg-ivory" aria-labelledby="phone-heading">
+        <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+          <h2 id="phone-heading" className={`${display} max-w-[16ch] text-[2.05rem] md:text-[2.6rem]`}>
+            A person you could say yes to.
+          </h2>
+          <p className="mt-3 max-w-xl text-[17px] leading-6 text-plum-muted">
+            A labelled demonstration of an introduction, and the reason for it. These are not members.
           </p>
           <div className="mt-8">
             <PhoneMocks />
@@ -202,13 +250,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-ivory" aria-labelledby="assurance-heading">
+      <section className="bg-ivory-dark" aria-labelledby="assurance-heading">
         <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
           <h2 id="assurance-heading" className={`${display} text-[2.05rem] md:text-[2.6rem]`}>
-            You stay in charge.
+            You are safe to hope.
           </h2>
           <p className="mt-3 max-w-xl text-[17px] leading-6 text-plum-muted">
-            The controls people expect, already part of how this works.
+            The safety of the people here comes first. A profile is not a free-for-all.
+          </p>
+          <ul className="mt-8">
+            {safety.map((item) => (
+              <li key={item.title} className="grid grid-cols-[3.25rem_1fr] gap-4 border-t border-border py-5">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-life text-paper">
+                  <item.icon className="h-7 w-7" />
+                </span>
+                <div>
+                  <h3 className={`${display} text-[1.3rem]`}>{item.title}</h3>
+                  <p className="mt-1 text-[17px] leading-6 text-plum-muted">{item.body}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <h2 className={`${display} mt-12 text-[2.05rem] md:text-[2.6rem]`}>You decide who gets close.</h2>
+          <p className="mt-3 max-w-xl text-[17px] leading-6 text-plum-muted">
+            You set the boundary. We do not loosen it to fill a page.
           </p>
           <ul className="mt-8">
             {charge.map((item) => (

@@ -20,7 +20,7 @@ export const demoIntroduction = {
 export const demoChapters = [
   { id: "about", title: "About me", body: "I teach part-time, walk most evenings, and still sing in a parish choir." },
   { id: "faith", title: "My faith", body: "Anglican, most weeks. Faith is present — not performed." },
-  { id: "life", title: "My life", body: "Two adult children. A small garden. Work that still matters." },
+  { id: "life", title: "My life", body: "Two adult children. Work that still matters. Room for someone new." },
   { id: "looking", title: "What I’m looking for", body: "Companionship first. Marriage if it is right, without hurry." },
   { id: "next", title: "My next chapter", body: "Someone to share Sundays and the quiet midweek." },
 ];
@@ -34,7 +34,7 @@ export const demoProfiles = [
     tradition: "Baptist",
     poolLabel: "Nearby",
     photo: "/images/home/profile-samuel.jpg",
-    lifeEvent: "A bright walk, then I cook.",
+    lifeEvent: "Hoping to find the person to share a life with.",
     moments: [
       { src: "/images/home/samuel-park.jpg", alt: "Samuel laughing on a sunny riverside walk" },
       { src: "/images/home/samuel-kitchen.jpg", alt: "Samuel cooking in a bright kitchen" },
@@ -48,7 +48,7 @@ export const demoProfiles = [
     tradition: "Catholic",
     poolLabel: "Nearby",
     photo: "/images/home/profile-priya.jpg",
-    lifeEvent: "Saturday flowers, then coffee in the sun.",
+    lifeEvent: "Ready for a love that lasts.",
     moments: [
       { src: "/images/home/priya-market.jpg", alt: "Priya laughing at a sunny flower market" },
       { src: "/images/home/priya-cafe.jpg", alt: "Priya with coffee by a bright cafe window" },
