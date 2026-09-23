@@ -10,9 +10,9 @@ const src = readFileSync(
 );
 
 describe("profile submit blockers", () => {
-  it("requires four to eight photographs and a written introduction", () => {
-    assert.match(src, /photoCount < 4/);
-    assert.match(src, /photoCount > 8/);
+  it("requires one to five photographs and a written introduction", () => {
+    assert.match(src, /photoCount < 1/);
+    assert.match(src, /PROFILE_PHOTO_LIMIT/);
     assert.match(src, /40 characters/);
     assert.match(src, /MINIMUM_AGE/);
   });

@@ -65,6 +65,10 @@ export async function GET() {
       ukResidence: profile?.ukResidence ?? null,
       openToRelocation: profile?.openToRelocation ?? null,
     },
+    presence: {
+      activityState: profile?.activityState ?? "active_now",
+      profileStatus: profile?.status ?? "draft",
+    },
   });
 }
 

@@ -8,7 +8,7 @@ const memberLinks = [
   { href: "/introductions", label: "Introductions" },
   { href: "/connections", label: "Connections" },
   { href: "/profile", label: "Profile" },
-  { href: "/account", label: "Account" },
+  { href: "/account", label: "Settings" },
 ];
 
 export function Header() {
