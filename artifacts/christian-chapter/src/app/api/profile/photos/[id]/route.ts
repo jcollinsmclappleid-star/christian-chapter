@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { eq } from "drizzle-orm";
-import { db, memberPhotos } from "@/db";
+import { and, eq, or } from "drizzle-orm";
+import { db, introductions, memberPhotos, profileViews } from "@/db";
 import { requireMemberApi } from "@/lib/member-session";
 import { requireAdminApi } from "@/lib/admin-auth";
 import { deleteUpload, mimeForKey, readUpload } from "@/lib/storage/local";
@@ -8,7 +8,27 @@ import { writeAudit } from "@/lib/audit";
 
 async function canView(photoUserId: string) {
   const member = await requireMemberApi();
-  if (member.session?.user.id === photoUserId) return true;
+  const viewerId = member.session?.user.id;
+  if (viewerId === photoUserId) return true;
+  if (viewerId) {
+    const [view] = await db
+      .select({ id: profileViews.id })
+      .from(profileViews)
+      .where(and(eq(profileViews.viewerUserId, photoUserId), eq(profileViews.viewedUserId, viewerId)))
+      .limit(1);
+    if (view) return true;
+    const [intro] = await db
+      .select({ id: introductions.id })
+      .from(introductions)
+      .where(
+        or(
+          and(eq(introductions.viewerUserId, viewerId), eq(introductions.candidateUserId, photoUserId)),
+          and(eq(introductions.viewerUserId, photoUserId), eq(introductions.candidateUserId, viewerId)),
+        ),
+      )
+      .limit(1);
+    if (intro) return true;
+  }
   const admin = await requireAdminApi("profiles.read");
   return Boolean(admin.session);
 }

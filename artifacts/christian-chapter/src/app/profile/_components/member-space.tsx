@@ -77,6 +77,12 @@ export function MemberSpace({
                 Edit photographs
               </button>
               <a
+                href="/profile/views"
+                className="inline-flex min-h-[44px] items-center rounded-md border border-paper/40 px-4 text-[14px] text-paper"
+              >
+                Who looked
+              </a>
+              <a
                 href="/account"
                 className="inline-flex min-h-[44px] items-center rounded-md border border-paper/40 px-4 text-[14px] text-paper"
               >

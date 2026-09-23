@@ -33,6 +33,18 @@ interface AccountPayload {
     activityState: string;
     profileStatus: string;
   };
+  sandbox?: boolean;
+  privateBrowsing?: {
+    entitled: boolean;
+    enabled: boolean;
+    priceLabel: string;
+  };
+  notifications?: {
+    introductions: boolean;
+    profileViews: boolean;
+  };
+  signIns?: Array<{ id: string; createdAt: string }>;
+  blocks?: Array<{ userId: string; firstName: string | null }>;
 }
 
 function statusLabel(status: string) {
@@ -57,6 +69,7 @@ export default function AccountPage() {
   const [notice, setNotice] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [confirmWithdraw, setConfirmWithdraw] = useState(false);
+  const [nextEmail, setNextEmail] = useState("");
   const [deleteReason, setDeleteReason] = useState<"met_someone" | "other">("other");
 
   useEffect(() => {
@@ -178,6 +191,192 @@ export default function AccountPage() {
           <p className="mb-8 rounded-md border border-border bg-paper px-4 py-3 text-[15px] text-plum" role="status">
             {notice}
           </p>
+        )}
+
+        <h2 className="font-serif text-2xl text-plum mb-3">Private browsing</h2>
+        <p className="text-[15px] text-plum-muted mb-4">
+          {data.privateBrowsing?.enabled
+            ? "Private browsing is on. Opening an introduction does not put your name on their list, and it does not mark you as recently active."
+            : `Browse without being seen for ${data.privateBrowsing?.priceLabel ?? "£9 a month"} from 15 February 2027. Nothing is charged now.`}
+        </p>
+        <div className="flex flex-wrap gap-3 mb-10">
+          <button
+            type="button"
+            disabled={busy}
+            onClick={async () => {
+              setBusy(true);
+              const res = await fetch("/api/account/private-browsing", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ enabled: !data.privateBrowsing?.enabled }),
+              });
+              const json = await res.json().catch(() => ({}));
+              if (!res.ok) {
+                setNotice(json.error ?? "Private browsing could not be changed.");
+                setBusy(false);
+                return;
+              }
+              const fresh = await fetch("/api/account");
+              setData(await fresh.json());
+              setNotice(json.enabled ? "Private browsing is on." : "Private browsing is off.");
+              setBusy(false);
+            }}
+            className="min-h-[44px] px-5 border border-border rounded-md text-[14px] disabled:opacity-50"
+          >
+            {data.privateBrowsing?.enabled ? "Turn off private browsing" : "Turn on private browsing"}
+          </button>
+          {data.sandbox && !data.privateBrowsing?.entitled && (
+            <button
+              type="button"
+              disabled={busy}
+              onClick={async () => {
+                setBusy(true);
+                const res = await fetch("/api/account/dev-entitlement", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ plan: "incognito" }),
+                });
+                const json = await res.json().catch(() => ({}));
+                const fresh = await fetch("/api/account");
+                if (fresh.ok) setData(await fresh.json());
+                setNotice(json.message ?? json.error ?? "That grant did not complete.");
+                setBusy(false);
+              }}
+              className="min-h-[44px] px-5 border border-border rounded-md text-[14px] text-plum-muted disabled:opacity-50"
+            >
+              Development grant
+            </button>
+          )}
+        </div>
+
+        <h2 className="font-serif text-2xl text-plum mb-3">Who looked</h2>
+        <p className="text-[15px] text-plum-muted mb-4">
+          See the people who opened your introduction. Private visits are left off the list.
+        </p>
+        <a href="/profile/views" className="inline-flex min-h-[44px] items-center px-5 border border-border rounded-md text-[14px] mb-10">
+          Who looked
+        </a>
+
+        <h2 className="font-serif text-2xl text-plum mb-3">Emails</h2>
+        <div className="space-y-3 mb-10">
+          <label className="flex items-start gap-3 text-[15px] text-plum">
+            <input
+              type="checkbox"
+              className="mt-1 w-5 h-5 accent-life"
+              checked={data.notifications?.introductions !== false}
+              disabled={busy}
+              onChange={async (event) => {
+                setBusy(true);
+                await fetch("/api/account", {
+                  method: "PATCH",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ notifyIntroductions: event.target.checked }),
+                });
+                const fresh = await fetch("/api/account");
+                setData(await fresh.json());
+                setBusy(false);
+              }}
+            />
+            <span>Email me when there is a new introduction.</span>
+          </label>
+          <label className="flex items-start gap-3 text-[15px] text-plum">
+            <input
+              type="checkbox"
+              className="mt-1 w-5 h-5 accent-life"
+              checked={data.notifications?.profileViews !== false}
+              disabled={busy}
+              onChange={async (event) => {
+                setBusy(true);
+                await fetch("/api/account", {
+                  method: "PATCH",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ notifyProfileViews: event.target.checked }),
+                });
+                const fresh = await fetch("/api/account");
+                setData(await fresh.json());
+                setBusy(false);
+              }}
+            />
+            <span>Email me when someone looks at my profile.</span>
+          </label>
+        </div>
+
+        <h2 className="font-serif text-2xl text-plum mb-3">Sign-in address</h2>
+        <form
+          className="flex flex-wrap gap-3 mb-10"
+          onSubmit={async (event) => {
+            event.preventDefault();
+            setBusy(true);
+            const res = await fetch("/api/account/email", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email: nextEmail }),
+            });
+            const json = await res.json().catch(() => ({}));
+            setNotice(json.message ?? json.error ?? "That address could not be saved.");
+            setBusy(false);
+          }}
+        >
+          <input
+            type="email"
+            value={nextEmail}
+            onChange={(event) => setNextEmail(event.target.value)}
+            placeholder="New email address"
+            className="min-h-[44px] flex-1 px-4 rounded-md border border-border bg-paper text-[15px]"
+          />
+          <button type="submit" disabled={busy || !nextEmail} className="min-h-[44px] px-5 border border-border rounded-md text-[14px] disabled:opacity-50">
+            Send confirmation
+          </button>
+        </form>
+
+        <h2 className="font-serif text-2xl text-plum mb-3">Blocked people</h2>
+        {data.blocks && data.blocks.length > 0 ? (
+          <ul className="space-y-3 mb-10">
+            {data.blocks.map((block) => (
+              <li key={block.userId} className="flex items-center justify-between gap-3">
+                <span className="text-[15px] text-plum">{block.firstName || "A member"}</span>
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={async () => {
+                    setBusy(true);
+                    await fetch("/api/account/blocks", {
+                      method: "DELETE",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ userId: block.userId }),
+                    });
+                    const fresh = await fetch("/api/account");
+                    setData(await fresh.json());
+                    setBusy(false);
+                  }}
+                  className="min-h-[40px] px-3 text-[14px] underline underline-offset-4"
+                >
+                  Unblock
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-[15px] text-plum-muted mb-10">You have not blocked anyone.</p>
+        )}
+
+        <h2 className="font-serif text-2xl text-plum mb-3">Recent sign-ins</h2>
+        {data.signIns && data.signIns.length > 0 ? (
+          <ul className="space-y-2 mb-10 text-[15px] text-plum-muted">
+            {data.signIns.map((row) => (
+              <li key={row.id}>
+                {new Date(row.createdAt).toLocaleString("en-GB", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-[15px] text-plum-muted mb-10">Sign-ins from now on will appear here.</p>
         )}
 
         <dl className="space-y-4 mb-10">

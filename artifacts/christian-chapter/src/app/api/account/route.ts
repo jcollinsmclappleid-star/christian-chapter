@@ -5,13 +5,18 @@ import {
   db,
   consentRecords,
   foundingApplications,
+  memberBlocks,
   memberProfiles,
+  signInEvents,
   users,
 } from "@/db";
 import { requireMemberApi } from "@/lib/member-session";
 import { writeAudit } from "@/lib/audit";
 import { requestMeta } from "@/lib/auth-email";
 import { ensureMemberProfile } from "@/lib/profile/ensure";
+import { hasPrivateBrowsingEntitlement } from "@/lib/profile/private-browsing";
+import { allowSandboxAdapters } from "@/lib/platform/runtime";
+import { INCOGNITO_PRICE_LABEL } from "@/lib/site-config";
 
 export async function GET() {
   const { session, error } = await requireMemberApi();
@@ -32,6 +37,20 @@ export async function GET() {
   if (!user) return NextResponse.json({ error: "Not found." }, { status: 404 });
 
   const profile = await ensureMemberProfile(session.user.id);
+  const signIns = await db
+    .select({ id: signInEvents.id, createdAt: signInEvents.createdAt })
+    .from(signInEvents)
+    .where(eq(signInEvents.userId, session.user.id))
+    .orderBy(desc(signInEvents.createdAt))
+    .limit(8);
+  const blocks = await db
+    .select({
+      userId: memberBlocks.blockedUserId,
+      firstName: memberProfiles.firstName,
+    })
+    .from(memberBlocks)
+    .leftJoin(memberProfiles, eq(memberProfiles.userId, memberBlocks.blockedUserId))
+    .where(eq(memberBlocks.blockerUserId, session.user.id));
 
   const latestByType = new Map<string, (typeof consents)[0]>();
   for (const row of consents) {
@@ -69,6 +88,18 @@ export async function GET() {
       activityState: profile?.activityState ?? "active_now",
       profileStatus: profile?.status ?? "draft",
     },
+    sandbox: allowSandboxAdapters(),
+    privateBrowsing: {
+      entitled: hasPrivateBrowsingEntitlement(profile?.planEntitlement),
+      enabled: Boolean(profile?.privateBrowsing) && hasPrivateBrowsingEntitlement(profile?.planEntitlement),
+      priceLabel: INCOGNITO_PRICE_LABEL,
+    },
+    notifications: {
+      introductions: profile?.notifyIntroductions !== false,
+      profileViews: profile?.notifyProfileViews !== false,
+    },
+    signIns: signIns.map((row) => ({ id: row.id, createdAt: row.createdAt.toISOString() })),
+    blocks: blocks.map((row) => ({ userId: row.userId, firstName: row.firstName })),
   });
 }
 
@@ -81,6 +112,8 @@ export async function PATCH(request: NextRequest) {
     .object({
       marketingConsent: z.boolean().optional(),
       ukResidence: z.enum(["resident", "intending_to_relocate"]).optional(),
+      notifyIntroductions: z.boolean().optional(),
+      notifyProfileViews: z.boolean().optional(),
     })
     .safeParse(body);
   if (!parse.success) {
@@ -113,6 +146,22 @@ export async function PATCH(request: NextRequest) {
       entityId: session.user.id,
       metadata: { granted: parse.data.marketingConsent },
     });
+  }
+
+  if (parse.data.notifyIntroductions !== undefined || parse.data.notifyProfileViews !== undefined) {
+    const profile = await ensureMemberProfile(session.user.id);
+    await db
+      .update(memberProfiles)
+      .set({
+        ...(parse.data.notifyIntroductions !== undefined
+          ? { notifyIntroductions: parse.data.notifyIntroductions }
+          : {}),
+        ...(parse.data.notifyProfileViews !== undefined
+          ? { notifyProfileViews: parse.data.notifyProfileViews }
+          : {}),
+        updatedAt: now,
+      })
+      .where(eq(memberProfiles.id, profile.id));
   }
 
   if (parse.data.ukResidence) {

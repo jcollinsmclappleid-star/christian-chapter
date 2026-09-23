@@ -1,6 +1,6 @@
 import { LinkButton } from "@/components/ui/button";
 import { buildMetadata } from "@/lib/metadata";
-import { MEMBER_PRICE_LABEL, OPENING_OFFER_ENDS_LABEL, siteConfig } from "@/lib/site-config";
+import { INCOGNITO_PRICE_LABEL, INCOGNITO_STARTS_LABEL, MEMBER_PRICE_LABEL, OPENING_OFFER_ENDS_LABEL, siteConfig } from "@/lib/site-config";
 import { CheckCircle } from "lucide-react";
 
 export const metadata = buildMetadata({
@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: "What does it cost after that?",
-    a: `The member price is ${MEMBER_PRICE_LABEL} from 15 February 2027. Billing is not switched on, so that price is shown and not charged yet.`,
+    a: `The member price is ${MEMBER_PRICE_LABEL} from 15 February 2027. Private browsing, if you want it, is a separate ${INCOGNITO_PRICE_LABEL} from ${INCOGNITO_STARTS_LABEL}. Billing is not switched on, so those prices are shown and not charged yet.`,
   },
   {
     q: "How does that compare?",
@@ -83,14 +83,25 @@ export default function PricingPage() {
             </LinkButton>
           </div>
 
-          <div className="mb-6 rounded-lg border border-border bg-ivory p-6">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-stone font-sans mb-2">
-              From 15 February 2027
-            </p>
-            <h2 className="font-sans font-semibold text-[22px] text-plum mb-2">Member · {MEMBER_PRICE_LABEL}</h2>
-            <p className="text-[15px] text-plum-muted leading-6">
-              One price, shown now so you can see it. Billing is not switched on, so this is not a checkout.
-            </p>
+          <div className="mb-6 grid gap-4 md:grid-cols-2">
+            <div className="rounded-lg border border-border bg-ivory p-6">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-stone font-sans mb-2">
+                From 15 February 2027
+              </p>
+              <h2 className="font-sans font-semibold text-[22px] text-plum mb-2">Member · {MEMBER_PRICE_LABEL}</h2>
+              <p className="text-[15px] text-plum-muted leading-6">
+                The membership price, shown now so you can see it. Billing is not switched on, so this is not a checkout.
+              </p>
+            </div>
+            <div className="rounded-lg border border-border bg-ivory p-6">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-stone font-sans mb-2">
+                Optional, from {INCOGNITO_STARTS_LABEL}
+              </p>
+              <h2 className="font-sans font-semibold text-[22px] text-plum mb-2">Private browsing · {INCOGNITO_PRICE_LABEL}</h2>
+              <p className="text-[15px] text-plum-muted leading-6">
+                A separate subscription. While it is on, opening someone’s introduction does not put your name on their list. Nothing is charged now.
+              </p>
+            </div>
           </div>
 
           <p className="text-[13px] text-stone text-center">

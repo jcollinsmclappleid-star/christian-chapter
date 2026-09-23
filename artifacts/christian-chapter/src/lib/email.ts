@@ -50,17 +50,21 @@ export async function sendServiceEmail(opts: {
 
 export function magicLinkEmailHtml(opts: {
   firstName?: string;
-  action: "verify" | "sign_in";
+  action: "verify" | "sign_in" | "change_email";
   url: string;
 }): string {
   const heading =
-    opts.action === "verify"
-      ? "Confirm your email"
-      : "Sign in to Mature Christian Dating";
+    opts.action === "change_email"
+      ? "Confirm your new email"
+      : opts.action === "verify"
+        ? "Confirm your email"
+        : "Sign in to Mature Christian Dating";
   const intro =
-    opts.action === "verify"
-      ? "Use this link to confirm the email address on your founding application. It expires in 30 minutes and can be used once."
-      : "Use this link to return to your founding application. It expires in 30 minutes and can be used once.";
+    opts.action === "change_email"
+      ? "Use this link to make this the address you sign in with. It expires in 30 minutes and can be used once."
+      : opts.action === "verify"
+        ? "Use this link to confirm the email address on your founding application. It expires in 30 minutes and can be used once."
+        : "Use this link to return to your founding application. It expires in 30 minutes and can be used once.";
   const greeting = opts.firstName ? `Hello ${opts.firstName}.` : "Hello.";
   return `<!DOCTYPE html>
 <html lang="en">
