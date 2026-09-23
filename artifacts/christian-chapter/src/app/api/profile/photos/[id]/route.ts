@@ -6,10 +6,13 @@ import { requireAdminApi } from "@/lib/admin-auth";
 import { deleteUpload, mimeForKey, readUpload } from "@/lib/storage/local";
 import { writeAudit } from "@/lib/audit";
 
-async function canView(photoUserId: string) {
+async function canView(photoUserId: string, moderationStatus: string) {
   const member = await requireMemberApi();
   const viewerId = member.session?.user.id;
   if (viewerId === photoUserId) return true;
+  const admin = await requireAdminApi("profiles.read");
+  if (admin.session) return true;
+  if (moderationStatus !== "clear") return false;
   if (viewerId) {
     const [view] = await db
       .select({ id: profileViews.id })
@@ -29,8 +32,7 @@ async function canView(photoUserId: string) {
       .limit(1);
     if (intro) return true;
   }
-  const admin = await requireAdminApi("profiles.read");
-  return Boolean(admin.session);
+  return false;
 }
 
 export async function GET(
@@ -40,12 +42,14 @@ export async function GET(
   const { id } = await params;
   const [photo] = await db.select().from(memberPhotos).where(eq(memberPhotos.id, id)).limit(1);
   if (!photo) return NextResponse.json({ error: "Not found." }, { status: 404 });
-  if (!(await canView(photo.userId))) {
+  if (!(await canView(photo.userId, photo.moderationStatus))) {
     return NextResponse.json({ error: "Not permitted." }, { status: 403 });
   }
 
   try {
-    const body = await readUpload(photo.storageKey);
+    const body = photo.imageData
+      ? Buffer.from(photo.imageData, "base64")
+      : await readUpload(photo.storageKey);
     return new NextResponse(new Uint8Array(body), {
       headers: {
         "Content-Type": mimeForKey(photo.storageKey),

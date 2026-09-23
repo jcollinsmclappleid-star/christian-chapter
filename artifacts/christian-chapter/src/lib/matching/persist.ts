@@ -16,6 +16,7 @@ import { writeAudit } from "@/lib/audit";
 import { OPENING_OFFER_ENDS_ISO } from "@/lib/site-config";
 import { isBrowsingPrivately } from "@/lib/profile/private-browsing";
 import { notifyNewIntroduction } from "@/lib/profile/notices";
+import { openConversation } from "@/lib/chat/open";
 import { recordNamedProfileView } from "@/lib/profile/views";
 import { isFeatureEnabled } from "@/lib/platform/features";
 import { HAND_PICK_POOL, handPickBlockers, handPickedStillOpen } from "./hand-pick";
@@ -858,6 +859,22 @@ export async function createHandPickedPair(input: {
     created.push(intro.id);
     await notifyNewIntroduction(viewer.userId, candidate.firstName);
   }
+
+  const [low, high] = orderedPair(left.userId, right.userId);
+  const [existingMatch] = await db
+    .select()
+    .from(matches)
+    .where(and(eq(matches.userAId, low), eq(matches.userBId, high)))
+    .limit(1);
+  if (!existingMatch) {
+    await db.insert(matches).values({ userAId: low, userBId: high, status: "open", createdAt: now });
+  } else if (existingMatch.status !== "open") {
+    await db
+      .update(matches)
+      .set({ status: "open", closedReason: null, closedAt: null })
+      .where(eq(matches.id, existingMatch.id));
+  }
+  await openConversation(left.userId, right.userId, now);
 
   await writeAudit({
     actorType: "admin",

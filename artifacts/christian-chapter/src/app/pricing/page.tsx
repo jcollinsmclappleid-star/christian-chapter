@@ -13,17 +13,17 @@ const foundingBenefits = [
   "Complete your full profile",
   "Set your Essentials, Preferred and Open-minded preferences",
   "A profile ready for when matching goes live on 14 February 2027",
-  "No card, and no payment, during the opening offer",
+  "No payment during the opening offer. You can save a card for 15 February 2027",
 ];
 
 const faqs = [
   {
     q: "Is it really free right now?",
-    a: `Yes, until ${OPENING_OFFER_ENDS_LABEL}. No card is taken. This is an opening offer with an end date, not an open-ended promise.`,
+    a: `Yes, until ${OPENING_OFFER_ENDS_LABEL}. No payment is taken during that time. This is an opening offer with an end date, not an open-ended promise.`,
   },
   {
     q: "What does it cost after that?",
-    a: `The member price is ${MEMBER_PRICE_LABEL} from 15 February 2027. Private browsing, if you want it, is a separate ${INCOGNITO_PRICE_LABEL} from ${INCOGNITO_STARTS_LABEL}. Billing is not switched on, so those prices are shown and not charged yet.`,
+    a: `The member price is ${MEMBER_PRICE_LABEL} from 15 February 2027. You can save a card before then. The first payment is taken on that date. Private browsing, if you want it, is a separate ${INCOGNITO_PRICE_LABEL} from ${INCOGNITO_STARTS_LABEL}.`,
   },
   {
     q: "How does that compare?",
@@ -68,7 +68,7 @@ export default function PricingPage() {
               <span className="text-[15px] text-stone">until {OPENING_OFFER_ENDS_LABEL}</span>
             </div>
             <p className="text-[15px] text-plum-muted leading-6 mb-6">
-              After that date the member price is {MEMBER_PRICE_LABEL}. We do not take a card now.
+              After that date the member price is {MEMBER_PRICE_LABEL}. You can save a card from your account. Nothing is charged when you save it.
             </p>
             <ul className="space-y-3 mb-7">
               {foundingBenefits.map((b) => (
@@ -90,7 +90,7 @@ export default function PricingPage() {
               </p>
               <h2 className="font-sans font-semibold text-[22px] text-plum mb-2">Member · {MEMBER_PRICE_LABEL}</h2>
               <p className="text-[15px] text-plum-muted leading-6">
-                The membership price, shown now so you can see it. Billing is not switched on, so this is not a checkout.
+                The membership price. Saving a card from your account holds it for the first payment on 15 February 2027.
               </p>
             </div>
             <div className="rounded-lg border border-border bg-ivory p-6">
@@ -105,7 +105,7 @@ export default function PricingPage() {
           </div>
 
           <p className="text-[13px] text-stone text-center">
-            The price above is the price after the opening offer. No payment is taken until billing is switched on.
+            The price above is the price after the opening offer. If you save a card, the first membership payment is taken on 15 February 2027.
             {siteConfig.vatRegistered
               ? " Published prices include UK VAT where applicable."
               : " We do not publish a VAT number until the organisation is registered."}

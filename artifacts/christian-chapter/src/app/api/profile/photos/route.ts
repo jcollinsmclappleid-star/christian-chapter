@@ -8,14 +8,11 @@ import { moderateImage } from "@/lib/providers/image-moderation";
 import { recordProviderResult } from "@/lib/providers/record";
 import { writeAudit } from "@/lib/audit";
 import { randomUUID } from "node:crypto";
-import { featureGate } from "@/lib/platform/require-feature";
 import { PROFILE_PHOTO_LIMIT } from "@/lib/profile/photos";
 
 const MAX_BYTES = 8 * 1024 * 1024;
 
 export async function POST(request: NextRequest) {
-  const gated = featureGate("photo_and_media_profiles");
-  if (gated) return gated;
   const { session, error } = await requireMemberApi();
   if (!session) return NextResponse.json({ error }, { status: 401 });
 
@@ -47,10 +44,8 @@ export async function POST(request: NextRequest) {
   const storageKey = await saveUpload(session.user.id, id, buffer, ext);
   const position = existing.reduce((max, row) => Math.max(max, row.position), 0) + 1;
 
-  let moderationStatus = "pending";
   try {
     const outcome = await moderateImage({ objectKey: storageKey });
-    moderationStatus = outcome.state === "pass" ? "clear" : outcome.state;
     await recordProviderResult({
       feature: "image_moderation",
       entityType: "member_photo",
@@ -58,7 +53,7 @@ export async function POST(request: NextRequest) {
       result: outcome,
     });
   } catch {
-    moderationStatus = "pending";
+    // A missing classifier still leaves the photograph waiting for a decision.
   }
 
   const [photo] = await db
@@ -69,7 +64,8 @@ export async function POST(request: NextRequest) {
       userId: session.user.id,
       position,
       storageKey,
-      moderationStatus,
+      imageData: buffer.toString("base64"),
+      moderationStatus: "pending",
     })
     .returning();
 
@@ -79,7 +75,7 @@ export async function POST(request: NextRequest) {
     action: "photo_uploaded",
     entityType: "member_photo",
     entityId: id,
-    metadata: { moderationStatus },
+    metadata: { moderationStatus: "pending" },
   });
 
   return NextResponse.json({

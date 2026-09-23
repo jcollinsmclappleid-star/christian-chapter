@@ -10,6 +10,8 @@ describe("other-member serializer", () => {
   it("never includes date of birth and hides match-only fields from members", () => {
     assert.doesNotMatch(src, /dateOfBirth:/);
     assert.match(src, /hide\("lookingFor"\)/);
+    assert.match(src, /moderationStatus === "clear"/);
+    assert.doesNotMatch(src, /moderationStatus === "pending"/);
     assert.match(src, /age/);
   });
 });

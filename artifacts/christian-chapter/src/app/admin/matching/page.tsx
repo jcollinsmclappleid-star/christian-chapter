@@ -54,7 +54,7 @@ export default function AdminMatchingPage() {
       setError(json.error ?? "Could not connect these profiles.");
       return;
     }
-    setNotice("These two profiles are now introduced to each other.");
+    setNotice("These two profiles are introduced, and their conversation is open.");
     setReason("");
   }
 
@@ -75,7 +75,7 @@ export default function AdminMatchingPage() {
     <div className="p-8 max-w-3xl">
       <h1 className="font-serif text-plum text-3xl mb-6">Introductions</h1>
       <p className="text-[15px] text-plum-muted mb-8">
-        During the opening offer, connect two submitted profiles. Each person then sees the other as a hand-picked introduction.
+        Connect two submitted profiles. Each person sees the other as a hand-picked introduction, and a private conversation opens so they can write to each other.
       </p>
       <form onSubmit={connect} className="mb-10 space-y-3">
         <label className="block text-[14px] text-plum">

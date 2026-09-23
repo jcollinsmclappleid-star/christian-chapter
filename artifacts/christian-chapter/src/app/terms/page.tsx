@@ -26,8 +26,9 @@ export default function TermsPage() {
         Joining is free for founding members until 14 February 2027. Matching
         goes live on 14 February 2027. The published member price of £29 a
         month starts on 15 February 2027. Private browsing is optional and
-        separate, at £9 a month from the same date. No payment is taken before
-        billing is switched on, and this page does not start a subscription. An
+        separate, at £9 a month from the same date. You may save a card before
+        then. Saving a card keeps it for the first membership payment on
+        15 February 2027. No money is taken when the card is saved. An
         administrator may prepare a connection between two profiles before
         that date. That is not a live matching service, and it is not a
         guarantee of an introduction.
@@ -47,9 +48,10 @@ export default function TermsPage() {
       <h2>Moderation</h2>
       <p>
         Administrators may review submitted applications. From an introduction
-        you can block or report someone, and that record is kept. We do not
-        currently operate 24/7 moderation of a live messaging network, because
-        that network is not live.
+        you can block or report someone, and that record is kept. An
+        administrator can suspend a member. When two members are connected,
+        they can write to each other. We do not run 24/7 moderation of an open
+        messaging network.
       </p>
       <h2>Intellectual property</h2>
       <p>
