@@ -2,7 +2,7 @@ import { result, resolveRequestedState, sandboxOrThrow, type ProviderResult, typ
 
 export async function createCheckoutSession(opts: {
   userId: string;
-  plan: "member" | "plus";
+  plan: "member" | "incognito" | "plus";
   requestedState?: RequestedState;
 }): Promise<ProviderResult<{ sessionId: string; entitlement: string }>> {
   sandboxOrThrow("payments.dev");

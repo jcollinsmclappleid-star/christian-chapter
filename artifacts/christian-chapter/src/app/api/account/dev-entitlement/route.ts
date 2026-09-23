@@ -5,6 +5,8 @@ import { db, memberProfiles } from "@/db";
 import { requireMemberApi } from "@/lib/member-session";
 import { ensureMemberProfile } from "@/lib/profile/ensure";
 import { allowSandboxAdapters } from "@/lib/platform/runtime";
+import { createCheckoutSession } from "@/lib/providers/payments";
+import { recordProviderResult } from "@/lib/providers/record";
 import { writeAudit } from "@/lib/audit";
 
 const Body = z.object({
@@ -23,6 +25,29 @@ export async function POST(request: NextRequest) {
   if (!parse.success) return NextResponse.json({ error: "Choose a plan." }, { status: 422 });
 
   const profile = await ensureMemberProfile(session.user.id);
+  let message = "Development entitlement granted. Not a real payment.";
+
+  if (parse.data.plan !== "free") {
+    const checkout = await createCheckoutSession({
+      userId: session.user.id,
+      plan: parse.data.plan,
+    });
+    await recordProviderResult({
+      feature: "billing",
+      entityType: "member_profile",
+      entityId: profile.id,
+      result: checkout,
+      actorId: session.user.id,
+    });
+    if (!checkout.ok || checkout.data?.entitlement !== parse.data.plan) {
+      return NextResponse.json(
+        { error: checkout.message || "That grant did not complete." },
+        { status: 422 },
+      );
+    }
+    message = checkout.message;
+  }
+
   await db
     .update(memberProfiles)
     .set({
@@ -43,6 +68,6 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json({
     plan: parse.data.plan,
-    message: "Development entitlement granted. Not a real payment.",
+    message,
   });
 }
