@@ -25,9 +25,9 @@ export function DatingFunnel({
 }: {
   h1: string;
   lede: string;
-  crumbs: FunnelLink[];
-  related: FunnelLink[];
-  faqs?: FunnelFaq[];
+  crumbs: readonly FunnelLink[];
+  related: readonly FunnelLink[];
+  faqs?: readonly FunnelFaq[];
 }) {
   const breadcrumb = {
     "@context": "https://schema.org",
