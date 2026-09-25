@@ -1,6 +1,7 @@
 import { footerLegalLine } from "@/lib/site-config";
 
 const links = [
+  { href: "/christian-dating", label: "Christian dating" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/safety", label: "Safety" },
   { href: "/register", label: "Begin" },

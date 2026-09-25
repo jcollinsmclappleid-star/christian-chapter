@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Christian Chapter",
   },
   description:
-    "Christian dating for your next chapter. Meet genuine Christian singles aged 40–70 who share your faith, values and hopes for what comes next. A UK founding cohort with considered introductions, when the community is ready.",
+    "Christian dating for your next chapter. A UK founding cohort for Christian singles aged 40 and over. There is no maximum age. Matching is not live today.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://christianchapter.co.uk"
   ),
