@@ -8,9 +8,9 @@ const promise = [
 ];
 
 const photos = [
-  { src: "/images/home/joy-courtyard.jpg", alt: "A couple laughing together, glad to be beside each other", line: "Someone who chooses you" },
-  { src: "/images/home/joy-kitchen.jpg", alt: "A couple laughing together over a meal they made", line: "A life you share" },
-  { src: "/images/home/joy-park.jpg", alt: "A couple laughing together, easy in each other's company", line: "The match you hoped for" },
+  { src: "/images/home/joy-courtyard.jpg", alt: "A couple laughing together, glad to be beside each other", line: "Someone who chooses you", focus: "object-[center_22%]" },
+  { src: "/images/home/joy-kitchen.jpg", alt: "A couple laughing together over a meal they made", line: "A life you share", focus: "object-[center_28%]" },
+  { src: "/images/home/joy-park.jpg", alt: "A couple laughing together, easy in each other's company", line: "The match you hoped for", focus: "object-[center_32%]" },
 ];
 
 export type FunnelLink = { href: string; label: string };
@@ -57,13 +57,13 @@ export function DatingFunnel({
       {faq ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }} /> : null}
 
       <section className="bg-paper md:grid md:min-h-[640px] md:grid-cols-2">
-        <div className="relative h-[34svh] min-h-[210px] md:h-auto">
+        <div className="relative h-[48svh] min-h-[300px] md:h-auto">
           <Image
             src="/images/home/joy-rooftop.jpg"
             alt="A couple in their fifties laughing together on a sunny rooftop"
             fill
             priority
-            className="object-cover object-[center_68%] md:object-[center_42%]"
+            className="object-cover object-[center_22%]"
             sizes="(min-width: 768px) 50vw, 100vw"
           />
         </div>
@@ -115,9 +115,11 @@ export function DatingFunnel({
       <section className="bg-ivory">
         <ul className="mx-auto grid max-w-6xl gap-4 px-5 py-12 md:grid-cols-3 md:px-8">
           {photos.map((photo) => (
-            <li key={photo.src} className="relative h-80 overflow-hidden rounded-[28px]">
-              <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="(min-width: 768px) 30vw, 100vw" />
-              <p className="absolute inset-x-0 bottom-0 px-5 pb-5 pt-16 text-[1.3rem] font-bold text-white">{photo.line}</p>
+            <li key={photo.src} className="overflow-hidden rounded-[28px] bg-ivory-dark">
+              <div className="relative h-[28rem]">
+                <Image src={photo.src} alt={photo.alt} fill className={`object-cover ${photo.focus}`} sizes="(min-width: 768px) 30vw, 100vw" />
+              </div>
+              <p className="px-5 py-4 font-sans text-[1.2rem] font-bold text-plum">{photo.line}</p>
             </li>
           ))}
         </ul>
