@@ -121,7 +121,7 @@ export function DatingProfileView({
 
       {(profile.faithDescription || profile.churchAttendance || profile.faithCentrality) && (
         <section className="rounded-[18px] bg-plum text-ivory px-6 py-7">
-          <p className="text-[11px] uppercase tracking-[0.22em] text-brass mb-3">Faith</p>
+          <p className="text-[11px] uppercase tracking-[0.22em] text-brass mb-3">What faith means to me</p>
           {profile.faithDescription && (
             <p className="font-serif text-[1.5rem] leading-snug mb-4">{profile.faithDescription}</p>
           )}

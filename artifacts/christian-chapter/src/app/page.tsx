@@ -28,8 +28,8 @@ const promise = [
   },
   {
     icon: IconFaith,
-    title: "Faith, already understood",
-    body: "It belongs in the introduction, so you are not starting from scratch.",
+    title: "Faith, in your words",
+    body: "After you sign in, you write what faith means to you. Other members read it on your profile.",
   },
 ];
 
@@ -95,19 +95,19 @@ const charge = [
 const photos = [
   {
     src: "/images/home/joy-courtyard.jpg",
-    alt: "A couple laughing together, glad to be beside each other",
+    alt: "A couple in their sixties walking and talking in a brick courtyard",
     line: "Someone who chooses you",
     note: "Love that is glad to be seen with you.",
   },
   {
     src: "/images/home/joy-kitchen.jpg",
-    alt: "A couple laughing together over a meal they made",
+    alt: "A couple cooking together in a home kitchen, one tasting the sauce",
     line: "A life you share",
     note: "Ordinary days, and the person who wants them with you.",
   },
   {
     src: "/images/home/joy-park.jpg",
-    alt: "A couple laughing together, easy in each other's company",
+    alt: "A couple walking and talking on a park path",
     line: "The match you hoped for",
     note: "A person who wants the same future.",
   },
@@ -124,7 +124,7 @@ export default function HomePage() {
       <section className="relative h-[calc(100svh-3.5rem)] overflow-hidden bg-life">
         <Image
           src="/images/home/joy-rooftop.jpg"
-          alt="A couple in their fifties laughing together on a sunny rooftop"
+          alt="A couple in their fifties talking together on a sunny rooftop"
           fill
           priority
           className="object-cover object-[center_30%]"
@@ -196,18 +196,20 @@ export default function HomePage() {
           </p>
           <ul className="mt-6 flex flex-col gap-4 md:grid md:grid-cols-3">
             {photos.map((photo) => (
-              <li key={photo.src} className="relative h-[78vh] max-h-[40rem] overflow-hidden rounded-[28px] md:h-[34rem]">
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 30vw, 100vw"
-                />
-                <div className="life-caption absolute inset-x-0 bottom-0 px-5 pb-5 pt-24 text-white">
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/80">The love</p>
-                  <p className="mt-1 font-sans text-[1.55rem] font-bold leading-none tracking-tight">{photo.line}</p>
-                  <p className="mt-2 max-w-[24rem] text-[15px] leading-5 text-white/90">{photo.note}</p>
+              <li key={photo.src} className="overflow-hidden rounded-[28px] bg-ivory-dark">
+                <div className="relative h-[62vh] max-h-[32rem] md:h-[28rem]">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    className="object-cover object-[center_18%]"
+                    sizes="(min-width: 768px) 30vw, 100vw"
+                  />
+                </div>
+                <div className="px-5 py-4">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-stone">The love</p>
+                  <p className="mt-1 font-sans text-[1.55rem] font-bold leading-none tracking-tight text-plum">{photo.line}</p>
+                  <p className="mt-2 max-w-[24rem] text-[15px] leading-5 text-plum-muted">{photo.note}</p>
                 </div>
               </li>
             ))}

@@ -4,13 +4,13 @@ import Image from "next/image";
 const promise = [
   { title: "Your person", body: "Not a crowd. A small number of people, each one a possible yes." },
   { title: "A love that can last", body: "Marriage if it is right. Company that is serious. You say which." },
-  { title: "Faith, already understood", body: "It belongs in the introduction, so you are not starting from scratch." },
+  { title: "Faith, in your words", body: "After you sign in, you write what faith means to you. Other members read it on your profile." },
 ];
 
 const photos = [
-  { src: "/images/home/joy-courtyard.jpg", alt: "A couple laughing together, glad to be beside each other", line: "Someone who chooses you", focus: "object-[center_22%]" },
-  { src: "/images/home/joy-kitchen.jpg", alt: "A couple laughing together over a meal they made", line: "A life you share", focus: "object-[center_28%]" },
-  { src: "/images/home/joy-park.jpg", alt: "A couple laughing together, easy in each other's company", line: "The match you hoped for", focus: "object-[center_32%]" },
+  { src: "/images/home/joy-courtyard.jpg", alt: "A couple in their sixties walking and talking in a brick courtyard", line: "Someone who chooses you", focus: "object-[center_18%]" },
+  { src: "/images/home/joy-kitchen.jpg", alt: "A couple cooking together in a home kitchen, one tasting the sauce", line: "A life you share", focus: "object-[center_18%]" },
+  { src: "/images/home/joy-park.jpg", alt: "A couple walking and talking on a park path", line: "The match you hoped for", focus: "object-[center_18%]" },
 ];
 
 export type FunnelLink = { href: string; label: string };
@@ -60,7 +60,7 @@ export function DatingFunnel({
         <div className="relative h-[48svh] min-h-[300px] md:h-auto">
           <Image
             src="/images/home/joy-rooftop.jpg"
-            alt="A couple in their fifties laughing together on a sunny rooftop"
+            alt="A couple in their fifties talking together on a sunny rooftop"
             fill
             priority
             className="object-cover object-[center_22%]"

@@ -171,8 +171,7 @@ export function StepFaithLight({ data, update }: StepProps) {
     <div>
       <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">Faith can be quiet or central.</h2>
       <Note>
-        Quiet or central, this helps someone recognise the faith already in the room. It is never sold.
-        You can add more after you have a profile.
+        After you sign in, you write what faith means to you. Signed-in members read that writing on your profile.
       </Note>
       <label className="mb-6 flex items-start gap-3 rounded-2xl border border-ivory-darker bg-paper p-5">
         <input

@@ -45,7 +45,7 @@ export default function DemonstrationProfilePage() {
         <p className="mb-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-life">{DEMO_DISCLOSURE}</p>
         <h1 className="mb-3 font-sans text-[2rem] font-bold tracking-[-0.03em] text-plum">A complete profile</h1>
         <p className="mb-8 max-w-xl text-[16px] leading-6 text-plum-muted">
-          This is not a member. After you create a profile, the extra questions cover photographs, your story, about you, faith, your life, who you hope to meet, place, essentials, and privacy. A photograph is not required to begin.
+          This is not a member. The faith writing is the section a signed-in member sees on a profile. After you create a profile you can add photographs, your story, what faith means to you, your life, who you hope to meet, place, essentials, and privacy. A photograph is not required to begin.
         </p>
         <DatingProfileView profile={profile} />
       </div>
