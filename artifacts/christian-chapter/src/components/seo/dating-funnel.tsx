@@ -56,48 +56,43 @@ export function DatingFunnel({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       {faq ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }} /> : null}
 
-      <section className="relative min-h-[70svh] overflow-hidden bg-life">
-        <Image
-          src="/images/home/joy-rooftop.jpg"
-          alt="A couple in their fifties laughing together on a sunny rooftop"
-          fill
-          priority
-          className="object-cover object-[center_30%]"
-          sizes="100vw"
-        />
-        <div className="hero-shade absolute inset-0" />
-        <div className="relative z-10 flex min-h-[70svh] items-end">
-          <div className="mx-auto w-full max-w-6xl md:px-8">
-            <div className="px-5 pb-3 md:max-w-[28rem]">
-              <nav className="mb-4 text-[12px] text-white/80" aria-label="Breadcrumb">
-                <ol className="flex flex-wrap items-center gap-2">
-                  {crumbs.map((crumb, index) => (
-                    <li key={crumb.href} className="flex items-center gap-2">
-                      {index > 0 ? <span>/</span> : null}
-                      {index === crumbs.length - 1 ? (
-                        <span>{crumb.label}</span>
-                      ) : (
-                        <a href={crumb.href} className="underline underline-offset-4">{crumb.label}</a>
-                      )}
-                    </li>
-                  ))}
-                </ol>
-              </nav>
-              <h1 className="font-sans text-[2.15rem] font-bold leading-[1.02] tracking-[-0.03em] text-white md:text-[2.6rem]">
-                {h1}
-              </h1>
-            </div>
-            <div className="w-full rounded-t-[28px] bg-paper px-5 pb-6 pt-5 shadow-card md:mb-10 md:max-w-[28rem] md:rounded-[28px] md:px-6">
-              <p className="text-[16px] leading-6 text-plum">{lede}</p>
-              <a
-                href="/register"
-                className="mt-4 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-life px-8 text-[17px] font-semibold text-white"
-              >
-                Meet Christian Singles
-              </a>
-              <p className="mt-3 text-center text-[14px] text-plum-muted">These photographs are not members.</p>
-            </div>
-          </div>
+      <section className="bg-paper md:grid md:min-h-[640px] md:grid-cols-2">
+        <div className="relative h-[34svh] min-h-[210px] md:h-auto">
+          <Image
+            src="/images/home/joy-rooftop.jpg"
+            alt="A couple in their fifties laughing together on a sunny rooftop"
+            fill
+            priority
+            className="object-cover object-[center_68%] md:object-[center_42%]"
+            sizes="(min-width: 768px) 50vw, 100vw"
+          />
+        </div>
+        <div className="flex flex-col justify-center px-5 py-6 md:px-10 md:py-12">
+          <nav className="mb-3 text-[12px] text-stone" aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-2">
+              {crumbs.map((crumb, index) => (
+                <li key={crumb.href} className="flex items-center gap-2">
+                  {index > 0 ? <span className="text-mist">/</span> : null}
+                  {index === crumbs.length - 1 ? (
+                    <span className="text-plum">{crumb.label}</span>
+                  ) : (
+                    <a href={crumb.href} className="underline underline-offset-4">{crumb.label}</a>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+          <h1 className="font-sans text-[1.65rem] font-bold leading-[1.08] tracking-[-0.03em] text-plum md:text-[2.4rem]">
+            {h1}
+          </h1>
+          <a
+            href="/register"
+            className="mt-4 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-life px-8 text-[17px] font-semibold text-white md:w-auto md:self-start"
+          >
+            Meet Christian Singles
+          </a>
+          <p className="mt-4 text-[15px] leading-5 text-plum-muted md:text-[16px] md:leading-6">{lede}</p>
+          <p className="mt-3 text-[14px] text-stone">These photographs are not members.</p>
         </div>
       </section>
 
