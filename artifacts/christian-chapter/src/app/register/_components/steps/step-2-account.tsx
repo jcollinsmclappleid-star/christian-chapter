@@ -60,7 +60,7 @@ export function Step2Account({ data, update }: StepProps) {
             />
             <div>
               <p className="text-[14px] font-sans font-medium text-plum mb-1">
-                Keep me informed about Christian Chapter news — optional
+                Keep me informed about Mature Christian Dating news — optional
               </p>
               <p className="text-[13px] text-plum-muted leading-5">
                 Occasional updates about the service, community news and features.
@@ -72,7 +72,7 @@ export function Step2Account({ data, update }: StepProps) {
         </div>
 
         <p className="text-[12px] text-stone leading-5">
-          By continuing you agree that Christian Chapter may store your account
+          By continuing you agree that Mature Christian Dating may store your account
           and application data as described in our{" "}
           <a href="/privacy" className="underline underline-offset-2 text-plum">
             Privacy policy

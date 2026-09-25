@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site-config";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Christian Chapter — UK Christian dating for your next chapter",
+  title: "Mature Christian Dating — UK Christian dating for adults over 40",
   description:
     "A more thoughtful way for Christians to meet. A considered UK founding cohort for Christian singles aged 40 and over — introductions with care, not endless swiping.",
   alternates: { canonical: "https://christianchapter.co.uk" },
@@ -50,7 +50,7 @@ export default function HomePage() {
       <ChapterHouseExperience>
         <div className="house-arrival">
           <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-6">
-            Christian dating for the next chapter of life
+            Christian dating for adults over 40
           </p>
           <h1 className="font-serif text-plum leading-[1.05] mb-6 max-w-[18ch]">
             A more thoughtful way for Christians to meet.
@@ -60,7 +60,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-wrap items-center gap-5 mb-8">
             <LinkButton href="/register" size="lg" variant="primary">
-              Begin your chapter
+              Create your profile
             </LinkButton>
             <a href="/?house=table" className="text-[15px] text-plum-muted underline underline-offset-4 hover:text-plum">
               Explore how it works
@@ -75,11 +75,11 @@ export default function HomePage() {
       <section id="how-it-works" className="house-rooms">
         <div className="mx-auto max-w-5xl">
           <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-4">
-            Christian Chapter
+            Mature Christian Dating
           </p>
           <h2 className="font-serif text-plum mb-3">Every room, in writing.</h2>
           <p className="text-[17px] text-plum-muted leading-7 max-w-[36rem] mb-10">
-            These rooms are a way to walk Christian Chapter. The writing below remains if the illustration cannot run.
+            These rooms are a way to walk Mature Christian Dating. The writing below remains if the illustration cannot run.
             {siteConfig.foundingStage ? " Joining is free during the founding phase." : ""}
           </p>
           <div className="grid md:grid-cols-2 gap-8">

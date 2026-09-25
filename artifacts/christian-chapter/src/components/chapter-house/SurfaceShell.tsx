@@ -22,7 +22,7 @@ export function SurfaceShell({
             {title}
           </h2>
         </div>
-        <button type="button" className="house-surface-close" onClick={onClose} aria-label="Return to Christian Chapter">
+        <button type="button" className="house-surface-close" onClick={onClose} aria-label="Return to Mature Christian Dating">
           Close
         </button>
       </div>

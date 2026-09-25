@@ -27,7 +27,7 @@ export function CourtyardSurface({ onClose }: { onClose: () => void }) {
         </li>
       </ul>
       <LinkButton href="/register" size="md" variant="primary">
-        Begin your chapter
+        Create your profile
       </LinkButton>
     </SurfaceShell>
   );

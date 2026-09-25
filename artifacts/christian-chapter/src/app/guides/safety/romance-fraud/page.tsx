@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Romance fraud — staying safe while dating as a Christian",
   description:
-    "UK romance-fraud warning signs, Action Fraud reporting, and what Christian Chapter already does versus what is still being built. Founding cohort, not live messaging.",
+    "UK romance-fraud warning signs, Action Fraud reporting, and what Mature Christian Dating already does versus what is still being built. Founding cohort, not live messaging.",
   path: "/guides/safety/romance-fraud",
 });
 
@@ -28,7 +28,7 @@ export default function RomanceFraudGuidePage() {
           </h1>
           <p className="text-[18px] text-plum-muted leading-7 max-w-[620px]">
             Romance fraud is a crime. It often uses faith language, isolation,
-            and urgency around money. Christian Chapter is currently a founding
+            and urgency around money. Mature Christian Dating is currently a founding
             cohort with email confirmation and human application review. It is
             not yet a messaging network, so in-product conversation monitoring
             is not live.

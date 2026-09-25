@@ -3,9 +3,9 @@ import { buildMetadata } from "@/lib/metadata";
 import { Heart } from "lucide-react";
 
 export const metadata = buildMetadata({
-  title: "Success stories — Christian Chapter",
+  title: "Success stories — Mature Christian Dating",
   description:
-    "Real stories from Christian Chapter members who found meaningful relationships. We publish stories only with full, granular consent.",
+    "Real stories from Mature Christian Dating members who found meaningful relationships. We publish stories only with full, granular consent.",
   path: "/success-stories",
 });
 
@@ -33,7 +33,7 @@ export default function SuccessStoriesPage() {
             <Heart size={28} className="text-oxblood/40 mx-auto mb-5" />
             <h2 className="font-serif text-plum text-2xl mb-4">Stories coming soon</h2>
             <p className="text-[16px] text-plum-muted leading-6 mb-6">
-              Christian Chapter is in its founding phase. We&apos;re building a community of genuine connections, and as members share their outcomes with us — and give their explicit consent to be featured — their stories will appear on this page.
+              Mature Christian Dating is in its founding phase. We&apos;re building a community of genuine connections, and as members share their outcomes with us — and give their explicit consent to be featured — their stories will appear on this page.
             </p>
             <p className="text-[14px] text-stone">
               We do not fabricate or paraphrase testimonials. Every story is published as written, with the member&apos;s knowledge and consent, and can be withdrawn at any time.

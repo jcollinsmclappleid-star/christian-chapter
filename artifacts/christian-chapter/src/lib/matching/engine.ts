@@ -155,7 +155,7 @@ export function viewerEligibility(viewer: MatchableProfile, ctx: MatchContext): 
   }
   const age = viewer.dateOfBirth ? getAge(viewer.dateOfBirth, ctx.now) : null;
   if (age === null || age < MINIMUM_AGE) {
-    exclusions.push({ code: "age", message: `Christian Chapter is for adults aged ${MINIMUM_AGE} and over.` });
+    exclusions.push({ code: "age", message: `Mature Christian Dating is for adults aged ${MINIMUM_AGE} and over.` });
   }
   return exclusions;
 }

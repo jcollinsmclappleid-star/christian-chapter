@@ -49,7 +49,7 @@ export function PathSurface({ onClose }: { onClose: () => void }) {
         ))}
       </ul>
       <LinkButton href="/register" size="md" variant="primary">
-        Begin your chapter
+        Create your profile
       </LinkButton>
     </SurfaceShell>
   );

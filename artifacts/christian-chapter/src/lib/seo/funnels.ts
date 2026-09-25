@@ -24,7 +24,7 @@ export const FUNNELS: readonly Funnel[] = [
       "UK Christian dating for adults aged 40 and over. A founding cohort shaped by faith and real life. Matching is not live today. Make a profile to begin.",
     h1: "Christian dating in the UK",
     eyebrow: "For Christians over 40",
-    lede: "A calmer way to meet someone who takes faith seriously, the same Christian Chapter you can already see on the homepage.",
+    lede: "A calmer way to meet someone who takes faith seriously, the same Mature Christian Dating you can already see on the homepage.",
     commentary: [
       "People searching for Christian dating in the UK are usually past the idea of meeting just anyone. They want faith to matter in the relationship, and they want the other person to want that too.",
       "Church, work, children and distance all sit in the same week. A profile is where you say what is essential, what you would prefer, and how open you are to travelling. Then you can walk the same rooms shown on the homepage.",

@@ -24,11 +24,11 @@ export const PUBLIC_CLAIMS = {
     : "Prices are not published and there is no checkout.",
   faith: "Religious answers are collected only after separate consent. They are not a public directory.",
   demonstration:
-    "This illustration shows Christian Chapter. It is not a member photograph.",
+    "This illustration shows Mature Christian Dating. It is not a member photograph.",
   upcoming:
     "Events and personal matchmaking are upcoming. They are not a live service in this founding phase.",
   usp: "No endless swiping · Introductions with reasons · Privacy by design",
-  cta: "Begin your chapter",
+  cta: "Create your profile",
   ctaHref: "/register",
 } as const;
 
@@ -61,7 +61,7 @@ export const SHOWCASE = [
 
 export const FUNNEL_FAQS = [
   {
-    q: "What age is Christian Chapter for?",
+    q: "What age is Mature Christian Dating for?",
     a: PUBLIC_CLAIMS.age,
   },
   {

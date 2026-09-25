@@ -20,16 +20,16 @@ const grotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "Christian Chapter — UK Christian dating for your next chapter",
-    template: "%s | Christian Chapter",
+    default: "Mature Christian Dating — UK Christian dating for adults over 40",
+    template: "%s | Mature Christian Dating",
   },
   description:
-    "Christian dating for your next chapter. A UK founding cohort for Christian singles aged 40 and over. There is no maximum age. Matching is not live today.",
+    "Mature Christian Dating. A UK founding cohort for Christian singles aged 40 and over. There is no maximum age. Matching is not live today.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://christianchapter.co.uk"
   ),
   openGraph: {
-    siteName: "Christian Chapter",
+    siteName: "Mature Christian Dating",
     locale: "en_GB",
     type: "website",
   },

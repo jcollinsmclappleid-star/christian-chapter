@@ -30,7 +30,7 @@ export function MembershipSurface({ onClose }: { onClose: () => void }) {
       </p>
       <div className="flex flex-wrap gap-3">
         <LinkButton href="/register" size="md" variant="primary">
-          Begin your chapter
+          Create your profile
         </LinkButton>
         <a href="/pricing" className="house-text-link">
           Planned membership

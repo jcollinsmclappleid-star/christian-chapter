@@ -17,9 +17,9 @@ function env(name: string, fallback = ""): string {
 }
 
 export const siteConfig = {
-  brandName: "Christian Chapter",
-  descriptor: "UK Christian dating for your next chapter",
-  proposition: "Christian dating for your next chapter.",
+  brandName: "Mature Christian Dating",
+  descriptor: "UK Christian dating for adults over 40",
+  proposition: "Mature Christian Dating.",
   siteUrl: env("NEXT_PUBLIC_SITE_URL", "https://christianchapter.co.uk").replace(
     /\/$/,
     "",

@@ -63,7 +63,7 @@ describe("Chapter House runtime", () => {
     assert.doesNotMatch(JSON.stringify(demoIntroduction), /%/);
     assert.match(read("components/chapter-house/TableSurface.tsx"), /DEMO_DISCLOSURE/);
     assert.match(read("lib/chapter-house/demo-fixture.ts"), /not a real member/);
-    assert.match(read("components/chapter-house/TableSurface.tsx"), /Begin your chapter/);
+    assert.match(read("components/chapter-house/TableSurface.tsx"), /Create your profile/);
     assert.match(read("components/chapter-house/TableSurface.tsx"), /\/register/);
   });
 
@@ -79,7 +79,7 @@ describe("Chapter House runtime", () => {
     assert.doesNotMatch(read("components/chapter-house/houseFurnishings.tsx"), /sofa\.glb/);
     assert.doesNotMatch(canvas, /learning-commons/);
     assert.match(read("components/chapter-house/houseContent.ts"), /Threshold/);
-    assert.match(read("app/page.tsx"), /Begin your chapter/);
+    assert.match(read("app/page.tsx"), /Create your profile/);
     assert.match(read("app/page.tsx"), /A more thoughtful way for Christians to meet/);
     const glb = readFileSync(path.join(root, "../public/models/chapter-house.glb"));
     const jsonLength = glb.readUInt32LE(12);

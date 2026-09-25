@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://christianchapter.co.uk";
-const siteName = "Christian Chapter";
+const siteName = "Mature Christian Dating";
 const defaultDescription =
-  "Christian dating for your next chapter. A UK founding cohort for Christian singles aged 40 and over. There is no maximum age.";
+  "Mature Christian Dating. A UK founding cohort for Christian singles aged 40 and over. There is no maximum age.";
 
 export function buildMetadata({
   title,

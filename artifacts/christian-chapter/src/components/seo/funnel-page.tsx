@@ -75,7 +75,7 @@ export function FunnelPage({ page }: { page: Funnel }) {
           <figure className="relative overflow-hidden rounded-xl border border-border bg-ivory-dark">
             <img
               src={POSTER}
-              alt="Illustration from the Christian Chapter homepage"
+              alt="Illustration from the Mature Christian Dating homepage"
               width={2400}
               height={1600}
               className="aspect-[3/2] w-full object-cover"

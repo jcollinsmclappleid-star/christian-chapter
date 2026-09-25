@@ -24,7 +24,7 @@ export function LibrarySurface({ onClose }: { onClose: () => void }) {
         This is how another member would see your profile before a match. It is not a live member.
       </p>
       <LinkButton href="/register" size="md" variant="primary">
-        Begin your chapter
+        Create your profile
       </LinkButton>
     </SurfaceShell>
   );

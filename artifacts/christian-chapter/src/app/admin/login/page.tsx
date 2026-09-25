@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
         {/* Logo */}
         <div className="text-center mb-10">
           <p className="font-serif text-ivory text-xl tracking-tight">
-            Christian Chapter
+            Mature Christian Dating
           </p>
           <p className="text-[11px] uppercase tracking-[0.2em] text-stone mt-1 font-sans">
             Admin Access
