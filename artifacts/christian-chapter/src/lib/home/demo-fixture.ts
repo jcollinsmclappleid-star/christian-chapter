@@ -1,7 +1,5 @@
 /** Isolated homepage demonstration. Never written to production tables. */
 
-export const DEMO_DISCLOSURE = "Demonstration profile — not a real member";
-
 export const demoIntroduction = {
   firstName: "Helen",
   age: 52,
@@ -63,13 +61,13 @@ export const demoConnection = {
     firstName: "James",
     age: 54,
     photo: "/images/home/connect-james.jpg",
-    alt: "James in a rust jumper, a demonstration photograph",
+    alt: "James in a rust jumper",
   },
   right: {
     firstName: "Amara",
     age: 51,
     photo: "/images/home/connect-amara.jpg",
-    alt: "Amara in a navy jumper, a demonstration photograph",
+    alt: "Amara in a navy jumper",
   },
   line: "A hand-picked introduction.",
 };

@@ -93,7 +93,6 @@ export function DatingFunnel({
           </a>
           <p className="mt-3 text-[14px] leading-5 text-plum">{HERO_OFFER}</p>
           <p className="mt-4 text-[15px] leading-5 text-plum-muted md:text-[16px] md:leading-6">{lede}</p>
-          <p className="mt-3 text-[14px] text-stone">These photographs are not members.</p>
         </div>
       </section>
 

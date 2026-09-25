@@ -183,6 +183,22 @@ const registry: SeoBrief[] = [
     priority: 0.8,
   }),
   published({
+    path: "/about",
+    primaryQuery: "about mature christian dating",
+    searchIntent: "Learn who the service is for",
+    wordBand: WORD_BANDS.product,
+    h1: "About us",
+    title: "About us",
+    description:
+      "Mature Christian Dating is for UK adults aged 40 and over who want a lasting relationship with someone who shares their faith.",
+    allowedFacts: [...CORE_FACTS, "separateReligiousConsent"],
+    internalLinks: ["/", "/how-it-works"],
+    sourceFile: "app/about/page.tsx",
+    lastModified: PUBLISHED_ON,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }),
+  published({
     path: "/safety",
     primaryQuery: "christian dating safety uk",
     searchIntent: "See which safety controls exist today",

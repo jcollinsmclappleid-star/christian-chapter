@@ -192,7 +192,7 @@ export default function HomePage() {
             Picture the match.
           </h2>
           <p className="mt-3 max-w-xl text-[17px] leading-6 text-plum-muted">
-            Someone beside you, glad of the life you already have. These photographs are not members.
+            Someone beside you, glad of the life you already have.
           </p>
           <ul className="mt-6 flex flex-col gap-4 md:grid md:grid-cols-3">
             {photos.map((photo) => (
@@ -245,7 +245,7 @@ export default function HomePage() {
             A person you could say yes to.
           </h2>
           <p className="mt-3 max-w-xl text-[17px] leading-6 text-plum-muted">
-            A labelled demonstration of an introduction, and the reason for it. These are not members.
+            An introduction, and the reason it would make sense.
           </p>
           <div className="mt-8">
             <PhoneMocks />

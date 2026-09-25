@@ -48,6 +48,12 @@ export default function TermsPage() {
         they can write to each other. We do not run 24/7 moderation of an open
         messaging network.
       </p>
+      <h2>Photographs on the public site</h2>
+      <p>
+        Photographs on the public pages illustrate the life the service is for.
+        They are not photographs of members, and the people shown are not
+        customers of Mature Christian Dating.
+      </p>
       <h2>Intellectual property</h2>
       <p>
         The Mature Christian Dating name, site design and copy belong to the operator.
