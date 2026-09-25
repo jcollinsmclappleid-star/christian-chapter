@@ -40,7 +40,7 @@ export function TableSurface({
       </article>
       <div className="mt-5 flex flex-wrap gap-3">
         <LinkButton href="/register" size="md" variant="primary">
-          Begin your chapter
+          Create your profile
         </LinkButton>
         <button type="button" className="house-text-link" onClick={onOpenDossier}>
           Read the demonstration

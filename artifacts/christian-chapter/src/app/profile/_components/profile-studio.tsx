@@ -186,7 +186,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
       <div>
         {profile.messages[0] && (
           <div className="mb-6 rounded-lg border border-brass/30 bg-brass-light px-5 py-4 text-[15px] text-plum">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-stone mb-1">A note from Christian Chapter</p>
+            <p className="text-[11px] uppercase tracking-[0.18em] text-stone mb-1">A note from Mature Christian Dating</p>
             {profile.messages[0].body}
           </div>
         )}

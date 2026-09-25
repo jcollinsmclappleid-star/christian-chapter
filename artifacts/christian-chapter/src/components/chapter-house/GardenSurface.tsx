@@ -46,7 +46,7 @@ export function GardenSurface({ onClose }: { onClose: () => void }) {
         </a>
       </div>
       <LinkButton href="/register" size="md" variant="primary">
-        Begin your chapter
+        Create your profile
       </LinkButton>
     </SurfaceShell>
   );

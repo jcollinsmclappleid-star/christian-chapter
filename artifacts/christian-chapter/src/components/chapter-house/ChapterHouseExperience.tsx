@@ -27,7 +27,7 @@ function DestinationLabels({
   onSelect: (id: (typeof HOUSE_DESTINATIONS)[number]["id"]) => void;
 }) {
   return (
-    <div className="house-destination-labels" aria-label="Chapter House destinations">
+    <div className="house-destination-labels" aria-label="Mature Christian Dating">
       {HOUSE_DESTINATIONS.map((destination) => {
         const selected = mode === destination.id;
         const seen = visited.includes(destination.id);
@@ -86,8 +86,8 @@ export function ChapterHouseExperience({ children }: { children: ReactNode }) {
   const useCanvas = capabilities.tier !== "C";
   const status =
     state.mode === "welcome"
-      ? "Chapter House arrival. Begin your chapter is available without the 3D world."
-      : `${destination?.eyebrow ?? "Chapter House"} — ${destination?.name ?? state.mode}.`;
+      ? "Mature Christian Dating. Create your profile is available without the illustrated view."
+      : `${destination?.eyebrow ?? "Mature Christian Dating"} — ${destination?.name ?? state.mode}.`;
 
   const selectMode = (mode: (typeof HOUSE_DESTINATIONS)[number]["id"] | "welcome") => {
     dispatch({ type: "SELECT_MODE", mode });

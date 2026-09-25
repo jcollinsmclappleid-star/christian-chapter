@@ -4,7 +4,7 @@ import { POLICY_EFFECTIVE_DATE, POLICY_VERSION, siteConfig } from "@/lib/site-co
 export const metadata = legalMetadata(
   "Privacy policy",
   "/privacy",
-  "How Christian Chapter processes personal data during the founding cohort, including religious-belief consent.",
+  "How Mature Christian Dating processes personal data during the founding cohort, including religious-belief consent.",
 );
 
 export default function PrivacyPage() {

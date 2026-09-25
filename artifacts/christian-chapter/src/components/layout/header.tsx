@@ -34,7 +34,7 @@ export function Header() {
       <div className="mx-auto max-w-5xl px-6 flex items-center justify-between h-16 md:h-[72px]">
         <a href="/" className="flex flex-col leading-none group">
           <span className="font-serif text-[1.15rem] tracking-tight text-plum group-hover:text-oxblood transition-colors">
-            Christian Chapter
+            Mature Christian Dating
           </span>
           <span className="text-[10px] tracking-[0.16em] uppercase text-stone font-sans mt-0.5">
             In faith · 40+ · UK

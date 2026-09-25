@@ -26,7 +26,7 @@ export function AdminNav() {
       {/* Logo */}
       <div className="px-5 py-6 border-b border-ivory/10">
         <p className="font-serif text-ivory text-[1.1rem] tracking-tight">
-          Christian Chapter
+          Mature Christian Dating
         </p>
         <p className="text-[10px] uppercase tracking-[0.25em] text-stone mt-0.5 font-sans">
           Admin

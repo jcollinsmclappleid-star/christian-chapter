@@ -4,9 +4,9 @@ import { siteConfig } from "@/lib/site-config";
 import { CheckCircle } from "lucide-react";
 
 export const metadata = buildMetadata({
-  title: "Pricing — Christian Chapter",
+  title: "Pricing — Mature Christian Dating",
   description:
-    "Christian Chapter is free to join during our founding phase. We'll announce what paid tiers look like — and what founding members will pay — before anything changes.",
+    "Mature Christian Dating is free to join during our founding phase. We'll announce what paid tiers look like — and what founding members will pay — before anything changes.",
   path: "/pricing",
 });
 
@@ -44,7 +44,7 @@ const plannedTiers = [
 const faqs = [
   {
     q: "Is it really free right now?",
-    a: "Yes. During the founding phase, joining and using Christian Chapter is completely free. There is no credit card required, no free trial that expires. We will give clear advance notice before any paid tier is introduced.",
+    a: "Yes. During the founding phase, joining and using Mature Christian Dating is completely free. There is no credit card required, no free trial that expires. We will give clear advance notice before any paid tier is introduced.",
   },
   {
     q: "When will paid tiers launch?",

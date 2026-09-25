@@ -189,7 +189,7 @@ export default function AccountPage() {
 
         <h2 className="font-serif text-2xl text-plum mb-3">UK residence</h2>
         <p className="text-[15px] text-plum-muted mb-4">
-          Christian Chapter is a UK service. Tell us whether you live here, or intend to relocate.
+          Mature Christian Dating is a UK service. Tell us whether you live here, or intend to relocate.
         </p>
         <div className="flex flex-wrap gap-3 mb-10">
           {(
@@ -244,7 +244,7 @@ export default function AccountPage() {
             onChange={(e) => setMarketing(e.target.checked)}
           />
           <span className="text-[15px] text-plum">
-            Optional news about Christian Chapter. You can change this at any time.
+            Optional news about Mature Christian Dating. You can change this at any time.
           </span>
         </label>
 

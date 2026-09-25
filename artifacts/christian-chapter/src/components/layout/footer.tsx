@@ -1,6 +1,7 @@
 import { footerLegalLine } from "@/lib/site-config";
 
 const links = [
+  { href: "/christian-dating", label: "Christian dating" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/safety", label: "Safety" },
   { href: "/register", label: "Begin" },
@@ -16,7 +17,7 @@ export function Footer() {
     <footer className="border-t border-border bg-ivory">
       <div className="mx-auto max-w-5xl px-6 py-8 flex flex-col md:flex-row md:items-center justify-between gap-5">
         <div>
-          <p className="font-serif text-[1.05rem] text-plum">Christian Chapter</p>
+          <p className="font-serif text-[1.05rem] text-plum">Mature Christian Dating</p>
           <p className="text-[13px] text-stone mt-1">{footerLegalLine(year)}</p>
         </div>
         <nav className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer">

@@ -4,7 +4,7 @@ import { POLICY_EFFECTIVE_DATE, POLICY_VERSION } from "@/lib/site-config";
 export const metadata = legalMetadata(
   "Cookie information",
   "/cookies",
-  "Cookies and local storage actually used by Christian Chapter. There is no advertising or analytics cookie.",
+  "Cookies and local storage actually used by Mature Christian Dating. There is no advertising or analytics cookie.",
 );
 
 export default function CookiesPage() {

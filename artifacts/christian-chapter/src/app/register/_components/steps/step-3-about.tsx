@@ -82,7 +82,7 @@ export function Step3About({ data, update }: StepProps) {
           </p>
           {calculatedAge !== null && calculatedAge < MINIMUM_AGE && (
             <p className="mt-3 text-[14px] text-oxblood leading-6" role="alert">
-              Christian Chapter is for people aged {MINIMUM_AGE} and over. You can
+              Mature Christian Dating is for people aged {MINIMUM_AGE} and over. You can
               leave this application here — there is nothing further to complete.
             </p>
           )}

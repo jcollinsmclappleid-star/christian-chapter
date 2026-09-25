@@ -277,7 +277,7 @@ export function Wizard() {
     return (
       <div className="min-h-screen bg-ivory flex flex-col">
         <header className="flex items-center justify-between px-6 h-16 border-b border-border">
-          <a href="/" className="font-serif text-plum text-lg">Christian Chapter</a>
+          <a href="/" className="font-serif text-plum text-lg">Mature Christian Dating</a>
         </header>
         <main className="flex-1 mx-auto w-full max-w-2xl px-6 py-16">
           <p className="text-[11px] uppercase tracking-[0.3em] text-oxblood font-sans mb-4">
@@ -311,7 +311,7 @@ export function Wizard() {
 
       <header className="flex items-center justify-between px-6 md:px-10 h-16 border-b border-border flex-shrink-0">
         <a href="/" className="flex flex-col leading-none">
-          <span className="font-serif text-plum text-lg tracking-tight">Christian Chapter</span>
+          <span className="font-serif text-plum text-lg tracking-tight">Mature Christian Dating</span>
           <span className="text-[10px] tracking-[0.16em] uppercase text-stone font-sans mt-0.5">
             Your application
           </span>
