@@ -1,7 +1,5 @@
 /** Isolated homepage demonstration. Never written to production tables. */
 
-export const DEMO_DISCLOSURE = "Demonstration profile — not a real member";
-
 export const demoIntroduction = {
   firstName: "Helen",
   age: 52,
@@ -36,8 +34,8 @@ export const demoProfiles = [
     photo: "/images/home/profile-samuel.jpg",
     lifeEvent: "Hoping to find the person to share a life with.",
     moments: [
-      { src: "/images/home/samuel-park.jpg", alt: "Samuel laughing on a sunny riverside walk" },
-      { src: "/images/home/samuel-kitchen.jpg", alt: "Samuel cooking in a bright kitchen" },
+      { src: "/images/home/samuel-park.jpg", alt: "Samuel walking by the river in a navy jacket" },
+      { src: "/images/home/samuel-kitchen.jpg", alt: "Samuel cooking at home in a grey t-shirt" },
     ],
     lookingFor: "Someone kind, with a living faith and time for a shared life.",
   },
@@ -50,8 +48,8 @@ export const demoProfiles = [
     photo: "/images/home/profile-priya.jpg",
     lifeEvent: "Ready for a love that lasts.",
     moments: [
-      { src: "/images/home/priya-market.jpg", alt: "Priya laughing at a sunny flower market" },
-      { src: "/images/home/priya-cafe.jpg", alt: "Priya with coffee by a bright cafe window" },
+      { src: "/images/home/priya-market.jpg", alt: "Priya at a flower market in a mustard raincoat" },
+      { src: "/images/home/priya-cafe.jpg", alt: "Priya by a cafe window in a cream jumper" },
     ],
     lookingFor: "Company first. Marriage if it is right, without hurry.",
   },
@@ -63,13 +61,13 @@ export const demoConnection = {
     firstName: "James",
     age: 54,
     photo: "/images/home/connect-james.jpg",
-    alt: "James laughing in a sunny park, a demonstration photograph",
+    alt: "James in a rust jumper",
   },
   right: {
     firstName: "Amara",
     age: 51,
     photo: "/images/home/connect-amara.jpg",
-    alt: "Amara laughing at a sunny cafe, a demonstration photograph",
+    alt: "Amara in a navy jumper",
   },
   line: "A hand-picked introduction.",
 };

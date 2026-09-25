@@ -71,6 +71,15 @@ export function StepWho({ data, update }: StepProps) {
       <h1 className="mb-4 font-sans text-4xl font-bold leading-[1.05] tracking-[-0.03em] text-plum">
         Who would you be glad to meet?
       </h1>
+      <label className="mb-6 block">
+        <span className="mb-2 block font-sans text-[15px] font-semibold">First name</span>
+        <input
+          value={data.firstName}
+          onChange={(event) => update({ firstName: event.target.value })}
+          autoComplete="given-name"
+          className="min-h-[52px] w-full rounded-2xl border border-ivory-darker bg-paper px-4 text-[16px]"
+        />
+      </label>
       <Note>
         This is the first thing a future partner is allowed to know. It helps them recognise who the meeting is for.
         You can add more after you have a profile.
@@ -162,8 +171,7 @@ export function StepFaithLight({ data, update }: StepProps) {
     <div>
       <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">Faith can be quiet or central.</h2>
       <Note>
-        Quiet or central, this helps someone recognise the faith already in the room. It is never sold.
-        You can add more after you have a profile.
+        After you sign in, you write what faith means to you. Signed-in members read that writing on your profile.
       </Note>
       <label className="mb-6 flex items-start gap-3 rounded-2xl border border-ivory-darker bg-paper p-5">
         <input
@@ -443,19 +451,14 @@ export function StepReady({ data, update }: StepProps) {
       <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">Your profile is ready.</h2>
       <Note>{FOUNDING_MEMBER_COPY}</Note>
       <p className="mb-6 text-[15px] leading-6 text-plum-muted">
-        Matching goes live on {OPENING_OFFER_ENDS_LABEL}. Leave a name and an email, and this profile is kept for you. Nothing is charged.
-        You can add more after you have a profile.
+        A photograph is optional. After this profile exists you can keep building it: more photographs, your story, about you, faith, your life, who you hope to meet, place, essentials, and privacy. A complete profile can be hand-picked. The live matching system opens on {OPENING_OFFER_ENDS_LABEL}.
+      </p>
+      <p className="mb-6">
+        <a href="/demonstration" className="font-semibold text-life underline underline-offset-4">
+          See a complete profile
+        </a>
       </p>
       <div className="space-y-4">
-        <label className="block">
-          <span className="mb-2 block font-sans text-[15px] font-semibold">First name</span>
-          <input
-            value={data.firstName}
-            onChange={(event) => update({ firstName: event.target.value })}
-            autoComplete="given-name"
-            className="min-h-[52px] w-full rounded-2xl border border-ivory-darker bg-paper px-4 text-[16px]"
-          />
-        </label>
         <label className="block">
           <span className="mb-2 block font-sans text-[15px] font-semibold">Email</span>
           <input

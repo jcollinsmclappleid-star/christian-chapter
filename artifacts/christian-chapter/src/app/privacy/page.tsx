@@ -19,9 +19,9 @@ export default function PrivacyPage() {
         photograph only after it is verified. You can see your own while that
         decision is open. When we connect two members, they can write to each
         other. We do not run an open messaging network, calling, or a charge
-        today. If you save a card, Stripe holds it and the first membership
-        payment is 15 February 2027. We do not store the card number. Automated
-        matching is not live.
+        today. Payment is not open, and no card is taken. A complete profile
+        can be considered for a personal hand-picked introduction. The live
+        matching system goes live on 14 February 2027.
       </p>
       <h2>Who we are</h2>
       <p>
@@ -40,7 +40,7 @@ export default function PrivacyPage() {
         <li>Security and audit data: IP address, user agent, timestamps of consents and admin actions.</li>
         <li>Profile photographs. You can see your own while a decision is open. Other members see a photograph only after it is verified.</li>
         <li>Messages you write to a member we have connected you with.</li>
-        <li>If you save a card, Stripe processes the card. We store the Stripe customer and subscription identifiers, not the card number.</li>
+        <li>Payment is not open, so no card details are collected.</li>
         <li>One check photograph of your face, only after you agree, and only until the check is finished or 24 hours pass.</li>
         <li>When you open an introduction, the time and your name, unless private browsing is on.</li>
         <li>Recent sign-in times, and your choices about introduction and profile-view emails.</li>
@@ -61,7 +61,7 @@ export default function PrivacyPage() {
       <h2>Providers</h2>
       <p>
         Hosting and database (currently Neon Postgres), transactional email
-        (Resend, when configured), Stripe when you save a card, and the
+        (Resend, when configured), and the
         infrastructure used to run this website. We do not load advertising pixels.
       </p>
       <h2>Retention and closure</h2>

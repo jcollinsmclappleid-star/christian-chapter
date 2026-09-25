@@ -1,37 +1,38 @@
 import { LinkButton } from "@/components/ui/button";
 import { buildMetadata } from "@/lib/metadata";
-import { INCOGNITO_PRICE_LABEL, INCOGNITO_STARTS_LABEL, MEMBER_PRICE_LABEL, OPENING_OFFER_ENDS_LABEL, siteConfig } from "@/lib/site-config";
+import { OPENING_OFFER_ENDS_LABEL, siteConfig } from "@/lib/site-config";
 import { CheckCircle } from "lucide-react";
 
 export const metadata = buildMetadata({
   title: "Pricing — Mature Christian Dating",
-  description: `Mature Christian Dating is free until ${OPENING_OFFER_ENDS_LABEL}. After that the member price is ${MEMBER_PRICE_LABEL}. No payment is taken during the opening offer.`,
+  description: `Mature Christian Dating is free for founding members. Payment is not open. Live matching opens on ${OPENING_OFFER_ENDS_LABEL}.`,
   path: "/pricing",
 });
 
 const foundingBenefits = [
   "Complete your full profile",
   "Set your Essentials, Preferred and Open-minded preferences",
-  "A profile ready for when matching goes live on 14 February 2027",
-  "No payment during the opening offer. You can save a card for 15 February 2027",
+  "A complete profile can be hand-picked",
+  "Live matching opens on 14 February 2027",
+  "Free for founding members. Payment is not open",
 ];
 
 const faqs = [
   {
     q: "Is it really free right now?",
-    a: `Yes, until ${OPENING_OFFER_ENDS_LABEL}. No payment is taken during that time. This is an opening offer with an end date, not an open-ended promise.`,
+    a: "Yes. Founding membership is free. Payment is not open, and no card is taken.",
   },
   {
     q: "What does it cost after that?",
-    a: `The member price is ${MEMBER_PRICE_LABEL} from 15 February 2027. You can save a card before then. The first payment is taken on that date. Private browsing, if you want it, is a separate ${INCOGNITO_PRICE_LABEL} from ${INCOGNITO_STARTS_LABEL}.`,
+    a: "Nothing. Payment is not open. Founding membership stays free, and no card is taken.",
   },
   {
-    q: "How does that compare?",
-    a: "Public one-month list prices checked in September 2026 were about £29.99 on Match in the UK, about £29.95 on Christian Connection, about £44.95 on eharmony, and about £24.95 a month for a short SilverSingles plan. Longer plans on those services cost less per month. Offers change.",
+    q: "What is the difference between hand-picked and live matching?",
+    a: "A complete profile can be considered for a personal hand-picked introduction. The live matching system is the later service, and it opens on 14 February 2027.",
   },
   {
     q: "When does matching go live?",
-    a: `Matching goes live on ${OPENING_OFFER_ENDS_LABEL}. Until then you can build your profile free as a founding member. It is not a guarantee of a match.`,
+    a: `A complete profile can be considered for a personal hand-picked introduction now. The live matching system goes live on ${OPENING_OFFER_ENDS_LABEL}. It is not a guarantee of a match.`,
   },
   {
     q: "Can I cancel at any time?",
@@ -51,7 +52,7 @@ export default function PricingPage() {
             Free until {OPENING_OFFER_ENDS_LABEL}.
           </h1>
           <p className="text-[17px] text-plum-muted leading-7 max-w-[540px]">
-            Then matching goes live, and the member price is {MEMBER_PRICE_LABEL}. Nothing is charged during the opening offer.
+            Founding membership is free. A complete profile can be hand-picked. The live matching system opens on {OPENING_OFFER_ENDS_LABEL}. Payment is not open.
           </p>
         </div>
       </section>
@@ -68,7 +69,7 @@ export default function PricingPage() {
               <span className="text-[15px] text-stone">until {OPENING_OFFER_ENDS_LABEL}</span>
             </div>
             <p className="text-[15px] text-plum-muted leading-6 mb-6">
-              After that date the member price is {MEMBER_PRICE_LABEL}. You can save a card from your account. Nothing is charged when you save it.
+              No card is taken. A photograph is optional when you start, and you can keep building the profile afterwards.
             </p>
             <ul className="space-y-3 mb-7">
               {foundingBenefits.map((b) => (
@@ -83,29 +84,8 @@ export default function PricingPage() {
             </LinkButton>
           </div>
 
-          <div className="mb-6 grid gap-4 md:grid-cols-2">
-            <div className="rounded-lg border border-border bg-ivory p-6">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-stone font-sans mb-2">
-                From 15 February 2027
-              </p>
-              <h2 className="font-sans font-semibold text-[22px] text-plum mb-2">Member · {MEMBER_PRICE_LABEL}</h2>
-              <p className="text-[15px] text-plum-muted leading-6">
-                The membership price. Saving a card from your account holds it for the first payment on 15 February 2027.
-              </p>
-            </div>
-            <div className="rounded-lg border border-border bg-ivory p-6">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-stone font-sans mb-2">
-                Optional, from {INCOGNITO_STARTS_LABEL}
-              </p>
-              <h2 className="font-sans font-semibold text-[22px] text-plum mb-2">Private browsing · {INCOGNITO_PRICE_LABEL}</h2>
-              <p className="text-[15px] text-plum-muted leading-6">
-                A separate subscription. While it is on, opening someone’s introduction does not put your name on their list. Nothing is charged now.
-              </p>
-            </div>
-          </div>
-
           <p className="text-[13px] text-stone text-center">
-            The price above is the price after the opening offer. If you save a card, the first membership payment is taken on 15 February 2027.
+            Payment is not open. Founding membership is free.
             {siteConfig.vatRegistered
               ? " Published prices include UK VAT where applicable."
               : " We do not publish a VAT number until the organisation is registered."}

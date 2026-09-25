@@ -1,5 +1,5 @@
 import { IconFaith, IconHeart } from "@/components/home/mark-icons";
-import { DEMO_DISCLOSURE, demoConnection, demoIntroduction, demoProfiles } from "@/lib/home/demo-fixture";
+import { demoConnection, demoIntroduction, demoProfiles } from "@/lib/home/demo-fixture";
 import Image from "next/image";
 
 function PhoneFrame({ children }: { children: React.ReactNode }) {
@@ -18,14 +18,11 @@ export function PhoneMocks() {
           <div className="relative h-64">
             <Image
               src={profile.photo}
-              alt={`${profile.firstName}, a demonstration profile photograph`}
+              alt={`${profile.firstName}, ${profile.age}`}
               fill
               className="object-cover object-[center_20%]"
               sizes="280px"
             />
-            <p className="absolute left-3 top-3 max-w-[14rem] rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-semibold leading-4 text-life">
-              {DEMO_DISCLOSURE}
-            </p>
           </div>
           <div className="px-3.5 pb-4 pt-3">
             <p className="font-sans text-[1.45rem] font-bold leading-none tracking-tight text-plum">
@@ -49,8 +46,7 @@ export function PhoneMocks() {
 
       <PhoneFrame>
         <div className="px-3.5 pb-4 pt-4">
-          <p className="text-[11px] leading-4 text-life">{DEMO_DISCLOSURE}</p>
-          <p className="mt-3 font-sans text-[15px] font-bold text-plum">An introduction</p>
+          <p className="font-sans text-[15px] font-bold text-plum">An introduction</p>
           <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center">
             {[demoConnection.left, demoConnection.right].map((person, index) => (
               <div key={person.firstName} className="contents">

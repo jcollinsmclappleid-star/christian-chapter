@@ -1,4 +1,4 @@
-import { DEMO_DISCLOSURE, demoIntroduction } from "@/lib/home/demo-fixture";
+import { demoIntroduction } from "@/lib/home/demo-fixture";
 
 export function ExampleIntroduction() {
   return (
@@ -12,8 +12,7 @@ export function ExampleIntroduction() {
         </span>
       </div>
       <div className="p-5">
-        <p className="text-[13px] leading-5 text-tide">{DEMO_DISCLOSURE}</p>
-        <h2 id="example-introduction-heading" className="mt-2 font-sans text-[1.65rem] font-semibold leading-none text-plum">
+        <h2 id="example-introduction-heading" className="font-sans text-[1.65rem] font-semibold leading-none text-plum">
           {demoIntroduction.firstName}, {demoIntroduction.age}
         </h2>
         <p className="mt-2 text-[15px] text-plum-muted">

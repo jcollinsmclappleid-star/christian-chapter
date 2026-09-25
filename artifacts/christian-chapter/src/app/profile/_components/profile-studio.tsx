@@ -453,7 +453,21 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
 
         {section === "faith" && (
           <section className="space-y-6">
-            <h2 className="font-serif text-3xl text-plum">Faith</h2>
+            <h2 className="font-serif text-3xl text-plum">What faith means to you</h2>
+            <p className="text-[15px] leading-6 text-plum-muted">
+              This is your faith section. Signed-in members read it on your profile.
+            </p>
+            <div>
+              <label className="block text-[15px] font-medium mb-2" htmlFor="faithDescription">In your own words</label>
+              <textarea
+                id="faithDescription"
+                rows={5}
+                value={profile.faithDescription ?? ""}
+                onChange={(e) => update({ faithDescription: e.target.value })}
+                placeholder="What faith means in your week, your church, and the life you want."
+                className="w-full p-4 rounded-md border border-border-medium bg-ivory font-serif text-[1.25rem] leading-snug"
+              />
+            </div>
             <div>
               <p className="text-[15px] font-medium mb-2">Tradition</p>
               <div className="grid gap-2">
@@ -477,16 +491,6 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
                   <Choice key={label} label={label} selected={profile.faithCentrality === label} onClick={() => update({ faithCentrality: label })} />
                 ))}
               </div>
-            </div>
-            <div>
-              <label className="block text-[15px] font-medium mb-2" htmlFor="faithDescription">In your words</label>
-              <textarea
-                id="faithDescription"
-                rows={4}
-                value={profile.faithDescription ?? ""}
-                onChange={(e) => update({ faithDescription: e.target.value })}
-                className="w-full p-4 rounded-md border border-border-medium bg-ivory font-serif text-[1.25rem] leading-snug"
-              />
             </div>
           </section>
         )}

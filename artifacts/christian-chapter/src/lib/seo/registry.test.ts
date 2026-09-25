@@ -33,6 +33,7 @@ function read(rel: string) {
 const PUBLISHED_PATHS = [
   "/",
   "/how-it-works",
+  "/about",
   "/safety",
   "/pricing",
   "/christian-dating",

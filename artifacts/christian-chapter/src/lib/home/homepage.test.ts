@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { DEMO_DISCLOSURE, demoIntroduction } from "./demo-fixture.ts";
+import { demoIntroduction } from "./demo-fixture.ts";
 import { legacyHouseTarget } from "./legacy-house.ts";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -22,16 +22,17 @@ describe("homepage conversion", () => {
     assert.doesNotMatch(legacyHouseTarget("?house=table&email=a@b.c") ?? "", /email|faith/i);
   });
 
-  it("labels the demonstration and does not invent a match", () => {
-    assert.equal(DEMO_DISCLOSURE, "Demonstration profile — not a real member");
+  it("keeps sample profiles free of invented match claims", () => {
     const fixture = JSON.stringify(demoIntroduction);
     assert.doesNotMatch(fixture, /%|miles|verified|online/i);
     assert.equal(demoIntroduction.poolLabel, "Nearby");
     const dossier = read("components/home/example-introduction.tsx");
-    assert.match(dossier, /DEMO_DISCLOSURE/);
+    assert.doesNotMatch(dossier, /not a real member|not members/);
     assert.match(dossier, /poolLabel/);
     assert.match(dossier, /Exact miles are not published/);
     assert.doesNotMatch(dossier, /you matched|\/api\//i);
+    const home = read("app/page.tsx");
+    assert.doesNotMatch(home, /not members|not a real member|These photographs are not/);
   });
 
   it("leads with the proposition and a real registration link", () => {

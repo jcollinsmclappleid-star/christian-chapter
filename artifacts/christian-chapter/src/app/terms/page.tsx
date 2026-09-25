@@ -23,15 +23,10 @@ export default function TermsPage() {
       </p>
       <h2>Opening offer</h2>
       <p>
-        Joining is free for founding members until 14 February 2027. Matching
-        goes live on 14 February 2027. The published member price of £29 a
-        month starts on 15 February 2027. Private browsing is optional and
-        separate, at £9 a month from the same date. You may save a card before
-        then. Saving a card keeps it for the first membership payment on
-        15 February 2027. No money is taken when the card is saved. An
-        administrator may prepare a connection between two profiles before
-        that date. That is not a live matching service, and it is not a
-        guarantee of an introduction.
+        Joining is free for founding members. Payment is not open, and no card
+        is taken. A complete profile can be considered for a personal
+        hand-picked introduction. The live matching system goes live on
+        14 February 2027. That is not a guarantee of an introduction.
       </p>
       <h2>No guarantee of a match or a date</h2>
       <p>
@@ -52,6 +47,12 @@ export default function TermsPage() {
         administrator can suspend a member. When two members are connected,
         they can write to each other. We do not run 24/7 moderation of an open
         messaging network.
+      </p>
+      <h2>Photographs on the public site</h2>
+      <p>
+        Photographs on the public pages illustrate the life the service is for.
+        They are not photographs of members, and the people shown are not
+        customers of Mature Christian Dating.
       </p>
       <h2>Intellectual property</h2>
       <p>

@@ -2,6 +2,7 @@ import { Logo } from "@/components/brand/logo";
 import { footerLegalLine } from "@/lib/site-config";
 
 const links = [
+  { href: "/about", label: "About" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/safety", label: "Safety" },
   { href: "/pricing", label: "Pricing" },
