@@ -75,11 +75,11 @@ export default function HomePage() {
       <section id="how-it-works" className="house-rooms">
         <div className="mx-auto max-w-5xl">
           <p className="text-[11px] uppercase tracking-[0.28em] text-oxblood font-sans mb-4">
-            The Chapter House
+            Christian Chapter
           </p>
           <h2 className="font-serif text-plum mb-3">Every room, in writing.</h2>
           <p className="text-[17px] text-plum-muted leading-7 max-w-[36rem] mb-10">
-            The house is a way to walk the product. The pages below remain if 3D cannot run.
+            These rooms are a way to walk Christian Chapter. The writing below remains if the illustration cannot run.
             {siteConfig.foundingStage ? " Joining is free during the founding phase." : ""}
           </p>
           <div className="grid md:grid-cols-2 gap-8">
@@ -91,7 +91,7 @@ export default function HomePage() {
             ))}
           </div>
           <p className="mt-10 text-[14px] text-stone">
-            Destinations in the house: {HOUSE_DESTINATIONS.map((item) => item.name).join(", ")}.
+            On this page: {HOUSE_DESTINATIONS.map((item) => item.name).join(", ")}.
           </p>
         </div>
       </section>

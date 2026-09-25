@@ -14,7 +14,7 @@ export class HouseCanvasBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    console.warn("Chapter House canvas failed; using the designed poster.", error, info.componentStack);
+    console.warn("Homepage illustration failed; using the designed poster.", error, info.componentStack);
   }
 
   render() {

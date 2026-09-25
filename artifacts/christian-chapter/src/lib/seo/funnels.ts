@@ -24,7 +24,7 @@ export const FUNNELS: readonly Funnel[] = [
       "UK Christian dating for adults aged 40 and over. A founding cohort shaped by faith and real life. Matching is not live today. Make a profile to begin.",
     h1: "Christian dating in the UK",
     eyebrow: "For Christians over 40",
-    lede: "A calmer way to meet someone who takes faith seriously, built as the Chapter House you can already walk on the homepage.",
+    lede: "A calmer way to meet someone who takes faith seriously, the same Christian Chapter you can already see on the homepage.",
     commentary: [
       "People searching for Christian dating in the UK are usually past the idea of meeting just anyone. They want faith to matter in the relationship, and they want the other person to want that too.",
       "Church, work, children and distance all sit in the same week. A profile is where you say what is essential, what you would prefer, and how open you are to travelling. Then you can walk the same rooms shown on the homepage.",
@@ -47,7 +47,7 @@ export const FUNNELS: readonly Funnel[] = [
     lede: "Your forties often hold work, children and a faith that has already been tested. This page is for saying that plainly.",
     commentary: [
       "A search for Christian dating over 40 rarely starts from a blank life. Some people have children at home. Some are clear they do not want more. Some are starting again after a marriage that ended.",
-      "A profile is where that life can be said in your own words, including what you need a partner to understand. Make that profile, then look through the Chapter House for how introductions are meant to work.",
+      "A profile is where that life can be said in your own words, including what you need a partner to understand. Make that profile, then look at the homepage for how introductions are meant to work.",
     ],
     related: [
       "/christian-dating/over-50",
@@ -85,7 +85,7 @@ export const FUNNELS: readonly Funnel[] = [
     lede: "Life after 60 can be full, and still leave room for a person who shares your faith.",
     commentary: [
       "People looking for Christian dating over 60 often want clarity and kindness more than novelty. Some are retired. Some are still working. Grandchildren, a parish, and a settled home can all be part of the picture.",
-      "There is no upper age on the founding cohort. Write the profile in your own words, including the pace you want. The Chapter House on the homepage is the same place those words are meant to live.",
+      "There is no upper age on the founding cohort. Write the profile in your own words, including the pace you want. The homepage is the same place those words are meant to live.",
     ],
     related: [
       "/christian-dating/over-50",
@@ -142,7 +142,7 @@ export const FUNNELS: readonly Funnel[] = [
     lede: "Remarriage is a settled hope for some people and a careful question for others. Your profile can say which it is for you.",
     commentary: [
       "Searches for Christian remarriage often come after divorce or after being widowed. Churches teach differently, and a dating page should not pretend those teachings are the same.",
-      "Write what you are open to, and what you would need a partner to understand, on your own profile. The Chapter House on the homepage is the product that profile is for.",
+      "Write what you are open to, and what you would need a partner to understand, on your own profile. The homepage is the product that profile is for.",
     ],
     related: [
       "/christian-dating/after-divorce",
@@ -161,7 +161,7 @@ export const FUNNELS: readonly Funnel[] = [
     lede: "Being widowed is not the same as being single for the first time. The hope is often for someone who can sit with that history.",
     commentary: [
       "Widowed Christian dating is its own search. Love for a person who died can remain while a new hope begins. Friends and family may have strong views about the timing.",
-      "You choose when a profile exists. It can name that you were married, what you miss, and what you would like next, without turning grief into a form to rush. The homepage shows the house that profile belongs to.",
+      "You choose when a profile exists. It can name that you were married, what you miss, and what you would like next, without turning grief into a form to rush. The homepage shows the product that profile belongs to.",
     ],
     related: [
       "/christian-dating/after-bereavement",
@@ -199,7 +199,7 @@ export const FUNNELS: readonly Funnel[] = [
     lede: "Anglican life in the UK can mean a parish, a cathedral, or a quieter practice that is still serious.",
     commentary: [
       "Anglican dating covers a wide church. Some people are in the pew every Sunday. Some keep the tradition more quietly and still want a partner who recognises it.",
-      "Say which it is on your profile. This is not a live directory of Anglican members. Faith answers stay behind their own consent, and the Chapter House shows where a finished profile is meant to lead.",
+      "Say which it is on your profile. This is not a live directory of Anglican members. Faith answers stay behind their own consent, and the homepage shows where a finished profile is meant to lead.",
     ],
     related: [
       "/christian-dating/catholic",
@@ -237,7 +237,7 @@ export const FUNNELS: readonly Funnel[] = [
     lede: "From the cities to smaller communities, meeting someone who shares your faith can mean more than a short trip across town.",
     commentary: [
       "Christian dating in Scotland has to respect distance. Edinburgh, Glasgow, Aberdeen, the Highlands and the islands are not one neighbourhood. A good match on paper can still be a long way from Friday night.",
-      "You set how far you are willing to consider. The cohort is UK-wide, and this page does not pretend to count people near you. Start a profile if Scotland is home, and use the Chapter House to see the product.",
+      "You set how far you are willing to consider. The cohort is UK-wide, and this page does not pretend to count people near you. Start a profile if Scotland is home, and use the homepage to see the product.",
     ],
     related: [
       "/christian-dating/london",

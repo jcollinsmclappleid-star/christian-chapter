@@ -24,7 +24,7 @@ export const PUBLIC_CLAIMS = {
     : "Prices are not published and there is no checkout.",
   faith: "Religious answers are collected only after separate consent. They are not a public directory.",
   demonstration:
-    "The Chapter House is a labelled demonstration of the product, not a member photograph.",
+    "This illustration shows Christian Chapter. It is not a member photograph.",
   upcoming:
     "Events and personal matchmaking are upcoming. They are not a live service in this founding phase.",
   usp: "No endless swiping · Introductions with reasons · Privacy by design",

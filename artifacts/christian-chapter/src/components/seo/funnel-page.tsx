@@ -66,7 +66,7 @@ export function FunnelPage({ page }: { page: Funnel }) {
                 {PUBLIC_CLAIMS.cta}
               </LinkButton>
               <a href="/" className="text-[15px] text-plum-muted underline underline-offset-4 hover:text-plum">
-                See the Chapter House
+                See the homepage
               </a>
             </div>
             <p className="text-[14px] text-stone">{PUBLIC_CLAIMS.usp}</p>
@@ -75,7 +75,7 @@ export function FunnelPage({ page }: { page: Funnel }) {
           <figure className="relative overflow-hidden rounded-xl border border-border bg-ivory-dark">
             <img
               src={POSTER}
-              alt="The Chapter House illustration from the Christian Chapter homepage"
+              alt="Illustration from the Christian Chapter homepage"
               width={2400}
               height={1600}
               className="aspect-[3/2] w-full object-cover"
