@@ -268,33 +268,10 @@ export default function AccountPage() {
           )}
         </div>
 
-        <h2 className="font-serif text-2xl text-plum mb-3">Membership card</h2>
-        <p className="text-[15px] text-plum-muted mb-4">
-          {data.billing?.cardSaved
-            ? `A card is saved. The first payment of ${data.billing.priceLabel} is taken on ${data.billing.collectsLabel}. Nothing is taken before then.`
-            : `You can save a card now. Membership stays free through 14 February 2027. The first payment of ${data.billing?.priceLabel ?? "£29 a month"} is taken on ${data.billing?.collectsLabel ?? "15 February 2027"}. We never store the card number.`}
+        <h2 className="font-serif text-2xl text-plum mb-3">Membership</h2>
+        <p className="text-[15px] text-plum-muted mb-10">
+          Founding membership is free. Payment is not open, and no card is taken.
         </p>
-        {!data.billing?.cardSaved && (
-          <button
-            type="button"
-            disabled={busy || data.billing?.stripeReady === false}
-            onClick={async () => {
-              setBusy(true);
-              const res = await fetch("/api/billing/checkout", { method: "POST" });
-              const json = await res.json().catch(() => ({}));
-              if (!res.ok || !json.url) {
-                setNotice(json.error ?? "Card saving is not connected yet.");
-                setBusy(false);
-                return;
-              }
-              window.location.href = json.url;
-            }}
-            className="min-h-[44px] px-5 border border-border rounded-md text-[14px] mb-10 disabled:opacity-50"
-          >
-            {data.billing?.stripeReady === false ? "Card saving is not connected yet" : "Save a card"}
-          </button>
-        )}
-        {data.billing?.cardSaved && <div className="mb-10" />}
 
         <h2 className="font-serif text-2xl text-plum mb-3">Who looked</h2>
         <p className="text-[15px] text-plum-muted mb-4">

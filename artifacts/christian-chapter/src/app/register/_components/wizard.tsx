@@ -23,7 +23,7 @@ function validateEmail(email: string) {
 function canContinueStep(step: number, d: WizardData): boolean {
   switch (step) {
     case 1:
-      return d.eligibilityAcknowledged && !!d.gender && d.seekingGender.length > 0;
+      return d.eligibilityAcknowledged && !!d.gender && d.seekingGender.length > 0 && !!d.firstName.trim();
     case 2: {
       const age = getAge(d.dateOfBirth);
       return !!d.dateOfBirth && age !== null && age >= MINIMUM_AGE;

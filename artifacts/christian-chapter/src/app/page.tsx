@@ -2,7 +2,7 @@ import { IconBlock, IconCovenant, IconEye, IconFaith, IconLamp, IconLeave, IconO
 import { LegacyHouseRedirect } from "@/components/home/legacy-house-redirect";
 import { PhoneMocks } from "@/components/home/phone-mock";
 import { LinkButton } from "@/components/ui/button";
-import { FOUNDING_MEMBER_COPY, siteConfig } from "@/lib/site-config";
+import { FOUNDING_MEMBER_COPY, HERO_OFFER, siteConfig } from "@/lib/site-config";
 import type { Metadata } from "next";
 import Image from "next/image";
 
@@ -148,7 +148,8 @@ export default function HomePage() {
               >
                 Meet Christian Singles
               </a>
-              <p className="mt-3 text-center text-[15px]">
+              <p className="mt-3 text-center text-[14px] leading-5 text-plum">{HERO_OFFER}</p>
+              <p className="mt-2 text-center text-[15px]">
                 <a href="/sign-in" className="font-semibold text-life underline underline-offset-4">
                   Sign in
                 </a>

@@ -37,7 +37,7 @@ function PhotoFrame({ photo, caption }: { photo: ProfilePhoto; caption?: React.R
   return (
     <figure className="relative overflow-hidden rounded-[18px] bg-ivory-darker aspect-[4/5]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={photo.url} alt="" className="absolute inset-0 h-full w-full object-cover" />
+      <img src={photo.url} alt="" className="absolute inset-0 h-full w-full object-cover object-[center_18%]" />
       {caption && (
         <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-plum/80 to-transparent px-5 pb-5 pt-16 text-ivory">
           {caption}
