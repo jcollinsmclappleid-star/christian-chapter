@@ -7,6 +7,7 @@ const links = [
   { href: "/safety", label: "Safety" },
   { href: "/pricing", label: "Pricing" },
   { href: "/christian-dating", label: "Christian dating" },
+  { href: "/free-christian-dating", label: "Free to join" },
   { href: "/guides", label: "Guides" },
   { href: "/register", label: "Create your profile" },
   { href: "/privacy", label: "Privacy" },

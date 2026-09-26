@@ -10,6 +10,7 @@ import {
   promotionBlockers,
   seoBriefs,
 } from "./briefs.ts";
+import { acquisitionPages } from "./acquisition.ts";
 import { searchArticles } from "./catalog.ts";
 import {
   QC_CHECKLIST,
@@ -50,6 +51,7 @@ const PUBLISHED_PATHS = [
   "/terms",
   "/cookies",
   ...searchArticles.map((article) => article.path),
+  ...acquisitionPages.map((page) => page.path),
 ];
 
 describe("seo registry", () => {

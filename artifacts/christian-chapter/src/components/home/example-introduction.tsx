@@ -1,4 +1,5 @@
 import { demoIntroduction } from "@/lib/home/demo-fixture";
+import { TRAVEL_MILES_COPY } from "@/lib/site-config";
 
 export function ExampleIntroduction() {
   return (
@@ -20,7 +21,7 @@ export function ExampleIntroduction() {
         </p>
         <p className="mt-3 text-[16px] leading-6 text-plum">{demoIntroduction.lookingFor}</p>
         <p className="mt-3 text-[15px] leading-6 text-plum-muted">{demoIntroduction.why[0]}</p>
-        <p className="mt-3 text-[13px] leading-5 text-stone">Exact miles are not published.</p>
+        <p className="mt-3 text-[13px] leading-5 text-stone">{TRAVEL_MILES_COPY}</p>
       </div>
     </article>
   );

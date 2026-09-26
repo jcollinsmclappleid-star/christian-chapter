@@ -33,7 +33,8 @@ export default function ChristianDatingPage() {
         related={[
           { href: "/christian-dating/over-40", label: "Christian dating over 40" },
           { href: "/christian-dating/catholic", label: "Catholic dating" },
-          { href: "/christian-dating/greater-london", label: "Christian dating in London" },
+          { href: "/christian-dating/in/london", label: "Christian dating in London" },
+          { href: "/free-christian-dating", label: "Free Christian dating" },
           { href: "/christian-dating/widowed", label: "Christian dating for widowed singles" },
         ]}
       />

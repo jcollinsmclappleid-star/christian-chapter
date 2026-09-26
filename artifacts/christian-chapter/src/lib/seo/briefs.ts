@@ -1,3 +1,4 @@
+import { acquisitionPages } from "./acquisition.ts";
 import { articleForPath, articleSourceFile } from "./catalog.ts";
 
 /**
@@ -36,6 +37,7 @@ export const ALLOWED_FACT_KEYS = [
   "ukAdults40Plus",
   "separateReligiousConsent",
   "milesNotPublished",
+  "travelMilesChosen",
   "photoReviewedByAPerson",
   "magicLinkEmail",
   "matchingNotLiveBeforeOpening",
@@ -238,7 +240,7 @@ const registry: SeoBrief[] = [
     h1: "Christian dating in the UK",
     title: "Christian dating UK — meet genuine Christian singles",
     description:
-      "Mature Christian Dating is a UK dating service for genuine Christian singles aged 40–70. Considered introductions based on faith, life stage and intention — not swiping or endless browsing.",
+      "Mature Christian Dating is for UK adults aged 40 and over. There is no maximum age. Matching goes live on 14 February 2027. Create a profile to begin.",
     allowedFacts: [...CORE_FACTS, "separateReligiousConsent"],
     internalLinks: [
       "/christian-dating/over-40",
@@ -529,7 +531,7 @@ const registry: SeoBrief[] = [
   ),
 ];
 
-export const seoBriefs: SeoBrief[] = registry.map((record) => {
+const fromArticles: SeoBrief[] = registry.map((record) => {
   const article = articleForPath(record.path);
   const sourceFile = articleSourceFile(record.path);
   if (!article || !sourceFile) return record;
@@ -538,17 +540,40 @@ export const seoBriefs: SeoBrief[] = registry.map((record) => {
     h1: article.h1,
     title: article.title,
     description: article.description,
-    status: "published",
-    index: "index",
+    status: "published" as const,
+    index: "index" as const,
     body: article.lede,
     secondPassSignedAt: "2026-09-23",
     sourceFile,
     internalLinks: article.related.map((link) => link.href),
     lastModified: "2026-09-23",
-    changeFrequency: "monthly",
+    changeFrequency: "monthly" as const,
     priority: record.path === "/guides" ? 0.6 : 0.7,
   };
 });
+
+const fromAcquisition: SeoBrief[] = acquisitionPages.map((item) => ({
+  path: item.path,
+  primaryQuery: item.primaryQuery,
+  searchIntent: item.searchIntent,
+  status: "published" as const,
+  index: "index" as const,
+  wordBand: WORD_BANDS.product,
+  h1: item.h1,
+  title: item.title,
+  description: item.description,
+  allowedFacts: [...CORE_FACTS, "travelMilesChosen" as const],
+  forbiddenClaims: FORBIDDEN_CLAIM_PHRASES,
+  internalLinks: item.related.map((link) => link.href),
+  body: item.lede,
+  secondPassSignedAt: "2026-09-26",
+  sourceFile: item.sourceFile,
+  lastModified: "2026-09-26",
+  changeFrequency: "monthly" as const,
+  priority: item.path === "/free-christian-dating" ? 0.8 : 0.5,
+}));
+
+export const seoBriefs: SeoBrief[] = [...fromArticles, ...fromAcquisition];
 
 export function mayIndex(record: SeoBrief): boolean {
   return record.status === "published" && record.index === "index";

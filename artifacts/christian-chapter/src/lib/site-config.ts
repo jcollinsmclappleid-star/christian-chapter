@@ -10,6 +10,10 @@ export const MARKETING_CONSENT_VERSION = "2026-09-20";
 export const TERMS_CONSENT_VERSION = "2026-09-22";
 
 export const MINIMUM_AGE = 40;
+/** The distance control on a profile. Public pages may quote this range and no other radius. */
+export const TRAVEL_MILES_MIN = 10;
+export const TRAVEL_MILES_MAX = 200;
+export const TRAVEL_MILES_COPY = `You choose how far you will travel, from ${TRAVEL_MILES_MIN} to ${TRAVEL_MILES_MAX} miles.`;
 export const APPLICATION_RETENTION_DAYS = 30;
 
 /**
