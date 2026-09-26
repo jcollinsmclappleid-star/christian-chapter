@@ -5,7 +5,7 @@ import { acquisitionPages } from "./acquisition.ts";
 import { HUB_PLACE_SLUGS, PLACES, REGIONS, TOP_PLACE_SLUGS, isTopPlace, placesInRegion } from "./places.ts";
 import { FORBIDDEN_CLAIM_PHRASES, seoBriefs } from "./briefs.ts";
 import { forbiddenHits, voiceHits } from "./qc.ts";
-import { MINIMUM_AGE, TRAVEL_MILES_COPY, TRAVEL_MILES_MAX, TRAVEL_MILES_MIN } from "../site-config.ts";
+import { HERO_OFFER, MINIMUM_AGE, TRAVEL_MILES_COPY, TRAVEL_MILES_MAX, TRAVEL_MILES_MIN } from "../site-config.ts";
 
 const ALLOWED_NUMBERS = new Set([String(MINIMUM_AGE), "45", "50", "55", "60", "65", "70", String(TRAVEL_MILES_MIN), String(TRAVEL_MILES_MAX)]);
 
@@ -78,5 +78,25 @@ describe("acquisition funnels", () => {
     for (const page of acquisitionPages) {
       assert.doesNotMatch(`${page.h1} ${page.lede} ${page.description}`, /40[–-]70/, page.path);
     }
+    for (const path of [
+      "/christian-matchmaker",
+      "/christian-matchmaking",
+      "/christian-introduction-service",
+      "/concierge-matchmaking",
+      "/free-christian-matchmaker",
+      "/personal-matchmaker",
+      "/christian-dating-agency",
+      "/christian-matchmaker/in/london",
+      "/christian-matchmaker/in/manchester",
+    ]) {
+      assert.ok(acquisitionPages.some((page) => page.path === path), path);
+    }
+    assert.equal(acquisitionPages.some((page) => page.path === "/christian-matchmaker/in/harrogate"), false);
+    assert.match(HERO_OFFER, /concierge/i);
+    assert.match(HERO_OFFER, /free/i);
+    assert.doesNotMatch(HERO_OFFER, /matching is open now/i);
+    const funnel = readFileSync(new URL("../../components/seo/dating-funnel.tsx", import.meta.url), "utf8");
+    assert.doesNotMatch(funnel, /same hope as the homepage/i);
+    assert.match(funnel, /FUNNEL_SERVICE_HEADING/);
   });
 });

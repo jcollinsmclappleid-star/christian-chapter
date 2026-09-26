@@ -1,4 +1,4 @@
-import { FOUNDING_MEMBER_COPY, HERO_OFFER, siteConfig, TRAVEL_MILES_COPY } from "@/lib/site-config";
+import { FOUNDING_MEMBER_COPY, FUNNEL_SERVICE_HEADING, FUNNEL_SERVICE_LINE, HERO_OFFER, siteConfig, TRAVEL_MILES_COPY } from "@/lib/site-config";
 import Image from "next/image";
 
 const promise = [
@@ -100,8 +100,9 @@ export function DatingFunnel({
       <section className="bg-life">
         <div className="mx-auto max-w-3xl px-5 py-12 md:px-8">
           <h2 className="font-sans text-[2rem] font-bold leading-tight tracking-[-0.03em] text-paper">
-            The same hope as the homepage.
+            {FUNNEL_SERVICE_HEADING}
           </h2>
+          <p className="mt-3 text-[17px] leading-6 text-foam">{FUNNEL_SERVICE_LINE}</p>
           <ul className="mt-6">
             {promise.map((item) => (
               <li key={item.title} className="border-t border-white/15 py-5">

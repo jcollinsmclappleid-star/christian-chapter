@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     absolute: "Mature Christian dating",
   },
   description:
-    "Mature Christian dating for UK adults aged 40 and over. Meet thoughtful Christian singles who share your faith and want a meaningful relationship — without endless swiping.",
+    "Free concierge matchmaking for UK Christian adults aged 40 and over. A matchmaker hand-picks an introduction for founding members. There is no maximum age.",
   alternates: { canonical: siteConfig.siteUrl },
 };
 
@@ -41,8 +41,8 @@ const path = [
   },
   {
     n: "2",
-    title: "We look for the fit",
-    body: "An introduction arrives with a reason you can understand.",
+    title: "A matchmaker chooses",
+    body: "Complete your profile. A concierge matchmaker hand-picks an introduction, and founding members are matched free.",
   },
   {
     n: "3",

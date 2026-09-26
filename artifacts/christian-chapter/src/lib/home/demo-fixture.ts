@@ -69,7 +69,7 @@ export const demoConnection = {
     photo: "/images/home/connect-amara.jpg",
     alt: "Amara in a navy jumper",
   },
-  line: "A hand-picked introduction.",
+  line: "A concierge introduction.",
 };
 
 export const demoEssentials = [

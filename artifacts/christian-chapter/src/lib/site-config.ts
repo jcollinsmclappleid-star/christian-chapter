@@ -37,10 +37,15 @@ export const INCOGNITO_STARTS_LABEL = "15 February 2027";
 
 /** One customer-facing account of the founding stage. */
 export const HERO_OFFER =
-  "Free for founding members. A complete profile can be hand-picked. Live matching opens on 14 February 2027.";
+  "Free Cupid concierge for founding members. A matchmaker hand-picks your introduction. Live matching opens on 14 February 2027.";
 
 export const FOUNDING_MEMBER_COPY =
-  "Mature Christian Dating is free for founding members. No payment is taken. A complete profile can be considered for a personal hand-picked introduction. The live matching system goes live on 14 February 2027.";
+  "Mature Christian Dating is a concierge matchmaking service. A matchmaker hand-picks an introduction from a complete profile, and founding members are matched free. No payment is taken. The live matching system goes live on 14 February 2027. An introduction is a choice, not a guarantee.";
+
+/** Replaces a line that only pointed back at the homepage. */
+export const FUNNEL_SERVICE_HEADING = "A matchmaker hand-picks your introduction.";
+export const FUNNEL_SERVICE_LINE =
+  "This is concierge matchmaking. Founding members receive it free, and you decide whether to say yes.";
 
 function env(name: string, fallback = ""): string {
   return (process.env[name] ?? fallback).trim();

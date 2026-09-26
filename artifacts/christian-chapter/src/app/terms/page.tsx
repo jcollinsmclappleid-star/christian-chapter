@@ -24,8 +24,8 @@ export default function TermsPage() {
       <h2>Opening offer</h2>
       <p>
         Joining is free for founding members. Payment is not open, and no card
-        is taken. A complete profile can be considered for a personal
-        hand-picked introduction. The live matching system goes live on
+        is taken. Concierge matchmaking means a matchmaker may hand-pick an
+        introduction from a complete profile. The live matching system goes live on
         14 February 2027. That is not a guarantee of an introduction.
       </p>
       <h2>No guarantee of a match or a date</h2>
