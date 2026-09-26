@@ -4,7 +4,7 @@ import { siteConfig } from "./site-config";
 const siteUrl = siteConfig.siteUrl;
 const siteName = "Mature Christian Dating";
 const defaultDescription =
-  "Christian dating for your next chapter. Meet genuine Christian singles aged 40–70 who share your faith, values and hopes for what comes next. A UK founding cohort.";
+  "Christian dating for UK adults aged 40 and over. There is no maximum age. Meet Christian singles who share your faith and want a lasting relationship.";
 
 export function buildMetadata({
   title,

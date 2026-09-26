@@ -240,7 +240,7 @@ const registry: SeoBrief[] = [
     h1: "Christian dating in the UK",
     title: "Christian dating UK — meet genuine Christian singles",
     description:
-      "Mature Christian Dating is a UK dating service for genuine Christian singles aged 40–70. Considered introductions based on faith, life stage and intention — not swiping or endless browsing.",
+      "Mature Christian Dating is for UK adults aged 40 and over. There is no maximum age. Matching goes live on 14 February 2027. Create a profile to begin.",
     allowedFacts: [...CORE_FACTS, "separateReligiousConsent"],
     internalLinks: [
       "/christian-dating/over-40",

@@ -1,8 +1,9 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { acquisitionPages } from "./acquisition.ts";
-import { PLACES, REGIONS, TOP_PLACE_SLUGS, placesInRegion } from "./places.ts";
-import { FORBIDDEN_CLAIM_PHRASES } from "./briefs.ts";
+import { HUB_PLACE_SLUGS, PLACES, REGIONS, TOP_PLACE_SLUGS, isTopPlace, placesInRegion } from "./places.ts";
+import { FORBIDDEN_CLAIM_PHRASES, seoBriefs } from "./briefs.ts";
 import { forbiddenHits, voiceHits } from "./qc.ts";
 import { MINIMUM_AGE, TRAVEL_MILES_COPY, TRAVEL_MILES_MAX, TRAVEL_MILES_MIN } from "../site-config.ts";
 
@@ -49,12 +50,33 @@ describe("acquisition funnels", () => {
       assert.ok(acquisitionPages.some((page) => page.path === `/christian-dating/in/${slug}/over-50`));
       assert.ok(acquisitionPages.some((page) => page.path === `/free-christian-dating/in/${slug}`));
     }
-    const towns = PLACES.filter((place) => place.kind === "town");
-    for (const town of towns) {
-      assert.equal(acquisitionPages.some((page) => page.path === `/christian-dating/in/${town.slug}/over-50`), false, town.slug);
+    for (const slug of HUB_PLACE_SLUGS) {
+      assert.ok(acquisitionPages.some((page) => page.path === `/christian-dating/in/${slug}/over-40`));
+      assert.ok(acquisitionPages.some((page) => page.path === `/christian-dating/in/${slug}/over-60`));
+      assert.ok(acquisitionPages.some((page) => page.path === `/christian-dating/in/${slug}/anglican`));
+      assert.ok(acquisitionPages.some((page) => page.path === `/christian-dating/in/${slug}/widowed`));
     }
+    for (const extra of ["baptist", "methodist", "pentecostal", "evangelical", "remarriage", "after-bereavement"]) {
+      assert.ok(acquisitionPages.some((page) => page.path === `/christian-dating/in/london/${extra}`));
+      assert.equal(acquisitionPages.some((page) => page.path === `/christian-dating/in/birmingham/${extra}`), false, extra);
+    }
+    for (const place of PLACES) {
+      if (isTopPlace(place.slug)) continue;
+      assert.equal(acquisitionPages.some((page) => page.path === `/christian-dating/in/${place.slug}/over-50`), false, place.slug);
+      assert.equal(acquisitionPages.some((page) => page.path === `/christian-dating/in/${place.slug}/over-40`), false, place.slug);
+    }
+    assert.ok(placesInRegion("greater-london").length >= 50);
     assert.ok(acquisitionPages.some((page) => page.path === "/free-christian-dating"));
     assert.ok(acquisitionPages.some((page) => page.path === "/christian-dating/in/harrogate"));
     assert.ok(acquisitionPages.some((page) => page.path === "/christian-dating/in/tunbridge-wells"));
+    assert.ok(acquisitionPages.some((page) => page.path === "/christian-dating/in/islington"));
+    assert.ok(acquisitionPages.some((page) => page.path === "/christian-dating/in/salford"));
+    const metadataSource = readFileSync(new URL("../metadata.ts", import.meta.url), "utf8");
+    assert.doesNotMatch(metadataSource, /40[–-]70/);
+    const hub = seoBriefs.find((item) => item.path === "/christian-dating");
+    assert.doesNotMatch(hub?.description ?? "", /40[–-]70/);
+    for (const page of acquisitionPages) {
+      assert.doesNotMatch(`${page.h1} ${page.lede} ${page.description}`, /40[–-]70/, page.path);
+    }
   });
 });

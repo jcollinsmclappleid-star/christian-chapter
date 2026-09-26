@@ -1,5 +1,5 @@
 import { MINIMUM_AGE } from "../site-config.ts";
-import { alsoInRegion, isTopPlace, PLACES, placePath, regionBySlug, regionPath } from "./places.ts";
+import { alsoInRegion, isHubPlace, isTopPlace, PLACES, placePath, regionBySlug, regionPath, regionPrimary, type Place } from "./places.ts";
 
 export type AcquisitionLink = { href: string; label: string };
 
@@ -47,11 +47,54 @@ const INTENTS: { slug: string; h1: string; lede: string; query: string }[] = [
   { slug: "quaker", h1: "Quaker dating", query: "quaker dating uk", lede: "Quaker dating is for adults in the Religious Society of Friends who want a partner who respects that worship." },
 ];
 
-const FACETS = [
-  { slug: "over-50", h1: (name: string) => `Christian dating over 50 in ${name}`, lede: (name: string, region: string) => `Christian dating over 50 in ${name} is for adults aged 50 and over. ${name} is in ${region}.` },
-  { slug: "catholic", h1: (name: string) => `Catholic dating in ${name}`, lede: (name: string, region: string) => `Catholic dating in ${name} is for Catholic adults aged ${MINIMUM_AGE} and over. ${name} is in ${region}.` },
-  { slug: "after-divorce", h1: (name: string) => `Christian dating after divorce in ${name}`, lede: (name: string, region: string) => `Christian dating after divorce in ${name} is for adults whose marriage has ended. ${name} is in ${region}.` },
-] as const;
+type FacetTier = "top" | "hub" | "london";
+
+type FacetDef = {
+  slug: string;
+  tier: FacetTier;
+  h1: (name: string) => string;
+  lede: (name: string, region: string) => string;
+  related: AcquisitionLink;
+};
+
+const noCap = "There is no maximum age.";
+
+const FACETS: FacetDef[] = [
+  { slug: "over-50", tier: "top", h1: (name) => `Christian dating over 50 in ${name}`, lede: (name, region) => `Christian dating over 50 in ${name} is for adults aged 50 and over. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/over-50", label: "Christian dating over 50" } },
+  { slug: "catholic", tier: "top", h1: (name) => `Catholic dating in ${name}`, lede: (name, region) => `Catholic dating in ${name} is for Catholic adults aged ${MINIMUM_AGE} and over. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/catholic", label: "Catholic dating" } },
+  { slug: "after-divorce", tier: "top", h1: (name) => `Christian dating after divorce in ${name}`, lede: (name, region) => `Christian dating after divorce in ${name} is for adults whose marriage has ended. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/after-divorce", label: "Christian dating after divorce" } },
+  { slug: "over-40", tier: "hub", h1: (name) => `Christian dating over 40 in ${name}`, lede: (name, region) => `Christian dating over 40 in ${name} is for adults aged 40 and over. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/over-40", label: "Christian dating over 40" } },
+  { slug: "over-60", tier: "hub", h1: (name) => `Christian dating over 60 in ${name}`, lede: (name, region) => `Christian dating over 60 in ${name} is for adults aged 60 and over. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/over-60", label: "Christian dating over 60" } },
+  { slug: "anglican", tier: "hub", h1: (name) => `Anglican dating in ${name}`, lede: (name, region) => `Anglican dating in ${name} is for Anglican adults aged ${MINIMUM_AGE} and over. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/anglican", label: "Anglican dating" } },
+  { slug: "widowed", tier: "hub", h1: (name) => `Christian dating for widowed adults in ${name}`, lede: (name, region) => `Christian dating for widowed adults in ${name} is for people whose partner has died. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/widowed", label: "Christian dating for widowed singles" } },
+  { slug: "baptist", tier: "london", h1: (name) => `Baptist dating in ${name}`, lede: (name, region) => `Baptist dating in ${name} is for Baptist adults aged ${MINIMUM_AGE} and over. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/baptist", label: "Baptist dating" } },
+  { slug: "methodist", tier: "london", h1: (name) => `Methodist dating in ${name}`, lede: (name, region) => `Methodist dating in ${name} is for Methodist adults aged ${MINIMUM_AGE} and over. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/methodist", label: "Methodist dating" } },
+  { slug: "pentecostal", tier: "london", h1: (name) => `Pentecostal dating in ${name}`, lede: (name, region) => `Pentecostal dating in ${name} is for Pentecostal adults aged ${MINIMUM_AGE} and over. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/pentecostal", label: "Pentecostal dating" } },
+  { slug: "evangelical", tier: "london", h1: (name) => `Evangelical dating in ${name}`, lede: (name, region) => `Evangelical dating in ${name} is for adults who would name that tradition. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/evangelical", label: "Evangelical Christian dating" } },
+  { slug: "remarriage", tier: "london", h1: (name) => `Christian remarriage in ${name}`, lede: (name, region) => `Christian remarriage in ${name} is for adults who are open to marrying again. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/remarriage", label: "Christian remarriage" } },
+  { slug: "after-bereavement", tier: "london", h1: (name) => `Christian dating after bereavement in ${name}`, lede: (name, region) => `Christian dating after bereavement in ${name} is for adults who have lost a partner. ${name} is in ${region}. ${noCap}`, related: { href: "/christian-dating/after-bereavement", label: "Christian dating after bereavement" } },
+];
+
+export function facetsForPlace(slug: string): FacetDef[] {
+  return FACETS.filter((facet) => {
+    if (facet.tier === "top") return isTopPlace(slug);
+    if (facet.tier === "hub") return isHubPlace(slug);
+    return slug === "london";
+  });
+}
+
+export function facetSlugsForPlace(slug: string): string[] {
+  return facetsForPlace(slug).map((facet) => facet.slug);
+}
+
+function nearbyLinks(place: Place): AcquisitionLink[] {
+  const primary = regionPrimary(place);
+  const others = alsoInRegion(place).filter((item) => item.slug !== primary?.slug);
+  return [
+    ...(primary ? [{ href: placePath(primary), label: primary.name }] : []),
+    ...others.map((item) => ({ href: placePath(item), label: item.name })),
+  ];
+}
 
 function intentPages(): AcquisitionPage[] {
   return INTENTS.map((intent) =>
@@ -103,49 +146,55 @@ function placePages(): AcquisitionPage[] {
   for (const place of PLACES) {
     const region = regionBySlug(place.region);
     if (!region) continue;
-    const others = alsoInRegion(place);
     const path = placePath(place);
     pages.push(
       page({
         path,
         h1: `Christian dating in ${place.name}`,
-        lede: `Christian dating in ${place.name} is for adults aged ${MINIMUM_AGE} and over. ${place.name} is in ${region.name}.`,
+        lede: `Christian dating in ${place.name} is for adults aged ${MINIMUM_AGE} and over. ${place.name} is in ${region.name}. There is no maximum age.`,
         primaryQuery: `christian dating ${place.name.toLowerCase()}`,
         searchIntent: `Christian dating for adults in ${place.name}`,
         sourceFile: "app/christian-dating/in/[place]/[[...facet]]/page.tsx",
         crumbs: [HOME, HUB, { href: regionPath(place.region), label: region.name }, { href: path, label: place.name }],
         related: [
           { href: regionPath(place.region), label: region.name },
-          ...others.map((item) => ({ href: placePath(item), label: item.name })),
+          ...nearbyLinks(place),
           ...(isTopPlace(place.slug)
             ? [
                 { href: `${path}/over-50`, label: `Over 50 in ${place.name}` },
                 { href: `/free-christian-dating/in/${place.slug}`, label: `Free Christian dating in ${place.name}` },
               ]
             : []),
+          ...(isHubPlace(place.slug)
+            ? [
+                { href: `${path}/over-40`, label: `Over 40 in ${place.name}` },
+                { href: `${path}/anglican`, label: `Anglican dating in ${place.name}` },
+              ]
+            : []),
+          ...(place.slug === "london"
+            ? [
+                { href: `${path}/widowed`, label: `Widowed singles in ${place.name}` },
+                { href: `${path}/baptist`, label: `Baptist dating in ${place.name}` },
+              ]
+            : []),
         ],
       }),
     );
-    if (!isTopPlace(place.slug)) continue;
-    for (const facet of FACETS) {
+    for (const facet of facetsForPlace(place.slug)) {
       const facetPath = `${path}/${facet.slug}`;
       pages.push(
         page({
           path: facetPath,
           h1: facet.h1(place.name),
           lede: facet.lede(place.name, region.name),
-          primaryQuery: `${facet.slug.replaceAll("-", " ")} ${place.name.toLowerCase()}`,
+          primaryQuery: `${facet.slug.replaceAll("-", " ")} christian dating ${place.name.toLowerCase()}`,
           searchIntent: facet.h1(place.name),
           sourceFile: "app/christian-dating/in/[place]/[[...facet]]/page.tsx",
           crumbs: [HOME, HUB, { href: path, label: place.name }, { href: facetPath, label: facet.h1(place.name) }],
           related: [
             { href: path, label: `Christian dating in ${place.name}` },
             { href: regionPath(place.region), label: region.name },
-            facet.slug === "over-50"
-              ? { href: "/christian-dating/over-50", label: "Christian dating over 50" }
-              : facet.slug === "catholic"
-                ? { href: "/christian-dating/catholic", label: "Catholic dating" }
-                : { href: "/christian-dating/after-divorce", label: "Christian dating after divorce" },
+            facet.related,
           ],
         }),
       );
@@ -238,7 +287,7 @@ function freePages(): AcquisitionPage[] {
     return page({
       path: `/free-christian-dating/in/${place.slug}`,
       h1: `Free Christian dating in ${place.name}`,
-      lede: `Free Christian dating in ${place.name} means a founding profile with no payment taken. ${place.name} is in ${region?.name}.`,
+      lede: `Free Christian dating in ${place.name} means a founding profile with no payment taken. ${place.name} is in ${region?.name}. There is no maximum age.`,
       primaryQuery: `free christian dating ${place.name.toLowerCase()}`,
       searchIntent: `Free Christian dating in ${place.name}`,
       sourceFile,

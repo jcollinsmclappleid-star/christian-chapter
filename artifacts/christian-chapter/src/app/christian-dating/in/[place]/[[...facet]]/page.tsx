@@ -1,19 +1,16 @@
 import { notFound } from "next/navigation";
 import { DatingFunnel } from "@/components/seo/dating-funnel";
-import { placeFacetPage } from "@/lib/seo/acquisition";
-import { isTopPlace, PLACES } from "@/lib/seo/places";
+import { facetSlugsForPlace, placeFacetPage } from "@/lib/seo/acquisition";
+import { PLACES } from "@/lib/seo/places";
 import { buildMetadata } from "@/lib/metadata";
 
 export const dynamicParams = false;
-
-const FACETS = ["over-50", "catholic", "after-divorce"];
 
 export function generateStaticParams() {
   const params: { place: string; facet?: string[] }[] = [];
   for (const place of PLACES) {
     params.push({ place: place.slug });
-    if (!isTopPlace(place.slug)) continue;
-    for (const facet of FACETS) params.push({ place: place.slug, facet: [facet] });
+    for (const facet of facetSlugsForPlace(place.slug)) params.push({ place: place.slug, facet: [facet] });
   }
   return params;
 }
