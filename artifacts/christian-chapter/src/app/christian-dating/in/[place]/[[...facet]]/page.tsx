@@ -7,10 +7,13 @@ import { buildMetadata } from "@/lib/metadata";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  const params: { place: string; facet?: string[] }[] = [];
+  const params: { place: string; facet: string[] }[] = [];
   for (const place of PLACES) {
-    params.push({ place: place.slug });
-    for (const facet of facetSlugsForPlace(place.slug)) params.push({ place: place.slug, facet: [facet] });
+    // The optional catch-all must be an array. Omitting it drops every place page from the production build.
+    params.push({ place: place.slug, facet: [] });
+    for (const facet of facetSlugsForPlace(place.slug)) {
+      params.push({ place: place.slug, facet: [facet] });
+    }
   }
   return params;
 }
