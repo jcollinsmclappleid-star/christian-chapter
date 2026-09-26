@@ -101,7 +101,7 @@ const photos = [
   },
   {
     src: "/images/home/joy-kitchen.jpg",
-    alt: "A couple in their forties, in a cream cardigan and blue shirt, cooking together",
+    alt: "A couple in their forties, she in a white blouse and he in a light blue shirt, cooking together",
     line: "A life you share",
     note: "Ordinary days, and the person who wants them with you.",
   },

@@ -9,7 +9,7 @@ const promise = [
 
 const photos = [
   { src: "/images/home/joy-courtyard.jpg", alt: "A couple in their forties, she in a rust top and he in a light blue shirt, walking on a park path", line: "Someone who chooses you", focus: "object-[center_18%]" },
-  { src: "/images/home/joy-kitchen.jpg", alt: "A couple in their forties, in a cream cardigan and blue shirt, cooking together", line: "A life you share", focus: "object-[center_18%]" },
+  { src: "/images/home/joy-kitchen.jpg", alt: "A couple in their forties, she in a white blouse and he in a light blue shirt, cooking together", line: "A life you share", focus: "object-[center_18%]" },
   { src: "/images/home/joy-park.jpg", alt: "A couple in their sixties, in a mustard raincoat and olive jacket, walking on a park path", line: "The match you hoped for", focus: "object-[center_18%]" },
 ];
 
