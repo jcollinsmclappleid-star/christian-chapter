@@ -12,7 +12,7 @@ export const metadata = buildMetadata({
 const foundingBenefits = [
   "Complete your full profile",
   "Set your Essentials, Preferred and Open-minded preferences",
-  "A complete profile can be hand-picked",
+  "A matchmaker hand-picks an introduction from a complete profile",
   "Live matching opens on 14 February 2027",
   "Free for founding members. Payment is not open",
 ];
@@ -27,12 +27,12 @@ const faqs = [
     a: "Nothing. Payment is not open. Founding membership stays free, and no card is taken.",
   },
   {
-    q: "What is the difference between hand-picked and live matching?",
-    a: "A complete profile can be considered for a personal hand-picked introduction. The live matching system is the later service, and it opens on 14 February 2027.",
+    q: "What is the difference between the concierge and live matching?",
+    a: "A matchmaker hand-picks an introduction from a complete profile. That concierge service is free for founding members. The live matching system is the later service, and it opens on 14 February 2027.",
   },
   {
     q: "When does matching go live?",
-    a: `A complete profile can be considered for a personal hand-picked introduction now. The live matching system goes live on ${OPENING_OFFER_ENDS_LABEL}. It is not a guarantee of a match.`,
+    a: `A matchmaker can hand-pick an introduction from a complete profile now. Founding members are matched free. The live matching system goes live on ${OPENING_OFFER_ENDS_LABEL}. It is not a guarantee of a match.`,
   },
   {
     q: "Can I cancel at any time?",
@@ -52,7 +52,7 @@ export default function PricingPage() {
             Free until {OPENING_OFFER_ENDS_LABEL}.
           </h1>
           <p className="text-[17px] text-plum-muted leading-7 max-w-[540px]">
-            Founding membership is free. A complete profile can be hand-picked. The live matching system opens on {OPENING_OFFER_ENDS_LABEL}. Payment is not open.
+            Founding membership is free concierge matchmaking. A matchmaker hand-picks an introduction from a complete profile. The live matching system opens on {OPENING_OFFER_ENDS_LABEL}. Payment is not open.
           </p>
         </div>
       </section>

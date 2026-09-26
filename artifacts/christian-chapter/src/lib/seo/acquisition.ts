@@ -171,6 +171,9 @@ function placePages(): AcquisitionPage[] {
                 { href: `${path}/anglican`, label: `Anglican dating in ${place.name}` },
               ]
             : []),
+          ...(isTopPlace(place.slug)
+            ? [{ href: `/christian-matchmaker/in/${place.slug}`, label: `Matchmaker in ${place.name}` }]
+            : []),
           ...(place.slug === "london"
             ? [
                 { href: `${path}/widowed`, label: `Widowed singles in ${place.name}` },
@@ -219,6 +222,7 @@ function freePages(): AcquisitionPage[] {
         { href: "/free-christian-dating/over-50", label: "Free Christian dating over 50" },
         { href: "/free-christian-dating/catholic", label: "Free Catholic dating" },
         { href: "/free-christian-dating/in/london", label: "Free Christian dating in London" },
+        { href: "/christian-matchmaker", label: "Christian matchmaker" },
       ],
     }),
     page({
@@ -301,11 +305,106 @@ function freePages(): AcquisitionPage[] {
   return [...fixed, ...cityFree];
 }
 
+const MATCHMAKER: AcquisitionLink = { href: "/christian-matchmaker", label: "Christian matchmaker" };
+
+const SERVICE_PAGES: { path: string; h1: string; query: string; lede: string; sourceFile: string }[] = [
+  {
+    path: "/christian-matchmaker",
+    h1: "Christian matchmaker",
+    query: "christian matchmaker uk",
+    lede: "A Christian matchmaker reads a complete profile and hand-picks an introduction. For founding members this concierge service is free, and no payment is taken.",
+    sourceFile: "app/christian-matchmaker/page.tsx",
+  },
+  {
+    path: "/christian-matchmaking",
+    h1: "Christian matchmaking",
+    query: "christian matchmaking uk",
+    lede: "Christian matchmaking here is a person choosing an introduction for you. Founding members with a complete profile are matched free.",
+    sourceFile: "app/christian-matchmaking/page.tsx",
+  },
+  {
+    path: "/christian-introduction-service",
+    h1: "Christian introduction service",
+    query: "christian introduction service uk",
+    lede: "This Christian introduction service hand-picks who you meet. A complete profile is what the matchmaker uses. Founding membership is free.",
+    sourceFile: "app/christian-introduction-service/page.tsx",
+  },
+  {
+    path: "/concierge-matchmaking",
+    h1: "Concierge matchmaking",
+    query: "concierge matchmaking uk",
+    lede: "Concierge matchmaking means a matchmaker works from your complete profile and chooses an introduction. Founding members receive that premium service free.",
+    sourceFile: "app/concierge-matchmaking/page.tsx",
+  },
+  {
+    path: "/free-christian-matchmaker",
+    h1: "Free Christian matchmaker",
+    query: "free christian matchmaker",
+    lede: "A free Christian matchmaker is the founding offer. Complete your profile and a matchmaker can hand-pick an introduction, with no payment taken.",
+    sourceFile: "app/free-christian-matchmaker/page.tsx",
+  },
+  {
+    path: "/personal-matchmaker",
+    h1: "Personal Christian matchmaker",
+    query: "personal christian matchmaker",
+    lede: "A personal Christian matchmaker chooses an introduction from what you wrote, including what faith means to you after you sign in. Founding members are matched free.",
+    sourceFile: "app/personal-matchmaker/page.tsx",
+  },
+  {
+    path: "/christian-dating-agency",
+    h1: "Christian dating agency",
+    query: "christian dating agency uk",
+    lede: "A Christian dating agency, here, is a matchmaker making an introduction. It is free for founding members aged 40 and over. There is no maximum age.",
+    sourceFile: "app/christian-dating-agency/page.tsx",
+  },
+];
+
+function servicePages(): AcquisitionPage[] {
+  const roots = SERVICE_PAGES.map((service) =>
+    page({
+      path: service.path,
+      h1: service.h1,
+      lede: service.lede,
+      primaryQuery: service.query,
+      searchIntent: service.h1,
+      sourceFile: service.sourceFile,
+      crumbs: [HOME, { href: service.path, label: service.h1 }],
+      related: [
+        MATCHMAKER,
+        { href: "/concierge-matchmaking", label: "Concierge matchmaking" },
+        { href: "/free-christian-matchmaker", label: "Free Christian matchmaker" },
+        { href: "/christian-matchmaker/in/london", label: "Christian matchmaker in London" },
+        HUB,
+      ].filter((link) => link.href !== service.path),
+    }),
+  );
+  const cities = PLACES.filter((place) => isTopPlace(place.slug)).map((place) => {
+    const region = regionBySlug(place.region);
+    const path = `/christian-matchmaker/in/${place.slug}`;
+    return page({
+      path,
+      h1: `Christian matchmaker in ${place.name}`,
+      lede: `A Christian matchmaker in ${place.name} hand-picks an introduction from a complete profile. ${place.name} is in ${region?.name}. Founding members are matched free, and there is no maximum age.`,
+      primaryQuery: `christian matchmaker ${place.name.toLowerCase()}`,
+      searchIntent: `Christian matchmaker in ${place.name}`,
+      sourceFile: "app/christian-matchmaker/in/[place]/page.tsx",
+      crumbs: [HOME, MATCHMAKER, { href: path, label: place.name }],
+      related: [
+        MATCHMAKER,
+        { href: placePath(place), label: `Christian dating in ${place.name}` },
+        { href: regionPath(place.region), label: region?.name ?? "Region" },
+      ],
+    });
+  });
+  return [...roots, ...cities];
+}
+
 export const acquisitionPages: AcquisitionPage[] = [
   ...rootPages(),
   ...intentPages(),
   ...placePages(),
   ...freePages(),
+  ...servicePages(),
 ];
 
 const byPath = new Map(acquisitionPages.map((item) => [item.path, item]));

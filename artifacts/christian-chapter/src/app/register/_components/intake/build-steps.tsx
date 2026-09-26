@@ -451,7 +451,7 @@ export function StepReady({ data, update }: StepProps) {
       <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">Your profile is ready.</h2>
       <Note>{FOUNDING_MEMBER_COPY}</Note>
       <p className="mb-6 text-[15px] leading-6 text-plum-muted">
-        A photograph is optional. After this profile exists you can keep building it: more photographs, your story, about you, faith, your life, who you hope to meet, place, essentials, and privacy. A complete profile can be hand-picked. The live matching system opens on {OPENING_OFFER_ENDS_LABEL}.
+        A photograph is optional. After this profile exists you can keep building it: more photographs, your story, about you, faith, your life, who you hope to meet, place, essentials, and privacy. A complete profile is what a concierge matchmaker uses to hand-pick an introduction. Founding members are matched free. The live matching system opens on {OPENING_OFFER_ENDS_LABEL}.
       </p>
       <p className="mb-6">
         <a href="/demonstration" className="font-semibold text-life underline underline-offset-4">

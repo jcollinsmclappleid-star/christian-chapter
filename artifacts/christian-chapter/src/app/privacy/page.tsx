@@ -19,9 +19,9 @@ export default function PrivacyPage() {
         photograph only after it is verified. You can see your own while that
         decision is open. When we connect two members, they can write to each
         other. We do not run an open messaging network, calling, or a charge
-        today. Payment is not open, and no card is taken. A complete profile
-        can be considered for a personal hand-picked introduction. The live
-        matching system goes live on 14 February 2027.
+        today. Payment is not open, and no card is taken. A matchmaker may
+        hand-pick an introduction from a complete profile. Founding members
+        are matched free. The live matching system goes live on 14 February 2027.
       </p>
       <h2>Who we are</h2>
       <p>
