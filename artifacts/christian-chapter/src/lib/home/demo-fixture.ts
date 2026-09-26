@@ -40,16 +40,16 @@ export const demoProfiles = [
     lookingFor: "Someone kind, with a living faith and time for a shared life.",
   },
   {
-    firstName: "Priya",
-    age: 52,
-    region: "West Midlands",
-    tradition: "Catholic",
+    firstName: "Claire",
+    age: 50,
+    region: "South East England",
+    tradition: "Anglican / Church of England",
     poolLabel: "Nearby",
-    photo: "/images/home/profile-priya.jpg",
+    photo: "/images/home/profile-claire.jpg",
     lifeEvent: "Ready for a love that lasts.",
     moments: [
-      { src: "/images/home/priya-market.jpg", alt: "Priya at a flower market in a mustard raincoat" },
-      { src: "/images/home/priya-cafe.jpg", alt: "Priya by a cafe window in a cream jumper" },
+      { src: "/images/home/claire-park.jpg", alt: "Claire walking in a park in an olive coat" },
+      { src: "/images/home/claire-cafe.jpg", alt: "Claire by a cafe window in a cream jumper" },
     ],
     lookingFor: "Company first. Marriage if it is right, without hurry.",
   },
@@ -58,10 +58,10 @@ export const demoProfiles = [
 /** A labelled demonstration of a hand-picked introduction on a phone. Not members. */
 export const demoConnection = {
   left: {
-    firstName: "James",
+    firstName: "David",
     age: 54,
-    photo: "/images/home/connect-james.jpg",
-    alt: "James in a rust jumper",
+    photo: "/images/home/connect-david.jpg",
+    alt: "David in a grey jumper",
   },
   right: {
     firstName: "Amara",

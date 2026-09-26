@@ -95,7 +95,7 @@ const charge = [
 const photos = [
   {
     src: "/images/home/joy-courtyard.jpg",
-    alt: "A couple in their sixties, in a rust coat and navy jumper, walking in a brick courtyard",
+    alt: "A couple in their forties, she in a rust top and he in a light blue shirt, walking on a park path",
     line: "Someone who chooses you",
     note: "Love that is glad to be seen with you.",
   },
