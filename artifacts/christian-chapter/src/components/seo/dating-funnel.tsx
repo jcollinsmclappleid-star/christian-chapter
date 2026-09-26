@@ -8,9 +8,9 @@ const promise = [
 ];
 
 const photos = [
-  { src: "/images/home/joy-courtyard.jpg", alt: "A couple in their sixties walking and talking in a brick courtyard", line: "Someone who chooses you", focus: "object-[center_18%]" },
-  { src: "/images/home/joy-kitchen.jpg", alt: "A couple cooking together in a home kitchen, one tasting the sauce", line: "A life you share", focus: "object-[center_18%]" },
-  { src: "/images/home/joy-park.jpg", alt: "A couple walking and talking on a park path", line: "The match you hoped for", focus: "object-[center_18%]" },
+  { src: "/images/home/joy-courtyard.jpg", alt: "A couple in their sixties, in a rust coat and navy jumper, walking in a brick courtyard", line: "Someone who chooses you", focus: "object-[center_18%]" },
+  { src: "/images/home/joy-kitchen.jpg", alt: "A couple in their forties, in a cream cardigan and blue shirt, cooking together", line: "A life you share", focus: "object-[center_18%]" },
+  { src: "/images/home/joy-park.jpg", alt: "A couple in their sixties, in a mustard raincoat and olive jacket, walking on a park path", line: "The match you hoped for", focus: "object-[center_18%]" },
 ];
 
 export type FunnelLink = { href: string; label: string };
@@ -60,7 +60,7 @@ export function DatingFunnel({
         <div className="relative h-[48svh] min-h-[300px] md:h-auto">
           <Image
             src="/images/home/joy-rooftop.jpg"
-            alt="A couple in their fifties talking together on a sunny rooftop"
+            alt="A couple in their fifties, in a sage shirt and charcoal polo, talking on a sunny rooftop"
             fill
             priority
             className="object-cover object-[center_22%]"

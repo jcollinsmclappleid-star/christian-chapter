@@ -95,19 +95,19 @@ const charge = [
 const photos = [
   {
     src: "/images/home/joy-courtyard.jpg",
-    alt: "A couple in their sixties walking and talking in a brick courtyard",
+    alt: "A couple in their sixties, in a rust coat and navy jumper, walking in a brick courtyard",
     line: "Someone who chooses you",
     note: "Love that is glad to be seen with you.",
   },
   {
     src: "/images/home/joy-kitchen.jpg",
-    alt: "A couple cooking together in a home kitchen, one tasting the sauce",
+    alt: "A couple in their forties, in a cream cardigan and blue shirt, cooking together",
     line: "A life you share",
     note: "Ordinary days, and the person who wants them with you.",
   },
   {
     src: "/images/home/joy-park.jpg",
-    alt: "A couple walking and talking on a park path",
+    alt: "A couple in their sixties, in a mustard raincoat and olive jacket, walking on a park path",
     line: "The match you hoped for",
     note: "A person who wants the same future.",
   },
@@ -124,7 +124,7 @@ export default function HomePage() {
       <section className="relative h-[calc(100svh-3.5rem)] overflow-hidden bg-life">
         <Image
           src="/images/home/joy-rooftop.jpg"
-          alt="A couple in their fifties talking together on a sunny rooftop"
+          alt="A couple in their fifties, in a sage shirt and charcoal polo, talking on a sunny rooftop"
           fill
           priority
           className="object-cover object-[center_30%]"
