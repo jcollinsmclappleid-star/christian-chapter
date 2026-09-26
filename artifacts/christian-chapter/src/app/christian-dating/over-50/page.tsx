@@ -22,6 +22,9 @@ export default function ChristianDatingOver50Page() {
         { href: "/christian-dating/over-40", label: "Christian dating over 40" },
         { href: "/christian-dating/over-60", label: "Christian dating over 60" },
         { href: "/christian-dating/remarriage", label: "Christian remarriage" },
+        { href: "/christian-dating/in/london/over-50", label: "Over 50 in London" },
+        { href: "/christian-dating/in/manchester/over-50", label: "Over 50 in Manchester" },
+        { href: "/free-christian-dating/over-50", label: "Free Christian dating over 50" },
       ]}
     />
   );

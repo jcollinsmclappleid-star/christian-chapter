@@ -1,4 +1,4 @@
-import { FOUNDING_MEMBER_COPY, HERO_OFFER, siteConfig } from "@/lib/site-config";
+import { FOUNDING_MEMBER_COPY, HERO_OFFER, siteConfig, TRAVEL_MILES_COPY } from "@/lib/site-config";
 import Image from "next/image";
 
 const promise = [
@@ -92,6 +92,7 @@ export function DatingFunnel({
             Meet Christian Singles
           </a>
           <p className="mt-3 text-[14px] leading-5 text-plum">{HERO_OFFER}</p>
+          <p className="mt-2 text-[14px] leading-5 text-plum">{TRAVEL_MILES_COPY}</p>
           <p className="mt-4 text-[15px] leading-5 text-plum-muted md:text-[16px] md:leading-6">{lede}</p>
         </div>
       </section>

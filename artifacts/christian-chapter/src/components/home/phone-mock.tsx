@@ -1,5 +1,6 @@
 import { IconFaith, IconHeart } from "@/components/home/mark-icons";
 import { demoConnection, demoIntroduction, demoProfiles } from "@/lib/home/demo-fixture";
+import { TRAVEL_MILES_COPY } from "@/lib/site-config";
 import Image from "next/image";
 
 function PhoneFrame({ children }: { children: React.ReactNode }) {
@@ -75,7 +76,7 @@ export function PhoneMocks() {
               </li>
             ))}
           </ul>
-          <p className="mt-3 text-[12px] leading-5 text-stone">Exact miles are not published.</p>
+          <p className="mt-3 text-[12px] leading-5 text-stone">{TRAVEL_MILES_COPY}</p>
         </div>
       </PhoneFrame>
     </div>

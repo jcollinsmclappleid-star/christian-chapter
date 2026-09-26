@@ -29,7 +29,8 @@ describe("homepage conversion", () => {
     const dossier = read("components/home/example-introduction.tsx");
     assert.doesNotMatch(dossier, /not a real member|not members/);
     assert.match(dossier, /poolLabel/);
-    assert.match(dossier, /Exact miles are not published/);
+    assert.match(dossier, /TRAVEL_MILES_COPY/);
+    assert.doesNotMatch(dossier, /Exact miles are not published/);
     assert.doesNotMatch(dossier, /you matched|\/api\//i);
     const home = read("app/page.tsx");
     assert.doesNotMatch(home, /not members|not a real member|These photographs are not/);

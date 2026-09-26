@@ -2,7 +2,7 @@ import { IconBlock, IconCovenant, IconEye, IconFaith, IconLamp, IconLeave, IconO
 import { LegacyHouseRedirect } from "@/components/home/legacy-house-redirect";
 import { PhoneMocks } from "@/components/home/phone-mock";
 import { LinkButton } from "@/components/ui/button";
-import { FOUNDING_MEMBER_COPY, HERO_OFFER, siteConfig } from "@/lib/site-config";
+import { FOUNDING_MEMBER_COPY, HERO_OFFER, siteConfig, TRAVEL_MILES_COPY } from "@/lib/site-config";
 import type { Metadata } from "next";
 import Image from "next/image";
 
@@ -221,7 +221,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
           <h2 id="path-heading" className={`${displayOnNight} text-[2.05rem] md:text-[2.6rem]`}>How you reach them.</h2>
           <p className="mt-3 max-w-xl text-[17px] leading-6 text-foam">
-            A clear path from the profile you write to the person you might choose.
+            A clear path from the profile you write to the person you might choose. {TRAVEL_MILES_COPY}
           </p>
           <ol className="mt-8">
             {path.map((item) => (

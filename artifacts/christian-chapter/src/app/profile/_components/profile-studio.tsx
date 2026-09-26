@@ -14,6 +14,7 @@ import {
   UK_REGIONS,
 } from "@/app/register/_components/wizard-types";
 import { VISIBILITY_FIELDS } from "@/lib/profile/visibility";
+import { TRAVEL_MILES_MAX, TRAVEL_MILES_MIN } from "@/lib/site-config";
 
 const GENDERS = ["Man", "Woman", "Non-binary", "Prefer not to say"];
 const SEEKING = ["Men", "Women", "Open to both"];
@@ -578,8 +579,8 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
               <input
                 id="travel"
                 type="range"
-                min={10}
-                max={200}
+                min={TRAVEL_MILES_MIN}
+                max={TRAVEL_MILES_MAX}
                 step={5}
                 value={profile.travelRadiusMiles ?? 40}
                 onChange={(e) => update({ travelRadiusMiles: Number(e.target.value) })}

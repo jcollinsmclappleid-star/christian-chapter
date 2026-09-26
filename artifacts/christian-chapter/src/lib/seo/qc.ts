@@ -10,7 +10,7 @@ import type { SeoBrief, WordBand } from "./briefs";
  * 1. H1, title, and meta description are unique among registry entries.
  * 2. The first 80 words do not repeat the first 80 words of another registry page.
  * 3. Every number, date, price, and product capability traces to site-config or the brief's allowed facts. No other statistics.
- * 4. No member counts, testimonials presented as real, miles, "verified", "background check", live chat, or "matching is open now".
+ * 4. No member counts, testimonials presented as real, an invented distance for a place, "verified", "background check", live chat, or "matching is open now". A member-chosen range of 10 to 200 miles is allowed.
  * 5. No sentence copied from Match, Christian Connection, Christian Mingle, Catholic Match, or eharmony.
  * 6. Word count sits inside the band, and the page still answers the primary query if the shared founding and age paragraphs are removed.
  * 7. Life-stage, tradition, and region pages meet the two-fifths unique-sentence rule.
@@ -23,7 +23,7 @@ export const QC_CHECKLIST = [
   { id: 1, text: "H1, title, and meta description are unique among registry entries." },
   { id: 2, text: "The first 80 words do not repeat the first 80 words of another registry page." },
   { id: 3, text: "Every number, date, price, and product capability traces to site-config or the brief's allowed facts." },
-  { id: 4, text: "No member counts, invented testimonials, published miles, verified badges, background checks, live chat, or a claim that matching is open now." },
+  { id: 4, text: "No member counts, invented testimonials, invented place distances, verified badges, background checks, live chat, or a claim that matching is open now. The member-chosen range of 10 to 200 miles is allowed." },
   { id: 5, text: "No sentence copied from Match, Christian Connection, Christian Mingle, Catholic Match, or eharmony." },
   { id: 6, text: "Word count sits inside the band, and the page still answers the primary query without the shared founding and age paragraphs." },
   { id: 7, text: "Life-stage, tradition, and region pages have at least two fifths of sentences true only of that page." },
