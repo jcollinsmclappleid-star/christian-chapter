@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { desc, eq } from "drizzle-orm";
-import { db, memberPhotos, memberProfiles, notifications } from "@/db";
+import { db, foundingApplications, memberPhotos, memberProfiles, notifications } from "@/db";
 import { requireMemberApi } from "@/lib/member-session";
 import { ensureMemberProfile } from "@/lib/profile/ensure";
 import { ProfilePatchSchema } from "@/lib/profile/schema";
@@ -14,6 +14,42 @@ const PROFILE_NOTES = new Set([
   "photo_not_verified",
   "conversation_opened",
 ]);
+
+const PLACE_KEYS = ["selectedPlaceSlug", "nameTown", "homeCitySlug", "homeTownSlug"] as const;
+
+function placeChoiceFromPayload(payload: unknown) {
+  const data = (payload ?? {}) as Record<string, unknown>;
+  return {
+    selectedPlaceSlug: typeof data.selectedPlaceSlug === "string" ? data.selectedPlaceSlug : "",
+    nameTown: data.nameTown === true,
+    homeCitySlug: typeof data.homeCitySlug === "string" ? data.homeCitySlug : "",
+    homeTownSlug: typeof data.homeTownSlug === "string" ? data.homeTownSlug : "",
+  };
+}
+
+async function readPlaceChoice(userId: string) {
+  const [app] = await db
+    .select({ wizardPayload: foundingApplications.wizardPayload })
+    .from(foundingApplications)
+    .where(eq(foundingApplications.userId, userId))
+    .limit(1);
+  return placeChoiceFromPayload(app?.wizardPayload);
+}
+
+async function savePlaceChoice(userId: string, place: Record<string, unknown>) {
+  if (!Object.keys(place).length) return;
+  const [app] = await db
+    .select({ id: foundingApplications.id, wizardPayload: foundingApplications.wizardPayload })
+    .from(foundingApplications)
+    .where(eq(foundingApplications.userId, userId))
+    .limit(1);
+  if (!app) return;
+  const payload = { ...((app.wizardPayload ?? {}) as Record<string, unknown>), ...place };
+  await db
+    .update(foundingApplications)
+    .set({ wizardPayload: payload, updatedAt: new Date() })
+    .where(eq(foundingApplications.id, app.id));
+}
 
 export async function GET() {
   const { session, error } = await requireMemberApi();
@@ -39,8 +75,8 @@ export async function GET() {
     .orderBy(desc(notifications.createdAt))
     .limit(8);
 
-  return NextResponse.json(
-    serializeProfile(profile, {
+  return NextResponse.json({
+    ...serializeProfile(profile, {
       photos: visiblePhotos,
       messages: notes
         .filter((n) => PROFILE_NOTES.has(n.template))
@@ -50,7 +86,8 @@ export async function GET() {
           createdAt: n.createdAt,
         })),
     }),
-  );
+    ...(await readPlaceChoice(session.user.id)),
+  });
 }
 
 export async function PATCH(request: NextRequest) {
@@ -71,11 +108,21 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: "This profile is hidden." }, { status: 403 });
   }
 
+  const place: Record<string, unknown> = {};
+  const profileData = { ...data };
+  for (const key of PLACE_KEYS) {
+    if (profileData[key] !== undefined) {
+      place[key] = profileData[key];
+      delete profileData[key];
+    }
+  }
+  await savePlaceChoice(session.user.id, place);
+
   const [updated] = await db
     .update(memberProfiles)
     .set({
-      ...data,
-      dateOfBirth: data.dateOfBirth === "" ? null : data.dateOfBirth,
+      ...profileData,
+      dateOfBirth: profileData.dateOfBirth === "" ? null : profileData.dateOfBirth,
       updatedAt: new Date(),
     })
     .where(eq(memberProfiles.id, profile.id))
@@ -102,7 +149,8 @@ export async function PATCH(request: NextRequest) {
     .where(eq(memberPhotos.profileId, updated.id))
     .orderBy(memberPhotos.position);
 
-  return NextResponse.json(
-    serializeProfile(updated, { photos: photos.filter((photo) => photo.moderationStatus !== "rejected") }),
-  );
+  return NextResponse.json({
+    ...serializeProfile(updated, { photos: photos.filter((photo) => photo.moderationStatus !== "rejected") }),
+    ...(await readPlaceChoice(session.user.id)),
+  });
 }

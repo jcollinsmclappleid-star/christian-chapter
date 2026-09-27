@@ -28,7 +28,8 @@ export default function ConnectionsPage() {
       return;
     }
     if (!res.ok) {
-      setError("We could not load your connections.");
+      const json = await res.json().catch(() => ({}));
+      setError(json.error ?? "We could not load your connections.");
       return;
     }
     setData(await res.json());

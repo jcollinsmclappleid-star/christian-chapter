@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { db, chatMessages } from "@/db";
-import { requireMemberApi } from "@/lib/member-session";
+import { requireVerifiedMemberApi } from "@/lib/member-session";
 import { conversationForMember, listChatMessages } from "@/lib/chat/open";
 
 export async function GET(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const { session, error } = await requireMemberApi();
-  if (!session) return NextResponse.json({ error }, { status: 401 });
+  const { session, error, status } = await requireVerifiedMemberApi();
+  if (!session) return NextResponse.json({ error }, { status });
   const { id } = await params;
   const conversation = await conversationForMember(id, session.user.id);
   if (!conversation) return NextResponse.json({ error: "Conversation not found." }, { status: 404 });
@@ -27,8 +27,8 @@ export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const { session, error } = await requireMemberApi();
-  if (!session) return NextResponse.json({ error }, { status: 401 });
+  const { session, error, status } = await requireVerifiedMemberApi();
+  if (!session) return NextResponse.json({ error }, { status });
   const { id } = await params;
   const conversation = await conversationForMember(id, session.user.id);
   if (!conversation) return NextResponse.json({ error: "Conversation not found." }, { status: 404 });

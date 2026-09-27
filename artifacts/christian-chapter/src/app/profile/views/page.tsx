@@ -26,6 +26,11 @@ export default function ProfileViewsPage() {
   useEffect(() => {
     fetch("/api/profile/views")
       .then(async (res) => {
+        if (!res.ok && res.status !== 401) {
+          const json = await res.json().catch(() => ({}));
+          setError(json.error ?? "Who looked is not available just now.");
+          return;
+        }
         if (res.status === 401) {
           window.location.href = "/sign-in?next=/profile/views";
           return;

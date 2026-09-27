@@ -1,15 +1,18 @@
 "use client";
 
 import { getAge } from "@/lib/age";
+import { areaLabel } from "@/lib/place-choice";
 import { PROFILE_PHOTO_LIMIT } from "@/lib/profile/photos";
 import type { StudioProfile } from "@/lib/profile/types";
 
 export function MemberSpace({
   profile,
   onEditPhotos,
+  canSeeOthers,
 }: {
   profile: StudioProfile;
   onEditPhotos: () => void;
+  canSeeOthers: boolean;
 }) {
   const photos = [...profile.photos].sort((a, b) => a.position - b.position);
   const hero = photos[0];
@@ -19,6 +22,10 @@ export function MemberSpace({
   const suspended = profile.activityState === "taking_a_break" || profile.status === "paused";
   const emptySlots = Math.max(0, PROFILE_PHOTO_LIMIT - photos.length);
   const about = profile.aboutMe?.trim();
+  const area = profile.selectedPlaceSlug
+    ? areaLabel(profile.selectedPlaceSlug, Boolean(profile.nameTown))
+    : profile.ukRegion;
+  const placeLine = [area, profile.travelRadiusMiles ? `${profile.travelRadiusMiles} miles` : ""].filter(Boolean).join(" · ");
 
   return (
     <section className="mb-12 overflow-hidden rounded-[28px] bg-life text-paper">
@@ -39,7 +46,7 @@ export function MemberSpace({
           <div>
             <p className="text-[11px] uppercase tracking-[0.28em] text-paper/70">Your space</p>
             <h1 className="mt-3 font-serif text-[2.6rem] leading-none text-paper md:text-[3.2rem]">{title}</h1>
-            {profile.ukRegion && <p className="mt-3 text-[16px] text-paper/80">{profile.ukRegion}</p>}
+            {placeLine && <p className="mt-3 text-[16px] text-paper/80">{placeLine}</p>}
             {suspended && (
               <p className="mt-4 inline-flex rounded-full bg-paper/15 px-3 py-1 text-[13px] text-paper">
                 Suspended — left out of new introductions
@@ -76,12 +83,14 @@ export function MemberSpace({
               >
                 Edit photographs
               </button>
-              <a
-                href="/profile/views"
-                className="inline-flex min-h-[44px] items-center rounded-md border border-paper/40 px-4 text-[14px] text-paper"
-              >
-                Who looked
-              </a>
+              {canSeeOthers && (
+                <a
+                  href="/profile/views"
+                  className="inline-flex min-h-[44px] items-center rounded-md border border-paper/40 px-4 text-[14px] text-paper"
+                >
+                  Who looked
+                </a>
+              )}
               <a
                 href="/account"
                 className="inline-flex min-h-[44px] items-center rounded-md border border-paper/40 px-4 text-[14px] text-paper"

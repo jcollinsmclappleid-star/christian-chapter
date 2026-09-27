@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { db, foundingApplications, users } from "@/db";
 import { issueMagicLink } from "@/lib/auth-email";
+import { getMemberSession } from "@/lib/member-session";
 import { clientKey, rateLimit } from "@/lib/rate-limit";
 import { wizardToApplicationValues } from "@/lib/application-map";
 import { defaultWizardData, FLOW_VERSION, type WizardData } from "@/app/register/_components/wizard-types";
@@ -81,7 +82,14 @@ export async function POST(request: NextRequest) {
     await db.update(foundingApplications).set(values).where(eq(foundingApplications.id, existingApp.id));
   }
 
-  const purpose = user.emailVerifiedAt ? "sign_in" : "verify";
+  const alreadyVerified = Boolean(user.emailVerifiedAt);
+  if (!alreadyVerified) {
+    const session = await getMemberSession();
+    session.user = { id: user.id, email };
+    await session.save();
+  }
+
+  const purpose = alreadyVerified ? "sign_in" : "verify";
   const sent = await issueMagicLink({
     userId: user.id,
     email,
@@ -98,6 +106,8 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json({
     ok: true,
+    signedIn: !alreadyVerified,
+    verified: alreadyVerified,
     message: GENERIC,
     delivered: sent.delivered,
     ...(process.env.NODE_ENV !== "production" && !sent.delivered

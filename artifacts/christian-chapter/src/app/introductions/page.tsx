@@ -35,7 +35,8 @@ export default function IntroductionsPage() {
           return;
         }
         if (!res.ok) {
-          setError("Introductions are not available just now.");
+          const json = await res.json().catch(() => ({}));
+          setError(json.error ?? "Introductions are not available just now.");
           return;
         }
         setData(await res.json());

@@ -273,13 +273,21 @@ export default function AccountPage() {
           Founding membership is free. Payment is not open, and no card is taken.
         </p>
 
-        <h2 className="font-serif text-2xl text-plum mb-3">Who looked</h2>
-        <p className="text-[15px] text-plum-muted mb-4">
-          See the people who opened your introduction. Private visits are left off the list.
-        </p>
-        <a href="/profile/views" className="inline-flex min-h-[44px] items-center px-5 border border-border rounded-md text-[14px] mb-10">
-          Who looked
-        </a>
+        {data.user.emailVerifiedAt ? (
+          <>
+            <h2 className="font-serif text-2xl text-plum mb-3">Who looked</h2>
+            <p className="text-[15px] text-plum-muted mb-4">
+              See the people who opened your introduction. Private visits are left off the list.
+            </p>
+            <a href="/profile/views" className="inline-flex min-h-[44px] items-center px-5 border border-border rounded-md text-[14px] mb-10">
+              Who looked
+            </a>
+          </>
+        ) : (
+          <p className="text-[15px] text-plum-muted mb-10">
+            Confirm your email before you can see anyone else’s profile. You can keep building your own.
+          </p>
+        )}
 
         <h2 className="font-serif text-2xl text-plum mb-3">Emails</h2>
         <div className="space-y-3 mb-10">
@@ -353,8 +361,8 @@ export default function AccountPage() {
           </button>
         </form>
 
-        <h2 className="font-serif text-2xl text-plum mb-3">Blocked people</h2>
-        {data.blocks && data.blocks.length > 0 ? (
+        {data.user.emailVerifiedAt && <h2 className="font-serif text-2xl text-plum mb-3">Blocked people</h2>}
+        {data.user.emailVerifiedAt && data.blocks && data.blocks.length > 0 ? (
           <ul className="space-y-3 mb-10">
             {data.blocks.map((block) => (
               <li key={block.userId} className="flex items-center justify-between gap-3">
@@ -380,9 +388,9 @@ export default function AccountPage() {
               </li>
             ))}
           </ul>
-        ) : (
+        ) : data.user.emailVerifiedAt ? (
           <p className="text-[15px] text-plum-muted mb-10">You have not blocked anyone.</p>
-        )}
+        ) : null}
 
         <h2 className="font-serif text-2xl text-plum mb-3">Recent sign-ins</h2>
         {data.signIns && data.signIns.length > 0 ? (

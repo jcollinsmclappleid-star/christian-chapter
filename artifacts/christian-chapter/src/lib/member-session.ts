@@ -68,3 +68,24 @@ export async function requireMemberApi(): Promise<
   }
   return { session: session as AuthedMemberSession, error: null };
 }
+
+export async function requireVerifiedMemberApi(): Promise<
+  | { session: null; error: string; status: 401 | 403 }
+  | { session: AuthedMemberSession; error: null; status: 200 }
+> {
+  const result = await requireMemberApi();
+  if (!result.session) return { session: null, error: result.error, status: 401 };
+  const [user] = await db
+    .select({ emailVerifiedAt: users.emailVerifiedAt })
+    .from(users)
+    .where(eq(users.id, result.session.user.id))
+    .limit(1);
+  if (!user?.emailVerifiedAt) {
+    return {
+      session: null,
+      error: "Confirm your email before you can see another person’s profile.",
+      status: 403,
+    };
+  }
+  return { session: result.session, error: null, status: 200 };
+}

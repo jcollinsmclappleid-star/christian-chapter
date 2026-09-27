@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
 import { db, memberBlocks, memberProfiles } from "@/db";
-import { requireMemberApi } from "@/lib/member-session";
+import { requireVerifiedMemberApi } from "@/lib/member-session";
 import { writeAudit } from "@/lib/audit";
 
 export async function GET() {
-  const { session, error } = await requireMemberApi();
-  if (!session) return NextResponse.json({ error }, { status: 401 });
+  const { session, error, status } = await requireVerifiedMemberApi();
+  if (!session) return NextResponse.json({ error }, { status });
 
   const rows = await db
     .select({
@@ -29,8 +29,8 @@ export async function GET() {
 }
 
 export async function DELETE(request: NextRequest) {
-  const { session, error } = await requireMemberApi();
-  if (!session) return NextResponse.json({ error }, { status: 401 });
+  const { session, error, status } = await requireVerifiedMemberApi();
+  if (!session) return NextResponse.json({ error }, { status });
 
   const parse = z.object({ userId: z.string().uuid() }).safeParse(await request.json().catch(() => null));
   if (!parse.success) return NextResponse.json({ error: "Choose who to unblock." }, { status: 422 });

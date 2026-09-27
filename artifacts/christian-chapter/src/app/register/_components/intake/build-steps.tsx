@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { getAge } from "@/lib/age";
 import { composeProfileLine } from "@/lib/register/compose-line";
+import { PlacePicker } from "@/components/place/place-picker";
 import { FOUNDING_MEMBER_COPY, MINIMUM_AGE, OPENING_OFFER_ENDS_LABEL } from "@/lib/site-config";
 import type { StepProps } from "../wizard-types";
 import {
@@ -15,7 +16,6 @@ import {
   PARTNER_HOPES,
   RELIGIOUS_CONSENT_VERSION,
   TRADITIONS,
-  UK_REGIONS,
 } from "../wizard-types";
 
 function Note({ children }: { children: React.ReactNode }) {
@@ -71,12 +71,22 @@ export function StepWho({ data, update }: StepProps) {
       <h1 className="mb-4 font-sans text-4xl font-bold leading-[1.05] tracking-[-0.03em] text-plum">
         Who would you be glad to meet?
       </h1>
-      <label className="mb-6 block">
+      <label className="mb-4 block">
         <span className="mb-2 block font-sans text-[15px] font-semibold">First name</span>
         <input
           value={data.firstName}
           onChange={(event) => update({ firstName: event.target.value })}
           autoComplete="given-name"
+          className="min-h-[52px] w-full rounded-2xl border border-ivory-darker bg-paper px-4 text-[16px]"
+        />
+      </label>
+      <label className="mb-6 block">
+        <span className="mb-2 block font-sans text-[15px] font-semibold">Email</span>
+        <input
+          type="email"
+          value={data.email}
+          onChange={(event) => update({ email: event.target.value })}
+          autoComplete="email"
           className="min-h-[52px] w-full rounded-2xl border border-ivory-darker bg-paper px-4 text-[16px]"
         />
       </label>
@@ -154,14 +164,14 @@ export function StepPlace({ data, update }: StepProps) {
     <div>
       <h2 className="mb-4 font-sans text-3xl font-bold tracking-[-0.03em] text-plum md:text-4xl">Somewhere a good day could happen.</h2>
       <Note>
-        A region is enough for a day out, and it helps someone picture meeting you. Miles are not published.
-        You can add more after you have a profile.
+        Search for a city or a town. We use the nearest city as your area, and you choose the miles from there. Name the town only if you want it on your profile. A street or a postcode is not asked for.
       </Note>
-      <div className="flex flex-wrap gap-2">
-        {UK_REGIONS.map((region) => (
-          <Chip key={region} label={region} selected={data.ukRegion === region} onClick={() => update({ ukRegion: region })} />
-        ))}
-      </div>
+      <PlacePicker
+        selectedPlaceSlug={data.selectedPlaceSlug}
+        nameTown={data.nameTown}
+        miles={data.travelRadiusMiles}
+        onChange={(next) => update(next)}
+      />
     </div>
   );
 }
@@ -458,18 +468,9 @@ export function StepReady({ data, update }: StepProps) {
           See a complete profile
         </a>
       </p>
-      <div className="space-y-4">
-        <label className="block">
-          <span className="mb-2 block font-sans text-[15px] font-semibold">Email</span>
-          <input
-            type="email"
-            value={data.email}
-            onChange={(event) => update({ email: event.target.value })}
-            autoComplete="email"
-            className="min-h-[52px] w-full rounded-2xl border border-ivory-darker bg-paper px-4 text-[16px]"
-          />
-        </label>
-      </div>
+      <p className="text-[15px] leading-6 text-plum">
+        A confirmation link is on its way to {data.email}. You can keep building. Other people’s profiles stay closed until you open it.
+      </p>
     </div>
   );
 }

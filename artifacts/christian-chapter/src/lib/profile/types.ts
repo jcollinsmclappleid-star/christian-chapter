@@ -38,6 +38,10 @@ export type StudioProfile = {
   ukNation: string | null;
   ukRegion: string | null;
   travelRadiusMiles: number | null;
+  selectedPlaceSlug?: string;
+  nameTown?: boolean;
+  homeCitySlug?: string;
+  homeTownSlug?: string;
   openToRelocation: boolean | null;
   essentials: Array<{ factor: string; label: string; tier: "essential" | "preferred" | "open" }>;
   visibility: Record<string, "hidden" | "matches" | "members">;

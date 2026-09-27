@@ -1,6 +1,7 @@
 "use client";
 
 import { getAge } from "@/lib/age";
+import { placeLine } from "@/lib/place-choice";
 import { hopeSummary, profileEncouragement } from "@/lib/register/profile-card";
 import type { WizardData } from "../wizard-types";
 
@@ -50,7 +51,7 @@ export function MiniProfile({ data }: { data: WizardData }) {
               {age ? `, ${age}` : ""}
             </p>
             <p className="mt-1 text-[13px] leading-5 text-plum-muted">
-              {[data.ukRegion, data.tradition].filter(Boolean).join(" · ") || "A life already underway"}
+              {[placeLine(data.selectedPlaceSlug, data.nameTown, data.travelRadiusMiles) || data.ukRegion, data.tradition].filter(Boolean).join(" · ") || "A life already underway"}
             </p>
             {household.length > 0 && (
               <p className="mt-1 text-[13px] leading-5 text-plum">{household.join(" · ")}</p>

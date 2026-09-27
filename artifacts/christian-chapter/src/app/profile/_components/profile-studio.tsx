@@ -11,10 +11,9 @@ import {
   ESSENTIAL_FACTORS,
   INTERESTS_OPTIONS,
   TRADITIONS,
-  UK_REGIONS,
 } from "@/app/register/_components/wizard-types";
 import { VISIBILITY_FIELDS } from "@/lib/profile/visibility";
-import { TRAVEL_MILES_MAX, TRAVEL_MILES_MIN } from "@/lib/site-config";
+import { PlacePicker } from "@/components/place/place-picker";
 
 const GENDERS = ["Man", "Woman", "Non-binary", "Prefer not to say"];
 const SEEKING = ["Men", "Women", "Open to both"];
@@ -61,6 +60,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [canSeeOthers, setCanSeeOthers] = useState(false);
   const pending = useRef<Record<string, unknown>>({});
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -97,6 +97,13 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
 
   useEffect(() => () => {
     if (timer.current) clearTimeout(timer.current);
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((res) => res.json())
+      .then((json) => setCanSeeOthers(Boolean(json.verified)))
+      .catch(() => undefined);
   }, []);
 
   async function uploadPhotos(files: File[]) {
@@ -199,7 +206,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
 
   return (
     <div>
-      {hasSpace && <MemberSpace profile={profile} onEditPhotos={openPhotos} />}
+      {hasSpace && <MemberSpace profile={profile} onEditPhotos={openPhotos} canSeeOthers={canSeeOthers} />}
       <div className={`grid gap-10 items-start ${hasSpace ? "" : "lg:grid-cols-[minmax(280px,390px)_minmax(0,1fr)]"}`}>
       {!hasSpace && (
       <aside className="lg:sticky lg:top-24">
@@ -564,29 +571,24 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
         {section === "place" && (
           <section className="space-y-6">
             <h2 className="font-serif text-3xl text-plum">Place</h2>
-            <div>
-              <p className="text-[15px] font-medium mb-2">Region</p>
-              <div className="grid gap-2">
-                {UK_REGIONS.map((label) => (
-                  <Choice key={label} label={label} selected={profile.ukRegion === label} onClick={() => update({ ukRegion: label })} />
-                ))}
-              </div>
-            </div>
-            <div>
-              <label className="block text-[15px] font-medium mb-2" htmlFor="travel">
-                How far you can travel · {profile.travelRadiusMiles ?? 40} miles
-              </label>
-              <input
-                id="travel"
-                type="range"
-                min={TRAVEL_MILES_MIN}
-                max={TRAVEL_MILES_MAX}
-                step={5}
-                value={profile.travelRadiusMiles ?? 40}
-                onChange={(e) => update({ travelRadiusMiles: Number(e.target.value) })}
-                className="w-full"
-              />
-            </div>
+            <p className="text-[15px] leading-6 text-plum-muted">
+              Search for a city or a town. We use the nearest city as your area, and you choose the miles from there. Name the town only if you want it on your profile.
+            </p>
+            <PlacePicker
+              selectedPlaceSlug={profile.selectedPlaceSlug ?? ""}
+              nameTown={Boolean(profile.nameTown)}
+              miles={profile.travelRadiusMiles ?? 40}
+              onChange={(next) =>
+                update({
+                  ukRegion: next.ukRegion,
+                  travelRadiusMiles: next.travelRadiusMiles,
+                  selectedPlaceSlug: next.selectedPlaceSlug,
+                  nameTown: next.nameTown,
+                  homeCitySlug: next.homeCitySlug,
+                  homeTownSlug: next.homeTownSlug,
+                })
+              }
+            />
             <label className="flex items-center gap-3">
               <input
                 type="checkbox"

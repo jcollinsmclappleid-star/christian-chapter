@@ -28,11 +28,8 @@ export async function POST(request: NextRequest) {
   }
 
   const [user] = await db.select().from(users).where(eq(users.id, session.user.id)).limit(1);
-  if (!user?.emailVerifiedAt) {
-    return NextResponse.json(
-      { error: "Please confirm your email before submitting an application." },
-      { status: 403 },
-    );
+  if (!user) {
+    return NextResponse.json({ error: "Account not found." }, { status: 404 });
   }
   if (user.status === "closed" || user.status === "suspended") {
     return NextResponse.json({ error: "This account cannot submit an application." }, { status: 403 });

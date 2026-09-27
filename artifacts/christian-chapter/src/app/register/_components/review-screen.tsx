@@ -1,5 +1,6 @@
 "use client";
 
+import { placeLine } from "@/lib/place-choice";
 import type { WizardData } from "./wizard-types";
 import { POLICY_VERSION, RELIGIOUS_CONSENT_VERSION } from "./wizard-types";
 
@@ -120,7 +121,7 @@ export function ReviewScreen({
         </Section>
 
         <Section title="Your location">
-          <Row label="UK region" value={data.ukRegion} />
+          <Row label="Area" value={placeLine(data.selectedPlaceSlug, data.nameTown, data.travelRadiusMiles) || data.ukRegion} />
           <Row label="Travel radius" value={`${data.travelRadiusMiles} miles`} />
         </Section>
 

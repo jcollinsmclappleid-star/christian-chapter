@@ -1,4 +1,5 @@
 import { getAge } from "@/lib/age";
+import { areaLabel } from "@/lib/place-choice";
 import type { ProfilePhoto, ProfilePrompt } from "@/lib/profile/types";
 
 type ViewProfile = {
@@ -21,6 +22,8 @@ type ViewProfile = {
   interests: string[] | null;
   travelRadiusMiles: number | null;
   openToRelocation: boolean | null;
+  selectedPlaceSlug?: string;
+  nameTown?: boolean;
   prompts: ProfilePrompt[];
   photos: ProfilePhoto[];
 };
@@ -68,8 +71,11 @@ export function DatingProfileView({
   const hero = photos[0];
   const rest = photos.slice(1);
   const prompts = profile.prompts.filter((p) => p.answer.trim());
+  const area = profile.selectedPlaceSlug
+    ? areaLabel(profile.selectedPlaceSlug, Boolean(profile.nameTown))
+    : profile.ukRegion;
   const chips = [
-    profile.ukRegion,
+    area,
     profile.tradition,
     profile.workStatus,
     profile.relationshipGoal,
@@ -87,8 +93,8 @@ export function DatingProfileView({
           caption={
             <span>
               <span className="block font-serif text-[2rem] leading-none">{title || "Your profile"}</span>
-              {profile.ukRegion && (
-                <span className="mt-2 block text-[14px] text-ivory/80">{profile.ukRegion}</span>
+              {area && (
+                <span className="mt-2 block text-[14px] text-ivory/80">{area}</span>
               )}
             </span>
           }
