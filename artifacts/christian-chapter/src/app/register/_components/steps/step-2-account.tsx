@@ -6,7 +6,7 @@ import type { StepProps } from "../wizard-types";
 export function Step2Account({ data, update }: StepProps) {
   return (
     <div>
-      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+      <h2 className="font-serif font-medium text-plum mb-4 text-3xl md:text-4xl leading-[1.15]">
         You&rsquo;ve done the thoughtful part.
       </h2>
       <StepNote>

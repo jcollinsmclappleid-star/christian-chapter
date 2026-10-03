@@ -9,7 +9,7 @@ const radiusOptions = [10, 20, 30, 40, 50, 75, 100, 150, 200];
 export function Step4Location({ data, update }: StepProps) {
   return (
     <div>
-      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+      <h2 className="font-serif font-medium text-plum mb-4 text-3xl md:text-4xl leading-[1.15]">
         Somewhere you already know.
       </h2>
       <StepNote>A broad area is enough. We never publish miles, and we never store a street address.</StepNote>

@@ -224,7 +224,7 @@ const registry: SeoBrief[] = [
     h1: "Free until 14 February 2027.",
     title: "Pricing — Mature Christian Dating",
     description:
-      "Mature Christian Dating is free until 14 February 2027. After that the member price is £29 a month. No payment is taken during the opening offer.",
+      "Mature Christian Dating is free until 14 February 2027. After that the member price is £29 a month. A concierge introduction, £89 a month, is included free until matching opens. No payment is taken during the opening offer.",
     allowedFacts: [...CORE_FACTS, "billingLive"],
     internalLinks: ["/"],
     sourceFile: "app/pricing/page.tsx",

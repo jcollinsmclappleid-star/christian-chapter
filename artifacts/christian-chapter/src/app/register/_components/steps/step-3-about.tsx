@@ -10,7 +10,7 @@ export function Step3About({ data, update }: StepProps) {
 
   return (
     <div>
-      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+      <h2 className="font-serif font-medium text-plum mb-4 text-3xl md:text-4xl leading-[1.15]">
         Your age is welcome here.
       </h2>
       <StepNote>This is for people with a life already underway. There is no upper age.</StepNote>

@@ -82,7 +82,7 @@ export function DatingFunnel({
               ))}
             </ol>
           </nav>
-          <h1 className="font-sans text-[1.65rem] font-bold leading-[1.08] tracking-[-0.03em] text-plum md:text-[2.4rem]">
+          <h1 className="font-serif text-[1.85rem] font-medium leading-[1.12] text-plum md:text-[2.5rem]">
             {h1}
           </h1>
           <a
@@ -99,7 +99,7 @@ export function DatingFunnel({
 
       <section className="bg-life">
         <div className="mx-auto max-w-3xl px-5 py-12 md:px-8">
-          <h2 className="font-sans text-[2rem] font-bold leading-tight tracking-[-0.03em] text-paper">
+          <h2 className="font-serif text-[2.1rem] font-medium leading-tight text-paper">
             {FUNNEL_SERVICE_HEADING}
           </h2>
           <p className="mt-3 text-[17px] leading-6 text-foam">{FUNNEL_SERVICE_LINE}</p>

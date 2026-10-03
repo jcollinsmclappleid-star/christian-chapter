@@ -126,7 +126,22 @@ body {
 }
 
 .hero-shade {
-  background: linear-gradient(to top, rgba(28, 16, 10, 0.62) 0%, rgba(44, 33, 24, 0.04) 48%, rgba(20, 12, 8, 0.18) 100%);
+  background:
+    linear-gradient(to top, rgba(28, 16, 10, 0.62) 0%, rgba(44, 33, 24, 0.04) 48%, rgba(20, 12, 8, 0.18) 100%);
+}
+
+@media (min-width: 768px) {
+  .hero-shade {
+    background:
+      linear-gradient(
+        to right,
+        rgba(28, 16, 10, 0.72) 0%,
+        rgba(28, 16, 10, 0.38) 28%,
+        rgba(44, 33, 24, 0.06) 46%,
+        rgba(20, 12, 8, 0.04) 100%
+      ),
+      linear-gradient(to top, rgba(28, 16, 10, 0.35) 0%, transparent 42%);
+  }
 }
 
 .intake {

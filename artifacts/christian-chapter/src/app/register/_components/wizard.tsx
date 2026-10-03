@@ -306,7 +306,7 @@ export function Wizard() {
           <p className="mb-4 font-sans text-[11px] uppercase tracking-[0.3em] text-life">
             Confirm your email
           </p>
-          <h1 className="mb-5 font-sans text-4xl font-bold tracking-[-0.03em] text-plum">Check your inbox</h1>
+          <h1 className="mb-5 font-serif text-4xl font-medium leading-[1.15] text-plum">Check your inbox</h1>
           <p className="text-[17px] text-plum-muted leading-7 mb-6">
             <strong className="text-plum">{checkEmail}</strong> already has a profile.
             Open the link we sent to sign in. You can keep building once you are in.
