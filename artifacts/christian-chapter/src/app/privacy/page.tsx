@@ -15,9 +15,9 @@ export default function PrivacyPage() {
         founding-member account, confirming an email address, storing a founding
         application, recording consents, recording who opened an introduction,
         checking one photograph against the profile photograph, and holding
-        profile photographs until they are verified. Other members see a
-        photograph only after it is verified. You can see your own while that
-        decision is open. When we connect two members, they can write to each
+        profile photographs until they are approved. Other members see a
+        photograph only after it is approved. Approval is a content check, not
+        proof of identity. You can see your own while that decision is open. When we connect two members, they can write to each
         other. We do not run an open messaging network, calling, or a charge
         today. Payment is not open, and no card is taken. A matchmaker may
         hand-pick an introduction from a complete profile. Founding members
@@ -25,10 +25,15 @@ export default function PrivacyPage() {
       </p>
       <h2>Who we are</h2>
       <p>
-        {siteConfig.brandName} is the consumer name of this service. Contact the
-        controller at {siteConfig.contactEmail}. If a registered legal entity is
-        later confirmed, this page will be updated from configuration rather than
-        invented company details.
+        The data controller is {siteConfig.legalEntityName}, company number{" "}
+        {siteConfig.companyNumber}, registered office {siteConfig.registeredOffice}.{" "}
+        {siteConfig.brandName} is the name of this service. Contact{" "}
+        {siteConfig.contactEmail} for privacy requests. We are registered with the
+        Information Commissioner&apos;s Office, reference{" "}
+        <a href={siteConfig.icoRegisterUrl} className="underline">
+          {siteConfig.icoRegistrationReference}
+        </a>
+        . The company is not VAT registered.
       </p>
       <h2>Data we collect</h2>
       <ul>
@@ -38,8 +43,8 @@ export default function PrivacyPage() {
         <li>Religious belief and practice, processed only with your separate explicit consent.</li>
         <li>Relationship, family and lifestyle answers on the founding application.</li>
         <li>Security and audit data: IP address, user agent, timestamps of consents and admin actions.</li>
-        <li>Profile photographs. You can see your own while a decision is open. Other members see a photograph only after it is verified.</li>
-        <li>Messages you write to a member we have connected you with.</li>
+        <li>Profile photographs. You can see your own while a decision is open. Other members see a photograph only after it is approved. Approval is a content check, not proof of identity.</li>
+        <li>Messages you write to a member we have connected you with, and the messages they write to you. The text is stored in a sealed form, which is not end-to-end encryption. A message is deleted seven days after the other person first reads it, or 30 days after it is sent if it is still unread. If you select a message in a safety report, that copy is kept for 90 days and can be read by staff reviewing the report. Closing an account deletes the live conversation for both people.</li>
         <li>Payment is not open, so no card details are collected.</li>
         <li>One check photograph of your face, only after you agree, and only until the check is finished or 24 hours pass.</li>
         <li>When you open an introduction, the time and your name, unless private browsing is on.</li>
@@ -58,11 +63,14 @@ export default function PrivacyPage() {
         Submitted applications are reviewed for completeness and to balance the
         cohort.
       </p>
-      <h2>Providers</h2>
+      <h2>Who we share it with</h2>
       <p>
-        Hosting and database (currently Neon Postgres), transactional email
-        (Resend, when configured), and the
-        infrastructure used to run this website. We do not load advertising pixels.
+        We do not sell personal data. Staff and matchmakers see applications and profiles
+        in order to run the cohort and decide whether to make an introduction. A member
+        sees your profile, and any message you send them, only where the product has
+        connected you or shown you as an introduction. We use hosting and database
+        providers (currently Neon Postgres), transactional email (Resend, when configured),
+        and the infrastructure that serves this website. We do not load advertising pixels.
       </p>
       <h2>Retention and closure</h2>
       <p>
@@ -80,25 +88,53 @@ export default function PrivacyPage() {
       <p>
         You may request closure from your account. The application is hidden
         immediately. Remaining records are scheduled for deletion after a
-        configurable retention window (default 30 days), except legal, security
-        or audit records we must keep. Backups expire on their own cycle; we
-        do not claim instant erasure from every backup copy.
+        configurable retention window (default 30 days). After that we delete the
+        account. We may keep a redacted audit entry that an action happened, without
+        the profile content, where we need it for security or to show what we did.
+        We do not claim instant erasure from every backup copy. Backups expire on
+        their own cycle.
+      </p>
+      <h2>Security</h2>
+      <p>
+        Sign-in links are stored as hashes. The session cookie is httpOnly. Profile
+        photographs are not shown to other members until a person approves them.
+        Administrator access is separate from member access. We do not claim that
+        any system is impossible to breach.
+      </p>
+      <h2>Children</h2>
+      <p>
+        The service is for adults aged 40 and over. It is not directed at anyone
+        under 18. If we learn an account is being used by a child, we close it
+        and delete the data we are not required to keep.
+      </p>
+      <h2>Automated decisions</h2>
+      <p>
+        We do not make a decision that has a legal or similarly significant effect
+        on you by automated means alone. A matchmaker decides a hand-picked
+        introduction. Matching technology is not live.
       </p>
       <h2>Your rights</h2>
       <p>
-        You may access, correct, export or object, withdraw religious-data
-        consent, and complain to the{" "}
+        You may access, correct, export or object, and you may withdraw
+        religious-data consent. Write to {siteConfig.contactEmail}. We respond
+        within one month, or we tell you why we need longer when the law allows
+        that. Withdrawing religious-data consent stops faith-based processing and
+        closes the dating application. You can complain to the{" "}
         <a href={siteConfig.icoComplaintsUrl} className="underline">
           Information Commissioner&apos;s Office
         </a>
-        . Withdrawing religious-data consent stops faith-based processing and
-        closes the dating application.
+        . Please contact us first so we can try to put it right.
+      </p>
+      <h2>If something goes wrong</h2>
+      <p>
+        If a personal-data breach creates a risk to you, we will tell you and the
+        Information Commissioner&apos;s Office when the law requires it.
       </p>
       <h2>International transfers</h2>
       <p>
-        Some providers may process data outside the UK. Where that happens we
-        will rely on an appropriate transfer mechanism documented with that
-        provider.
+        Neon, email delivery, and website hosting may process data outside the UK.
+        Their contracts provide the transfer safeguards required for that processing.
+        Ask {siteConfig.contactEmail} if you want the current list of providers.
       </p>
       <h2>What we do not process yet</h2>
       <p>

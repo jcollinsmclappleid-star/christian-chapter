@@ -71,6 +71,8 @@ export type WizardData = {
   priorities: string[];
   photoConsent: boolean;
   termsAccepted: boolean;
+  /** Acknowledgement that they have read the notice. Not consent to all processing. */
+  privacyAcknowledged: boolean;
   partnerHopes: string[];
   hobbyNote: string;
   photoDataUrl: string;
@@ -120,6 +122,7 @@ export const defaultWizardData: WizardData = {
   priorities: [],
   photoConsent: false,
   termsAccepted: false,
+  privacyAcknowledged: false,
   partnerHopes: [],
   hobbyNote: "",
   photoDataUrl: "",

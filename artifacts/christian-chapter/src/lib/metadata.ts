@@ -11,13 +11,20 @@ export function buildMetadata({
   description = defaultDescription,
   path = "/",
   noindex = false,
+  image,
+  imageAlt,
 }: {
   title: string;
   description?: string;
   path?: string;
   noindex?: boolean;
+  image?: string;
+  imageAlt?: string;
 }): Metadata {
   const url = `${siteUrl}${path}`;
+  const socialImage = image
+    ? [{ url: `${siteUrl}${image}`, alt: imageAlt ?? title }]
+    : undefined;
 
   return {
     title,
@@ -30,11 +37,13 @@ export function buildMetadata({
       siteName,
       type: "website",
       locale: "en_GB",
+      images: socialImage,
     },
     twitter: {
-      card: "summary",
+      card: image ? "summary_large_image" : "summary",
       title: `${title} | ${siteName}`,
       description,
+      images: image ? [`${siteUrl}${image}`] : undefined,
     },
     robots: noindex
       ? { index: false, follow: false }

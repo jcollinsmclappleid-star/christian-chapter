@@ -48,10 +48,11 @@ export default async function ClosuresPage() {
         </p>
         <h1 className="font-serif text-plum text-3xl">Account closure queue</h1>
         <p className="text-[14px] text-stone font-sans mt-3 max-w-2xl">
-          Members can hide an application immediately. Records stay until an
-          administrator completes deletion after the configured retention
-          period ({APPLICATION_RETENTION_DAYS} days). This queue does not claim
-          that data has already been wiped from backups.
+          Members can hide an application immediately. Personal data is deleted
+          automatically after the retention period ({APPLICATION_RETENTION_DAYS}{" "}
+          days), or from this queue once the scheduled date has passed. Audit
+          entries are kept with identifiers removed. Backups expire on their own
+          cycle.
         </p>
       </div>
 
@@ -92,7 +93,14 @@ export default async function ClosuresPage() {
                     {fmt(row.scheduledDeleteAt)}
                   </td>
                   <td className="px-4 py-3">
-                    <ClosureActions id={row.id} />
+                    <ClosureActions
+                      id={row.id}
+                      scheduledDeleteAt={
+                        row.scheduledDeleteAt
+                          ? new Date(row.scheduledDeleteAt).toISOString()
+                          : null
+                      }
+                    />
                   </td>
                 </tr>
               ))}

@@ -260,6 +260,20 @@ export const memberReports = pgTable("member_reports", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+/** A copy of messages the reporter selected. Not deleted with the live message. */
+export const reportEvidence = pgTable("report_evidence", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  reportId: uuid("report_id")
+    .references(() => memberReports.id, { onDelete: "cascade" })
+    .notNull(),
+  messageId: uuid("message_id"),
+  body: text("body").notNull(),
+  capturedAt: timestamp("captured_at").defaultNow().notNull(),
+  retainUntil: timestamp("retain_until").notNull(),
+}, (table) => [
+  index("report_evidence_retain_idx").on(table.retainUntil),
+]);
+
 export const profileViews = pgTable("profile_views", {
   id: uuid("id").defaultRandom().primaryKey(),
   viewerUserId: uuid("viewer_user_id").notNull(),
@@ -297,8 +311,13 @@ export const chatMessages = pgTable("chat_messages", {
   senderUserId: uuid("sender_user_id").notNull(),
   body: text("body").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  /** Set once, when the other member first opens the conversation. */
+  firstReadAt: timestamp("first_read_at"),
+  /** Unread: sent + 30 days. After the first read: that read + 7 days. */
+  expiresAt: timestamp("expires_at").notNull(),
 }, (table) => [
   index("chat_messages_conversation_idx").on(table.conversationId, table.createdAt),
+  index("chat_messages_expires_idx").on(table.expiresAt),
 ]);
 
 export const billingAgreements = pgTable("billing_agreements", {

@@ -3,11 +3,11 @@
  * Public copy must read this rather than inventing Ltd/VAT/prices.
  */
 
-export const POLICY_VERSION = "2026-09-23";
-export const POLICY_EFFECTIVE_DATE = "23 September 2026";
+export const POLICY_VERSION = "2026-10-04";
+export const POLICY_EFFECTIVE_DATE = "4 October 2026";
 export const RELIGIOUS_CONSENT_VERSION = "2026-09-20";
 export const MARKETING_CONSENT_VERSION = "2026-09-20";
-export const TERMS_CONSENT_VERSION = "2026-09-22";
+export const TERMS_CONSENT_VERSION = "2026-10-04";
 
 export const MINIMUM_AGE = 40;
 /** The distance control on a profile. Public pages may quote this range and no other radius. */
@@ -58,6 +58,14 @@ function env(name: string, fallback = ""): string {
   return (process.env[name] ?? fallback).trim();
 }
 
+/** Companies House 17084981. Registered office matches the ICO register entry. */
+export const LEGAL_ENTITY_NAME = "Ianson Systems Limited";
+export const COMPANY_NUMBER = "17084981";
+export const REGISTERED_OFFICE =
+  "71-75 Shelton Street, Covent Garden, London, WC2H 9JQ";
+export const ICO_REGISTRATION_REFERENCE = "ZC127831";
+export const ICO_REGISTER_URL = "https://ico.org.uk/ESDWebPages/Entry/ZC127831";
+
 export const siteConfig = {
   brandName: "Mature Christian Dating",
   descriptor: "Mature Christian dating",
@@ -67,8 +75,12 @@ export const siteConfig = {
     "",
   ),
   contactEmail: env("LEGAL_CONTACT_EMAIL", "hello@maturechristiandating.co.uk"),
-  /** Empty = not an incorporated company in copy. */
-  legalEntityName: env("LEGAL_ENTITY_NAME"),
+  /** Blank env falls back to the registered company. Do not invent a different entity. */
+  legalEntityName: env("LEGAL_ENTITY_NAME") || LEGAL_ENTITY_NAME,
+  companyNumber: COMPANY_NUMBER,
+  registeredOffice: REGISTERED_OFFICE,
+  icoRegistrationReference: ICO_REGISTRATION_REFERENCE,
+  icoRegisterUrl: ICO_REGISTER_URL,
   icoComplaintsUrl: "https://ico.org.uk/make-a-complaint/",
   foundingStage: true,
   /** The later price is published. Checkout is not. */

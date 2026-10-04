@@ -380,6 +380,7 @@ export function Wizard() {
               submitting={submitting}
               submitError={submitError}
               onTermsChange={(accepted) => update({ termsAccepted: accepted })}
+              onPrivacyChange={(accepted) => update({ privacyAcknowledged: accepted })}
             />
           ) : (
             <StepComponent data={data} update={update} onNext={goNext} onBack={goBack} step={step} />

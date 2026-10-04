@@ -7,6 +7,7 @@ import { ProfilePatchSchema } from "@/lib/profile/schema";
 import { serializeProfile } from "@/lib/profile/serialize";
 import { writeAudit } from "@/lib/audit";
 import { recordMeaningfulActivity } from "@/lib/matching/persist";
+import { anyProfanity, PROFANITY_MESSAGE } from "@/lib/language/profanity";
 
 const PROFILE_NOTES = new Set([
   "staff_message",
@@ -98,10 +99,31 @@ export async function PATCH(request: NextRequest) {
   if (!parse.success) {
     return NextResponse.json({ error: "Could not save those details." }, { status: 422 });
   }
+  const data = parse.data;
+  if (
+    anyProfanity([
+      data.firstName,
+      data.aboutMe,
+      data.tradition,
+      data.faithDescription,
+      data.relationshipGoal,
+      data.relationshipHistory,
+      data.familySituation,
+      data.workStatus,
+      data.interests,
+      data.futureChildren,
+      data.lookingFor,
+      data.nextChapter,
+      data.caringResponsibilities,
+      data.prompts,
+      data.essentials,
+    ])
+  ) {
+    return NextResponse.json({ error: PROFANITY_MESSAGE }, { status: 422 });
+  }
 
   const profile = await ensureMemberProfile(session.user.id);
   const locked = profile.status === "approved" || profile.status === "review" || profile.status === "submitted";
-  const data = parse.data;
   if (locked && data.status === "paused") {
     // allowed
   } else if (profile.status === "hidden") {

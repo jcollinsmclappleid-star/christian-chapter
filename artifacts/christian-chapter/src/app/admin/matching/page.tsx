@@ -75,7 +75,7 @@ export default function AdminMatchingPage() {
     <div className="p-8 max-w-3xl">
       <h1 className="font-serif text-plum text-3xl mb-6">Introductions</h1>
       <p className="text-[15px] text-plum-muted mb-8">
-        Connect two submitted profiles. Each person sees the other as a hand-picked introduction, and a private conversation opens so they can write to each other.
+        Connect two profiles that each have an approved photograph. Each person sees the other as a hand-picked introduction, and can write in the conversation that opens.
       </p>
       <form onSubmit={connect} className="mb-10 space-y-3">
         <label className="block text-[14px] text-plum">

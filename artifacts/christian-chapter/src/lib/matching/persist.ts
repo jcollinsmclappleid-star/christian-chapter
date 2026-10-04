@@ -1,5 +1,6 @@
 import { and, desc, eq, inArray, ne, or } from "drizzle-orm";
 import {
+  conversations,
   db,
   activityEvents,
   interests,
@@ -355,10 +356,21 @@ export async function getMemberIntroduction(userId: string, introductionId: stri
     });
   }
   const serialized = await serializeIntroduction(row, candidate, now);
+  let conversationId: string | null = null;
+  if (row.pool === HAND_PICK_POOL) {
+    const [low, high] = orderedPair(userId, row.candidateUserId);
+    const [conversation] = await db
+      .select({ id: conversations.id })
+      .from(conversations)
+      .where(and(eq(conversations.userLowId, low), eq(conversations.userHighId, high)))
+      .limit(1);
+    conversationId = conversation?.id ?? null;
+  }
   return {
     ...serialized,
     memberId: row.candidateUserId,
     canAct: isFeatureEnabled("interests_and_mutual_matches"),
+    conversationId,
   };
 }
 
@@ -579,15 +591,18 @@ export async function blockMember(userId: string, otherId: string, source: strin
 }
 
 export async function reportMember(userId: string, otherId: string, reason: string, source: string, detail?: string) {
-  await db.insert(memberReports).values({
-    reporterUserId: userId,
-    reportedUserId: otherId,
-    source,
-    reason,
-    detail: detail ?? null,
-  });
+  const [report] = await db
+    .insert(memberReports)
+    .values({
+      reporterUserId: userId,
+      reportedUserId: otherId,
+      source,
+      reason,
+      detail: detail ?? null,
+    })
+    .returning({ id: memberReports.id });
   await blockMember(userId, otherId, source);
-  return { ok: true };
+  return { ok: true as const, id: report.id };
 }
 
 export async function setAvailability(
@@ -786,6 +801,16 @@ export async function createHandPickedPair(input: {
   const ctx = await loadContext(now);
   const blocked =
     pairTouches(left.userId, right.userId, ctx.blocks) || pairTouches(left.userId, right.userId, ctx.reports);
+  const approvedPhotos = await db
+    .select({ userId: memberPhotos.userId })
+    .from(memberPhotos)
+    .where(
+      and(
+        inArray(memberPhotos.userId, [left.userId, right.userId]),
+        eq(memberPhotos.moderationStatus, "clear"),
+      ),
+    );
+  const approvedIds = new Set(approvedPhotos.map((row) => row.userId));
   const blockedReason = handPickBlockers(
     {
       userId: left.userId,
@@ -793,6 +818,7 @@ export async function createHandPickedPair(input: {
       hidden: Boolean(left.hiddenAt) || left.profileStatus === "hidden" || left.profileStatus === "paused",
       emailVerified: left.emailVerified,
       accountClosed: left.userStatus === "closed" || left.userStatus === "closure_requested",
+      approvedPhoto: approvedIds.has(left.userId),
     },
     {
       userId: right.userId,
@@ -800,6 +826,7 @@ export async function createHandPickedPair(input: {
       hidden: Boolean(right.hiddenAt) || right.profileStatus === "hidden" || right.profileStatus === "paused",
       emailVerified: right.emailVerified,
       accountClosed: right.userStatus === "closed" || right.userStatus === "closure_requested",
+      approvedPhoto: approvedIds.has(right.userId),
     },
     blocked,
   );

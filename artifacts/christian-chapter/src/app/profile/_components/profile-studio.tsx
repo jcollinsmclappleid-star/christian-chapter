@@ -88,6 +88,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
   const [profile, setProfile] = useState(initial);
   const [section, setSection] = useState<Section>("photos");
   const [saveState, setSaveState] = useState<"saved" | "saving" | "error">("saved");
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -104,9 +105,12 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
       body: JSON.stringify(patch),
     });
     if (!res.ok) {
+      const json = (await res.json().catch(() => null)) as { error?: string } | null;
+      setSaveError(json?.error ?? null);
       setSaveState("error");
       return;
     }
+    setSaveError(null);
     const next = (await res.json()) as StudioProfile;
     setProfile((current) => ({ ...current, ...next, photos: current.photos, messages: current.messages }));
     setSaveState("saved");
@@ -268,7 +272,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
             </p>
           </div>
           <p className="text-[13px] text-stone" aria-live="polite">
-            {saveState === "saving" ? "Saving…" : saveState === "error" ? "Couldn’t save — try again." : "Saved"}
+            {saveState === "saving" ? "Saving…" : saveState === "error" ? (saveError ?? "Couldn’t save — try again.") : "Saved"}
           </p>
         </div>
 

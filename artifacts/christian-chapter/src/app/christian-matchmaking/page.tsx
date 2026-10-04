@@ -1,7 +1,7 @@
-import { AcquisitionScreen, acquisitionMetadata } from "@/components/seo/acquisition-screen";
+import { ServicePage, servicePageMetadata } from "@/components/seo/service-page";
 
-export const metadata = acquisitionMetadata("/christian-matchmaking");
+export const metadata = servicePageMetadata("/christian-matchmaking");
 
 export default function ChristianMatchmakingPage() {
-  return <AcquisitionScreen path="/christian-matchmaking" />;
+  return <ServicePage path="/christian-matchmaking" />;
 }

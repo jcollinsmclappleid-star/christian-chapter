@@ -1,5 +1,7 @@
 export const SYNTHETIC_DOMAIN = "synthetic.christianchapter.invalid";
 export const SYNTHETIC_MEMBER_COUNT = 120;
+/** Journey fixtures: approved profiles, clear photos, ready for concierge connect + messaging smoke tests. */
+export const JOURNEY_MOCK_COUNT = 20;
 
 export type SeedSpec = {
   slug: string;
@@ -33,6 +35,15 @@ const FAMILY: SeedSpec["family"][] = ["dependent_children", "adult_children", "g
 const WORK: SeedSpec["work"][] = ["working", "semi_retired", "retired"];
 const PLAN: SeedSpec["plan"][] = ["free", "member", "plus"];
 const ACTIVITY: SeedSpec["activity"][] = ["active_now", "active_recently", "reactivation", "taking_a_break", "inactive"];
+
+export function buildJourneySpecs(count = JOURNEY_MOCK_COUNT): SeedSpec[] {
+  return buildSyntheticSpecs(count).map((spec) => ({
+    ...spec,
+    activity: "active_now" as const,
+    plan: "member" as const,
+    history: spec.history === "never_married" ? spec.history : ("divorced" as const),
+  }));
+}
 
 export function buildSyntheticSpecs(count = SYNTHETIC_MEMBER_COUNT): SeedSpec[] {
   return Array.from({ length: count }, (_, i) => {

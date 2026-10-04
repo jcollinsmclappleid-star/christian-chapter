@@ -44,6 +44,13 @@ export async function deleteUpload(storageKey: string) {
   await unlink(full).catch(() => undefined);
 }
 
+export async function deleteMemberUploads(userId: string) {
+  const dir = path.join(ROOT, userId);
+  if (!dir.startsWith(ROOT)) return;
+  const { rm } = await import("node:fs/promises");
+  await rm(dir, { recursive: true, force: true }).catch(() => undefined);
+}
+
 export function mimeForKey(storageKey: string): string {
   const ext = path.extname(storageKey).toLowerCase();
   if (ext === ".jpg" || ext === ".jpeg") return "image/jpeg";

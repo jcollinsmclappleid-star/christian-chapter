@@ -7,7 +7,7 @@ import { FORBIDDEN_CLAIM_PHRASES, seoBriefs } from "./briefs.ts";
 import { forbiddenHits, voiceHits } from "./qc.ts";
 import { CONCIERGE_PRICE_LABEL, HERO_OFFER, MINIMUM_AGE, TRAVEL_MILES_COPY, TRAVEL_MILES_MAX, TRAVEL_MILES_MIN } from "../site-config.ts";
 
-const ALLOWED_NUMBERS = new Set([String(MINIMUM_AGE), "45", "50", "55", "60", "65", "70", String(TRAVEL_MILES_MIN), String(TRAVEL_MILES_MAX)]);
+const ALLOWED_NUMBERS = new Set([String(MINIMUM_AGE), "14", "45", "50", "55", "60", "65", "70", "2027", String(TRAVEL_MILES_MIN), String(TRAVEL_MILES_MAX)]);
 
 describe("acquisition funnels", () => {
   it("publishes a city and a town in every nation and region", () => {

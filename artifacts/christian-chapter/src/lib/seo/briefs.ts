@@ -568,7 +568,7 @@ const fromAcquisition: SeoBrief[] = acquisitionPages.map((item) => ({
   body: item.lede,
   secondPassSignedAt: "2026-09-26",
   sourceFile: item.sourceFile,
-  lastModified: "2026-09-26",
+  lastModified: item.lastModified ?? "2026-09-26",
   changeFrequency: "monthly" as const,
   priority: item.path === "/free-christian-dating" ? 0.8 : 0.5,
 }));

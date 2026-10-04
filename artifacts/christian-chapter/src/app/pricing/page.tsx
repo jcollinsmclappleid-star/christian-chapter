@@ -101,7 +101,7 @@ export default function PricingPage() {
             Payment is not open. Founding membership is free.
             {siteConfig.vatRegistered
               ? " Published prices include UK VAT where applicable."
-              : " We do not publish a VAT number until the organisation is registered."}
+              : " Ianson Systems Limited is not VAT registered."}
           </p>
         </div>
       </section>

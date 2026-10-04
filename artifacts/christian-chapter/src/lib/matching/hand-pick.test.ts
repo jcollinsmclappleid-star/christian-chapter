@@ -8,6 +8,7 @@ const ready = (userId: string, status = "approved"): HandPickProfile => ({
   hidden: false,
   emailVerified: true,
   accountClosed: false,
+  approvedPhoto: true,
 });
 
 describe("hand-picked introductions", () => {
@@ -22,6 +23,10 @@ describe("hand-picked introductions", () => {
     assert.match(
       handPickBlockers({ ...ready("a"), emailVerified: false }, ready("b"), false) ?? "",
       /email/,
+    );
+    assert.match(
+      handPickBlockers({ ...ready("a"), approvedPhoto: false }, ready("b"), false) ?? "",
+      /photograph/,
     );
   });
 

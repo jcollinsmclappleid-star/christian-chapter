@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/admin/matching", label: "Introductions", icon: Heart },
   { href: "/admin/members", label: "Members", icon: Users },
   { href: "/admin/closures", label: "Closures", icon: Archive },
+  { href: "/admin/reports", label: "Reports", icon: Archive },
 ];
 
 export function AdminNav() {
