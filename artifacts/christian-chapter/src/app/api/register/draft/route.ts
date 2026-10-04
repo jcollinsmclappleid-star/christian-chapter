@@ -4,6 +4,7 @@ import { db, foundingApplications, users } from "@/db";
 import { requireMemberApi } from "@/lib/member-session";
 import { applicationToWizard, wizardToApplicationValues } from "@/lib/application-map";
 import type { WizardData } from "@/app/register/_components/wizard-types";
+import { anyProfanity, PROFANITY_MESSAGE } from "@/lib/language/profanity";
 
 export async function GET() {
   const { session, error } = await requireMemberApi();
@@ -57,6 +58,23 @@ export async function PUT(request: NextRequest) {
   } | null;
   if (!body?.data) {
     return NextResponse.json({ error: "Missing draft." }, { status: 400 });
+  }
+  if (
+    anyProfanity([
+      body.data.firstName,
+      body.data.faithDescription,
+      body.data.storyPrompt1,
+      body.data.storyPrompt2,
+      body.data.storyPrompt3,
+      body.data.meetingPreferences,
+      body.data.interests,
+      body.data.essentials,
+      body.data.priorities,
+      body.data.partnerHopes,
+      body.data.hobbyNote,
+    ])
+  ) {
+    return NextResponse.json({ error: PROFANITY_MESSAGE }, { status: 422 });
   }
 
   const values = wizardToApplicationValues(body.data, body.step ?? 1);

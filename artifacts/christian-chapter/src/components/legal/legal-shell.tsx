@@ -33,8 +33,8 @@ export function LegalShell({
           {children}
         </div>
         <p className="mt-12 text-[13px] text-stone">
-          These documents describe current founding-cohort processing. Qualified UK
-          legal review is still required before paid public acquisition.{" "}
+          These documents are the terms and notices for the service as it operates
+          today. Nothing in them removes a right the law says cannot be removed.{" "}
           <a href="/" className="underline">
             Back to Mature Christian Dating
           </a>

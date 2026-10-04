@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     absolute: "Mature Christian dating",
   },
   description:
-    "Free concierge matchmaking for UK Christian adults aged 40 and over. A matchmaker hand-picks an introduction for founding members. There is no maximum age.",
+    "Christian dating for UK adults aged 40 and over. Create a profile free. Matching technology opens on 14 February 2027. There is no maximum age.",
   alternates: { canonical: siteConfig.siteUrl },
 };
 
@@ -41,8 +41,8 @@ const path = [
   },
   {
     n: "2",
-    title: "A matchmaker chooses",
-    body: "Complete your profile. A concierge matchmaker hand-picks an introduction, and founding members are matched free.",
+    title: "A considered introduction",
+    body: "Matching technology opens on 14 February 2027. Until then, a matchmaker hand-picks an introduction for founding members, free of charge.",
   },
   {
     n: "3",
@@ -113,47 +113,49 @@ const photos = [
   },
 ];
 
-const display = "font-sans font-bold leading-[1.05] tracking-[-0.03em] text-plum";
-const displayOnNight = "font-sans font-bold leading-[1.05] tracking-[-0.03em] text-paper";
+const display = "font-serif font-medium leading-[1.12] text-plum";
+const displayOnNight = "font-serif font-medium leading-[1.12] text-paper";
 
 export default function HomePage() {
   return (
     <>
       <LegacyHouseRedirect />
 
-      <section className="relative h-[calc(100svh-3.5rem)] overflow-hidden bg-life">
+      <section className="relative h-[calc(100svh-3.5rem)] min-h-[32rem] overflow-hidden bg-life">
         <Image
           src="/images/home/joy-rooftop.jpg"
           alt="A couple in their fifties, in a sage shirt and charcoal polo, talking on a sunny rooftop"
           fill
           priority
-          className="object-cover object-[center_30%]"
+          className="object-cover object-[center_42%] md:object-[72%_28%]"
           sizes="100vw"
         />
         <div className="hero-shade absolute inset-0" />
-        <div className="relative z-10 flex h-full items-end md:items-center">
-          <div className="mx-auto w-full max-w-6xl md:px-8">
-            <div className="px-5 pb-3 md:max-w-[26rem] md:px-1">
-              <h1 className="font-sans text-[2.15rem] font-bold leading-[1.02] tracking-[-0.03em] text-white md:text-[2.6rem]">
-                Mature Christian dating.
-              </h1>
-              <p className="mt-2 max-w-[22rem] text-[16px] leading-5 text-white/90">
-                Find a lasting love, with someone who shares your faith.
-              </p>
-            </div>
-            <div className="w-full rounded-t-[28px] bg-paper px-5 pb-5 pt-5 shadow-card md:max-w-[26rem] md:rounded-[28px] md:px-6 md:py-6">
-              <a
-                href="/register"
-                className="inline-flex min-h-14 w-full items-center justify-center rounded-full bg-life px-8 text-[17px] font-semibold text-white"
-              >
-                Meet Christian Singles
-              </a>
-              <p className="mt-3 text-center text-[14px] leading-5 text-plum">{HERO_OFFER}</p>
-              <p className="mt-2 text-center text-[15px]">
-                <a href="/sign-in" className="font-semibold text-life underline underline-offset-4">
-                  Sign in
+        <div className="relative z-10 flex h-full items-end">
+          <div className="mx-auto w-full max-w-6xl px-5 pb-4 md:px-8 md:pb-10">
+            <div className="mr-auto w-full max-w-[26rem]">
+              <div className="pb-3 md:pb-4">
+                <h1 className="font-serif text-[2.35rem] font-medium leading-[1.08] text-white md:text-[2.85rem]">
+                  Mature Christian dating.
+                </h1>
+                <p className="mt-2 max-w-[22rem] text-[16px] leading-5 text-white/90">
+                  Find a lasting love, with someone who shares your faith.
+                </p>
+              </div>
+              <div className="w-full rounded-t-[28px] bg-paper px-5 pb-5 pt-5 shadow-card md:rounded-[28px] md:px-6 md:py-6">
+                <a
+                  href="/register"
+                  className="inline-flex min-h-14 w-full items-center justify-center rounded-full bg-life px-8 text-[17px] font-semibold text-white"
+                >
+                  Meet Christian Singles
                 </a>
-              </p>
+                <p className="mt-3 text-center text-[14px] leading-5 text-plum">{HERO_OFFER}</p>
+                <p className="mt-2 text-center text-[15px]">
+                  <a href="/sign-in" className="font-semibold text-life underline underline-offset-4">
+                    Sign in
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -208,7 +210,7 @@ export default function HomePage() {
                 </div>
                 <div className="px-5 py-4">
                   <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-stone">The love</p>
-                  <p className="mt-1 font-sans text-[1.55rem] font-bold leading-none tracking-tight text-plum">{photo.line}</p>
+                  <p className="mt-1 font-serif text-[1.55rem] font-medium leading-snug text-plum">{photo.line}</p>
                   <p className="mt-2 max-w-[24rem] text-[15px] leading-5 text-plum-muted">{photo.note}</p>
                 </div>
               </li>

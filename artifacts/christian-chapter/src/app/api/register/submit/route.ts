@@ -20,6 +20,7 @@ import {
   POLICY_VERSION,
 } from "@/lib/site-config";
 import type { WizardData } from "@/app/register/_components/wizard-types";
+import { anyProfanity, PROFANITY_MESSAGE } from "@/lib/language/profanity";
 
 export async function POST(request: NextRequest) {
   const { session, error } = await requireMemberApi();
@@ -28,11 +29,8 @@ export async function POST(request: NextRequest) {
   }
 
   const [user] = await db.select().from(users).where(eq(users.id, session.user.id)).limit(1);
-  if (!user?.emailVerifiedAt) {
-    return NextResponse.json(
-      { error: "Please confirm your email before submitting an application." },
-      { status: 403 },
-    );
+  if (!user) {
+    return NextResponse.json({ error: "Account not found." }, { status: 404 });
   }
   if (user.status === "closed" || user.status === "suspended") {
     return NextResponse.json({ error: "This account cannot submit an application." }, { status: 403 });
@@ -45,6 +43,27 @@ export async function POST(request: NextRequest) {
   }
 
   const data = parse.data as WizardData & { termsAccepted: true; eligibilityAcknowledged: true };
+  if (
+    anyProfanity([
+      data.firstName,
+      data.faithDescription,
+      data.storyPrompt1,
+      data.storyPrompt2,
+      data.storyPrompt3,
+      data.meetingPreferences,
+      data.interests,
+      data.essentials,
+      data.priorities,
+      data.partnerHopes,
+      data.hobbyNote,
+      data.workStatus,
+      data.familySituation,
+      data.relationshipGoal,
+      data.tradition,
+    ])
+  ) {
+    return NextResponse.json({ error: PROFANITY_MESSAGE }, { status: 422 });
+  }
   if (!isAtLeastAge(data.dateOfBirth, MINIMUM_AGE)) {
     return NextResponse.json(
       { error: "Mature Christian Dating is for adults aged 40 and over." },

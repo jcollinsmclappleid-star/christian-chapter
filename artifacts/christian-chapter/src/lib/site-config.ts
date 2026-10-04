@@ -3,11 +3,11 @@
  * Public copy must read this rather than inventing Ltd/VAT/prices.
  */
 
-export const POLICY_VERSION = "2026-09-23";
-export const POLICY_EFFECTIVE_DATE = "23 September 2026";
+export const POLICY_VERSION = "2026-10-04";
+export const POLICY_EFFECTIVE_DATE = "4 October 2026";
 export const RELIGIOUS_CONSENT_VERSION = "2026-09-20";
 export const MARKETING_CONSENT_VERSION = "2026-09-20";
-export const TERMS_CONSENT_VERSION = "2026-09-22";
+export const TERMS_CONSENT_VERSION = "2026-10-04";
 
 export const MINIMUM_AGE = 40;
 /** The distance control on a profile. Public pages may quote this range and no other radius. */
@@ -35,21 +35,36 @@ export const INCOGNITO_PRICE_GBP = 9;
 export const INCOGNITO_PRICE_LABEL = "£9 a month";
 export const INCOGNITO_STARTS_LABEL = "15 February 2027";
 
-/** One customer-facing account of the founding stage. */
+/**
+ * Temporary hand-picked introductions. Secondary to the dating product.
+ * Included free until matching technology opens. Not the identity of the service.
+ */
+export const CONCIERGE_PRICE_GBP = 89;
+export const CONCIERGE_PRICE_LABEL = "£89 a month";
+
+/** One customer-facing account of the founding stage. Dating first; concierge is the opening extra. */
 export const HERO_OFFER =
-  "Free Cupid concierge for founding members. A matchmaker hand-picks your introduction. Live matching opens on 14 February 2027.";
+  "Create your profile free. Matching technology opens on 14 February 2027. No card is taken.";
 
 export const FOUNDING_MEMBER_COPY =
-  "Mature Christian Dating is a concierge matchmaking service. A matchmaker hand-picks an introduction from a complete profile, and founding members are matched free. No payment is taken. The live matching system goes live on 14 February 2027. An introduction is a choice, not a guarantee.";
+  "Mature Christian Dating is a Christian dating service for adults aged 40 and over. You write your profile, set what matters, and introductions come with a reason. Until 14 February 2027, founding members also receive a personal concierge introduction free of charge. Matching technology goes live that day. No payment is taken before then. An introduction is a choice, not a guarantee.";
 
 /** Replaces a line that only pointed back at the homepage. */
-export const FUNNEL_SERVICE_HEADING = "A matchmaker hand-picks your introduction.";
+export const FUNNEL_SERVICE_HEADING = "Introductions with a reason.";
 export const FUNNEL_SERVICE_LINE =
-  "This is concierge matchmaking. Founding members receive it free, and you decide whether to say yes.";
+  "You set what matters. Until 14 February 2027 a matchmaker also hand-picks an introduction, free. Matching technology opens that day.";
 
 function env(name: string, fallback = ""): string {
   return (process.env[name] ?? fallback).trim();
 }
+
+/** Companies House 17084981. Registered office matches the ICO register entry. */
+export const LEGAL_ENTITY_NAME = "Ianson Systems Limited";
+export const COMPANY_NUMBER = "17084981";
+export const REGISTERED_OFFICE =
+  "71-75 Shelton Street, Covent Garden, London, WC2H 9JQ";
+export const ICO_REGISTRATION_REFERENCE = "ZC127831";
+export const ICO_REGISTER_URL = "https://ico.org.uk/ESDWebPages/Entry/ZC127831";
 
 export const siteConfig = {
   brandName: "Mature Christian Dating",
@@ -60,8 +75,12 @@ export const siteConfig = {
     "",
   ),
   contactEmail: env("LEGAL_CONTACT_EMAIL", "hello@maturechristiandating.co.uk"),
-  /** Empty = not an incorporated company in copy. */
-  legalEntityName: env("LEGAL_ENTITY_NAME"),
+  /** Blank env falls back to the registered company. Do not invent a different entity. */
+  legalEntityName: env("LEGAL_ENTITY_NAME") || LEGAL_ENTITY_NAME,
+  companyNumber: COMPANY_NUMBER,
+  registeredOffice: REGISTERED_OFFICE,
+  icoRegistrationReference: ICO_REGISTRATION_REFERENCE,
+  icoRegisterUrl: ICO_REGISTER_URL,
   icoComplaintsUrl: "https://ico.org.uk/make-a-complaint/",
   foundingStage: true,
   /** The later price is published. Checkout is not. */

@@ -6,7 +6,7 @@ import { Clock, UserCheck, MessageSquare, Heart } from "lucide-react";
 export const metadata = buildMetadata({
   title: "How Mature Christian Dating works",
   description:
-    "A concierge matchmaker hand-picks an introduction from a complete profile. Founding members are matched free. Live matching opens on 14 February 2027.",
+    "Create a profile, set what matters, and receive introductions with a reason. Matching technology opens on 14 February 2027. Until then, a matchmaker may hand-pick an introduction free of charge.",
   path: "/how-it-works",
 });
 
@@ -26,8 +26,8 @@ const steps = [
   {
     icon: MessageSquare,
     step: "3",
-    title: "A matchmaker hand-picks you",
-    desc: "This is concierge matchmaking. A matchmaker reads the complete profile and chooses an introduction, with a reason you can understand. Founding members receive that service free. The live matching system, which makes introductions on its own, opens on 14 February 2027.",
+    title: "Receive a considered introduction",
+    desc: "Matching technology opens on 14 February 2027 and makes introductions from what you marked essential. Until that day, a matchmaker may hand-pick an introduction from a complete profile. Founding members receive that concierge free. It is an opening extra, not the product.",
   },
   {
     icon: Clock,
@@ -53,7 +53,7 @@ export default function HowItWorksPage() {
         <div className="mx-auto max-w-4xl px-5 py-8 md:py-12">
           <h1 className="font-sans font-semibold text-plum">How it works</h1>
           <p className="mt-3 text-[17px] leading-6 text-plum-muted max-w-[36rem]">
-            A matchmaker reads a complete profile and hand-picks an introduction. Founding members are matched free.
+            You write your profile and set what matters. Matching technology opens on 14 February 2027. Until then, a matchmaker may hand-pick an introduction, free of charge.
           </p>
         </div>
       </section>

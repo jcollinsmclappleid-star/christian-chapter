@@ -10,6 +10,8 @@ export type HandPickProfile = {
   hidden: boolean;
   emailVerified: boolean;
   accountClosed: boolean;
+  /** At least one photograph a person has approved. A new upload does not count. */
+  approvedPhoto: boolean;
 };
 
 export function handPickBlockers(
@@ -22,6 +24,7 @@ export function handPickBlockers(
   for (const person of [a, b]) {
     if (person.accountClosed) return "One of these accounts is closed.";
     if (!person.emailVerified) return "Both people need a confirmed email.";
+    if (!person.approvedPhoto) return "Both people need a photograph that has been approved.";
     if (person.hidden || !CONNECTABLE.has(person.status)) {
       return "Both profiles need to be submitted before they can be connected.";
     }

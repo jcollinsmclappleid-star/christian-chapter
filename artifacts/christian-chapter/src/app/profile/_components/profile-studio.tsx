@@ -11,10 +11,9 @@ import {
   ESSENTIAL_FACTORS,
   INTERESTS_OPTIONS,
   TRADITIONS,
-  UK_REGIONS,
 } from "@/app/register/_components/wizard-types";
 import { VISIBILITY_FIELDS } from "@/lib/profile/visibility";
-import { TRAVEL_MILES_MAX, TRAVEL_MILES_MIN } from "@/lib/site-config";
+import { PlacePicker } from "@/components/place/place-picker";
 
 const GENDERS = ["Man", "Woman", "Non-binary", "Prefer not to say"];
 const SEEKING = ["Men", "Women", "Open to both"];
@@ -29,6 +28,37 @@ const WORK = ["Working", "Semi-retired", "Retired", "Other"];
 const SLOTS = Array.from({ length: PROFILE_PHOTO_LIMIT }, (_, index) => index + 1);
 
 type Section = "photos" | "story" | "about" | "faith" | "life" | "looking" | "place" | "essentials" | "privacy";
+
+function ImpressionField({
+  eyebrow,
+  tone = "paper",
+  children,
+}: {
+  eyebrow: string;
+  tone?: "paper" | "faith" | "quiet";
+  children: React.ReactNode;
+}) {
+  const shell =
+    tone === "faith"
+      ? "bg-plum text-ivory"
+      : tone === "quiet"
+        ? "bg-ivory-dark text-plum"
+        : "bg-ivory text-plum border border-border";
+  const label = tone === "faith" ? "text-brass" : "text-oxblood";
+  const field =
+    tone === "faith"
+      ? "text-ivory placeholder:text-ivory/45"
+      : "text-plum placeholder:text-stone";
+  return (
+    <label className={`block rounded-[18px] px-6 py-7 ${shell}`}>
+      <span className={`block text-[11px] uppercase tracking-[0.2em] mb-3 ${label}`}>{eyebrow}</span>
+      <div className={field}>{children}</div>
+    </label>
+  );
+}
+
+const impressionField =
+  "w-full bg-transparent font-serif text-[1.45rem] leading-snug resize-y focus:outline-none";
 
 function Choice({
   label,
@@ -58,9 +88,11 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
   const [profile, setProfile] = useState(initial);
   const [section, setSection] = useState<Section>("photos");
   const [saveState, setSaveState] = useState<"saved" | "saving" | "error">("saved");
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [canSeeOthers, setCanSeeOthers] = useState(false);
   const pending = useRef<Record<string, unknown>>({});
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -73,9 +105,12 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
       body: JSON.stringify(patch),
     });
     if (!res.ok) {
+      const json = (await res.json().catch(() => null)) as { error?: string } | null;
+      setSaveError(json?.error ?? null);
       setSaveState("error");
       return;
     }
+    setSaveError(null);
     const next = (await res.json()) as StudioProfile;
     setProfile((current) => ({ ...current, ...next, photos: current.photos, messages: current.messages }));
     setSaveState("saved");
@@ -97,6 +132,13 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
 
   useEffect(() => () => {
     if (timer.current) clearTimeout(timer.current);
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((res) => res.json())
+      .then((json) => setCanSeeOthers(Boolean(json.verified)))
+      .catch(() => undefined);
   }, []);
 
   async function uploadPhotos(files: File[]) {
@@ -127,13 +169,6 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
       }));
     }
     setUploading(false);
-  }
-
-  function openPhotos() {
-    setSection("photos");
-    requestAnimationFrame(() => {
-      document.getElementById("photographs")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
   }
 
   async function removePhoto(id: string) {
@@ -185,13 +220,15 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
 
   const hasSpace = Boolean(profile.firstName) || profile.photos.length > 0 || profile.completion.ready;
 
-  const sections: { id: Section; label: string }[] = [
-    { id: "photos", label: "Photos" },
+  const impression: { id: Section; label: string }[] = [
+    { id: "photos", label: "Photographs" },
     { id: "story", label: "Story" },
     { id: "about", label: "About" },
     { id: "faith", label: "Faith" },
-    { id: "life", label: "My life" },
+    { id: "life", label: "This chapter" },
     { id: "looking", label: "Looking for" },
+  ];
+  const quieter: { id: Section; label: string }[] = [
     { id: "place", label: "Place" },
     { id: "essentials", label: "Essentials" },
     { id: "privacy", label: "Privacy" },
@@ -199,18 +236,18 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
 
   return (
     <div>
-      {hasSpace && <MemberSpace profile={profile} onEditPhotos={openPhotos} />}
-      <div className={`grid gap-10 items-start ${hasSpace ? "" : "lg:grid-cols-[minmax(280px,390px)_minmax(0,1fr)]"}`}>
-      {!hasSpace && (
+      {hasSpace && <MemberSpace profile={profile} canSeeOthers={canSeeOthers} />}
+      <div className="grid gap-10 items-start lg:grid-cols-[minmax(280px,400px)_minmax(0,1fr)]">
       <aside className="lg:sticky lg:top-24">
         <div className="rounded-[28px] border border-border bg-ivory-dark/40 p-3 md:p-4">
           <p className="text-[11px] uppercase tracking-[0.22em] text-stone text-center mb-3">
             How you appear
           </p>
-          <DatingProfileView profile={profile} compact />
+          <div className="max-h-[32rem] overflow-y-auto overscroll-contain pr-1 lg:max-h-[calc(100vh-9rem)]">
+            <DatingProfileView profile={profile} compact editing />
+          </div>
         </div>
       </aside>
-      )}
 
       <div>
         {profile.messages.length > 0 && (
@@ -227,39 +264,59 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
         <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
           <div>
             <p className="text-[11px] uppercase tracking-[0.28em] text-life mb-2">Your profile</p>
-            {hasSpace ? (
-              <h2 className="font-serif text-plum text-[2.4rem] leading-none">Edit your profile</h2>
-            ) : (
-              <h1 className="font-serif text-plum text-[2.4rem] leading-none">Be someone worth meeting.</h1>
-            )}
+            <h1 className="font-serif font-medium text-plum text-[2.4rem] leading-[1.12]">
+              Be someone worth meeting.
+            </h1>
+            <p className="mt-3 max-w-[42ch] text-[16px] leading-7 text-plum-muted">
+              The card is how you appear. Write into it until it feels like you.
+            </p>
           </div>
           <p className="text-[13px] text-stone" aria-live="polite">
-            {saveState === "saving" ? "Saving…" : saveState === "error" ? "Couldn’t save — try again." : "Saved"}
+            {saveState === "saving" ? "Saving…" : saveState === "error" ? (saveError ?? "Couldn’t save — try again.") : "Saved"}
           </p>
         </div>
 
-        <div className="flex gap-2 overflow-x-auto pb-3 mb-8 -mx-1 px-1">
-          {sections.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => setSection(item.id)}
-              className={`min-h-[40px] px-4 rounded-full text-[13px] whitespace-nowrap border ${
-                section === item.id
-                  ? "bg-plum text-ivory border-plum"
-                  : "bg-ivory text-plum-muted border-border hover:border-plum/30"
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
+        <div className="mb-8 space-y-3">
+          <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
+            {impression.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setSection(item.id)}
+                className={`min-h-[40px] px-4 rounded-full text-[13px] whitespace-nowrap border ${
+                  section === item.id
+                    ? "bg-plum text-ivory border-plum"
+                    : "bg-ivory text-plum-muted border-border hover:border-plum/30"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-[11px] uppercase tracking-[0.18em] text-stone">Quieter details</span>
+            {quieter.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setSection(item.id)}
+                className={`min-h-[36px] px-3 rounded-full text-[12px] whitespace-nowrap border ${
+                  section === item.id
+                    ? "bg-plum text-ivory border-plum"
+                    : "bg-transparent text-stone border-border hover:text-plum"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {section === "photos" && (
           <section id="photographs">
             <h2 className="font-serif text-3xl text-plum mb-2">Photographs</h2>
             <p className="text-[16px] text-plum-muted mb-6 max-w-[48ch]">
-              Up to five photographs. You can add several at once. The first is how someone meets you — a clear, current face works best.
+              The first photograph is the room. Arrange up to five, and watch the card take their place. A clear, current face works best.
             </p>
             {profile.photos.length > PROFILE_PHOTO_LIMIT && (
               <p className="mb-4 text-[15px] text-oxblood">Remove photographs until five remain.</p>
@@ -356,10 +413,7 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
               Answer in your own words. These appear as cards between your photographs — the way people actually read a profile.
             </p>
             {profile.prompts.map((item, index) => (
-              <label key={item.prompt} className="block rounded-[18px] border border-border bg-ivory p-5">
-                <span className="block text-[12px] uppercase tracking-[0.18em] text-life mb-3">
-                  {item.prompt}
-                </span>
+              <ImpressionField key={item.prompt} eyebrow={item.prompt}>
                 <textarea
                   value={item.answer}
                   rows={4}
@@ -370,9 +424,9 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
                     update({ prompts });
                   }}
                   placeholder="There’s no right answer — just what feels true."
-                  className="w-full bg-transparent font-serif text-[1.35rem] leading-snug text-plum placeholder:text-stone resize-y focus:outline-none"
+                  className={impressionField}
                 />
-              </label>
+              </ImpressionField>
             ))}
           </section>
         )}
@@ -430,17 +484,16 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
                 })}
               </div>
             </div>
-            <div>
-              <label className="block text-[15px] font-medium mb-2" htmlFor="aboutMe">Introduce yourself</label>
+            <ImpressionField eyebrow="About me">
               <textarea
                 id="aboutMe"
                 rows={5}
                 value={profile.aboutMe ?? ""}
                 onChange={(e) => update({ aboutMe: e.target.value })}
                 placeholder="A few sentences a person could read over coffee."
-                className="w-full p-4 rounded-md border border-border-medium bg-ivory text-[16px] leading-7"
+                className={impressionField}
               />
-            </div>
+            </ImpressionField>
             <div>
               <p className="text-[15px] font-medium mb-2">What you are hoping for</p>
               <div className="grid gap-2">
@@ -458,17 +511,16 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
             <p className="text-[15px] leading-6 text-plum-muted">
               This is your faith section. Signed-in members read it on your profile.
             </p>
-            <div>
-              <label className="block text-[15px] font-medium mb-2" htmlFor="faithDescription">In your own words</label>
+            <ImpressionField eyebrow="What faith means to me" tone="faith">
               <textarea
                 id="faithDescription"
                 rows={5}
                 value={profile.faithDescription ?? ""}
                 onChange={(e) => update({ faithDescription: e.target.value })}
                 placeholder="What faith means in your week, your church, and the life you want."
-                className="w-full p-4 rounded-md border border-border-medium bg-ivory font-serif text-[1.25rem] leading-snug"
+                className={impressionField}
               />
-            </div>
+            </ImpressionField>
             <div>
               <p className="text-[15px] font-medium mb-2">Tradition</p>
               <div className="grid gap-2">
@@ -564,29 +616,24 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
         {section === "place" && (
           <section className="space-y-6">
             <h2 className="font-serif text-3xl text-plum">Place</h2>
-            <div>
-              <p className="text-[15px] font-medium mb-2">Region</p>
-              <div className="grid gap-2">
-                {UK_REGIONS.map((label) => (
-                  <Choice key={label} label={label} selected={profile.ukRegion === label} onClick={() => update({ ukRegion: label })} />
-                ))}
-              </div>
-            </div>
-            <div>
-              <label className="block text-[15px] font-medium mb-2" htmlFor="travel">
-                How far you can travel · {profile.travelRadiusMiles ?? 40} miles
-              </label>
-              <input
-                id="travel"
-                type="range"
-                min={TRAVEL_MILES_MIN}
-                max={TRAVEL_MILES_MAX}
-                step={5}
-                value={profile.travelRadiusMiles ?? 40}
-                onChange={(e) => update({ travelRadiusMiles: Number(e.target.value) })}
-                className="w-full"
-              />
-            </div>
+            <p className="text-[15px] leading-6 text-plum-muted">
+              Search for a city or a town. We use the nearest city as your area, and you choose the miles from there. Name the town only if you want it on your profile.
+            </p>
+            <PlacePicker
+              selectedPlaceSlug={profile.selectedPlaceSlug ?? ""}
+              nameTown={Boolean(profile.nameTown)}
+              miles={profile.travelRadiusMiles ?? 40}
+              onChange={(next) =>
+                update({
+                  ukRegion: next.ukRegion,
+                  travelRadiusMiles: next.travelRadiusMiles,
+                  selectedPlaceSlug: next.selectedPlaceSlug,
+                  nameTown: next.nameTown,
+                  homeCitySlug: next.homeCitySlug,
+                  homeTownSlug: next.homeTownSlug,
+                })
+              }
+            />
             <label className="flex items-center gap-3">
               <input
                 type="checkbox"
@@ -617,25 +664,24 @@ export function ProfileStudio({ initial }: { initial: StudioProfile }) {
         {section === "looking" && (
           <section className="space-y-6">
             <h2 className="font-serif text-3xl text-plum">What I’m looking for</h2>
-            <label className="block">
-              <span className="block text-[15px] font-medium mb-2">In your words</span>
+            <ImpressionField eyebrow="What I’m looking for">
               <textarea
                 rows={4}
                 value={profile.lookingFor ?? ""}
                 onChange={(e) => update({ lookingFor: e.target.value })}
-                className="w-full p-4 rounded-md border border-border-medium bg-ivory font-serif text-[1.25rem] leading-snug"
+                placeholder="The person you hope to meet."
+                className={impressionField}
               />
-            </label>
-            <h3 className="font-serif text-2xl text-plum">My next chapter</h3>
-            <label className="block">
-              <span className="block text-[15px] font-medium mb-2">What you hope this season holds</span>
+            </ImpressionField>
+            <ImpressionField eyebrow="My next chapter" tone="quiet">
               <textarea
                 rows={4}
                 value={profile.nextChapter ?? ""}
                 onChange={(e) => update({ nextChapter: e.target.value })}
-                className="w-full p-4 rounded-md border border-border-medium bg-ivory font-serif text-[1.25rem] leading-snug"
+                placeholder="What you hope this season holds."
+                className={impressionField}
               />
-            </label>
+            </ImpressionField>
             <label className="block">
               <span className="block text-[15px] font-medium mb-2">Caring responsibilities</span>
               <input

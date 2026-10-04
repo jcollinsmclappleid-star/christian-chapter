@@ -3,9 +3,11 @@ import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { db, accountClosureRequests, auditEvents } from "@/db";
 import { requireAdminApi } from "@/lib/admin-auth";
+import { purgeMemberAccount } from "@/lib/account/purge-member";
 
 const Schema = z.object({
-  status: z.enum(["resolved"]),
+  action: z.enum(["purge"]),
+  ignoreSchedule: z.boolean().optional(),
 });
 
 export async function PATCH(
@@ -26,23 +28,30 @@ export async function PATCH(
     return NextResponse.json({ error: "Invalid request." }, { status: 422 });
   }
 
-  const now = new Date();
-  const [updated] = await db
-    .update(accountClosureRequests)
-    .set({ status: parse.data.status, resolvedAt: now })
+  const [closure] = await db
+    .select()
+    .from(accountClosureRequests)
     .where(eq(accountClosureRequests.id, requestId))
-    .returning();
+    .limit(1);
+  if (!closure || closure.status !== "open") {
+    return NextResponse.json({ error: "That closure request is not open." }, { status: 404 });
+  }
 
-  if (!updated) return NextResponse.json({ error: "Not found." }, { status: 404 });
+  const result = await purgeMemberAccount(closure.userId, {
+    ignoreSchedule: Boolean(parse.data.ignoreSchedule),
+  });
+  if (!result.ok) {
+    return NextResponse.json({ error: result.error }, { status: 422 });
+  }
 
   await db.insert(auditEvents).values({
     actorType: "admin",
     actorId: auth.session.admin.email,
-    action: "closure_resolved",
+    action: "closure_purged",
     entityType: "account_closure_request",
     entityId: String(requestId),
-    metadata: { userId: updated.userId },
+    metadata: { userId: closure.userId, ignoreSchedule: Boolean(parse.data.ignoreSchedule) },
   });
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, purgedUserId: closure.userId });
 }

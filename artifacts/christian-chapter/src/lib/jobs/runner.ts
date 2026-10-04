@@ -5,6 +5,8 @@ import { moderateImage } from "@/lib/providers/image-moderation";
 import { recordProviderResult } from "@/lib/providers/record";
 import { writeAudit } from "@/lib/audit";
 import { sweepActivity } from "@/lib/matching/persist";
+import { processDueAccountDeletions, purgeMemberAccount } from "@/lib/account/purge-member";
+import { purgeExpiredMessages } from "@/lib/chat/open";
 import type { RequestedState } from "@/lib/providers/types";
 
 const MAX_ATTEMPTS_DEAD = true;
@@ -128,13 +130,33 @@ async function handleJob(type: string, payload: Record<string, unknown>) {
 
   if (type === "activity_sweep") {
     await sweepActivity(typeof payload.now === "string" ? payload.now : null);
+    await processDueAccountDeletions();
+    await purgeExpiredMessages();
     return;
   }
 
-  if (type === "deletion_due" || type === "verification_recheck") {
+  if (type === "deletion_due") {
+    const userId = payload.userId ? String(payload.userId) : null;
+    if (userId) {
+      const result = await purgeMemberAccount(userId);
+      if (!result.ok) {
+        if (result.error.includes("retention period")) return;
+        throw new Error(result.error);
+      }
+      return;
+    }
+    const results = await processDueAccountDeletions();
+    const failed = results.filter((row) => !row.ok);
+    if (failed.length > 0) {
+      throw new Error(failed.map((row) => row.error).join("; "));
+    }
+    return;
+  }
+
+  if (type === "verification_recheck") {
     await writeAudit({
       actorType: "system",
-      action: `job_${type}_ran`,
+      action: "job_verification_recheck_ran",
       entityType: "job_handler",
       entityId: type,
       metadata: payload,

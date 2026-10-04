@@ -1,5 +1,6 @@
 "use client";
 
+import { placeLine } from "@/lib/place-choice";
 import type { WizardData } from "./wizard-types";
 import { POLICY_VERSION, RELIGIOUS_CONSENT_VERSION } from "./wizard-types";
 
@@ -12,6 +13,7 @@ interface ReviewScreenProps {
   submitting: boolean;
   submitError: string | null;
   onTermsChange: (accepted: boolean) => void;
+  onPrivacyChange: (accepted: boolean) => void;
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -68,6 +70,7 @@ export function ReviewScreen({
   submitting,
   submitError,
   onTermsChange,
+  onPrivacyChange,
 }: ReviewScreenProps) {
   const STORY_PROMPT_LABELS = [
     "Prompt 1",
@@ -120,7 +123,7 @@ export function ReviewScreen({
         </Section>
 
         <Section title="Your location">
-          <Row label="UK region" value={data.ukRegion} />
+          <Row label="Area" value={placeLine(data.selectedPlaceSlug, data.nameTown, data.travelRadiusMiles) || data.ukRegion} />
           <Row label="Travel radius" value={`${data.travelRadiusMiles} miles`} />
         </Section>
 
@@ -245,8 +248,19 @@ export function ReviewScreen({
             aria-required="true"
           />
           <span className="text-[14px] text-plum leading-6">
-            I have read and agree to the Privacy policy and Terms of use. I
-            confirm my answers are accurate.
+            I agree to the Terms of use. I confirm my answers are accurate.
+          </span>
+        </label>
+        <label className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            checked={data.privacyAcknowledged}
+            onChange={(e) => onPrivacyChange(e.target.checked)}
+            className="mt-1 w-5 h-5 accent-oxblood"
+            aria-required="true"
+          />
+          <span className="text-[14px] text-plum leading-6">
+            I have read the Privacy policy. This is not consent to every use of my information.
           </span>
         </label>
       </div>
@@ -269,7 +283,7 @@ export function ReviewScreen({
         </button>
         <button
           onClick={onSubmit}
-          disabled={submitting || !data.termsAccepted}
+          disabled={submitting || !data.termsAccepted || !data.privacyAcknowledged}
           className="inline-flex items-center gap-2 min-h-[52px] px-8 text-[15px] font-sans font-medium bg-oxblood text-ivory rounded-md hover:bg-oxblood-hover transition-colors active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {submitting ? "Submitting…" : "Submit my application →"}

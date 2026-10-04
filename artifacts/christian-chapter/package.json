@@ -8,14 +8,17 @@
     "start": "next start --port ${PORT:-3000}",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test src/lib/age.test.ts src/lib/submit-schema.test.ts src/lib/legal-content.test.ts src/lib/admin-status.test.ts src/lib/profile/schema.test.ts src/lib/profile/preview.test.ts src/lib/dev/seed-specs.test.ts src/db/migrations.test.ts src/lib/matching/engine.test.ts src/lib/matching/activity.test.ts src/lib/matching/connections.test.ts src/lib/matching/hand-pick.test.ts src/lib/register/compose-line.test.ts src/lib/register/profile-card.test.ts src/lib/seo/registry.test.ts src/lib/seo/acquisition.test.ts src/lib/home/homepage.test.ts src/lib/photo-check.test.ts src/lib/profile/views.test.ts src/lib/profile/photos.test.ts src/lib/seo/articles.test.ts",
+    "test": "node --experimental-strip-types --test src/lib/age.test.ts src/lib/submit-schema.test.ts src/lib/legal-content.test.ts src/lib/admin-status.test.ts src/lib/profile/schema.test.ts src/lib/profile/preview.test.ts src/lib/dev/seed-specs.test.ts src/db/migrations.test.ts src/lib/matching/engine.test.ts src/lib/matching/activity.test.ts src/lib/matching/connections.test.ts src/lib/matching/hand-pick.test.ts src/lib/register/compose-line.test.ts src/lib/register/profile-card.test.ts src/lib/seo/registry.test.ts src/lib/seo/acquisition.test.ts src/lib/seo/service-pages.test.ts src/lib/home/homepage.test.ts src/lib/photo-check.test.ts src/lib/profile/views.test.ts src/lib/profile/photos.test.ts src/lib/seo/articles.test.ts src/lib/account/purge-member.test.ts src/lib/language/profanity.test.ts src/lib/chat/retention.test.ts src/lib/chat/seal.test.ts",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "node ./scripts/apply-migrations.mjs",
     "db:migrate:fnd01": "node ./scripts/apply-fnd01.mjs",
     "db:migrate:platform": "node ./scripts/apply-platform.mjs",
-    "db:seed": "node --env-file=.env.local ./scripts/seed.mjs"
+    "db:seed": "node --env-file=.env.local ./scripts/seed.mjs",
+    "db:seed:journey": "node --env-file=.env.local ./scripts/seed-journey.mjs",
+    "journey:http": "node --env-file=.env.local ./scripts/journey-http-smoke.mjs",
+    "test:messaging": "node --experimental-strip-types --env-file=.env.local ./scripts/test-messaging.mjs"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",

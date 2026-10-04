@@ -20,7 +20,7 @@ const paces = [
 export function Step7Intentions({ data, update }: StepProps) {
   return (
     <div>
-      <h2 className="font-sans font-bold text-plum mb-4 text-3xl md:text-4xl tracking-[-0.03em]">
+      <h2 className="font-serif font-medium text-plum mb-4 text-3xl md:text-4xl leading-[1.15]">
         Say what you actually want.
       </h2>
       <StepNote>There is no hurry, and no wrong pace. Companionship and marriage can both be honest answers.</StepNote>

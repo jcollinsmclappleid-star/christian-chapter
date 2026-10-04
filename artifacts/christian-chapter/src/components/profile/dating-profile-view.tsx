@@ -1,4 +1,5 @@
 import { getAge } from "@/lib/age";
+import { areaLabel } from "@/lib/place-choice";
 import type { ProfilePhoto, ProfilePrompt } from "@/lib/profile/types";
 
 type ViewProfile = {
@@ -21,9 +22,21 @@ type ViewProfile = {
   interests: string[] | null;
   travelRadiusMiles: number | null;
   openToRelocation: boolean | null;
+  selectedPlaceSlug?: string;
+  nameTown?: boolean;
   prompts: ProfilePrompt[];
   photos: ProfilePhoto[];
 };
+
+const HISTORY_LABELS: Record<string, string> = {
+  never_married: "Never married",
+  divorced: "Divorced",
+  widowed: "Widowed",
+};
+
+function historyLabel(value: string) {
+  return HISTORY_LABELS[value] ?? value.replaceAll("_", " ");
+}
 
 function Chip({ children }: { children: React.ReactNode }) {
   return (
@@ -33,9 +46,17 @@ function Chip({ children }: { children: React.ReactNode }) {
   );
 }
 
-function PhotoFrame({ photo, caption }: { photo: ProfilePhoto; caption?: React.ReactNode }) {
+function PhotoFrame({
+  photo,
+  caption,
+  compact = false,
+}: {
+  photo: ProfilePhoto;
+  caption?: React.ReactNode;
+  compact?: boolean;
+}) {
   return (
-    <figure className="relative overflow-hidden rounded-[18px] bg-ivory-darker aspect-[4/5]">
+    <figure className={`relative overflow-hidden rounded-[18px] bg-ivory-darker ${compact ? "aspect-[5/4]" : "aspect-[4/5]"}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={photo.url} alt="" className="absolute inset-0 h-full w-full object-cover object-[center_18%]" />
       {caption && (
@@ -56,20 +77,50 @@ function PromptCard({ prompt }: { prompt: ProfilePrompt }) {
   );
 }
 
+function Room({
+  eyebrow,
+  children,
+  tone = "paper",
+}: {
+  eyebrow: string;
+  children: React.ReactNode;
+  tone?: "paper" | "faith" | "quiet";
+}) {
+  const shell =
+    tone === "faith"
+      ? "rounded-[18px] bg-plum text-ivory px-6 py-7"
+      : tone === "quiet"
+        ? "rounded-[18px] bg-ivory-dark px-6 py-6"
+        : "rounded-[18px] border border-dashed border-border bg-ivory/70 px-6 py-6";
+  const label = tone === "faith" ? "text-brass" : "text-oxblood";
+  return (
+    <section className={shell}>
+      <p className={`text-[11px] uppercase tracking-[0.2em] mb-2 ${label}`}>{eyebrow}</p>
+      {children}
+    </section>
+  );
+}
+
 export function DatingProfileView({
   profile,
   compact = false,
+  editing = false,
 }: {
   profile: ViewProfile;
   compact?: boolean;
+  /** Studio only: empty rooms stay visible so the profile can be furnished. */
+  editing?: boolean;
 }) {
   const age = profile.age ?? (profile.dateOfBirth ? getAge(profile.dateOfBirth) : null);
   const photos = [...profile.photos].sort((a, b) => a.position - b.position);
   const hero = photos[0];
   const rest = photos.slice(1);
   const prompts = profile.prompts.filter((p) => p.answer.trim());
+  const area = profile.selectedPlaceSlug
+    ? areaLabel(profile.selectedPlaceSlug, Boolean(profile.nameTown))
+    : profile.ukRegion;
   const chips = [
-    profile.ukRegion,
+    area,
     profile.tradition,
     profile.workStatus,
     profile.relationshipGoal,
@@ -84,17 +135,19 @@ export function DatingProfileView({
       {hero ? (
         <PhotoFrame
           photo={hero}
+          compact={compact}
           caption={
             <span>
               <span className="block font-serif text-[2rem] leading-none">{title || "Your profile"}</span>
-              {profile.ukRegion && (
-                <span className="mt-2 block text-[14px] text-ivory/80">{profile.ukRegion}</span>
+              {area && (
+                <span className="mt-2 block text-[14px] text-ivory/80">{area}</span>
               )}
             </span>
           }
         />
       ) : (
-        <div className="rounded-[18px] bg-ivory-dark aspect-[4/5] flex items-center justify-center px-8 text-center">
+        <div className={`rounded-[18px] bg-ivory-dark flex flex-col items-center justify-center px-8 text-center ${compact ? "aspect-[5/4]" : "aspect-[4/5]"}`}>
+          {title && <p className="font-serif text-[2rem] leading-none text-plum mb-3">{title}</p>}
           <p className="text-plum-muted text-[15px]">Add a first photograph — this is how someone meets you.</p>
         </div>
       )}
@@ -107,19 +160,33 @@ export function DatingProfileView({
         </div>
       )}
 
-      {profile.aboutMe && (
+      {profile.aboutMe ? (
         <section className="px-1">
           <p className="text-[11px] uppercase tracking-[0.2em] text-oxblood mb-2">About me</p>
           <p className="text-[17px] leading-7 text-plum">{profile.aboutMe}</p>
         </section>
+      ) : (
+        editing && (
+          <Room eyebrow="About me">
+            <p className="font-serif text-[1.35rem] leading-snug text-stone">A few sentences, in your own voice.</p>
+          </Room>
+        )
       )}
 
-      {prompts[0] && <PromptCard prompt={prompts[0]} />}
+      {prompts[0] ? (
+        <PromptCard prompt={prompts[0]} />
+      ) : (
+        editing && (
+          <Room eyebrow="Your story">
+            <p className="font-serif text-[1.35rem] leading-snug text-stone">A line only you would write.</p>
+          </Room>
+        )
+      )}
       {rest[0] && <PhotoFrame photo={rest[0]} />}
       {prompts[1] && <PromptCard prompt={prompts[1]} />}
       {rest[1] && <PhotoFrame photo={rest[1]} />}
 
-      {(profile.faithDescription || profile.churchAttendance || profile.faithCentrality) && (
+      {profile.faithDescription || profile.churchAttendance || profile.faithCentrality ? (
         <section className="rounded-[18px] bg-plum text-ivory px-6 py-7">
           <p className="text-[11px] uppercase tracking-[0.22em] text-brass mb-3">What faith means to me</p>
           {profile.faithDescription && (
@@ -131,6 +198,14 @@ export function DatingProfileView({
               .join(" · ")}
           </p>
         </section>
+      ) : (
+        editing && (
+          <Room eyebrow="What faith means to me" tone="faith">
+            <p className="font-serif text-[1.35rem] leading-snug text-ivory/70">
+              Faith in your week, your church, and the life you want.
+            </p>
+          </Room>
+        )
       )}
 
       {rest.slice(2).map((photo) => (
@@ -139,18 +214,30 @@ export function DatingProfileView({
 
       {prompts[2] && <PromptCard prompt={prompts[2]} />}
 
-      {profile.lookingFor && (
+      {profile.lookingFor ? (
         <section className="rounded-[18px] border border-border bg-ivory px-6 py-6">
           <p className="text-[11px] uppercase tracking-[0.2em] text-oxblood mb-2">What I’m looking for</p>
           <p className="font-serif text-[1.45rem] leading-snug text-plum">{profile.lookingFor}</p>
         </section>
+      ) : (
+        editing && (
+          <Room eyebrow="What I’m looking for">
+            <p className="font-serif text-[1.35rem] leading-snug text-stone">The person you hope to meet.</p>
+          </Room>
+        )
       )}
 
-      {profile.nextChapter && (
+      {profile.nextChapter ? (
         <section className="rounded-[18px] bg-ivory-dark px-6 py-6">
           <p className="text-[11px] uppercase tracking-[0.2em] text-oxblood mb-2">My next chapter</p>
           <p className="font-serif text-[1.45rem] leading-snug text-plum">{profile.nextChapter}</p>
         </section>
+      ) : (
+        editing && (
+          <Room eyebrow="My next chapter" tone="quiet">
+            <p className="font-serif text-[1.35rem] leading-snug text-stone">What you hope this season holds.</p>
+          </Room>
+        )
       )}
 
       {(profile.familySituation || profile.relationshipHistory || profile.interests?.length) && (
@@ -158,7 +245,7 @@ export function DatingProfileView({
           {profile.relationshipHistory && (
             <p className="text-[15px] text-plum">
               <span className="text-stone">This chapter · </span>
-              {profile.relationshipHistory.replaceAll("_", " ")}
+              {historyLabel(profile.relationshipHistory)}
             </p>
           )}
           {profile.familySituation && (

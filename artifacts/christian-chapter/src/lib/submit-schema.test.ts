@@ -34,11 +34,16 @@ const valid = {
   priorities: [],
   photoConsent: false,
   termsAccepted: true as const,
+  privacyAcknowledged: true as const,
 };
 
 describe("GATE-A submit consents", () => {
   it("accepts a complete payload with required consents", () => {
     assert.equal(SubmitSchema.safeParse(valid).success, true);
+  });
+
+  it("rejects missing privacy acknowledgement", () => {
+    assert.equal(SubmitSchema.safeParse({ ...valid, privacyAcknowledged: false }).success, false);
   });
 
   it("rejects missing terms acceptance", () => {

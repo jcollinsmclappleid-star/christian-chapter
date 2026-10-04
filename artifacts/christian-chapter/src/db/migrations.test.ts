@@ -82,6 +82,23 @@ describe("GATE-E reversible FND-01 migration", () => {
     assert.match(down, /DROP TABLE IF EXISTS "conversations"/);
   });
 
+  it("expires unread messages after 30 days and does not invent a read time", () => {
+    const sql = readFileSync(path.join(dir, "0009_message_retention.sql"), "utf8");
+    const down = readFileSync(path.join(dir, "0009_message_retention.down.sql"), "utf8");
+    assert.match(sql, /first_read_at/);
+    assert.match(sql, /interval '30 days'/);
+    assert.doesNotMatch(sql, /first_read_at" = /);
+    assert.match(down, /DROP COLUMN IF EXISTS "expires_at"/);
+  });
+
+  it("keeps a reported message apart from the live conversation", () => {
+    const sql = readFileSync(path.join(dir, "0010_report_evidence.sql"), "utf8");
+    const down = readFileSync(path.join(dir, "0010_report_evidence.down.sql"), "utf8");
+    assert.match(sql, /CREATE TABLE IF NOT EXISTS "report_evidence"/);
+    assert.match(sql, /REFERENCES "member_reports"/);
+    assert.match(down, /DROP TABLE IF EXISTS "report_evidence"/);
+  });
+
   it("rolls back without dropping founding_members", () => {
     assert.match(down, /DROP TABLE IF EXISTS "users"/);
     assert.match(down, /DROP TABLE IF EXISTS "founding_applications"/);

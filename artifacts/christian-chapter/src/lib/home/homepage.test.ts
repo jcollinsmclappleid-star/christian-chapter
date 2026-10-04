@@ -45,6 +45,8 @@ describe("homepage conversion", () => {
     assert.doesNotMatch(home, /HeroIntake|Looking to meet/);
     assert.match(home, /href="\/register"/);
     assert.match(home, /href="\/sign-in"/);
+    assert.match(home, /mr-auto w-full max-w-\[26rem\]/);
+    assert.match(home, /md:object-\[72%_28%\]/);
     assert.match(home, /See how it works/);
     assert.doesNotMatch(home, /ChapterHouse|three|chapter-house|Begin your chapter is available/);
     assert.doesNotMatch(home, /IntroductionDemo/);

@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { ConciergeOfferDialog } from "@/components/home/concierge-offer-dialog";
 import { Header } from "./header";
 import { Footer } from "./footer";
 
@@ -19,6 +20,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <Header />
       <div className="flex-1">{children}</div>
       <Footer />
+      {!pathname.startsWith("/profile") && pathname !== "/" && <ConciergeOfferDialog />}
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { and, eq, or } from "drizzle-orm";
-import { db, introductions, memberPhotos, profileViews } from "@/db";
+import { db, introductions, memberPhotos, profileViews, users } from "@/db";
 import { requireMemberApi } from "@/lib/member-session";
 import { requireAdminApi } from "@/lib/admin-auth";
 import { deleteUpload, mimeForKey, readUpload } from "@/lib/storage/local";
@@ -12,6 +12,14 @@ async function canView(photoUserId: string, moderationStatus: string) {
   if (viewerId === photoUserId) return true;
   const admin = await requireAdminApi("profiles.read");
   if (admin.session) return true;
+  if (viewerId) {
+    const [viewer] = await db
+      .select({ emailVerifiedAt: users.emailVerifiedAt })
+      .from(users)
+      .where(eq(users.id, viewerId))
+      .limit(1);
+    if (!viewer?.emailVerifiedAt) return false;
+  }
   if (moderationStatus !== "clear") return false;
   if (viewerId) {
     const [view] = await db

@@ -15,6 +15,7 @@ type Intro = {
   why: Array<{ text: string }>;
   worthDiscussing: Array<{ text: string }>;
   card: Parameters<typeof DatingProfileView>[0]["profile"] & { firstName: string | null };
+  conversationId?: string | null;
 };
 
 export default function IntroductionDossierPage() {
@@ -185,8 +186,16 @@ export default function IntroductionDossierPage() {
               </ul>
             </div>
           )}
+          {intro.conversationId && (
+            <a
+              href={`/conversations/${intro.conversationId}`}
+              className="inline-flex min-h-[48px] items-center justify-center rounded-md bg-oxblood px-5 text-ivory"
+            >
+              Write to {intro.card.firstName ?? "them"}
+            </a>
+          )}
           <div className="hidden md:block">{intro.canAct === false ? null : actions}</div>
-          {intro.canAct === false && (
+          {intro.canAct === false && !intro.conversationId && (
             <p className="text-[15px] text-plum-muted">
               You can look. Responding opens when matching is switched on.
             </p>

@@ -26,8 +26,8 @@ export default function ConfirmPage() {
           {[
             {
               num: "01",
-              title: "Email confirmed",
-              body: "You reached this page after confirming the address you control.",
+              title: "Confirm your email",
+              body: "Your profile is saved. Other people’s profiles stay closed until you open the link we sent.",
             },
             {
               num: "02",

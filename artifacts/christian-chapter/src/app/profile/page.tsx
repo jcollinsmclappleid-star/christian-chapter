@@ -36,7 +36,7 @@ export default function ProfilePage() {
 
   return (
     <section className="bg-ivory py-10 md:py-14">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-7xl px-6">
         <ProfileStudio initial={profile} />
       </div>
     </section>

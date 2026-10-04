@@ -23,13 +23,13 @@ function validateEmail(email: string) {
 function canContinueStep(step: number, d: WizardData): boolean {
   switch (step) {
     case 1:
-      return d.eligibilityAcknowledged && !!d.gender && d.seekingGender.length > 0 && !!d.firstName.trim();
+      return d.eligibilityAcknowledged && !!d.gender && d.seekingGender.length > 0 && !!d.firstName.trim() && validateEmail(d.email);
     case 2: {
       const age = getAge(d.dateOfBirth);
       return !!d.dateOfBirth && age !== null && age >= MINIMUM_AGE;
     }
     case 3:
-      return !!d.ukRegion;
+      return !!d.selectedPlaceSlug && d.travelRadiusMiles >= 10 && d.travelRadiusMiles <= 200;
     case 4:
       return d.religiousDataConsent && !!d.tradition && !!d.churchAttendance && !!d.faithCentrality;
     case 5:
@@ -69,6 +69,7 @@ export function Wizard() {
   const [verified, setVerified] = useState(false);
   const [checkEmail, setCheckEmail] = useState<string | null>(null);
   const [devLink, setDevLink] = useState<string | null>(null);
+  const [emailNotice, setEmailNotice] = useState(false);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -149,7 +150,52 @@ export function Wizard() {
     [persistLocal, persistServer, step],
   );
 
+  const registerNow = useCallback(async () => {
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/auth/start", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: data.firstName,
+          email: data.email,
+          marketingConsent: data.marketingConsent,
+          step: 1,
+          data,
+        }),
+      });
+      const json = (await res.json()) as { error?: string; signedIn?: boolean; devLink?: string };
+      if (!res.ok) {
+        setSubmitError(json.error ?? "Could not save your profile.");
+        return false;
+      }
+      if (!json.signedIn) {
+        setCheckEmail(data.email);
+        setDevLink(json.devLink ?? null);
+        return false;
+      }
+      setAuthenticated(true);
+      setVerified(false);
+      setEmailNotice(true);
+      setDevLink(json.devLink ?? null);
+      return true;
+    } catch {
+      setSubmitError("Network error. Please try again.");
+      return false;
+    } finally {
+      setSubmitting(false);
+    }
+  }, [data]);
+
   const goNext = useCallback(async () => {
+    let justRegistered = false;
+    if (step === 1 && !authenticated) {
+      const saved = await registerNow();
+      if (!saved) return;
+      justRegistered = true;
+    }
+
     if (step === TOTAL_STEPS && !authenticated) {
       setSubmitting(true);
       setSubmitError(null);
@@ -182,8 +228,15 @@ export function Wizard() {
     }
 
     if (step < TOTAL_STEPS) {
-      setStep((s) => {
-        const next = s + 1;
+      const next = step + 1;
+      if (justRegistered) {
+        void fetch("/api/register/draft", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ data, step: next }),
+        });
+      }
+      setStep(() => {
         persistLocal(data, next);
         persistServer(data, next);
         return next;
@@ -193,13 +246,9 @@ export function Wizard() {
       setReviewing(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [step, data, authenticated, persistLocal, persistServer]);
+  }, [step, data, authenticated, persistLocal, persistServer, registerNow]);
 
   const handleSubmit = useCallback(async () => {
-    if (!verified) {
-      setSubmitError("Please confirm your email before submitting.");
-      return;
-    }
     setSubmitting(true);
     setSubmitError(null);
     try {
@@ -220,7 +269,7 @@ export function Wizard() {
     } finally {
       setSubmitting(false);
     }
-  }, [data, verified]);
+  }, [data]);
 
   const goBack = useCallback(() => {
     if (step > 1) {
@@ -257,11 +306,10 @@ export function Wizard() {
           <p className="mb-4 font-sans text-[11px] uppercase tracking-[0.3em] text-life">
             Confirm your email
           </p>
-          <h1 className="mb-5 font-sans text-4xl font-bold tracking-[-0.03em] text-plum">Check your inbox</h1>
+          <h1 className="mb-5 font-serif text-4xl font-medium leading-[1.15] text-plum">Check your inbox</h1>
           <p className="text-[17px] text-plum-muted leading-7 mb-6">
-            We have sent a one-time link to <strong className="text-plum">{checkEmail}</strong>.
-            Confirm that address before your founding application can become active.
-            You are not a founding member yet.
+            <strong className="text-plum">{checkEmail}</strong> already has a profile.
+            Open the link we sent to sign in. You can keep building once you are in.
           </p>
           {devLink && (
             <p className="text-[14px] text-stone mb-6">
@@ -300,6 +348,19 @@ export function Wizard() {
         </div>
       </header>
 
+      {emailNotice && !verified && (
+        <p className="border-b border-ivory-darker bg-life-light px-6 py-3 text-[14px] leading-6 text-plum md:px-10">
+          Your profile is saved. A confirmation link is on its way to {data.email}. You can keep building here and in your profile.
+          Other people’s profiles stay closed until you open that link.
+          {devLink ? (
+            <>
+              {" "}
+              <a href={devLink} className="font-semibold underline">Open the confirmation link</a>
+            </>
+          ) : null}
+        </p>
+      )}
+
       <main className="mx-auto grid w-full max-w-5xl flex-1 gap-8 px-6 py-8 md:grid-cols-[minmax(0,1fr)_280px] md:py-12">
         {!reviewing && (
           <div className="md:col-start-2 md:row-start-1">
@@ -319,6 +380,7 @@ export function Wizard() {
               submitting={submitting}
               submitError={submitError}
               onTermsChange={(accepted) => update({ termsAccepted: accepted })}
+              onPrivacyChange={(accepted) => update({ privacyAcknowledged: accepted })}
             />
           ) : (
             <StepComponent data={data} update={update} onNext={goNext} onBack={goBack} step={step} />

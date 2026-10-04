@@ -10,6 +10,7 @@ import {
 } from "@/db";
 import { requireMemberApi } from "@/lib/member-session";
 import { writeAudit } from "@/lib/audit";
+import { messagesForExport } from "@/lib/chat/open";
 
 export async function GET() {
   const { session, error } = await requireMemberApi();
@@ -57,5 +58,6 @@ export async function GET() {
     profile,
     photos,
     consents,
+    messages: await messagesForExport(session.user.id),
   });
 }

@@ -33,7 +33,7 @@ function Pill({
 export function Step1Welcome({ data, update }: StepProps) {
   return (
     <div>
-      <h1 className="font-sans font-bold text-plum mb-4 text-4xl md:text-[3.2rem] leading-[1.05] tracking-[-0.03em]">
+      <h1 className="font-serif font-medium text-plum mb-4 text-4xl md:text-[3.2rem] leading-[1.12]">
         Meet Christian singles.
       </h1>
       <StepNote>You are in the right place. This is for love, company, and a faith you do not have to explain.</StepNote>

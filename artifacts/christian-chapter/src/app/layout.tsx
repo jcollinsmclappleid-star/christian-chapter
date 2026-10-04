@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
-import { EB_Garamond, Space_Grotesk } from "next/font/google";
+import { EB_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/layout/site-chrome";
 
@@ -12,9 +12,9 @@ const garamond = EB_Garamond({
   display: "swap",
 });
 
-const grotesk = Space_Grotesk({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   variable: "--font-grotesk",
   display: "swap",
 });
@@ -40,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-GB" className={`${garamond.variable} ${grotesk.variable}`}>
+    <html lang="en-GB" className={`${garamond.variable} ${sourceSans.variable}`}>
       <body className="flex flex-col min-h-screen">
         <SiteChrome>{children}</SiteChrome>
       </body>

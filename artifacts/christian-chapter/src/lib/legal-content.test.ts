@@ -30,9 +30,12 @@ describe("GATE-C legal and honesty copy", () => {
     assert.doesNotMatch(read("app/layout.tsx"), /cookie banner|CookieBanner/);
   });
 
-  it("does not invent Ltd or VAT in the default footer", () => {
-    assert.equal(siteConfig.legalEntityName, "");
-    assert.doesNotMatch(footerLegalLine(2026), /Ltd|VAT/);
+  it("names Ianson Systems Limited and does not invent VAT", () => {
+    assert.equal(siteConfig.legalEntityName, "Ianson Systems Limited");
+    assert.equal(siteConfig.companyNumber, "17084981");
+    assert.equal(siteConfig.icoRegistrationReference, "ZC127831");
+    assert.match(footerLegalLine(2026), /Ianson Systems Limited/);
+    assert.doesNotMatch(footerLegalLine(2026), /VAT/);
     assert.match(footerLegalLine(2026), /Founding cohort/);
   });
 

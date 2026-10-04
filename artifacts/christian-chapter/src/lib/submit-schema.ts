@@ -41,4 +41,5 @@ export const SubmitSchema = z.object({
   priorities: z.array(z.string()),
   photoConsent: z.boolean(),
   termsAccepted: z.literal(true),
+  privacyAcknowledged: z.literal(true),
 });

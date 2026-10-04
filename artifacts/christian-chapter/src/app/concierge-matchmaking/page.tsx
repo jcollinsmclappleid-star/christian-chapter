@@ -1,7 +1,7 @@
-import { AcquisitionScreen, acquisitionMetadata } from "@/components/seo/acquisition-screen";
+import { ServicePage, servicePageMetadata } from "@/components/seo/service-page";
 
-export const metadata = acquisitionMetadata("/concierge-matchmaking");
+export const metadata = servicePageMetadata("/concierge-matchmaking");
 
 export default function ConciergeMatchmakingPage() {
-  return <AcquisitionScreen path="/concierge-matchmaking" />;
+  return <ServicePage path="/concierge-matchmaking" />;
 }

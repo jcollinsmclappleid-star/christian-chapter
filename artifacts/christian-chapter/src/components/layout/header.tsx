@@ -16,13 +16,21 @@ const memberLinks = [
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
+  const [verified, setVerified] = useState(false);
 
   useEffect(() => {
     fetch("/api/auth/me")
       .then((res) => res.json())
-      .then((json) => setSignedIn(Boolean(json.signedIn)))
+      .then((json) => {
+        setSignedIn(Boolean(json.signedIn));
+        setVerified(Boolean(json.verified));
+      })
       .catch(() => undefined);
   }, []);
+
+  const links = verified
+    ? memberLinks
+    : memberLinks.filter((link) => link.href === "/profile" || link.href === "/account");
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-life">
@@ -32,11 +40,16 @@ export function Header() {
         {signedIn ? (
           <>
             <nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
-              {memberLinks.map((link) => (
+              {links.map((link) => (
                 <a key={link.href} href={link.href} className="text-[15px] text-paper hover:text-glow">
                   {link.label}
                 </a>
               ))}
+              {!verified && (
+                <a href="/register" className="text-[15px] text-glow hover:text-paper">
+                  Confirm email
+                </a>
+              )}
             </nav>
             <button
               className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md p-2 text-paper md:hidden"
@@ -56,7 +69,7 @@ export function Header() {
 
       {signedIn && mobileOpen && (
         <nav className="border-t border-white/10 bg-life px-5 py-2 md:hidden" aria-label="Main navigation">
-          {memberLinks.map((link) => (
+          {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -66,6 +79,11 @@ export function Header() {
               {link.label}
             </a>
           ))}
+          {!verified && (
+            <a href="/register" className="block py-3 text-[17px] text-glow" onClick={() => setMobileOpen(false)}>
+              Confirm email
+            </a>
+          )}
         </nav>
       )}
     </header>

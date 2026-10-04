@@ -9,8 +9,8 @@ export { RELIGIOUS_CONSENT_VERSION, POLICY_VERSION };
 
 export const WIZARD_STORAGE_KEY = "cc_wizard_v1";
 export const TOTAL_STEPS = 8;
-/** 4 adds optional marital situation and children. Older drafts restart at step 1. */
-export const FLOW_VERSION = 4;
+/** 5 asks for email with the name, and a city plus miles instead of a region alone. Older drafts restart at step 1. */
+export const FLOW_VERSION = 5;
 
 export type EssentialTier = "essential" | "preferred" | "open";
 
@@ -30,9 +30,13 @@ export type WizardData = {
   dateOfBirth: string;       // ISO date YYYY-MM-DD
   gender: string;
   seekingGender: string[];
-  // Step 4: Location
+  // Step 4: Location. The city is the area. A town is stored only when they ask to name it.
   ukRegion: string;
   travelRadiusMiles: number;
+  selectedPlaceSlug: string;
+  nameTown: boolean;
+  homeCitySlug: string;
+  homeTownSlug: string;
   // Step 5: Faith (GDPR special category)
   religiousDataConsent: boolean;
   religiousDataConsentTimestamp: string | null;
@@ -67,6 +71,8 @@ export type WizardData = {
   priorities: string[];
   photoConsent: boolean;
   termsAccepted: boolean;
+  /** Acknowledgement that they have read the notice. Not consent to all processing. */
+  privacyAcknowledged: boolean;
   partnerHopes: string[];
   hobbyNote: string;
   photoDataUrl: string;
@@ -86,6 +92,10 @@ export const defaultWizardData: WizardData = {
   seekingGender: [],
   ukRegion: "",
   travelRadiusMiles: 40,
+  selectedPlaceSlug: "",
+  nameTown: false,
+  homeCitySlug: "",
+  homeTownSlug: "",
   religiousDataConsent: false,
   religiousDataConsentTimestamp: null,
   religiousDataConsentVersion: RELIGIOUS_CONSENT_VERSION,
@@ -112,6 +122,7 @@ export const defaultWizardData: WizardData = {
   priorities: [],
   photoConsent: false,
   termsAccepted: false,
+  privacyAcknowledged: false,
   partnerHopes: [],
   hobbyNote: "",
   photoDataUrl: "",

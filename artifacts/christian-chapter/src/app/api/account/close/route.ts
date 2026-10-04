@@ -12,6 +12,7 @@ import { requireMemberApi, getMemberSession } from "@/lib/member-session";
 import { writeAudit } from "@/lib/audit";
 import { APPLICATION_RETENTION_DAYS } from "@/lib/site-config";
 import { requestMeta } from "@/lib/auth-email";
+import { enqueueJob } from "@/lib/jobs/queue";
 import { releasePhotoCheckForUser } from "@/lib/photo-check-store";
 
 const Schema = z.object({
@@ -66,6 +67,8 @@ export async function POST(request: NextRequest) {
   });
 
   await releasePhotoCheckForUser(session.user.id, now);
+
+  await enqueueJob("deletion_due", { userId: session.user.id, closureRequestId: null }, scheduled);
 
   await writeAudit({
     actorType: "member",

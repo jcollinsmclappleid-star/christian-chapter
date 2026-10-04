@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
 import { db, introductions } from "@/db";
-import { requireMemberApi } from "@/lib/member-session";
+import { requireVerifiedMemberApi } from "@/lib/member-session";
 import { isFeatureEnabled } from "@/lib/platform/features";
 import { getMemberIntroduction } from "@/lib/matching/persist";
 import { HAND_PICK_POOL } from "@/lib/matching/hand-pick";
@@ -10,8 +10,8 @@ export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const { session, error } = await requireMemberApi();
-  if (!session) return NextResponse.json({ error }, { status: 401 });
+  const { session, error, status } = await requireVerifiedMemberApi();
+  if (!session) return NextResponse.json({ error }, { status });
   const { id } = await params;
 
   if (!isFeatureEnabled("introductions")) {

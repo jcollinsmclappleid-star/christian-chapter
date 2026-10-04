@@ -110,8 +110,11 @@ describe("seo registry", () => {
       assert.deepEqual(hits, [], `${item.path}: ${hits.join(", ")}`);
     }
     const robots = read("app/robots.ts");
-    for (const rule of ["/register/", "/admin/", "/api/", "/account", "/profile", "/sign-in", "/verify"]) {
+    for (const rule of ["/admin/", "/api/"]) {
       assert.match(robots, new RegExp(rule.replace("/", "\\/")));
+    }
+    for (const crawlableNoindex of ["/register/", "/account", "/profile", "/sign-in", "/verify"]) {
+      assert.doesNotMatch(robots, new RegExp(crawlableNoindex.replace("/", "\\/")));
     }
   });
 });

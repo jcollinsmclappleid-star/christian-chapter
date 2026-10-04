@@ -13,7 +13,7 @@ export default function AboutPage() {
   return (
     <main className="bg-ivory">
       <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
-        <h1 className="font-sans text-[2.2rem] font-bold leading-[1.05] tracking-[-0.03em] text-plum md:text-[2.8rem]">
+        <h1 className="font-serif text-[2.4rem] font-medium leading-[1.12] text-plum md:text-[3rem]">
           About us
         </h1>
         <p className="mt-5 text-[18px] leading-7 text-plum">

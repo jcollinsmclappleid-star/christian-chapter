@@ -20,7 +20,8 @@ export default function ConversationsPage() {
           return;
         }
         if (!res.ok) {
-          setError("We couldn’t open your conversations.");
+          const json = await res.json().catch(() => ({}));
+          setError(json.error ?? "We couldn’t open your conversations.");
           return;
         }
         const json = await res.json();

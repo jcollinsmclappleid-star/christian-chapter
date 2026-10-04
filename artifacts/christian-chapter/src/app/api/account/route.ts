@@ -100,7 +100,9 @@ export async function GET() {
       profileViews: profile?.notifyProfileViews !== false,
     },
     signIns: signIns.map((row) => ({ id: row.id, createdAt: row.createdAt.toISOString() })),
-    blocks: blocks.map((row) => ({ userId: row.userId, firstName: row.firstName })),
+    blocks: user.emailVerifiedAt
+      ? blocks.map((row) => ({ userId: row.userId, firstName: row.firstName }))
+      : [],
     billing: {
       ...(await billingStatus(session.user.id)),
       collectsLabel: MEMBER_BILLING_STARTS_LABEL,

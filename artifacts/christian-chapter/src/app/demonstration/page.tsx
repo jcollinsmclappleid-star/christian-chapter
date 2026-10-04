@@ -41,7 +41,7 @@ export default function DemonstrationProfilePage() {
   return (
     <main className="bg-ivory">
       <div className="mx-auto max-w-3xl px-5 py-8">
-        <h1 className="mb-3 font-sans text-[2rem] font-bold tracking-[-0.03em] text-plum">A complete profile</h1>
+        <h1 className="mb-3 font-serif text-[2.15rem] font-medium leading-tight text-plum">A complete profile</h1>
         <p className="mb-8 max-w-xl text-[16px] leading-6 text-plum-muted">
           A complete profile shows photographs, a story, what faith means to you, your life, who you hope to meet, place, essentials, and privacy. A photograph is not required to begin.
         </p>
