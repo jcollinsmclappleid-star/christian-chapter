@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
-import { AlertTriangle, Users, Clock, CheckCircle, XCircle, Flag } from "lucide-react";
+import {
+  AlertTriangle,
+  Users,
+  Clock,
+  CheckCircle,
+  XCircle,
+  Flag,
+  type LucideIcon,
+} from "lucide-react";
 import { requireAdminSession } from "@/lib/admin-session";
 import { db, foundingApplications } from "@/db";
 
@@ -126,7 +134,7 @@ function StatCard({
 }: {
   label: string;
   count: number;
-  icon: React.ElementType;
+  icon: LucideIcon;
   accent: string;
 }) {
   return (
